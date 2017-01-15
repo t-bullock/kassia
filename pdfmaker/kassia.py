@@ -48,14 +48,14 @@ class Kassia:
 
         # Set title defaults
         self.titleAttrib = {}
-        self.titleAttrib['font'] = 'EZ Omega'
+        self.titleAttrib['font'] = 'Helvetica'
         self.titleAttrib['font_size'] = 18
         self.titleAttrib['color'] = colors.black
         self.titleAttrib['top_margin'] = 10
 
         # Set annotation defaults
         self.annotationAttrib = {}
-        self.annotationAttrib['font'] = 'EZ Omega'
+        self.annotationAttrib['font'] = 'Helvetica'
         self.annotationAttrib['font_size'] = 12
         self.annotationAttrib['color'] = colors.black
         self.annotationAttrib['align'] = 'center'
@@ -63,7 +63,7 @@ class Kassia:
 
         # Set neume defaults
         self.neumeFont = {}
-        self.neumeFont['font'] = 'EZ Psaltica'
+        self.neumeFont['font'] = 'Kassia Tsak Main'
         self.neumeFont['font_size'] = 20
 
         # Set dropcap defaults
@@ -73,7 +73,7 @@ class Kassia:
 
         # Set lyric defaults
         self.lyricFont = {}
-        self.lyricFont['font'] = 'EZ Omega'
+        self.lyricFont['font'] = 'Helvetica'
         self.lyricFont['font_size'] = 12
         self.lyricFont['top_margin'] = 0
 
@@ -298,8 +298,8 @@ class Kassia:
         lyricPos = []
         lyricIdx = 0
         for neume in neumeArray:
-            #print("Neume length: " + str(pdfmetrics.stringWidth(neume,'EZ Psaltica',24)))
-            nWidth = pdfmetrics.stringWidth(neume_dict.translate(neume),'EZ Psaltica',self.nFontSize)
+            #print("Neume length: " + str(pdfmetrics.stringWidth(neume,'Kassia Tsak Main',24)))
+            nWidth = pdfmetrics.stringWidth(neume_dict.translate(neume),'Kassia Tsak Main',self.nFontSize)
             if nWidth > 1.0: # if it's not a gorgon or other small symbol
                 # Neume might take lyric
                 if lyricIdx < len(lyricArray):

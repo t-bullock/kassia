@@ -28,8 +28,8 @@ def registerFonts():
 
     # Check that default fonts are registered
     registeredFonts = pdfmetrics.getRegisteredFontNames()
-    if not "EZ Psaltica" in registeredFonts or not "EZ Omega" in registeredFonts:
-        print "Warning: Default fonts 'EZ Psaltica' and 'EZ Omega' are missing from the fonts directory"
+    if not "Kassia Tsak Main" in registeredFonts:
+        print "Warning: Default font 'Kassia Tsak Main' is missing from the fonts directory"
 
 
 def isRegisteredFont(fontName):
