@@ -127,7 +127,7 @@ class Kassia:
                 # Translate text with neume_dict if specified (for EZ fonts)
                 annotation_text = annotation_elem.text.strip()
                 if annotationAttribCopy.has_key('translate'):
-                    annotation_text = neume_dict.translate(annotation_text)
+                    annotation_text = neume_dict.translate(annotation_text, annotationAttribCopy['font'])
 
                 vert_pos -= (annotationAttribCopy['font_size'] + annotationAttribCopy['top_margin'])
 
