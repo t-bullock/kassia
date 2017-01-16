@@ -1,9 +1,9 @@
 from reportlab.pdfbase import pdfmetrics
 
 class Glyph:
-    def __init__(self,neumes='',neumePos=[],lyrics='',
+    def __init__(self,neumeChunk='',neumePos=[],lyrics='',
                  lyricsPos=[],fthora='',fthoraPos=[]):
-        self.neumes = neumes
+        self.neumeChunk = neumeChunk
         self.neumePos = neumePos
         self.lyrics = lyrics
         self.lyricsPos = lyricsPos
@@ -16,11 +16,17 @@ class Glyph:
 
         self.lineNum = 0    # line number, to be determined by linebreaking algorithm
 
-    def calc_width(self,neumeFont="Kassia Tsak Main",neumeFontSize=20,
-                   lyricFont="Helvetica",lyricFontSize=12):
-        self.nWidth = pdfmetrics.stringWidth(self.neumes,neumeFont,neumeFontSize)
-        self.lWidth = pdfmetrics.stringWidth(self.lyrics,lyricFont,lyricFontSize)
-        self.width = max(self.nWidth,self.lWidth)
+    def calc_chunk_width(self, lyric_font="Helvetica", lyric_font_size=12):
+        max_neumue_width = 0
+        for neume in self.neumeChunk:
+            neume_width = pdfmetrics.stringWidth(neume.text, neume.font_family, neume.font_size)
+            if max_neumue_width < neume_width:
+                max_neumue_width = neume_width
+
+        self.nWidth = max_neumue_width
+        self.lWidth = pdfmetrics.stringWidth(self.lyrics, lyric_font, lyric_font_size)
+        self.width = max(self.nWidth, self.lWidth)
+
 
 class GlyphLine:
     def init(self,glyphs,spacing):

@@ -1,47 +1,51 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-def translate(text,font=None):
+def translate(text):
     splitText = text.split(" ")
-    if font and font.startswith("EZ"):
-        tmpText = [ezPsaltica[t] if ezPsaltica.has_key(t) else t for t in splitText]
-    else:
-        tmpText = [t for t in splitText]
+    tmpText = [ezPsaltica[t] if ezPsaltica.has_key(t) else t for t in splitText]
     # might need to add in a str replace for two vareia in a row
     return u''.join(tmpText)
 
 def takesLyric(neume):
-    return neume in neumesWithLyrics
+    if neume.font_family == "Kassia Tsak Main":
+        return neume.text in neumesWithLyrics
+    else:
+        return False
 
 def standAlone(neume):
-    return neume in standAloneNeumes
+    if neume.font_family == "Kassia Tsak Main":
+        return neume.text in standAloneNeumes
+    if neume.font_family == "Kassia Tsak Martyria":
+        return True
+    else:
+        return False
 
-def chunkNeumes(neumeText):
+def chunkNeumes(neumeList):
     """Breaks neumeArray into logical chunks based on whether a linebreak
     can occur between them"""
-    neumeArray = neumeText.split(' ')
-    chunkArray = []   
+    chunks_list = []
     i = 0
-    while(i < len(neumeArray)):
+    while(i < len(neumeList)):
+        chunk = []
         # Grab next neume
-        chunk = neumeArray[i]
+        chunk.append(neumeList[i])
         # Add more neumes to chunk like fthora, ison, etc
         j = 1
-        if (i+1) < len(neumeArray):
-            while((not standAlone(neumeArray[i+j])) and (neumeArray[i+j] != "\\")):
-                chunk += " " + neumeArray[i+j]
+        if (i+1) < len(neumeList):
+            while not standAlone(neumeList[i + j]):
+                chunk.append(neumeList[i+j])
                 j += 1
-                if (i+j >= len(neumeArray)):
+                if i+j >= len(neumeList):
                     print "At the end!"
                     break
         i += j
-        chunkArray.append(chunk)
+        chunks_list.append(list(chunk))
         # Check if we're at the end of the array
-        if i >= len(neumeArray):
+        if i >= len(neumeList):
             break
-        
-        
-    return chunkArray
+
+    return chunks_list
 
 
 ezPsaltica = {

@@ -1,5 +1,6 @@
 import neume_dict, font_reader
 from glyphs import Glyph, GlyphLine
+from neume import Neume
 
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
@@ -65,6 +66,7 @@ class Kassia:
         self.neumeFont = {}
         self.neumeFont['font'] = 'Kassia Tsak Main'
         self.neumeFont['font_size'] = 20
+        self.neumeFont['color'] = colors.black
 
         # Set dropcap defaults
         self.dropCap = {}
@@ -127,7 +129,7 @@ class Kassia:
                 # Translate text with neume_dict if specified (for EZ fonts)
                 annotation_text = annotation_elem.text.strip()
                 if annotationAttribCopy.has_key('translate'):
-                    annotation_text = neume_dict.translate(annotation_text, annotationAttribCopy['font'])
+                    annotation_text = neume_dict.translate(annotation_text)
 
                 vert_pos -= (annotationAttribCopy['font_size'] + annotationAttribCopy['top_margin'])
 
@@ -145,13 +147,29 @@ class Kassia:
                     x_pos = self.pageAttrib['paper_size'][0]/2
                     c.drawCentredString(x_pos,vert_pos,annotation_text)
 
+            neumes_list = []
+
             # Get attributes for neumes
-            neume_elem = troparion.find('neumes')
-            if (neume_elem is not None):
-                neumesText = " ".join(neume_elem.text.strip().split())
-                neume_attrib = neume_elem.attrib
-                settings_from_xml = self.fill_text_dict(neume_attrib)
-                self.neumeFont.update(settings_from_xml)
+            for neumes_elem in troparion.iter('neumes'):
+                if neumes_elem is not None:
+                    neumes_default_attrib = neumes_elem.attrib
+                    settings_from_xml = self.fill_text_dict(neumes_default_attrib)
+                    self.neumeFont.update(settings_from_xml)
+
+                    for neume_elem in neumes_elem.iter('neume'):
+                        if neume_elem is not None:
+                            neume_attrib = neume_elem.attrib
+                            n = Neume(text=neume_elem.text.strip(),
+                                      font_family=neume_attrib['font'] if neume_attrib.has_key('font') else self.neumeFont['font'],
+                                      #font_size=neume_attrib['font_size'] if neume_attrib.has_key('font_size') else self.neumeFont['font_size'],
+                                      color=neume_attrib['color'] if neume_attrib.has_key('color') else self.neumeFont['color'],
+                                      )
+                            neumes_list.append(n)
+                            #neumesText = " ".join(neume_elem.text.strip().split())
+                            #neume_attrib = neume_elem.attrib
+                            #settings_from_xml = self.fill_text_dict(neume_attrib)
+                            #self.neumeFont.update(settings_from_xml)
+                            #self.neumeFont.update(self.fill_text_dict(neume_attrib))
 
             # Get attributes for drop cap
             dropcap_elem = troparion.find('dropcap')
@@ -180,9 +198,7 @@ class Kassia:
 
             lineSpacing = self.pageAttrib['line_height']
 
-            c.setFillColor(colors.black)
-
-            neumeChunks = neume_dict.chunkNeumes(neumesText)
+            neumeChunks = neume_dict.chunkNeumes(neumes_list)
             gArray = self.makeGlyphArray(neumeChunks,lyricsText)
             gArray = self.line_break2(gArray,firstLineOffset)
 
@@ -199,11 +215,23 @@ class Kassia:
                 c.drawString(xpos,ypos,self.dropCap['letter'])
 
             for ga in gArray:
+                c.setFillColor(self.neumeFont['color'])
                 # TO DO: check if cursor has reached the end of the page
-                c.setFont(self.neumeFont['font'],self.neumeFont['font_size'])
                 xpos = self.pageAttrib['left_margin'] + ga.neumePos
                 ypos = vert_pos - (ga.lineNum + 1)*lineSpacing
-                c.drawString(xpos,ypos, ga.neumes)
+                for i, neume in enumerate(ga.neumeChunk):
+                    c.setFont(neume.font_family, neume.font_size)
+                    c.setFillColor(neume.color)
+                    # Move over width of last neume before writing next nueme in chunk
+                    # TODO: Change font margins and remove this logic
+                    if i > 0:
+                        xpos += ga.neumeChunk[i-1].width
+                    # Shift martyria down
+                    # TODO: Fix this in font instead
+                    if neume.font_family == "Kassia Tsak Martyria":
+                        c.drawString(xpos, ypos - 10, neume.text)
+                    else:
+                        c.drawString(xpos, ypos, neume.text)
 
                 lyricOffset = self.lyricFont['top_margin']
 
@@ -239,13 +267,13 @@ class Kassia:
                 else:
                     lyr = ' '
                 lPtr += 1
-                g = Glyph(neumes=neume_dict.translate(nc),lyrics=lyr)
+                g = Glyph(neumeChunk=nc, lyrics=lyr)
                 # To Do: see if lyric ends with '_' and if lyrics are
                 # wider than the neume, then combine with next chunk
             else: 
                 # no lyric needed
-                g = Glyph(neume_dict.translate(nc))
-            g.calc_width(self.neumeFont['font'], self.neumeFont['font_size'], self.lyricFont['font'], self.lyricFont['font_size'])
+                 g = Glyph(nc)
+            g.calc_chunk_width(self.lyricFont['font'], self.lyricFont['font_size'])
 
             gArray.append(g)
             i += 1
