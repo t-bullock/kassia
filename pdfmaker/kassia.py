@@ -77,6 +77,7 @@ class Kassia:
         self.lyricFont = {}
         self.lyricFont['font'] = 'Helvetica'
         self.lyricFont['font_size'] = 12
+        self.lyricFont['color'] = colors.black
         self.lyricFont['top_margin'] = 0
 
     def parseFile(self):
@@ -239,6 +240,7 @@ class Kassia:
                     ypos -= lyricOffset
                     xpos = self.pageAttrib['left_margin'] + ga.lyricPos
                     c.setFont(self.lyricFont['font'],self.lyricFont['font_size'])
+                    c.setFillColor(self.lyricFont['color'])
                     #if (ga.lyrics[-1] == "_"):
                     #    ga.lyrics += "_"
                     c.drawString(xpos,ypos,ga.lyrics)
