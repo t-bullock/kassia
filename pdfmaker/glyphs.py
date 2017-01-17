@@ -1,18 +1,18 @@
 from reportlab.pdfbase import pdfmetrics
 
+
 class Glyph:
-    def __init__(self,neumeChunk='',neumePos=[],lyrics='',
-                 lyricsPos=[],fthora='',fthoraPos=[]):
-        self.neumeChunk = neumeChunk
-        self.neumePos = neumePos
+    def __init__(self, neume_chunk='', neume_pos=[], lyrics='', lyrics_pos=[], fthora='', fthora_pos=[]):
+        self.neumeChunk = neume_chunk
+        self.neumePos = neume_pos
         self.lyrics = lyrics
-        self.lyricsPos = lyricsPos
+        self.lyricsPos = lyrics_pos
         self.fthora = fthora
-        self.fthoraPos = fthoraPos
+        self.fthoraPos = fthora_pos
         
         self.nWidth = 0     # neume width
         self.lWidth = 0     # lyric width
-        self.width  = 0     # glyph width
+        self.width = 0      # glyph width
 
         self.lineNum = 0    # line number, to be determined by linebreaking algorithm
 
@@ -29,7 +29,6 @@ class Glyph:
 
 
 class GlyphLine:
-    def init(self,glyphs,spacing):
+    def __init__(self, glyphs, spacing):
         self.glyphs = glyphs
         self.spacing = spacing 
-

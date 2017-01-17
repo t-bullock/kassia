@@ -1,46 +1,45 @@
 #!/usr/bin/python
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont, TTFError
-from fontTools import ttLib
 from PIL import ImageFont
 from glob import glob
 
 
-def registerFonts():
-    rootDir = "fonts"
+def register_fonts():
+    root_dir = "fonts"
 
     ftypes = ('/*.ttf', '/*.otf')
     files_grabbed = []
 
     # Get all font files in fonts directory
     for ftype in ftypes:
-        temp = glob(rootDir + ftype)
+        temp = glob(root_dir + ftype)
         files_grabbed.extend(temp)
 
     # Try to register them
     for fontLoc in files_grabbed:
-        fontName = ImageFont.truetype(fontLoc, 1)
+        font_name = ImageFont.truetype(fontLoc, 1)
         try:
-            pdfmetrics.registerFont(TTFont(fontName.font.family,fontLoc))
+            pdfmetrics.registerFont(TTFont(font_name.font.family, fontLoc))
         except TTFError as e:
             print "Error: {}".format(e)
             raise SystemExit
 
     # Check that default fonts are registered
-    registeredFonts = pdfmetrics.getRegisteredFontNames()
-    if not "Kassia Tsak Main" in registeredFonts:
+    registered_fonts = pdfmetrics.getRegisteredFontNames()
+    if "Kassia Tsak Main" not in registered_fonts:
         print "Warning: Default font 'Kassia Tsak Main' is missing from the fonts directory"
 
 
-def isRegisteredFont(fontName):
-    return fontName in pdfmetrics.getRegisteredFontNames()
+def is_registered_font(font_name):
+    return font_name in pdfmetrics.getRegisteredFontNames()
 
 
 FONT_SPECIFIER_NAME_ID = 4
 FONT_SPECIFIER_FAMILY_ID = 1
 
 
-def shortName(font):
+def short_name(font):
     """Get the short name from the font's names table"""
     name = ""
     family = ""
@@ -53,5 +52,6 @@ def shortName(font):
             name = name_str
         elif record.nameID == FONT_SPECIFIER_FAMILY_ID and not family:
             family = name_str
-        if name and family: break
+        if name and family:
+            break
     return [name, family]
