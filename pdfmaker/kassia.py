@@ -235,6 +235,12 @@ class Kassia:
                 if ga.lyrics:
                     ypos -= lyric_offset
                     xpos = self.pageAttrib['left_margin'] + ga.lyricPos
+
+                    # TODO: Put this elafrom offset logic somewhere else
+                    for neumeWithLyricOffset in neume_dict.neumesWithLyricOffset:
+                        if neumeWithLyricOffset[0] == ga.neumeChunk[0].text:
+                            xpos += neumeWithLyricOffset[1]
+
                     c.setFont(self.lyricFont['font'], self.lyricFont['font_size'])
                     c.setFillColor(self.lyricFont['color'])
                     #if (ga.lyrics[-1] == "_"):
