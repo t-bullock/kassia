@@ -199,7 +199,7 @@ class Kassia:
 
             neume_chunks = neume_dict.chunk_neumes(neumes_list)
             g_array = self.make_glyph_array(neume_chunks, lyrics_text)
-            g_array = self.line_break2(g_array, first_line_offset)
+            line_list = self.line_break2(g_array, first_line_offset)
 
             # Draw Drop Cap
             if 'letter' in self.dropCap:
@@ -211,11 +211,21 @@ class Kassia:
 
                 c.drawString(xpos, ypos, self.dropCap['letter'])
 
-            for ga in g_array:
+            line_counter = 0
+            for line_of_chunks in line_list:
+
+                # Make sure not at end of page
+                calculated_ypos = vert_pos - (line_counter + 1)*line_spacing
+                if not self.is_space_for_another_line(calculated_ypos, line_spacing):
+                    c.showPage()
+                    vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
+                    line_counter = 0
+
+                for ga in line_of_chunks:
                 c.setFillColor(self.neumeFont['color'])
-                # TO DO: check if cursor has reached the end of the page
+                    ypos = vert_pos - (line_counter + 1)*line_spacing
                 xpos = self.pageAttrib['left_margin'] + ga.neumePos
-                ypos = vert_pos - (ga.lineNum + 1)*line_spacing
+
                 for i, neume in enumerate(ga.neumeChunk):
                     c.setFont(neume.font_family, neume.font_size)
                     c.setFillColor(neume.color)
@@ -247,11 +257,20 @@ class Kassia:
                     #    ga.lyrics += "_"
                     c.drawString(xpos, ypos, ga.lyrics)
 
+                vert_pos = ypos
+
+            line_counter += 1
+
         c.showPage()
+            vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
+
         try:
             c.save()
         except IOError:
             print "Could not save file"
+
+    def is_space_for_another_line(self, cursor_vpos, line_spacing):
+        return (cursor_vpos - self.lyricFont['top_margin']) > self.pageAttrib['bottom_margin']
 
     def make_glyph_array(self, neume_chunks, lyrics=None):
         lyric_array = re.split(' ', lyrics)
@@ -281,19 +300,22 @@ class Kassia:
 
     def line_break2(self, glyph_array, first_line_offset):
         """Break neumes and lyrics into lines, currently greedy
-        Rework this to return a list of lines!!!!"""
+        Returns a list of lines"""
         cr = Cursor(first_line_offset, 0)
 
         # should be able to override these params in xml
         char_space = 2  # avg spacing between characters
         line_width = self.pageAttrib['line_width']
 
-        nlines = 0
+        g_line_list = []
+        g_line = []
+
         for g in glyph_array:
+            new_line = False
             if (cr.x + g.width) >= line_width:
                 cr.x = 0
-                nlines += 1
-            g.lineNum = nlines
+                new_line = True
+
             adj_lyric_pos, adj_neume_pos = 0, 0
             if g.nWidth >= g.lWidth:
                 # center text
@@ -307,7 +329,12 @@ class Kassia:
             g.lyricPos = cr.x + adj_lyric_pos
             cr.x += g.width + char_space
 
-        return glyph_array
+            if new_line:
+                g_line_list.append(g_line)
+                g_line = []
+            g_line.append(g)
+
+        return g_line_list
 
     def linebreak(self, neumes, lyrics=None):
         """Break neumes and lyrics into lines"""
