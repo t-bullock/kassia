@@ -257,7 +257,7 @@ class Kassia:
                     #    ga.lyrics += "_"
                     c.drawString(xpos, ypos, ga.lyrics)
 
-                vert_pos = ypos
+                vert_pos = vert_pos - (line_counter + 1) * line_spacing - lyric_offset
 
             line_counter += 1
 
