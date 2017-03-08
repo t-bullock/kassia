@@ -6,7 +6,7 @@ from neume import Neume
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.lib.pagesizes import letter
-import reportlab.lib.colors as colors
+from reportlab.lib import colors
 
 import sys
 import xml.etree.ElementTree as ET
@@ -216,7 +216,7 @@ class Kassia:
 
                 # Make sure not at end of page
                 calculated_ypos = vert_pos - (line_counter + 1)*line_spacing
-                if not self.is_space_for_another_line(calculated_ypos, line_spacing):
+                if not self.is_space_for_another_line(calculated_ypos):
                     c.showPage()
                     vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
                     line_counter = 0
@@ -269,7 +269,7 @@ class Kassia:
         except IOError:
             print "Could not save file"
 
-    def is_space_for_another_line(self, cursor_vpos, line_spacing):
+    def is_space_for_another_line(self, cursor_vpos):
         return (cursor_vpos - self.lyricFont['top_margin']) > self.pageAttrib['bottom_margin']
 
     def make_glyph_array(self, neume_chunks, lyrics=None):
@@ -427,15 +427,15 @@ class Kassia:
                 # Get rid of xml font size, will use default later
                 title_dict.pop('font_size')
 
-        """parse the top margin"""
-        if 'top_margin' in title_dict:
+        """parse the margins"""
+        for margin_attr in ['top_margin', 'bottom_margin', 'left_margin', 'right_margin']:
+            if margin_attr in title_dict:
             try:
-                title_dict['top_margin'] = int(title_dict['top_margin'])
+                    title_dict[margin_attr] = int(title_dict[margin_attr])
             except ValueError as e:
-                print "Top margin error: {}".format(e)
+                    print "{} error: {}".format(margin_attr,e)
                 # Get rid of xml font size, will use default later
-                title_dict.pop('top_margin')
-
+                    title_dict.pop(margin_attr)
         return title_dict
 
 
