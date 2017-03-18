@@ -203,6 +203,11 @@ class Kassia:
 
             # Draw Drop Cap
             if 'letter' in self.dropCap:
+                calculated_ypos = vert_pos - (line_spacing + self.lyricFont['top_margin'])
+                if not self.is_space_for_another_line(calculated_ypos):
+                    c.showPage()
+                    vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
+
                 c.setFillColor(self.dropCap['color'])
                 c.setFont(self.dropCap['font'], self.dropCap['font_size'])
 
