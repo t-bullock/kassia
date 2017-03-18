@@ -160,10 +160,10 @@ class Kassia:
                     settings_from_xml = self.fill_text_dict(neumes_default_attrib)
                     self.neumeFont.update(settings_from_xml)
 
-                    for neume_elem in neumes_elem.iter('neume'):
-                        if neume_elem is not None:
-                            neume_attrib = neume_elem.attrib
-                            n = Neume(text=neume_elem.text.strip(),
+                    neume_attrib = neumes_elem.attrib
+
+                    for neume_text in neumes_elem.text.strip().split():
+                        n = Neume(text=neume_text,
                                       font_family=neume_attrib['font'] if neume_attrib.has_key('font') else self.neumeFont['font'],
                                       font_size=neume_attrib['font_size'] if neume_attrib.has_key('font_size') else self.neumeFont['font_size'],
                                       color=neume_attrib['color'] if neume_attrib.has_key('color') else self.neumeFont['color'],
