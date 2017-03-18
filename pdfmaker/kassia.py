@@ -261,9 +261,6 @@ class Kassia:
 
             line_counter += 1
 
-        c.showPage()
-            vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
-
         try:
             c.save()
         except IOError:
@@ -333,6 +330,9 @@ class Kassia:
                 g_line_list.append(g_line)
                 g_line = []
             g_line.append(g)
+
+        # One more time to grab the last line
+        g_line_list.append(g_line)
 
         return g_line_list
 
