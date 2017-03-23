@@ -25,28 +25,28 @@ def stand_alone(neume):
         return False
 
 
-def chunk_neumes(neumeList):
+def chunk_neumes(neume_list):
     """Breaks neumeArray into logical chunks based on whether a linebreak
     can occur between them"""
     chunks_list = []
     i = 0
-    while i < len(neumeList):
+    while i < len(neume_list):
         chunk = []
         # Grab next neume
-        chunk.append(neumeList[i])
+        chunk.append(neume_list[i])
         # Add more neumes to chunk like fthora, ison, etc
         j = 1
-        if (i+1) < len(neumeList):
-            while not stand_alone(neumeList[i + j]):
-                chunk.append(neumeList[i+j])
+        if (i+1) < len(neume_list):
+            while not stand_alone(neume_list[i + j]):
+                chunk.append(neume_list[i+j])
                 j += 1
-                if i+j >= len(neumeList):
                     print "At the end!"
+                if i+j >= len(neume_list):
                     break
         i += j
         chunks_list.append(list(chunk))
         # Check if we're at the end of the array
-        if i >= len(neumeList):
+        if i >= len(neume_list):
             break
 
     return chunks_list
