@@ -235,14 +235,10 @@ class Kassia:
                     c.setFont(neume.font_family, neume.font_size)
                     c.setFillColor(neume.color)
                     # Move over width of last neume before writing next nueme in chunk
-                    # TODO: Change font margins and remove this logic
+                        # TODO: Change font kerning and remove this logic
                     if i > 0:
                         xpos += ga.neumeChunk[i-1].width
-                    # Shift martyria down
-                    # TODO: Fix this in font instead
-                    if neume.font_family == "Kassia Tsak Martyria":
-                        c.drawString(xpos, ypos - 10, neume.text)
-                    else:
+
                         c.drawString(xpos, ypos, neume.text)
 
                 lyric_offset = self.lyricFont['top_margin']
