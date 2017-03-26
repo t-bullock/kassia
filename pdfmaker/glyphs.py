@@ -1,4 +1,5 @@
 from reportlab.pdfbase import pdfmetrics
+import neume_dict
 
 
 class Glyph:
@@ -20,6 +21,14 @@ class Glyph:
         max_neumue_width = 0
         for neume in self.neumeChunk:
             neume_width = pdfmetrics.stringWidth(neume.text, neume.font_family, neume.font_size)
+
+            # If kentima, add width of oligon
+            # Kentima may come at the end of the chunk, after
+            # a psefeston, etc., so can't just check i-1
+            # TODO: Find a better way to do this
+            if neume.text in neume_dict.nonBreakingNeumesWithWidth:
+                neume_width += pdfmetrics.stringWidth('1', neume.font_family, neume.font_size)
+
             if max_neumue_width < neume_width:
                 max_neumue_width = neume_width
 
