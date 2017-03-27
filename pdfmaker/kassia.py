@@ -47,6 +47,7 @@ class Kassia:
         self.pageAttrib['right_margin'] = 72
         self.pageAttrib['line_height'] = 72
         self.pageAttrib['line_width'] = self.pageAttrib['paper_size'][0] - (self.pageAttrib['left_margin'] + self.pageAttrib['right_margin'])
+        self.pageAttrib['char_spacing'] = 2
 
         font_reader.register_fonts()
 
@@ -199,7 +200,7 @@ class Kassia:
 
             neume_chunks = neume_dict.chunk_neumes(neumes_list)
             g_array = self.make_glyph_array(neume_chunks, lyrics_text)
-            line_list = self.line_break2(g_array, first_line_offset)
+            line_list = self.line_break2(g_array, first_line_offset, self.pageAttrib['line_width'], char_spacing = self.pageAttrib['char_spacing'])
 
             # Draw Drop Cap
             if 'letter' in self.dropCap:
@@ -296,14 +297,10 @@ class Kassia:
             i += 1
         return g_array
 
-    def line_break2(self, glyph_array, first_line_offset):
+    def line_break2(self, glyph_array, first_line_offset, line_width, char_spacing):
         """Break neumes and lyrics into lines, currently greedy
         Returns a list of lines"""
         cr = Cursor(first_line_offset, 0)
-
-        # should be able to override these params in xml
-        char_space = 2  # avg spacing between characters
-        line_width = self.pageAttrib['line_width']
 
         g_line_list = []
         g_line = []
@@ -318,14 +315,13 @@ class Kassia:
             if g.nWidth >= g.lWidth:
                 # center text
                 adj_lyric_pos = (g.width - g.lWidth) / 2.
-                
             else:
                 # center neume
                 adj_neume_pos = (g.width - g.nWidth) / 2.
 
             g.neumePos = cr.x + adj_neume_pos
             g.lyricPos = cr.x + adj_lyric_pos
-            cr.x += g.width + char_space
+            cr.x += g.width + char_spacing
 
             if new_line:
                 g_line_list.append(g_line)
