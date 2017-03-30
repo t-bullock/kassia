@@ -31,7 +31,7 @@ class Kassia:
         except IOError:
             file_readable = False
             print "Not readable"
-        
+
         if file_readable:
             self.set_defaults()
             self.parse_file()
@@ -56,7 +56,11 @@ class Kassia:
         self.titleAttrib['font'] = 'Helvetica'
         self.titleAttrib['font_size'] = 18
         self.titleAttrib['color'] = colors.black
-        self.titleAttrib['top_margin'] = 10
+        self.titleAttrib['top_margin'] = 0
+        self.titleAttrib['bottom_margin'] = 0
+        self.titleAttrib['left_margin'] = 0
+        self.titleAttrib['right_margin'] = 0
+        self.titleAttrib['text'] = ''
 
         # Set annotation defaults
         self.annotationAttrib = {}
@@ -64,7 +68,11 @@ class Kassia:
         self.annotationAttrib['font_size'] = 12
         self.annotationAttrib['color'] = colors.black
         self.annotationAttrib['align'] = 'center'
-        self.annotationAttrib['top_margin'] = 10
+        self.annotationAttrib['top_margin'] = 0
+        self.annotationAttrib['bottom_margin'] = 0
+        self.annotationAttrib['left_margin'] = 0
+        self.annotationAttrib['right_margin'] = 0
+        self.annotationAttrib['text'] = ''
 
         # Set neume defaults
         self.neumeFont = {}
@@ -74,15 +82,18 @@ class Kassia:
 
         # Set dropcap defaults
         self.dropCap = {}
-        #self.dropCap['font'] = 'EZOmega'
-        #self.dropCap['font_size'] = 40
+        self.dropCap['font'] = 'EZOmega'
+        self.dropCap['font_size'] = 40
+        self.dropCap['color'] = colors.black
+        self.dropCap['text'] = ''
 
         # Set lyric defaults
-        self.lyricFont = {}
-        self.lyricFont['font'] = 'Helvetica'
-        self.lyricFont['font_size'] = 12
-        self.lyricFont['color'] = colors.black
-        self.lyricFont['top_margin'] = 0
+        self.lyricAttrib = {}
+        self.lyricAttrib['font'] = 'Helvetica'
+        self.lyricAttrib['font_size'] = 12
+        self.lyricAttrib['color'] = colors.black
+        self.lyricAttrib['top_margin'] = 0
+        self.lyricAttrib['text'] = ''
 
     def parse_file(self):
         try:
@@ -102,176 +113,217 @@ class Kassia:
             temp_dict = self.fill_page_dict(margin_attrib)
             self.pageAttrib.update(temp_dict)
 
-        c = canvas.Canvas(self.out_file, pagesize=letter)
-        vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
+        self.canvas = canvas.Canvas(self.out_file, pagesize=letter)
+        self.vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
 
-        # For each troparion
-        for troparion in self.bnml.iter('troparion'):
-            # Draw title if there is one
-            title_elem = troparion.find('title')
-            if title_elem is not None:
-                title_text = title_elem.text.strip()
-                title_attrib = title_elem.attrib
-                settings_from_xml = self.fill_text_dict(title_attrib)
-                self.titleAttrib.update(settings_from_xml)
+        for child_elem in self.bnml:
+            if child_elem.tag == 'pagebreak':
+                self.draw_newpage()
 
-                c.setFillColor(self.titleAttrib['color'])
+            if child_elem.tag == 'linebreak':
+                self.draw_newline(self.pageAttrib['line_height'])
 
-                vert_pos -= (self.titleAttrib['font_size'] + self.titleAttrib['top_margin'])
+            if child_elem.tag == 'title':
+                current_title_attrib = self.get_title_attributes(child_elem, self.titleAttrib)
+                self.draw_title(current_title_attrib)
 
-                c.setFont(self.titleAttrib['font'], self.titleAttrib['font_size'])
-                c.drawCentredString(self.pageAttrib['paper_size'][0]/2, vert_pos, title_text)
+            if child_elem.tag == 'annotation':
+                current_annotation_attrib = self.get_annotation_attributes(child_elem, self.annotationAttrib)
+                self.draw_annotation(current_annotation_attrib)
 
-            # Draw annotations
-            for annotation_elem in troparion.iter('annotation'):
-                # Use a copy, since there could be multiple annotations
-                annotation_attrib_copy = deepcopy(self.annotationAttrib)
+            if child_elem.tag == 'troparion':
+                neumes_list = []
+                current_annotation_attrib = {}
+                current_lyric_attrib = {}
+                current_dropcap_attrib = {}
 
-                annotation_attrib = annotation_elem.attrib
-                settings_from_xml = self.fill_text_dict(annotation_attrib)
-                annotation_attrib_copy.update(settings_from_xml)
+                for troparion_child_elem in child_elem:
+                    if troparion_child_elem.tag == 'pagebreak':
+                        self.draw_newpage()
 
-                # Translate text with neume_dict if specified (for EZ fonts)
-                annotation_text = annotation_elem.text.strip()
-                if 'translate' in annotation_attrib_copy:
-                    annotation_text = neume_dict.translate(annotation_text)
+                    # TODO: Test this
+                    if troparion_child_elem.tag == 'linebreak':
+                        self.draw_newline(self.pageAttrib['line_height'])
 
-                vert_pos -= (annotation_attrib_copy['font_size'] + annotation_attrib_copy['top_margin'])
+                    if troparion_child_elem.tag == 'annotation':
+                        current_annotation_attrib = self.get_annotation_attributes(troparion_child_elem, self.annotationAttrib)
+                        self.draw_annotation(current_annotation_attrib)
 
-                c.setFillColor(annotation_attrib_copy['color'])
-                c.setFont(annotation_attrib_copy['font'], annotation_attrib_copy['font_size'])
+                    if troparion_child_elem.tag == 'neumes':
+                        neumes_elem = troparion_child_elem
+                        if neumes_elem is not None:
+                            neumes_default_attrib = neumes_elem.attrib
+                            settings_from_xml = self.fill_text_dict(neumes_default_attrib)
+                            self.neumeFont.update(settings_from_xml)
 
-                # Draw text, default to centered
-                if annotation_attrib_copy['align'] == 'left':
-                    x_pos = self.pageAttrib['left_margin']
-                    c.drawString(x_pos, vert_pos, annotation_text)
-                elif annotation_attrib_copy['align'] == 'right':
-                    x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin']
-                    c.drawRightString(x_pos, vert_pos, annotation_text)
-                else:
-                    x_pos = self.pageAttrib['paper_size'][0]/2
-                    c.drawCentredString(x_pos, vert_pos, annotation_text)
+                            neume_attrib = neumes_elem.attrib
 
-            neumes_list = []
+                            for neume_text in neumes_elem.text.strip().split():
+                                n = Neume(text=neume_text,
+                                          font_family=neume_attrib['font'] if neume_attrib.has_key('font') else self.neumeFont['font'],
+                                          font_size=neume_attrib['font_size'] if neume_attrib.has_key('font_size') else self.neumeFont['font_size'],
+                                          color=neume_attrib['color'] if neume_attrib.has_key('color') else self.neumeFont['color'],
+                                          )
+                                neumes_list.append(n)
 
-            # Get attributes for neumes
-            for neumes_elem in troparion.iter('neumes'):
-                if neumes_elem is not None:
-                    neumes_default_attrib = neumes_elem.attrib
-                    settings_from_xml = self.fill_text_dict(neumes_default_attrib)
-                    self.neumeFont.update(settings_from_xml)
-
-                    neume_attrib = neumes_elem.attrib
-
-                    for neume_text in neumes_elem.text.strip().split():
-                        n = Neume(text=neume_text,
-                                      font_family=neume_attrib['font'] if neume_attrib.has_key('font') else self.neumeFont['font'],
-                                      font_size=neume_attrib['font_size'] if neume_attrib.has_key('font_size') else self.neumeFont['font_size'],
-                                      color=neume_attrib['color'] if neume_attrib.has_key('color') else self.neumeFont['color'],
-                                      )
-                            neumes_list.append(n)
-
-            # Get attributes for drop cap
-            dropcap_elem = troparion.find('dropcap')
-            if dropcap_elem is not None:
-                dropcap_attrib = dropcap_elem.attrib
-                settings_from_xml = self.fill_text_dict(dropcap_attrib)
-                self.dropCap.update(settings_from_xml)
-
-                self.dropCap['letter'] = dropcap_elem.text.strip()
-
-            # Get attributes for lyrics
-            lyric_elem = troparion.find('lyrics')
-            if lyric_elem is not None:
-                lyrics_text = " ".join(lyric_elem.text.strip().split())
-                lyric_attrib = lyric_elem.attrib
-                settings_from_xml = self.fill_text_dict(lyric_attrib)
-                self.lyricFont.update(settings_from_xml)
-
-            # Offset for dropcap char
-            if 'letter' in self.dropCap:
-                first_line_offset = 5 + pdfmetrics.stringWidth(self.dropCap['letter'], self.dropCap['font'], self.dropCap['font_size'])
-                # Remove first letter of lyrics, since it will be in drop cap
-                lyrics_text = lyrics_text[1:]
-            else:
+                # Get attributes for drop cap
+                dropcap_elem = child_elem.find('dropcap')
                 first_line_offset = 0
+                if dropcap_elem is not None:
+                    current_dropcap_attrib = self.get_dropcap_attributes(dropcap_elem, self.dropCap)
+                    first_line_offset = 5 + pdfmetrics.stringWidth(current_dropcap_attrib['text'], current_dropcap_attrib['font'],
+                                                                   current_dropcap_attrib['font_size'])
 
-            line_spacing = self.pageAttrib['line_height']
+                # Get attributes for lyrics
+                lyric_elem = child_elem.find('lyrics')
+                if lyric_elem is not None:
+                    current_lyric_attrib = self.get_lyric_attributes(lyric_elem, self.lyricAttrib)
 
-            neume_chunks = neume_dict.chunk_neumes(neumes_list)
-            g_array = self.make_glyph_array(neume_chunks, lyrics_text)
-            line_list = self.line_break2(g_array, first_line_offset, self.pageAttrib['line_width'], char_spacing = self.pageAttrib['char_spacing'])
+                # Draw Drop Cap
+                if current_dropcap_attrib and current_lyric_attrib is not None:
+                    self.draw_dropcap(current_dropcap_attrib, current_lyric_attrib)
+                    # Remove first letter of lyrics, since it will be in dropcap
+                    current_lyric_attrib['text'] = current_lyric_attrib['text'][1:]
 
-            # Draw Drop Cap
-            if 'letter' in self.dropCap:
-                calculated_ypos = vert_pos - (line_spacing + self.lyricFont['top_margin'])
-                if not self.is_space_for_another_line(calculated_ypos):
-                    c.showPage()
-                    vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
+                neume_chunks = neume_dict.chunk_neumes(neumes_list)
+                g_array = self.make_glyph_array(neume_chunks, current_lyric_attrib)
+                line_list = self.line_break2(g_array, first_line_offset, self.pageAttrib['line_width'], char_spacing = self.pageAttrib['char_spacing'])
 
-                c.setFillColor(self.dropCap['color'])
-                c.setFont(self.dropCap['font'], self.dropCap['font_size'])
+                line_counter = 0
+                for line_of_chunks in line_list:
+                    # Make sure not at end of page
+                    calculated_ypos = self.vert_pos - (line_counter + 1)*self.pageAttrib['line_height']
+                    if not self.is_space_for_another_line(calculated_ypos, current_lyric_attrib):
+                        self.draw_newpage()
+                        line_counter = 0
 
-                xpos = self.pageAttrib['left_margin']
-                ypos = vert_pos - (line_spacing + self.lyricFont['top_margin'])
+                    for ga in line_of_chunks:
+                        self.canvas.setFillColor(self.neumeFont['color'])
+                        ypos = self.vert_pos - (line_counter + 1)*self.pageAttrib['line_height']
+                        xpos = self.pageAttrib['left_margin'] + ga.neumePos
 
-                c.drawString(xpos, ypos, self.dropCap['letter'])
+                        for i, neume in enumerate(ga.neumeChunk):
+                            self.canvas.setFont(neume.font_family, neume.font_size)
+                            self.canvas.setFillColor(neume.color)
+                            # Move over width of last neume before writing next nueme in chunk
+                            # TODO: Change font kerning and remove this logic
+                            if i > 0:
+                                xpos += ga.neumeChunk[i-1].width
 
-            line_counter = 0
-            for line_of_chunks in line_list:
+                            self.canvas.drawString(xpos, ypos, neume.text)
 
-                # Make sure not at end of page
-                calculated_ypos = vert_pos - (line_counter + 1)*line_spacing
-                if not self.is_space_for_another_line(calculated_ypos):
-                    c.showPage()
-                    vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
-                    line_counter = 0
+                        if ga.lyrics:
+                            ypos -= current_lyric_attrib['top_margin']
+                            xpos = self.pageAttrib['left_margin'] + ga.lyricPos
 
-                for ga in line_of_chunks:
-                c.setFillColor(self.neumeFont['color'])
-                    ypos = vert_pos - (line_counter + 1)*line_spacing
-                xpos = self.pageAttrib['left_margin'] + ga.neumePos
+                            # TODO: Put this elafrom offset logic somewhere else
+                            for neumeWithLyricOffset in neume_dict.neumesWithLyricOffset:
+                                if neumeWithLyricOffset[0] == ga.neumeChunk[0].text:
+                                    xpos += neumeWithLyricOffset[1]
 
-                for i, neume in enumerate(ga.neumeChunk):
-                    c.setFont(neume.font_family, neume.font_size)
-                    c.setFillColor(neume.color)
-                    # Move over width of last neume before writing next nueme in chunk
-                        # TODO: Change font kerning and remove this logic
-                    if i > 0:
-                        xpos += ga.neumeChunk[i-1].width
+                            self.canvas.setFont(current_lyric_attrib['font'], current_lyric_attrib['font_size'])
+                            self.canvas.setFillColor(current_lyric_attrib['color'])
+                            #if (ga.lyrics[-1] == "_"):
+                            #    ga.lyrics += "_"
+                            self.canvas.drawString(xpos, ypos, ga.lyrics)
 
-                        c.drawString(xpos, ypos, neume.text)
+                    self.vert_pos = self.vert_pos - (line_counter + 1) * self.pageAttrib['line_height'] - current_lyric_attrib['top_margin']
 
-                lyric_offset = self.lyricFont['top_margin']
-
-                if ga.lyrics:
-                    ypos -= lyric_offset
-                    xpos = self.pageAttrib['left_margin'] + ga.lyricPos
-
-                    # TODO: Put this elafrom offset logic somewhere else
-                    for neumeWithLyricOffset in neume_dict.neumesWithLyricOffset:
-                        if neumeWithLyricOffset[0] == ga.neumeChunk[0].text:
-                            xpos += neumeWithLyricOffset[1]
-
-                    c.setFont(self.lyricFont['font'], self.lyricFont['font_size'])
-                    c.setFillColor(self.lyricFont['color'])
-                    #if (ga.lyrics[-1] == "_"):
-                    #    ga.lyrics += "_"
-                    c.drawString(xpos, ypos, ga.lyrics)
-
-                vert_pos = vert_pos - (line_counter + 1) * line_spacing - lyric_offset
-
-            line_counter += 1
+                line_counter += 1
 
         try:
-            c.save()
+            self.canvas.save()
         except IOError:
             print "Could not save file"
 
-    def is_space_for_another_line(self, cursor_vpos):
-        return (cursor_vpos - self.lyricFont['top_margin']) > self.pageAttrib['bottom_margin']
+    def get_title_attributes(self, title_elem, default_title_attrib):
+        current_title_attrib = deepcopy(default_title_attrib)
+        settings_from_xml = self.fill_text_dict(title_elem.attrib)
+        current_title_attrib.update(settings_from_xml)
+        current_title_attrib['text'] = title_elem.text.strip()
+        return current_title_attrib
 
-    def make_glyph_array(self, neume_chunks, lyrics=None):
+    def draw_title(self, current_title_attrib):
+        self.vert_pos -= (current_title_attrib['font_size'] + current_title_attrib['top_margin'])
+        self.canvas.setFillColor(current_title_attrib['color'])
+        self.canvas.setFont(current_title_attrib['font'], current_title_attrib['font_size'])
+        self.canvas.drawCentredString(self.pageAttrib['paper_size'][0]/2, self.vert_pos, current_title_attrib['text'])
+        # move down by the height of the text string
+        self.vert_pos -= (current_title_attrib['font_size'] + current_title_attrib['bottom_margin'])
+
+    def get_annotation_attributes(self, annotation_elem, default_annotation_attrib):
+        current_annotation_attrib = deepcopy(default_annotation_attrib)
+        settings_from_xml = self.fill_text_dict(annotation_elem.attrib)
+        current_annotation_attrib.update(settings_from_xml)
+        # Translate text with neume_dict if specified (for EZ fonts)
+        # text = annotation_elem.text.strip()
+        # if 'translate' in current_annotation_attrib:
+        #    text = neume_dict.translate(text)
+        current_annotation_attrib['text'] = annotation_elem.text.strip()
+        return current_annotation_attrib
+
+    def draw_annotation(self, current_annotation_attrib):
+        self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['top_margin'])
+        self.canvas.setFillColor(current_annotation_attrib['color'])
+        self.canvas.setFont(current_annotation_attrib['font'], current_annotation_attrib['font_size'])
+
+        # Draw text, default to centered
+        if current_annotation_attrib['align'] == 'left':
+            x_pos = self.pageAttrib['left_margin'] - current_annotation_attrib['left_margin']
+            self.canvas.drawString(x_pos, self.vert_pos, current_annotation_attrib['text'])
+        elif current_annotation_attrib['align'] == 'right':
+            x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] - self.annotationAttrib['right_margin']
+            self.canvas.drawRightString(x_pos, self.vert_pos, current_annotation_attrib['text'])
+        else:
+            x_pos = self.pageAttrib['paper_size'][0]/2
+            self.canvas.drawCentredString(x_pos, self.vert_pos, current_annotation_attrib['text'])
+
+        self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['bottom_margin'])
+
+    def get_dropcap_attributes(self, dropcap_elem, default_dropcap_attrib):
+        current_dropcap_attrib = deepcopy(default_dropcap_attrib)
+        settings_from_xml = self.fill_text_dict(dropcap_elem.attrib)
+        current_dropcap_attrib.update(settings_from_xml)
+        current_dropcap_attrib['text'] = dropcap_elem.text.strip()
+        return current_dropcap_attrib
+
+    def draw_dropcap(self, current_dropcap_attrib, current_lyric_attrib):
+        xpos = self.pageAttrib['left_margin']
+        ypos = self.vert_pos - (self.pageAttrib['line_height'] + current_lyric_attrib['top_margin'])
+
+        # If at edge of page, start new line
+        if not self.is_space_for_another_line(ypos, current_lyric_attrib):
+            self.draw_newpage()
+            ypos = self.vert_pos - (self.pageAttrib['line_height'] + current_lyric_attrib['top_margin'])
+
+        self.canvas.setFillColor(current_dropcap_attrib['color'])
+        self.canvas.setFont(current_dropcap_attrib['font'], current_dropcap_attrib['font_size'])
+        self.canvas.drawString(xpos, ypos, current_dropcap_attrib['text'])
+
+    def get_lyric_attributes(self, lyric_elem, default_lyric_attrib):
+        current_lyric_attrib = deepcopy(default_lyric_attrib)
+        settings_from_xml = self.fill_text_dict(lyric_elem.attrib)
+        current_lyric_attrib.update(settings_from_xml)
+        text = " ".join(lyric_elem.text.strip().split())
+        current_lyric_attrib['text'] = text
+        return current_lyric_attrib
+
+    def draw_newpage(self):
+        self.canvas.showPage()
+        self.vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
+
+    def draw_newline(self, line_height, top_margin):
+        self.vert_pos -= (line_height + top_margin)
+
+    def is_space_for_another_line(self, cursor_y_pos, current_lyric_attrib):
+        return (cursor_y_pos - current_lyric_attrib['top_margin']) > self.pageAttrib['bottom_margin']
+
+    def make_glyph_array(self, neume_chunks, current_lyric_attrib):
+        if current_lyric_attrib is None:
+            current_lyric_attrib = self.lyricAttrib
+
+        lyrics = current_lyric_attrib['text']
+
         lyric_array = re.split(' ', lyrics)
         i, l_ptr = 0, 0
         g_array = []
@@ -288,10 +340,10 @@ class Kassia:
                 g = Glyph(neume_chunk=nc, lyrics=lyr)
                 # To Do: see if lyric ends with '_' and if lyrics are
                 # wider than the neume, then combine with next chunk
-            else: 
+            else:
                 # no lyric needed
                  g = Glyph(nc)
-            g.calc_chunk_width(self.lyricFont['font'], self.lyricFont['font_size'])
+            g.calc_chunk_width(current_lyric_attrib['font'], current_lyric_attrib['font_size'])
 
             g_array.append(g)
             i += 1
@@ -377,7 +429,7 @@ class Kassia:
                 if add_lyric:
                     lyric_pos.append((cr.x, cr.y-text_offset, lyr))
                 cr.x += gl_width + char_space
-                
+
             else:
                 # offsets for gorgon
                 # offsets for apli
@@ -427,11 +479,11 @@ class Kassia:
         """parse the margins"""
         for margin_attr in ['top_margin', 'bottom_margin', 'left_margin', 'right_margin']:
             if margin_attr in title_dict:
-            try:
+                try:
                     title_dict[margin_attr] = int(title_dict[margin_attr])
-            except ValueError as e:
+                except ValueError as e:
                     print "{} error: {}".format(margin_attr,e)
-                # Get rid of xml font size, will use default later
+                    # Get rid of xml font size, will use default later
                     title_dict.pop(margin_attr)
         return title_dict
 
@@ -447,7 +499,7 @@ def main(argv):
         Kassia(argv[0])
     elif len(argv) > 1:
         Kassia(argv[0], argv[1])
-    
+
 if __name__ == "__main__":
     # print "Starting up..."
     if len(sys.argv) == 1:
