@@ -1,9 +1,8 @@
 from reportlab.pdfbase import pdfmetrics
-from reportlab.lib import colors
 
 
 class Neume:
-    def __init__(self, text, font_family='Ephesios Main', font_size=30, color=colors.black):
+    def __init__(self, text, font_family, font_size, color):
         self.text = text
         self.font_family = font_family
         self.font_size = font_size
