@@ -187,7 +187,8 @@ class Kassia:
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
                 g_array = self.make_glyph_array(neume_chunks, current_lyric_attrib)
-                line_list = self.line_break2(g_array, first_line_offset, self.pageAttrib['line_width'], char_spacing = self.pageAttrib['char_spacing'])
+                line_list = self.line_break2(g_array, first_line_offset, self.pageAttrib['line_width'], self.pageAttrib['char_spacing'])
+                line_list = self.line_justify(line_list, self.pageAttrib['line_width'], first_line_offset)
 
                 line_counter = 0
                 for line_of_chunks in line_list:
@@ -440,6 +441,48 @@ class Kassia:
                 neume_pos.append((cr.x - char_space, cr.y, neume_dict.translate(neume)))
 
         return neume_pos, lyric_pos
+
+    def line_justify(self, line_list, line_width, first_line_offset):
+        """Takes a list of lines and justifies each one"""
+        for line in line_list:
+            # Calc width of each chunk (and count how many chunks)
+            total_chunk_width = 0
+            for i, chunk in enumerate(line):
+                total_chunk_width += chunk.width
+
+            # Skip current line if only a few neumes
+            if total_chunk_width < (line_width * 0.75):
+                continue
+
+            # Subtract total from line_width (gets space remaining)
+            space_remaining = (line_width - first_line_offset) - total_chunk_width
+            # Divine by num of chunks
+            chunk_spacing = space_remaining / i
+            # Subtract out the old min_char_spacing
+            chunk_spacing -= self.pageAttrib['char_spacing']
+
+            cr = Cursor(first_line_offset, 0)
+
+            for chunk in line:
+                adj_lyric_pos, adj_neume_pos = 0, 0
+                if chunk.nWidth >= chunk.lWidth:
+                    # center text
+                    adj_lyric_pos = (chunk.width - chunk.lWidth) / 2.
+                else:
+                    # center neume
+                    adj_neume_pos = (chunk.width - chunk.nWidth) / 2.
+
+                chunk.neumePos = cr.x + adj_neume_pos
+                chunk.lyricPos = cr.x + adj_lyric_pos
+                #chunk.neumePos += chunk_spacing
+                #chunk.lyricPos += chunk_spacing
+
+                cr.x += chunk.width + chunk_spacing
+
+            # After first line (dropcap), set first line offset to zero
+            first_line_offset = 0
+
+        return line_list
 
     @staticmethod
     def fill_page_dict(page_dict):
