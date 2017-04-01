@@ -276,7 +276,7 @@ class Kassia:
             x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] - self.annotationAttrib['right_margin']
             self.canvas.drawRightString(x_pos, self.vert_pos, current_annotation_attrib['text'])
         else:
-            x_pos = self.pageAttrib['paper_size'][0]/2
+            x_pos = (self.pageAttrib['paper_size'][0]/2) + current_annotation_attrib['left_margin'] - current_annotation_attrib['right_margin']
             self.canvas.drawCentredString(x_pos, self.vert_pos, current_annotation_attrib['text'])
 
         self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['bottom_margin'])
