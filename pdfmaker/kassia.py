@@ -194,7 +194,7 @@ class Kassia:
                 for line_of_chunks in line_list:
                     # Make sure not at end of page
                     calculated_ypos = self.vert_pos - (line_counter + 1)*self.pageAttrib['line_height']
-                    if not self.is_space_for_another_line(calculated_ypos, current_lyric_attrib):
+                    if not self.is_space_for_another_line(calculated_ypos, current_lyric_attrib['top_margin']):
                         self.draw_newpage()
                         line_counter = 0
 
@@ -293,7 +293,7 @@ class Kassia:
         ypos = self.vert_pos - (self.pageAttrib['line_height'] + current_lyric_attrib['top_margin'])
 
         # If at edge of page, start new line
-        if not self.is_space_for_another_line(ypos, current_lyric_attrib):
+        if not self.is_space_for_another_line(ypos, current_lyric_attrib['top_margin']):
             self.draw_newpage()
             ypos = self.vert_pos - (self.pageAttrib['line_height'] + current_lyric_attrib['top_margin'])
 
@@ -313,11 +313,13 @@ class Kassia:
         self.canvas.showPage()
         self.vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
 
-    def draw_newline(self, line_height, top_margin):
+    def draw_newline(self, line_height, top_margin=0):
         self.vert_pos -= (line_height + top_margin)
+        if not self.is_space_for_another_line(self.vert_pos):
+            self.draw_newpage()
 
-    def is_space_for_another_line(self, cursor_y_pos, current_lyric_attrib):
-        return (cursor_y_pos - current_lyric_attrib['top_margin']) > self.pageAttrib['bottom_margin']
+    def is_space_for_another_line(self, cursor_y_pos, lyric_margin = 0):
+        return (cursor_y_pos - lyric_margin) > self.pageAttrib['bottom_margin']
 
     def make_glyph_array(self, neume_chunks, current_lyric_attrib):
         if current_lyric_attrib is None:
