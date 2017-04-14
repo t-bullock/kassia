@@ -362,7 +362,7 @@ class Kassia:
 
         for g in glyph_array:
             new_line = False
-            if (cr.x + g.width) >= line_width:
+            if (cr.x + g.width + char_spacing) >= line_width:
                 cr.x = 0
                 new_line = True
 
@@ -446,22 +446,24 @@ class Kassia:
 
     def line_justify(self, line_list, line_width, first_line_offset):
         """Takes a list of lines and justifies each one"""
-        for line in line_list:
+        for i, line in enumerate(line_list):
             # Calc width of each chunk (and count how many chunks)
             total_chunk_width = 0
             for i, chunk in enumerate(line):
                 total_chunk_width += chunk.width
 
-            # Skip current line if only a few neumes
+            # Skip current line is short
+            # or if last line
             if total_chunk_width < (line_width * 0.75):
+                continue
+            # TODO: figure out why the second part is needed here
+            if (i + 1 == len(line_list) or len(line_list) == 1):
                 continue
 
             # Subtract total from line_width (gets space remaining)
             space_remaining = (line_width - first_line_offset) - total_chunk_width
             # Divine by num of chunks
             chunk_spacing = space_remaining / i
-            # Subtract out the old min_char_spacing
-            chunk_spacing -= self.pageAttrib['char_spacing']
 
             cr = Cursor(first_line_offset, 0)
 
