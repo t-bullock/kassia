@@ -113,7 +113,7 @@ class Kassia:
             temp_dict = self.fill_page_dict(margin_attrib)
             self.pageAttrib.update(temp_dict)
 
-        self.canvas = canvas.Canvas(self.out_file, pagesize=letter)
+        self.canvas = canvas.Canvas(self.out_file, pagesize=self.pageAttrib['paper_size'])
         self.vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
 
         for child_elem in self.bnml:
