@@ -122,7 +122,11 @@ class Kassia:
                 self.draw_newpage()
 
             if child_elem.tag == 'linebreak':
-                self.draw_newline(self.pageAttrib['line_height'])
+                self.draw_newline(self.pageAttrib['line_height'], self.lyricAttrib['top_margin'] + self.lyricAttrib['font_size'])
+
+            # TODO: Test this
+            if child_elem.tag == 'blankline':
+                self.draw_blankline(self.pageAttrib['line_height'])
 
             if child_elem.tag == 'title':
                 current_title_attrib = self.get_title_attributes(child_elem, self.titleAttrib)
@@ -145,6 +149,10 @@ class Kassia:
                     # TODO: Test this
                     if troparion_child_elem.tag == 'linebreak':
                         self.draw_newline(self.pageAttrib['line_height'])
+
+                    # TODO: Test this
+                    if troparion_child_elem.tag == 'blankline':
+                        self.draw_blankline(self.pageAttrib['line_height'])
 
                     if troparion_child_elem.tag == 'annotation':
                         current_annotation_attrib = self.get_annotation_attributes(troparion_child_elem, self.annotationAttrib)
@@ -333,6 +341,10 @@ class Kassia:
         if not self.is_space_for_another_line(self.vert_pos):
             self.draw_newpage()
 
+    def draw_blankline(self, line_height):
+        ypos = self.vert_pos - line_height
+        self.canvas.setFont(self.neumeFont['font'], self.neumeFont['font_size'])
+        self.canvas.drawString(50, ypos, "")
 
         ypos -= self.lyricAttrib['top_margin']
 
