@@ -2,6 +2,7 @@ import neume_dict
 import font_reader
 from glyphs import Glyph
 from neume import Neume
+from lyric import Lyric
 
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
@@ -134,7 +135,7 @@ class Kassia:
             if child_elem.tag == 'troparion':
                 neumes_list = []
                 current_annotation_attrib = {}
-                current_lyric_attrib = {}
+                lyrics_list = []
                 current_dropcap_attrib = {}
 
                 for troparion_child_elem in child_elem:
@@ -166,6 +167,24 @@ class Kassia:
                                           )
                                 neumes_list.append(n)
 
+                    if troparion_child_elem.tag == 'lyrics':
+                        lyrics_elem = troparion_child_elem
+                        if lyrics_elem is not None:
+                            lyrics_default_attrib = lyrics_elem.attrib
+                            settings_from_xml = self.fill_text_dict(lyrics_default_attrib)
+                            self.lyricAttrib.update(settings_from_xml)
+
+                            lyric_attrib = lyrics_elem.attrib
+
+                            for lyric_text in lyrics_elem.text.strip().split():
+                                l = Lyric(text=lyric_text,
+                                          font_family=lyric_attrib['font'] if lyric_attrib.has_key('font') else self.lyricAttrib['font'],
+                                          font_size=lyric_attrib['font_size'] if lyric_attrib.has_key('font_size') else self.lyricAttrib['font_size'],
+                                          color=lyric_attrib['color'] if lyric_attrib.has_key('color') else self.lyricAttrib['color'],
+                                          top_margin=lyric_attrib['top_margin'] if lyric_attrib.has_key('top_margin') else self.lyricAttrib['top_margin'],
+                                          )
+                                lyrics_list.append(l)
+
                 # Get attributes for drop cap
                 dropcap_elem = child_elem.find('dropcap')
                 first_line_offset = 0
@@ -174,19 +193,15 @@ class Kassia:
                     first_line_offset = 5 + pdfmetrics.stringWidth(current_dropcap_attrib['text'], current_dropcap_attrib['font'],
                                                                    current_dropcap_attrib['font_size'])
 
-                # Get attributes for lyrics
-                lyric_elem = child_elem.find('lyrics')
-                if lyric_elem is not None:
-                    current_lyric_attrib = self.get_lyric_attributes(lyric_elem, self.lyricAttrib)
-
                 # Draw Drop Cap
-                if current_dropcap_attrib and current_lyric_attrib is not None:
-                    self.draw_dropcap(current_dropcap_attrib, current_lyric_attrib)
-                    # Remove first letter of lyrics, since it will be in dropcap
-                    current_lyric_attrib['text'] = current_lyric_attrib['text'][1:]
+                if current_dropcap_attrib is not None and len(lyrics_list) > 0:
+                    # Pop off first letter of lyrics (since it will be in dropcap)
+                    # and pass it to draw function
+                    self.draw_dropcap(current_dropcap_attrib, lyrics_list[0])
+                    lyrics_list[0].text = lyrics_list[0].text[1:]
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
-                g_array = self.make_glyph_array(neume_chunks, current_lyric_attrib)
+                g_array = self.make_glyph_array(neume_chunks, lyrics_list)
                 line_list = self.line_break2(g_array, first_line_offset, self.pageAttrib['line_width'], self.pageAttrib['char_spacing'])
                 line_list = self.line_justify(line_list, self.pageAttrib['line_width'], first_line_offset)
 
@@ -194,7 +209,7 @@ class Kassia:
                 for line_of_chunks in line_list:
                     # Make sure not at end of page
                     calculated_ypos = self.vert_pos - (line_counter + 1)*self.pageAttrib['line_height']
-                    if not self.is_space_for_another_line(calculated_ypos, current_lyric_attrib['top_margin']):
+                    if not self.is_space_for_another_line(calculated_ypos, line_of_chunks):
                         self.draw_newpage()
                         line_counter = 0
 
@@ -213,8 +228,8 @@ class Kassia:
 
                             self.canvas.drawString(xpos, ypos, neume.text)
 
-                        if ga.lyrics:
-                            ypos -= current_lyric_attrib['top_margin']
+                        if ga.lyricsText:
+                            ypos -= ga.lyricsTopMargin
                             xpos = self.pageAttrib['left_margin'] + ga.lyricPos
 
                             # TODO: Put this elafrom offset logic somewhere else
@@ -222,13 +237,13 @@ class Kassia:
                                 if neumeWithLyricOffset[0] == ga.neumeChunk[0].text:
                                     xpos += neumeWithLyricOffset[1]
 
-                            self.canvas.setFont(current_lyric_attrib['font'], current_lyric_attrib['font_size'])
-                            self.canvas.setFillColor(current_lyric_attrib['color'])
+                            self.canvas.setFont(ga.lyricsFontFamily, ga.lyricsFontSize)
+                            self.canvas.setFillColor(ga.lyricsFontColor)
                             #if (ga.lyrics[-1] == "_"):
                             #    ga.lyrics += "_"
-                            self.canvas.drawString(xpos, ypos, ga.lyrics)
+                            self.canvas.drawString(xpos, ypos, ga.lyricsText)
 
-                    self.vert_pos = self.vert_pos - (line_counter + 1) * self.pageAttrib['line_height'] - current_lyric_attrib['top_margin']
+                    self.vert_pos = self.vert_pos - (line_counter + 1) * self.pageAttrib['line_height']# - current_lyric_attrib['top_margin']
 
                 line_counter += 1
 
@@ -288,14 +303,14 @@ class Kassia:
         current_dropcap_attrib['text'] = dropcap_elem.text.strip()
         return current_dropcap_attrib
 
-    def draw_dropcap(self, current_dropcap_attrib, current_lyric_attrib):
+    def draw_dropcap(self, current_dropcap_attrib, lyric):
         xpos = self.pageAttrib['left_margin']
-        ypos = self.vert_pos - (self.pageAttrib['line_height'] + current_lyric_attrib['top_margin'])
+        ypos = self.vert_pos - (self.pageAttrib['line_height'] + lyric.top_margin)
 
         # If at edge of page, start new line
-        if not self.is_space_for_another_line(ypos, current_lyric_attrib['top_margin']):
+        if not self.is_space_for_another_line(ypos):#, lyrics_list):
             self.draw_newpage()
-            ypos = self.vert_pos - (self.pageAttrib['line_height'] + current_lyric_attrib['top_margin'])
+            ypos = self.vert_pos - (self.pageAttrib['line_height'] + lyric.top_margin)
 
         self.canvas.setFillColor(current_dropcap_attrib['color'])
         self.canvas.setFont(current_dropcap_attrib['font'], current_dropcap_attrib['font_size'])
@@ -318,16 +333,24 @@ class Kassia:
         if not self.is_space_for_another_line(self.vert_pos):
             self.draw_newpage()
 
-    def is_space_for_another_line(self, cursor_y_pos, lyric_margin = 0):
-        return (cursor_y_pos - lyric_margin) > self.pageAttrib['bottom_margin']
 
-    def make_glyph_array(self, neume_chunks, current_lyric_attrib):
-        if current_lyric_attrib is None:
-            current_lyric_attrib = self.lyricAttrib
+        ypos -= self.lyricAttrib['top_margin']
 
-        lyrics = current_lyric_attrib['text']
+        self.canvas.setFont(self.lyricAttrib['font'], self.lyricAttrib['font_size'])
+        self.canvas.drawString(50, ypos, "")
 
-        lyric_array = re.split(' ', lyrics)
+        ypos -= line_height/2
+
+        self.vert_pos = ypos
+
+    def is_space_for_another_line(self, cursor_y_pos, line_list=[]):
+        max_height = 0
+        for ga in line_list:
+            if ga.lyricsTopMargin > max_height:
+                max_height = ga.lyricsTopMargin
+        return (cursor_y_pos - max_height) > self.pageAttrib['bottom_margin']
+
+    def make_glyph_array(self, neume_chunks, lyrics_list):
         i, l_ptr = 0, 0
         g_array = []
         while i < len(neume_chunks):
@@ -335,19 +358,25 @@ class Kassia:
             nc = neume_chunks[i]
             if neume_dict.takes_lyric(nc[0]):
                 # chunk needs a lyric
-                if l_ptr < len(lyric_array):
-                    lyr = lyric_array[l_ptr]
+                if l_ptr < len(lyrics_list):
+                    lyric = lyrics_list[l_ptr]
+                    g = Glyph(neume_chunk=nc,
+                              lyrics_text=lyric.text,
+                              lyrics_font_family=lyric.font_family,
+                              lyrics_size=lyric.font_size,
+                              lyrics_color=lyric.color,
+                              lyrics_top_margin=lyric.top_margin)
                 else:
-                    lyr = ' '
+                    g = Glyph(nc)
                 l_ptr += 1
-                g = Glyph(neume_chunk=nc, lyrics=lyr)
+
                 # To Do: see if lyric ends with '_' and if lyrics are
                 # wider than the neume, then combine with next chunk
             else:
                 # no lyric needed
                  g = Glyph(nc)
-            g.calc_chunk_width(current_lyric_attrib['font'], current_lyric_attrib['font_size'])
 
+            g.calc_chunk_width()
             g_array.append(g)
             i += 1
         return g_array
