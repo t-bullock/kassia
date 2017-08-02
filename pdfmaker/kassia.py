@@ -296,7 +296,7 @@ class Kassia:
             x_pos = self.pageAttrib['left_margin'] - current_annotation_attrib['left_margin']
             self.canvas.drawString(x_pos, self.vert_pos, current_annotation_attrib['text'])
         elif current_annotation_attrib['align'] == 'right':
-            x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] - self.annotationAttrib['right_margin']
+            x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] - current_annotation_attrib['right_margin']
             self.canvas.drawRightString(x_pos, self.vert_pos, current_annotation_attrib['text'])
         else:
             x_pos = (self.pageAttrib['paper_size'][0]/2) + current_annotation_attrib['left_margin'] - current_annotation_attrib['right_margin']
