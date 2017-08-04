@@ -228,7 +228,7 @@ class Kassia:
                                                                    current_dropcap_attrib['font_size'])
 
                 # Draw Drop Cap
-                if current_dropcap_attrib is not None and len(lyrics_list) > 0:
+                if current_dropcap_attrib is not None and len(current_dropcap_attrib.keys()) > 0 and len(lyrics_list) > 0:
                     # Pop off first letter of lyrics (since it will be in dropcap)
                     # and pass it to draw function
                     self.draw_dropcap(current_dropcap_attrib, lyrics_list[0])
