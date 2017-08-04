@@ -54,7 +54,7 @@ class Kassia:
 
         # Set title defaults
         self.titleAttrib = {}
-        self.titleAttrib['font'] = 'Helvetica'
+        self.titleAttrib['font_family'] = 'Helvetica'
         self.titleAttrib['font_size'] = 18
         self.titleAttrib['color'] = colors.black
         self.titleAttrib['top_margin'] = 0
@@ -65,7 +65,7 @@ class Kassia:
 
         # Set annotation defaults
         self.annotationAttrib = {}
-        self.annotationAttrib['font'] = 'Helvetica'
+        self.annotationAttrib['font_family'] = 'Helvetica'
         self.annotationAttrib['font_size'] = 12
         self.annotationAttrib['color'] = colors.black
         self.annotationAttrib['align'] = 'center'
@@ -76,21 +76,21 @@ class Kassia:
         self.annotationAttrib['text'] = ''
 
         # Set neume defaults
-        self.neumeFont = {}
-        self.neumeFont['font'] = 'Kassia Tsak Main'
-        self.neumeFont['font_size'] = 30
-        self.neumeFont['color'] = colors.black
+        self.defaultNeumeAttrib = {}
+        self.defaultNeumeAttrib['font_family'] = 'Kassia Tsak Main'
+        self.defaultNeumeAttrib['font_size'] = 30
+        self.defaultNeumeAttrib['color'] = colors.black
 
         # Set dropcap defaults
         self.dropCap = {}
-        self.dropCap['font'] = 'EZOmega'
+        self.dropCap['font_family'] = 'EZ Omega'
         self.dropCap['font_size'] = 40
         self.dropCap['color'] = colors.black
         self.dropCap['text'] = ''
 
         # Set lyric defaults
         self.lyricAttrib = {}
-        self.lyricAttrib['font'] = 'Helvetica'
+        self.lyricAttrib['font_family'] = 'Helvetica'
         self.lyricAttrib['font_size'] = 12
         self.lyricAttrib['color'] = colors.black
         self.lyricAttrib['top_margin'] = 0
@@ -113,6 +113,31 @@ class Kassia:
             margin_attrib = self.bnml.attrib
             temp_dict = self.fill_page_dict(margin_attrib)
             self.pageAttrib.update(temp_dict)
+
+        # Parse page defaults
+        defaults = self.bnml.find('defaults')
+        if defaults is not None:
+
+            page_layout = defaults.find('page-layout')
+            if page_layout is not None:
+                lyric_offset = page_layout.find('lyric-y-offset').text
+                if lyric_offset is not None:
+                    self.lyricAttrib['top_margin'] = int(lyric_offset)
+
+            neume_font_defaults = defaults.find('neume-font')
+            if neume_font_defaults is not None:
+                temp_dict = self.fill_text_dict(neume_font_defaults.attrib)
+                self.defaultNeumeAttrib.update(temp_dict)
+
+            lyric_font_defaults = defaults.find('lyric-font')
+            if lyric_font_defaults is not None:
+                temp_dict = self.fill_text_dict(lyric_font_defaults.attrib)
+                self.lyricAttrib.update(temp_dict)
+
+            dropcap_font_defaults = defaults.find('dropcap-font')
+            if dropcap_font_defaults is not None:
+                temp_dict = self.fill_text_dict(dropcap_font_defaults.attrib)
+                self.dropCap.update(temp_dict)
 
         self.canvas = canvas.Canvas(self.out_file, pagesize=self.pageAttrib['paper_size'])
         self.vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
@@ -159,19 +184,20 @@ class Kassia:
                         self.draw_annotation(current_annotation_attrib)
 
                     if troparion_child_elem.tag == 'neumes':
+                        neumeAttrib = {}
                         neumes_elem = troparion_child_elem
                         if neumes_elem is not None:
-                            neumes_default_attrib = neumes_elem.attrib
-                            settings_from_xml = self.fill_text_dict(neumes_default_attrib)
-                            self.neumeFont.update(settings_from_xml)
+                            temp_neumes_attrib = neumes_elem.attrib
+                            settings_from_xml = self.fill_text_dict(temp_neumes_attrib)
+                            neumeAttrib.update(settings_from_xml)
 
                             neume_attrib = neumes_elem.attrib
 
                             for neume_text in neumes_elem.text.strip().split():
                                 n = Neume(text=neume_text,
-                                          font_family=neume_attrib['font'] if neume_attrib.has_key('font') else self.neumeFont['font'],
-                                          font_size=neume_attrib['font_size'] if neume_attrib.has_key('font_size') else self.neumeFont['font_size'],
-                                          color=neume_attrib['color'] if neume_attrib.has_key('color') else self.neumeFont['color'],
+                                          font_family=neume_attrib['font_family'] if neume_attrib.has_key('font_family') else self.defaultNeumeAttrib['font_family'],
+                                          font_size=neume_attrib['font_size'] if neume_attrib.has_key('font_size') else self.defaultNeumeAttrib['font_size'],
+                                          color=neume_attrib['color'] if neume_attrib.has_key('color') else self.defaultNeumeAttrib['color'],
                                           )
                                 neumes_list.append(n)
 
@@ -186,7 +212,7 @@ class Kassia:
 
                             for lyric_text in lyrics_elem.text.strip().split():
                                 l = Lyric(text=lyric_text,
-                                          font_family=lyric_attrib['font'] if lyric_attrib.has_key('font') else self.lyricAttrib['font'],
+                                          font_family=lyric_attrib['font_family'] if lyric_attrib.has_key('font_family') else self.lyricAttrib['font_family'],
                                           font_size=lyric_attrib['font_size'] if lyric_attrib.has_key('font_size') else self.lyricAttrib['font_size'],
                                           color=lyric_attrib['color'] if lyric_attrib.has_key('color') else self.lyricAttrib['color'],
                                           top_margin=lyric_attrib['top_margin'] if lyric_attrib.has_key('top_margin') else self.lyricAttrib['top_margin'],
@@ -198,7 +224,7 @@ class Kassia:
                 first_line_offset = 0
                 if dropcap_elem is not None:
                     current_dropcap_attrib = self.get_dropcap_attributes(dropcap_elem, self.dropCap)
-                    first_line_offset = 5 + pdfmetrics.stringWidth(current_dropcap_attrib['text'], current_dropcap_attrib['font'],
+                    first_line_offset = 5 + pdfmetrics.stringWidth(current_dropcap_attrib['text'], current_dropcap_attrib['font_family'],
                                                                    current_dropcap_attrib['font_size'])
 
                 # Draw Drop Cap
@@ -222,7 +248,7 @@ class Kassia:
                         line_counter = 0
 
                     for ga in line_of_chunks:
-                        self.canvas.setFillColor(self.neumeFont['color'])
+                        self.canvas.setFillColor(self.defaultNeumeAttrib['color'])
                         ypos = self.vert_pos - (line_counter + 1)*self.pageAttrib['line_height']
                         xpos = self.pageAttrib['left_margin'] + ga.neumePos
 
@@ -270,7 +296,7 @@ class Kassia:
     def draw_title(self, current_title_attrib):
         self.vert_pos -= (current_title_attrib['font_size'] + current_title_attrib['top_margin'])
         self.canvas.setFillColor(current_title_attrib['color'])
-        self.canvas.setFont(current_title_attrib['font'], current_title_attrib['font_size'])
+        self.canvas.setFont(current_title_attrib['font_family'], current_title_attrib['font_size'])
         self.canvas.drawCentredString(self.pageAttrib['paper_size'][0]/2, self.vert_pos, current_title_attrib['text'])
         # move down by the height of the text string
         self.vert_pos -= (current_title_attrib['font_size'] + current_title_attrib['bottom_margin'])
@@ -289,11 +315,17 @@ class Kassia:
     def draw_annotation(self, current_annotation_attrib):
         self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['top_margin'])
         self.canvas.setFillColor(current_annotation_attrib['color'])
-        self.canvas.setFont(current_annotation_attrib['font'], current_annotation_attrib['font_size'])
+        self.canvas.setFont(current_annotation_attrib['font_family'], current_annotation_attrib['font_size'])
 
-        # Draw text, default to centered
         if current_annotation_attrib['align'] == 'left':
             x_pos = self.pageAttrib['left_margin'] - current_annotation_attrib['left_margin']
+            # Check for wrapping
+            '''text_width = pdfmetrics.stringWidth(current_annotation_attrib['text'], current_annotation_attrib['font_family'], current_annotation_attrib['font_size'])
+
+            for line in wrap(current_annotation_attrib['text'], self.pageAttrib['line_width'] - 50):
+                self.canvas.drawString(x_pos, self.vert_pos, line)
+                self.vert_pos += 15'''
+
             self.canvas.drawString(x_pos, self.vert_pos, current_annotation_attrib['text'])
         elif current_annotation_attrib['align'] == 'right':
             x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] - current_annotation_attrib['right_margin']
@@ -321,7 +353,7 @@ class Kassia:
             ypos = self.vert_pos - (self.pageAttrib['line_height'] + lyric.top_margin)
 
         self.canvas.setFillColor(current_dropcap_attrib['color'])
-        self.canvas.setFont(current_dropcap_attrib['font'], current_dropcap_attrib['font_size'])
+        self.canvas.setFont(current_dropcap_attrib['font_family'], current_dropcap_attrib['font_size'])
         self.canvas.drawString(xpos, ypos, current_dropcap_attrib['text'])
 
     def get_lyric_attributes(self, lyric_elem, default_lyric_attrib):
@@ -343,12 +375,12 @@ class Kassia:
 
     def draw_blankline(self, line_height):
         ypos = self.vert_pos - line_height
-        self.canvas.setFont(self.neumeFont['font'], self.neumeFont['font_size'])
+        self.canvas.setFont(self.defaultNeumeAttrib['font_family'], self.defaultNeumeAttrib['font_size'])
         self.canvas.drawString(50, ypos, "")
 
         ypos -= self.lyricAttrib['top_margin']
 
-        self.canvas.setFont(self.lyricAttrib['font'], self.lyricAttrib['font_size'])
+        self.canvas.setFont(self.lyricAttrib['font_family'], self.lyricAttrib['font_size'])
         self.canvas.drawString(50, ypos, "")
 
         ypos -= line_height/2
@@ -452,7 +484,7 @@ class Kassia:
                     lyr = lyric_array[lyric_index]
                 else:
                     lyr = ""
-                l_width = pdfmetrics.stringWidth(lyr, lyric_attrib['font'], lyric_attrib['font_size'])
+                l_width = pdfmetrics.stringWidth(lyr, lyric_attrib['font_family'], lyric_attrib['font_size'])
                 # Glyph width will be the max of the two if lyric isn't stretched out
                 # across multiple neumes
                 add_lyric = False
@@ -548,12 +580,12 @@ class Kassia:
             else:
                 title_dict.pop('color')
 
-        """parse the font"""
-        if 'font' in title_dict:
-            if not font_reader.is_registered_font(title_dict['font']):
-                print "{} not found, using Helvetica font instead".format(title_dict['font'])
+        """parse the font family"""
+        if 'font_family' in title_dict:
+            if not font_reader.is_registered_font(title_dict['font_family']):
+                print "{} not found, using Helvetica font instead".format(title_dict['font_family'])
                 # Helvetica is built into ReportLab, so we know it's safe
-                title_dict['font'] = "Helvetica"
+                title_dict['font_family'] = "Helvetica"
 
         """parse the font size"""
         if 'font_size' in title_dict:
