@@ -6,7 +6,7 @@ from lyric import Lyric
 
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
-from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import letter, A4, legal
 from reportlab.lib import colors
 
 import sys
@@ -120,6 +120,9 @@ class Kassia:
 
             page_layout = defaults.find('page-layout')
             if page_layout is not None:
+                paper_size = page_layout.find('paper-size').text
+                if paper_size is not None:
+                    self.lyricAttrib['paper_size'] = self.str_to_class(paper_size)
                 lyric_offset = page_layout.find('lyric-y-offset').text
                 if lyric_offset is not None:
                     self.lyricAttrib['top_margin'] = int(lyric_offset)
@@ -560,6 +563,10 @@ class Kassia:
             first_line_offset = 0
 
         return line_list
+
+    @staticmethod
+    def str_to_class(str_to_change):
+        return reduce(getattr, str_to_change.split("."), sys.modules[__name__])
 
     @staticmethod
     def fill_page_dict(page_dict):
