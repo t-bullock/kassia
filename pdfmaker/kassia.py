@@ -8,6 +8,9 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.lib.pagesizes import letter, A4, legal
 from reportlab.lib import colors
+from reportlab.platypus import Paragraph
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER
 
 import sys
 import xml.etree.ElementTree as ET
@@ -75,6 +78,18 @@ class Kassia:
         self.annotationAttrib['right_margin'] = 0
         self.annotationAttrib['text'] = ''
 
+        # Set annotation defaults
+        self.paragraphAttrib = {}
+        self.paragraphAttrib['font_family'] = 'Helvetica'
+        self.paragraphAttrib['font_size'] = 12
+        self.paragraphAttrib['color'] = colors.black
+        self.paragraphAttrib['align'] = 'left'
+        self.paragraphAttrib['top_margin'] = 0
+        self.paragraphAttrib['bottom_margin'] = 0
+        self.paragraphAttrib['left_margin'] = 0
+        self.paragraphAttrib['right_margin'] = 0
+        self.paragraphAttrib['text'] = ''
+
         # Set neume defaults
         self.defaultNeumeAttrib = {}
         self.defaultNeumeAttrib['font_family'] = 'Kassia Tsak Main'
@@ -83,7 +98,7 @@ class Kassia:
 
         # Set dropcap defaults
         self.dropCap = {}
-        self.dropCap['font_family'] = 'EZ Omega'
+        self.dropCap['font_family'] = 'Helvetica'
         self.dropCap['font_size'] = 40
         self.dropCap['color'] = colors.black
         self.dropCap['text'] = ''
@@ -142,6 +157,11 @@ class Kassia:
                 temp_dict = self.fill_text_dict(dropcap_font_defaults.attrib)
                 self.dropCap.update(temp_dict)
 
+            paragraph_font_defaults = defaults.find('paragraph-font')
+            if paragraph_font_defaults is not None:
+                temp_dict = self.fill_text_dict(paragraph_font_defaults.attrib)
+                self.paragraphAttrib.update(temp_dict)
+
         self.canvas = canvas.Canvas(self.out_file, pagesize=self.pageAttrib['paper_size'])
         self.vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
 
@@ -163,6 +183,10 @@ class Kassia:
             if child_elem.tag == 'annotation':
                 current_annotation_attrib = self.get_annotation_attributes(child_elem, self.annotationAttrib)
                 self.draw_annotation(current_annotation_attrib)
+
+            if child_elem.tag == 'paragraph':
+                current_paragraph_attrib = self.get_annotation_attributes(child_elem, self.paragraphAttrib)
+                self.draw_paragraph(current_paragraph_attrib)
 
             if child_elem.tag == 'troparion':
                 neumes_list = []
@@ -322,13 +346,6 @@ class Kassia:
 
         if current_annotation_attrib['align'] == 'left':
             x_pos = self.pageAttrib['left_margin'] - current_annotation_attrib['left_margin']
-            # Check for wrapping
-            '''text_width = pdfmetrics.stringWidth(current_annotation_attrib['text'], current_annotation_attrib['font_family'], current_annotation_attrib['font_size'])
-
-            for line in wrap(current_annotation_attrib['text'], self.pageAttrib['line_width'] - 50):
-                self.canvas.drawString(x_pos, self.vert_pos, line)
-                self.vert_pos += 15'''
-
             self.canvas.drawString(x_pos, self.vert_pos, current_annotation_attrib['text'])
         elif current_annotation_attrib['align'] == 'right':
             x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] - current_annotation_attrib['right_margin']
@@ -338,6 +355,34 @@ class Kassia:
             self.canvas.drawCentredString(x_pos, self.vert_pos, current_annotation_attrib['text'])
 
         self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['bottom_margin'])
+
+    def draw_paragraph(self, current_annotation_attrib):
+        self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['top_margin'])
+        self.canvas.setFillColor(current_annotation_attrib['color'])
+        self.canvas.setFont(current_annotation_attrib['font_family'], current_annotation_attrib['font_size'])
+
+        paragraph_style = ParagraphStyle('test')
+        paragraph_style.fontName = current_annotation_attrib['font_family']
+        paragraph_style.fontSize = current_annotation_attrib['font_size']
+        paragraph_style.textColor = current_annotation_attrib['color']
+
+        if current_annotation_attrib['align'] == 'left':
+            paragraph_style.alignment = TA_LEFT
+        elif current_annotation_attrib['align'] == 'right':
+            paragraph_style.alignment = TA_RIGHT
+        else:
+            paragraph_style.alignment = TA_CENTER
+
+        paragraph = Paragraph(current_annotation_attrib['text'], paragraph_style)
+        # returns size actually used
+        w, h = paragraph.wrap(self.pageAttrib['line_width'], self.pageAttrib['bottom_margin'])
+        self.vert_pos -= (h + current_annotation_attrib['bottom_margin'])
+
+        # self.canvas.saveState()
+        paragraph.drawOn(self.canvas, self.pageAttrib['left_margin'], self.vert_pos)
+        # self.canvas.restoreState()
+
+        #self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['bottom_margin'])
 
     def get_dropcap_attributes(self, dropcap_elem, default_dropcap_attrib):
         current_dropcap_attrib = deepcopy(default_dropcap_attrib)
