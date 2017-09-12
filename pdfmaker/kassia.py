@@ -135,12 +135,13 @@ class Kassia:
 
             page_layout = defaults.find('page-layout')
             if page_layout is not None:
-                paper_size = page_layout.find('paper-size').text
+                paper_size = page_layout.find('paper-size')
                 if paper_size is not None:
-                    self.lyricAttrib['paper_size'] = self.str_to_class(paper_size)
-                lyric_offset = page_layout.find('lyric-y-offset').text
+                    self.lyricAttrib['paper_size'] = self.str_to_class(paper_size.text)
+                    self.pageAttrib['line_width'] = self.pageAttrib['paper_size'][0] - (self.pageAttrib['left_margin'] + self.pageAttrib['right_margin'])
+                lyric_offset = page_layout.find('lyric-y-offset')
                 if lyric_offset is not None:
-                    self.lyricAttrib['top_margin'] = int(lyric_offset)
+                    self.lyricAttrib['top_margin'] = int(lyric_offset.text)
 
             neume_font_defaults = defaults.find('neume-font')
             if neume_font_defaults is not None:
