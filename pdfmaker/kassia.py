@@ -625,9 +625,7 @@ class Kassia:
     def fill_text_dict(title_dict):
         """parse the color"""
         if 'color' in title_dict:
-            if title_dict['color'] == "blue":
-                title_dict['color'] = colors.blue
-            elif re.match("#[0-9a-fA-F]{6}", title_dict['color']):
+            if re.match("#[0-9a-fA-F]{6}", title_dict['color']):
                 col = [z/255. for z in hex_to_rgb(title_dict['color'])]
                 title_dict['color'] = colors.Color(col[0], col[1], col[2], 1)
             else:
