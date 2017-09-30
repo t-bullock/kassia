@@ -166,6 +166,17 @@ class Kassia:
         self.canvas = canvas.Canvas(self.out_file, pagesize=self.pageAttrib['paper_size'])
         self.vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
 
+        # Set pdf title and author
+        identification = self.bnml.find('identification')
+        if identification is not None:
+            title = identification.find('work-title')
+            if title is not None:
+                self.canvas.setTitle(title.text)
+            author = identification.find('author')
+            if author is not None:
+                self.canvas.setAuthor(author.text)
+
+        # Read main xml content
         for child_elem in self.bnml:
             if child_elem.tag == 'pagebreak':
                 self.draw_newpage()
