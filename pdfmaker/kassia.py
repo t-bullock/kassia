@@ -338,7 +338,7 @@ class Kassia:
         self.canvas.setFont(current_title_attrib['font_family'], current_title_attrib['font_size'])
         self.canvas.drawCentredString(self.pageAttrib['paper_size'][0]/2, self.vert_pos, current_title_attrib['text'])
         # move down by the height of the text string
-        self.vert_pos -= (current_title_attrib['font_size'] + current_title_attrib['bottom_margin'])
+        #self.vert_pos -= (current_title_attrib['font_size'] + current_title_attrib['bottom_margin'])
 
     def get_annotation_attributes(self, annotation_elem, default_annotation_attrib):
         current_annotation_attrib = deepcopy(default_annotation_attrib)
@@ -377,6 +377,8 @@ class Kassia:
         paragraph_style.fontName = current_annotation_attrib['font_family']
         paragraph_style.fontSize = current_annotation_attrib['font_size']
         paragraph_style.textColor = current_annotation_attrib['color']
+        paragraph_style.autoLeading = "min"
+        paragraph_style.firstLineIndent = 20
 
         if current_annotation_attrib['align'] == 'left':
             paragraph_style.alignment = TA_LEFT
