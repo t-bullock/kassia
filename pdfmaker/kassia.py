@@ -348,7 +348,24 @@ class Kassia:
         # text = annotation_elem.text.strip()
         # if 'translate' in current_annotation_attrib:
         #    text = neume_dict.translate(text)
-        current_annotation_attrib['text'] = annotation_elem.text.strip()
+
+        embedded_args = ""
+        for embedded_font_attrib in annotation_elem:
+            temp_font_family = current_annotation_attrib['font_family']
+            temp_font_size = current_annotation_attrib['font_size']
+            temp_font_color = current_annotation_attrib['color']
+            embedded_font_attrib.attrib
+            if embedded_font_attrib.attrib is not None:
+                if embedded_font_attrib.attrib.has_key('font_family'):
+                    temp_font_family = embedded_font_attrib.attrib['font_family']
+                if embedded_font_attrib.attrib.has_key('font_size'):
+                    temp_font_size = embedded_font_attrib.attrib['font_size']
+                if embedded_font_attrib.attrib.has_key('color'):
+                    temp_font_color = embedded_font_attrib.attrib['color']
+            embedded_args += '<font face="{0}" size="{1}">'.format(temp_font_family, temp_font_size) + embedded_font_attrib.text.strip() + '</font>' + embedded_font_attrib.tail
+
+        current_annotation_attrib['text'] = annotation_elem.text.strip() + embedded_args
+
         return current_annotation_attrib
 
     def draw_annotation(self, current_annotation_attrib):
