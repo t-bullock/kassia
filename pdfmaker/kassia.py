@@ -137,7 +137,7 @@ class Kassia:
             if page_layout is not None:
                 paper_size = page_layout.find('paper-size')
                 if paper_size is not None:
-                    self.lyricAttrib['paper_size'] = self.str_to_class(paper_size.text)
+                    self.pageAttrib['paper_size'] = self.str_to_class(paper_size.text)
                     self.pageAttrib['line_width'] = self.pageAttrib['paper_size'][0] - (self.pageAttrib['left_margin'] + self.pageAttrib['right_margin'])
                 lyric_offset = page_layout.find('lyric-y-offset')
                 if lyric_offset is not None:
