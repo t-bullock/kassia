@@ -648,7 +648,11 @@ class Kassia:
     def fill_page_dict(page_dict):
         # TODO: better error handling; value could be empty string
         for attrib_name in page_dict:
-            page_dict[attrib_name] = int(page_dict[attrib_name])
+            try:
+                page_dict[attrib_name] = int(page_dict[attrib_name])
+            except ValueError as e:
+                print "{} error: {}".format(attrib_name,e)
+                page_dict.pop(attrib_name)
         return page_dict
 
     @staticmethod
