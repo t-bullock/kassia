@@ -387,6 +387,11 @@ class Kassia:
 
     def draw_paragraph(self, current_annotation_attrib):
         self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['top_margin'])
+
+        if not self.is_space_for_another_line(self.vert_pos):
+            self.draw_newpage()
+            self.vert_pos -= current_annotation_attrib['font_size'] + current_annotation_attrib['top_margin']
+
         self.canvas.setFillColor(current_annotation_attrib['color'])
         self.canvas.setFont(current_annotation_attrib['font_family'], current_annotation_attrib['font_size'])
 
