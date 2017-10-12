@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import neume_dict
 import font_reader
 from glyphs import Glyph
@@ -281,14 +283,14 @@ class Kassia:
                 line_counter = 0
                 for line_of_chunks in line_list:
                     # Make sure not at end of page
-                    calculated_ypos = self.vert_pos - (line_counter + 1)*self.pageAttrib['line_height']
+                    calculated_ypos = self.vert_pos - (line_counter + 1) * self.pageAttrib['line_height']
                     if not self.is_space_for_another_line(calculated_ypos, line_of_chunks):
                         self.draw_newpage()
                         line_counter = 0
 
                     for ga in line_of_chunks:
                         self.canvas.setFillColor(self.defaultNeumeAttrib['color'])
-                        ypos = self.vert_pos - (line_counter + 1)*self.pageAttrib['line_height']
+                        ypos = self.vert_pos - (line_counter + 1) * self.pageAttrib['line_height']
                         xpos = self.pageAttrib['left_margin'] + ga.neumePos
 
                         for i, neume in enumerate(ga.neumeChunk):
@@ -316,7 +318,7 @@ class Kassia:
                             #    ga.lyrics += "_"
                             self.canvas.drawString(xpos, ypos, ga.lyricsText)
 
-                    self.vert_pos = self.vert_pos - (line_counter + 1) * self.pageAttrib['line_height']# - current_lyric_attrib['top_margin']
+                    self.vert_pos -= (line_counter + 1) * self.pageAttrib['line_height']# - current_lyric_attrib['top_margin']
 
                 line_counter += 1
 
@@ -502,7 +504,7 @@ class Kassia:
                 # wider than the neume, then combine with next chunk
             else:
                 # no lyric needed
-                 g = Glyph(nc)
+                g = Glyph(nc)
 
             g.calc_chunk_width()
             g_array.append(g)
@@ -546,7 +548,8 @@ class Kassia:
         return g_line_list
 
     def linebreak(self, neumes, lyrics=None):
-        """Break neumes and lyrics into lines"""
+        """Break neumes and lyrics into lines
+        Unused"""
         cr = Cursor(0,0)
         lyric_array = re.split(' ', lyrics)
         # If lyric spans multiple neumes
