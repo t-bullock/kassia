@@ -14,6 +14,8 @@ from reportlab.platypus import Paragraph
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER
 
+from webcolors import hex_to_rgb
+
 import sys
 import xml.etree.ElementTree as ET
 import re
@@ -699,12 +701,6 @@ class Kassia:
                     # Get rid of xml font size, will use default later
                     attribute_dict.pop(margin_attr)
         return attribute_dict
-
-
-def hex_to_rgb(x):
-    x = x.lstrip('#')
-    lv = len(x)
-    return tuple(int(x[i:i+lv // 3], 16) for i in range(0, lv, lv // 3))
 
 
 def main(argv):
