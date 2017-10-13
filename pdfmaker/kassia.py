@@ -68,19 +68,19 @@ class Kassia:
         self.titleAttrib['right_margin'] = 0
         self.titleAttrib['text'] = ''
 
-        # Set annotation defaults
-        self.annotationAttrib = {}
-        self.annotationAttrib['font_family'] = 'Helvetica'
-        self.annotationAttrib['font_size'] = 12
-        self.annotationAttrib['color'] = colors.black
-        self.annotationAttrib['align'] = 'center'
-        self.annotationAttrib['top_margin'] = 0
-        self.annotationAttrib['bottom_margin'] = 0
-        self.annotationAttrib['left_margin'] = 0
-        self.annotationAttrib['right_margin'] = 0
-        self.annotationAttrib['text'] = ''
+        # Set string defaults
+        self.stringAttrib = {}
+        self.stringAttrib['font_family'] = 'Helvetica'
+        self.stringAttrib['font_size'] = 12
+        self.stringAttrib['color'] = colors.black
+        self.stringAttrib['align'] = 'center'
+        self.stringAttrib['top_margin'] = 0
+        self.stringAttrib['bottom_margin'] = 0
+        self.stringAttrib['left_margin'] = 0
+        self.stringAttrib['right_margin'] = 0
+        self.stringAttrib['text'] = ''
 
-        # Set annotation defaults
+        # Set paragraph defaults
         self.paragraphAttrib = {}
         self.paragraphAttrib['font_family'] = 'Helvetica'
         self.paragraphAttrib['font_size'] = 12
@@ -147,22 +147,22 @@ class Kassia:
 
             neume_font_defaults = defaults.find('neume-font')
             if neume_font_defaults is not None:
-                temp_dict = self.fill_text_dict(neume_font_defaults.attrib)
+                temp_dict = self.fill_attribute_dict(neume_font_defaults.attrib)
                 self.defaultNeumeAttrib.update(temp_dict)
 
             lyric_font_defaults = defaults.find('lyric-font')
             if lyric_font_defaults is not None:
-                temp_dict = self.fill_text_dict(lyric_font_defaults.attrib)
+                temp_dict = self.fill_attribute_dict(lyric_font_defaults.attrib)
                 self.lyricAttrib.update(temp_dict)
 
             dropcap_font_defaults = defaults.find('dropcap-font')
             if dropcap_font_defaults is not None:
-                temp_dict = self.fill_text_dict(dropcap_font_defaults.attrib)
+                temp_dict = self.fill_attribute_dict(dropcap_font_defaults.attrib)
                 self.dropCap.update(temp_dict)
 
             paragraph_font_defaults = defaults.find('paragraph-font')
             if paragraph_font_defaults is not None:
-                temp_dict = self.fill_text_dict(paragraph_font_defaults.attrib)
+                temp_dict = self.fill_attribute_dict(paragraph_font_defaults.attrib)
                 self.paragraphAttrib.update(temp_dict)
 
         self.canvas = canvas.Canvas(self.out_file, pagesize=self.pageAttrib['paper_size'])
@@ -194,17 +194,17 @@ class Kassia:
                 current_title_attrib = self.get_title_attributes(child_elem, self.titleAttrib)
                 self.draw_title(current_title_attrib)
 
-            if child_elem.tag == 'annotation':
-                current_annotation_attrib = self.get_annotation_attributes(child_elem, self.annotationAttrib)
-                self.draw_annotation(current_annotation_attrib)
+            if child_elem.tag == 'string':
+                current_string_attrib = self.get_string_attributes(child_elem, self.stringAttrib)
+                self.draw_string(current_string_attrib)
 
             if child_elem.tag == 'paragraph':
-                current_paragraph_attrib = self.get_annotation_attributes(child_elem, self.paragraphAttrib)
+                current_paragraph_attrib = self.get_string_attributes(child_elem, self.paragraphAttrib)
                 self.draw_paragraph(current_paragraph_attrib)
 
             if child_elem.tag == 'troparion':
                 neumes_list = []
-                current_annotation_attrib = {}
+                current_string_attrib = {}
                 lyrics_list = []
                 current_dropcap_attrib = {}
 
@@ -220,16 +220,16 @@ class Kassia:
                     if troparion_child_elem.tag == 'blankline':
                         self.draw_blankline(self.pageAttrib['line_height'])
 
-                    if troparion_child_elem.tag == 'annotation':
-                        current_annotation_attrib = self.get_annotation_attributes(troparion_child_elem, self.annotationAttrib)
-                        self.draw_annotation(current_annotation_attrib)
+                    if troparion_child_elem.tag == 'string':
+                        current_string_attrib = self.get_string_attributes(troparion_child_elem, self.stringAttrib)
+                        self.draw_string(current_string_attrib)
 
                     if troparion_child_elem.tag == 'neumes':
                         neumeAttrib = {}
                         neumes_elem = troparion_child_elem
                         if neumes_elem is not None:
                             temp_neumes_attrib = neumes_elem.attrib
-                            settings_from_xml = self.fill_text_dict(temp_neumes_attrib)
+                            settings_from_xml = self.fill_attribute_dict(temp_neumes_attrib)
                             neumeAttrib.update(settings_from_xml)
 
                             neume_attrib = neumes_elem.attrib
@@ -246,7 +246,7 @@ class Kassia:
                         lyrics_elem = troparion_child_elem
                         if lyrics_elem is not None:
                             lyrics_default_attrib = lyrics_elem.attrib
-                            settings_from_xml = self.fill_text_dict(lyrics_default_attrib)
+                            settings_from_xml = self.fill_attribute_dict(lyrics_default_attrib)
                             self.lyricAttrib.update(settings_from_xml)
 
                             lyric_attrib = lyrics_elem.attrib
@@ -329,7 +329,7 @@ class Kassia:
 
     def get_title_attributes(self, title_elem, default_title_attrib):
         current_title_attrib = deepcopy(default_title_attrib)
-        settings_from_xml = self.fill_text_dict(title_elem.attrib)
+        settings_from_xml = self.fill_attribute_dict(title_elem.attrib)
         current_title_attrib.update(settings_from_xml)
         current_title_attrib['text'] = title_elem.text.strip()
         return current_title_attrib
@@ -342,20 +342,20 @@ class Kassia:
         # move down by the height of the text string
         #self.vert_pos -= (current_title_attrib['font_size'] + current_title_attrib['bottom_margin'])
 
-    def get_annotation_attributes(self, annotation_elem, default_annotation_attrib):
-        current_annotation_attrib = deepcopy(default_annotation_attrib)
-        settings_from_xml = self.fill_text_dict(annotation_elem.attrib)
-        current_annotation_attrib.update(settings_from_xml)
+    def get_string_attributes(self, string_elem, default_string_attrib):
+        current_string_attrib = deepcopy(default_string_attrib)
+        settings_from_xml = self.fill_attribute_dict(string_elem.attrib)
+        current_string_attrib.update(settings_from_xml)
         # Translate text with neume_dict if specified (for EZ fonts)
-        # text = annotation_elem.text.strip()
-        # if 'translate' in current_annotation_attrib:
+        # text = string_elem.text.strip()
+        # if 'translate' in current_string_attrib:
         #    text = neume_dict.translate(text)
 
         embedded_args = ""
-        for embedded_font_attrib in annotation_elem:
-            temp_font_family = current_annotation_attrib['font_family']
-            temp_font_size = current_annotation_attrib['font_size']
-            temp_font_color = current_annotation_attrib['color']
+        for embedded_font_attrib in string_elem:
+            temp_font_family = current_string_attrib['font_family']
+            temp_font_size = current_string_attrib['font_size']
+            temp_font_color = current_string_attrib['color']
             embedded_font_attrib.attrib
             if embedded_font_attrib.attrib is not None:
                 if embedded_font_attrib.attrib.has_key('font_family'):
@@ -366,65 +366,65 @@ class Kassia:
                     temp_font_color = embedded_font_attrib.attrib['color']
             embedded_args += '<font face="{0}" size="{1}">'.format(temp_font_family, temp_font_size) + embedded_font_attrib.text.strip() + '</font>' + embedded_font_attrib.tail
 
-        current_annotation_attrib['text'] = annotation_elem.text.strip() + embedded_args
+        current_string_attrib['text'] = string_elem.text.strip() + embedded_args
 
-        return current_annotation_attrib
+        return current_string_attrib
 
-    def draw_annotation(self, current_annotation_attrib):
-        self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['top_margin'])
-        self.canvas.setFillColor(current_annotation_attrib['color'])
-        self.canvas.setFont(current_annotation_attrib['font_family'], current_annotation_attrib['font_size'])
+    def draw_string(self, current_string_attrib):
+        self.vert_pos -= (current_string_attrib['font_size'] + current_string_attrib['top_margin'])
+        self.canvas.setFillColor(current_string_attrib['color'])
+        self.canvas.setFont(current_string_attrib['font_family'], current_string_attrib['font_size'])
 
-        if current_annotation_attrib['align'] == 'left':
-            x_pos = self.pageAttrib['left_margin'] - current_annotation_attrib['left_margin']
-            self.canvas.drawString(x_pos, self.vert_pos, current_annotation_attrib['text'])
-        elif current_annotation_attrib['align'] == 'right':
-            x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] - current_annotation_attrib['right_margin']
-            self.canvas.drawRightString(x_pos, self.vert_pos, current_annotation_attrib['text'])
+        if current_string_attrib['align'] == 'left':
+            x_pos = self.pageAttrib['left_margin'] - current_string_attrib['left_margin']
+            self.canvas.drawString(x_pos, self.vert_pos, current_string_attrib['text'])
+        elif current_string_attrib['align'] == 'right':
+            x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] - current_string_attrib['right_margin']
+            self.canvas.drawRightString(x_pos, self.vert_pos, current_string_attrib['text'])
         else:
-            x_pos = (self.pageAttrib['paper_size'][0]/2) + current_annotation_attrib['left_margin'] - current_annotation_attrib['right_margin']
-            self.canvas.drawCentredString(x_pos, self.vert_pos, current_annotation_attrib['text'])
+            x_pos = (self.pageAttrib['paper_size'][0]/2) + current_string_attrib['left_margin'] - current_string_attrib['right_margin']
+            self.canvas.drawCentredString(x_pos, self.vert_pos, current_string_attrib['text'])
 
-        self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['bottom_margin'])
+        self.vert_pos -= (current_string_attrib['font_size'] + current_string_attrib['bottom_margin'])
 
-    def draw_paragraph(self, current_annotation_attrib):
-        self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['top_margin'])
+    def draw_paragraph(self, current_string_attrib):
+        self.vert_pos -= (current_string_attrib['font_size'] + current_string_attrib['top_margin'])
 
         if not self.is_space_for_another_line(self.vert_pos):
             self.draw_newpage()
-            self.vert_pos -= current_annotation_attrib['font_size'] + current_annotation_attrib['top_margin']
+            self.vert_pos -= current_string_attrib['font_size'] + current_string_attrib['top_margin']
 
-        self.canvas.setFillColor(current_annotation_attrib['color'])
-        self.canvas.setFont(current_annotation_attrib['font_family'], current_annotation_attrib['font_size'])
+        self.canvas.setFillColor(current_string_attrib['color'])
+        self.canvas.setFont(current_string_attrib['font_family'], current_string_attrib['font_size'])
 
         paragraph_style = ParagraphStyle('test')
-        paragraph_style.fontName = current_annotation_attrib['font_family']
-        paragraph_style.fontSize = current_annotation_attrib['font_size']
-        paragraph_style.textColor = current_annotation_attrib['color']
+        paragraph_style.fontName = current_string_attrib['font_family']
+        paragraph_style.fontSize = current_string_attrib['font_size']
+        paragraph_style.textColor = current_string_attrib['color']
         paragraph_style.autoLeading = "min"
         paragraph_style.firstLineIndent = 20
 
-        if current_annotation_attrib['align'] == 'left':
+        if current_string_attrib['align'] == 'left':
             paragraph_style.alignment = TA_LEFT
-        elif current_annotation_attrib['align'] == 'right':
+        elif current_string_attrib['align'] == 'right':
             paragraph_style.alignment = TA_RIGHT
         else:
             paragraph_style.alignment = TA_CENTER
 
-        paragraph = Paragraph(current_annotation_attrib['text'], paragraph_style)
+        paragraph = Paragraph(current_string_attrib['text'], paragraph_style)
         # returns size actually used
         w, h = paragraph.wrap(self.pageAttrib['line_width'], self.pageAttrib['bottom_margin'])
-        self.vert_pos -= (h + current_annotation_attrib['bottom_margin'])
+        self.vert_pos -= (h + current_string_attrib['bottom_margin'])
 
         # self.canvas.saveState()
         paragraph.drawOn(self.canvas, self.pageAttrib['left_margin'], self.vert_pos)
         # self.canvas.restoreState()
 
-        #self.vert_pos -= (current_annotation_attrib['font_size'] + current_annotation_attrib['bottom_margin'])
+        #self.vert_pos -= (current_string_attrib['font_size'] + current_string_attrib['bottom_margin'])
 
     def get_dropcap_attributes(self, dropcap_elem, default_dropcap_attrib):
         current_dropcap_attrib = deepcopy(default_dropcap_attrib)
-        settings_from_xml = self.fill_text_dict(dropcap_elem.attrib)
+        settings_from_xml = self.fill_attribute_dict(dropcap_elem.attrib)
         current_dropcap_attrib.update(settings_from_xml)
         current_dropcap_attrib['text'] = dropcap_elem.text.strip()
         return current_dropcap_attrib
@@ -444,7 +444,7 @@ class Kassia:
 
     def get_lyric_attributes(self, lyric_elem, default_lyric_attrib):
         current_lyric_attrib = deepcopy(default_lyric_attrib)
-        settings_from_xml = self.fill_text_dict(lyric_elem.attrib)
+        settings_from_xml = self.fill_attribute_dict(lyric_elem.attrib)
         current_lyric_attrib.update(settings_from_xml)
         text = " ".join(lyric_elem.text.strip().split())
         current_lyric_attrib['text'] = text
@@ -664,41 +664,41 @@ class Kassia:
         return page_dict
 
     @staticmethod
-    def fill_text_dict(title_dict):
+    def fill_attribute_dict(attribute_dict):
         """parse the color"""
-        if 'color' in title_dict:
-            if re.match("#[0-9a-fA-F]{6}", title_dict['color']):
-                col = [z/255. for z in hex_to_rgb(title_dict['color'])]
-                title_dict['color'] = colors.Color(col[0], col[1], col[2], 1)
+        if 'color' in attribute_dict:
+            if re.match("#[0-9a-fA-F]{6}", attribute_dict['color']):
+                col = [z/255. for z in hex_to_rgb(attribute_dict['color'])]
+                attribute_dict['color'] = colors.Color(col[0], col[1], col[2], 1)
             else:
-                title_dict.pop('color')
+                attribute_dict.pop('color')
 
         """parse the font family"""
-        if 'font_family' in title_dict:
-            if not font_reader.is_registered_font(title_dict['font_family']):
-                print "{} not found, using Helvetica font instead".format(title_dict['font_family'])
+        if 'font_family' in attribute_dict:
+            if not font_reader.is_registered_font(attribute_dict['font_family']):
+                print "{} not found, using Helvetica font instead".format(attribute_dict['font_family'])
                 # Helvetica is built into ReportLab, so we know it's safe
-                title_dict['font_family'] = "Helvetica"
+                attribute_dict['font_family'] = "Helvetica"
 
         """parse the font size"""
-        if 'font_size' in title_dict:
+        if 'font_size' in attribute_dict:
             try:
-                title_dict['font_size'] = int(title_dict['font_size'])
+                attribute_dict['font_size'] = int(attribute_dict['font_size'])
             except ValueError as e:
                 print "Font size error: {}".format(e)
                 # Get rid of xml font size, will use default later
-                title_dict.pop('font_size')
+                attribute_dict.pop('font_size')
 
         """parse the margins"""
         for margin_attr in ['top_margin', 'bottom_margin', 'left_margin', 'right_margin']:
-            if margin_attr in title_dict:
+            if margin_attr in attribute_dict:
                 try:
-                    title_dict[margin_attr] = int(title_dict[margin_attr])
+                    attribute_dict[margin_attr] = int(attribute_dict[margin_attr])
                 except ValueError as e:
                     print "{} error: {}".format(margin_attr,e)
                     # Get rid of xml font size, will use default later
-                    title_dict.pop(margin_attr)
-        return title_dict
+                    attribute_dict.pop(margin_attr)
+        return attribute_dict
 
 
 def hex_to_rgb(x):
