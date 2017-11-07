@@ -87,10 +87,12 @@ standAloneNeumesMartyria = ['1', '2', '3', '4', '5', '6', '7',
 
 neumesWithLyricsCombo = ['u', 'i',
                          '1', '2', '3', '4', '5', '6', '7',
-                         'x', 'X', 'c', 'C', 'v', 'V']
+                         'x', 'X', 'c', 'C', 'v', 'V',
+                         '-', '_']
 
 standAloneNeumesCombo = ['u', 'i',
                          '1', '2', '3', '4', '5', '6', '7',
-                         'x', 'X', 'c', 'C', 'v', 'V']
+                         'x', 'X', 'c', 'C', 'v', 'V',
+                         '-', '_']
 
 neumesWithLyricOffset = [('_', 11)]
