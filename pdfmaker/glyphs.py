@@ -23,21 +23,27 @@ class Glyph:
         self.height = 0     # glyph height
 
     def calc_chunk_width(self):
-        max_neumue_width = 0
-        for neume in self.neumeChunk:
+        max_neume_width = 0
+        for i, neume in enumerate(self.neumeChunk):
             neume_width = pdfmetrics.stringWidth(neume.text, neume.font_family, neume.font_size)
 
-            # If kentima, add width of oligon
+            # If kentima (or similar), add width of oligon.
             # Kentima may come at the end of the chunk, after
             # a psefeston, etc., so can't just check i-1
             # TODO: Find a better way to do this
-            if neume.text in neume_dict.nonBreakingNeumesWithWidth:
+            if neume.text in neume_dict.nonPostBreakingNeumes:
                 neume_width += pdfmetrics.stringWidth('1', neume.font_family, neume.font_size)
 
-            if max_neumue_width < neume_width:
-                max_neumue_width = neume_width
+            # If vareia (or similar), add width of next neume.
+            # This prevents vareia from being at the end of a line.
+            if neume.text in neume_dict.nonPreBreakingNeumes and (i+1) < len(self.neumeChunk):
+                next_neume = self.neumeChunk[i+1]
+                neume_width += pdfmetrics.stringWidth(next_neume.text, next_neume.font_family, next_neume.font_size)
 
-        self.nWidth = max_neumue_width
+            if max_neume_width < neume_width:
+                max_neume_width = neume_width
+
+        self.nWidth = max_neume_width
         if self.lyricsText is not None:
             self.lWidth = pdfmetrics.stringWidth(self.lyricsText, self.lyricsFontFamily, self.lyricsFontSize)
         else:

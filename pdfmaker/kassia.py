@@ -482,36 +482,43 @@ class Kassia:
                 max_height = ga.lyricsTopMargin
         return (cursor_y_pos - max_height) > self.pageAttrib['bottom_margin']
 
-    def make_glyph_array(self, neume_chunks, lyrics_list):
+    def make_glyph_array(self, neume_chunk_list, lyrics_list):
         i, l_ptr = 0, 0
-        g_array = []
-        while i < len(neume_chunks):
+        glyph_array = []
+        while i < len(neume_chunk_list):
             # Grab next chunk
-            nc = neume_chunks[i]
-            if neume_dict.takes_lyric(nc[0]):
-                # chunk needs a lyric
+            neume_chunk = neume_chunk_list[i]
+
+            # If any neumes within chunk take lyrics
+            neume_takes_lyric = False
+            for neume in neume_chunk:
+                if neume_dict.takes_lyric(neume):
+                    neume_takes_lyric = True
+
+            if neume_takes_lyric:
+                # Chunk needs a lyric
                 if l_ptr < len(lyrics_list):
                     lyric = lyrics_list[l_ptr]
-                    g = Glyph(neume_chunk=nc,
+                    glyph = Glyph(neume_chunk=neume_chunk,
                               lyrics_text=lyric.text,
                               lyrics_font_family=lyric.font_family,
                               lyrics_size=lyric.font_size,
                               lyrics_color=lyric.color,
                               lyrics_top_margin=lyric.top_margin)
                 else:
-                    g = Glyph(nc)
+                    glyph = Glyph(neume_chunk)
                 l_ptr += 1
 
                 # To Do: see if lyric ends with '_' and if lyrics are
                 # wider than the neume, then combine with next chunk
             else:
                 # no lyric needed
-                g = Glyph(nc)
+                glyph = Glyph(neume_chunk)
 
-            g.calc_chunk_width()
-            g_array.append(g)
+            glyph.calc_chunk_width()
+            glyph_array.append(glyph)
             i += 1
-        return g_array
+        return glyph_array
 
     def line_break2(self, glyph_array, first_line_offset, line_width, char_spacing):
         """Break neumes and lyrics into lines, currently greedy

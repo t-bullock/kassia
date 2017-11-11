@@ -33,6 +33,12 @@ def chunk_neumes(neume_list):
         chunk = []
         # Grab next neume
         chunk.append(neume_list[i])
+        # Special case for Vareia, since it's non-breaking but
+        # comes before the next neume, unlike a fthora.
+        # So attach the next neume and increment the counter
+        if neume_list[i].text in nonPreBreakingNeumes and (i+1) < len(neume_list):
+            chunk.append(neume_list[i+1])
+            i += 1;
         # Add more neumes to chunk like fthora, ison, etc
         j = 1
         if (i+1) < len(neume_list):
@@ -70,12 +76,13 @@ standAloneNeumes = ['B', 'C', 'E', 'I', 'L', 'O', 'P', 'Q', 'R', 'T',
                     '+', '=', '<', ',', '>', '.', '/', '?',
                     '\\']
 
-nonBreakingNeumes = ['~', ';', ':', '\'', '\"', ']', '}', '|',
-                     'a', 'A', 's', 'S', 'd', 'D', 'f', 'F', 'g', 'G',
-                     'h', 'H', 'j', 'J', 'k', 'K', 'l'
-                     'n', 'N', 'm', 'M']
+# Neumes like a vareia. Don't break right after a vareia;
+# it goes with neume after it
+nonPreBreakingNeumes = ['/']
 
-nonBreakingNeumesWithWidth = ['~']
+# Neumes like a kentima. Don't break right befire a vareia;
+# it goes with the oligon before it
+nonPostBreakingNeumes = ['~']
 
 standAloneNeumesMartyria = ['1', '2', '3', '4', '5', '6', '7',
                             'q', 'w', 'e', 'r', 't', 'y', 'u',
