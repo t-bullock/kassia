@@ -119,3 +119,6 @@ An example XML file with the available options is shown below.
 
 </bnml>
 ```
+## Typing with Kassia Fonts
+Kassia Main Font
+![Kassia Keyboard Layout](kassia_layout_main.png?raw=true)
