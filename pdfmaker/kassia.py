@@ -38,7 +38,7 @@ class Kassia:
             file_readable = True
         except IOError:
             file_readable = False
-            print "Not readable"
+            print("Not readable")
 
         if file_readable:
             self.set_defaults()
@@ -122,7 +122,7 @@ class Kassia:
             self.bnml = bnml
 
         except ET.ParseError:
-            print "Failed to parse XML file"
+            print("Failed to parse XML file")
 
     def create_pdf(self):
         """Create PDF output file"""
@@ -238,9 +238,9 @@ class Kassia:
 
                             for neume_text in neumes_elem.text.strip().split():
                                 n = Neume(text=neume_text,
-                                          font_family=neume_attrib['font_family'] if neume_attrib.has_key('font_family') else self.defaultNeumeAttrib['font_family'],
-                                          font_size=neume_attrib['font_size'] if neume_attrib.has_key('font_size') else self.defaultNeumeAttrib['font_size'],
-                                          color=neume_attrib['color'] if neume_attrib.has_key('color') else self.defaultNeumeAttrib['color'],
+                                          font_family=neume_attrib['font_family'] if 'font_family' in neume_attrib else self.defaultNeumeAttrib['font_family'],
+                                          font_size=neume_attrib['font_size'] if 'font_size' in neume_attrib else self.defaultNeumeAttrib['font_size'],
+                                          color=neume_attrib['color'] if 'color' in neume_attrib else self.defaultNeumeAttrib['color'],
                                           )
                                 neumes_list.append(n)
 
@@ -255,10 +255,10 @@ class Kassia:
 
                             for lyric_text in lyrics_elem.text.strip().split():
                                 l = Lyric(text=lyric_text,
-                                          font_family=lyric_attrib['font_family'] if lyric_attrib.has_key('font_family') else self.lyricAttrib['font_family'],
-                                          font_size=lyric_attrib['font_size'] if lyric_attrib.has_key('font_size') else self.lyricAttrib['font_size'],
-                                          color=lyric_attrib['color'] if lyric_attrib.has_key('color') else self.lyricAttrib['color'],
-                                          top_margin=lyric_attrib['top_margin'] if lyric_attrib.has_key('top_margin') else self.lyricAttrib['top_margin'],
+                                          font_family=lyric_attrib['font_family'] if 'font_family' in lyric_attrib else self.lyricAttrib['font_family'],
+                                          font_size=lyric_attrib['font_size'] if 'font_size' in lyric_attrib else self.lyricAttrib['font_size'],
+                                          color=lyric_attrib['color'] if 'color' in lyric_attrib else self.lyricAttrib['color'],
+                                          top_margin=lyric_attrib['top_margin'] if 'top_margin' in lyric_attrib else self.lyricAttrib['top_margin'],
                                           )
                                 lyrics_list.append(l)
 
@@ -327,7 +327,7 @@ class Kassia:
         try:
             self.canvas.save()
         except IOError:
-            print "Could not save file"
+            print("Could not save file")
 
     def get_title_attributes(self, title_elem, default_title_attrib):
         current_title_attrib = deepcopy(default_title_attrib)
@@ -360,11 +360,11 @@ class Kassia:
             temp_font_color = current_string_attrib['color']
             embedded_font_attrib.attrib
             if embedded_font_attrib.attrib is not None:
-                if embedded_font_attrib.attrib.has_key('font_family'):
+                if 'font_family' in embedded_font_attrib.attrib:
                     temp_font_family = embedded_font_attrib.attrib['font_family']
-                if embedded_font_attrib.attrib.has_key('font_size'):
+                if 'font_size' in embedded_font_attrib.attrib:
                     temp_font_size = embedded_font_attrib.attrib['font_size']
-                if embedded_font_attrib.attrib.has_key('color'):
+                if 'color' in embedded_font_attrib.attrib:
                     temp_font_color = embedded_font_attrib.attrib['color']
             embedded_args += '<font face="{0}" size="{1}">'.format(temp_font_family, temp_font_size) + embedded_font_attrib.text.strip() + '</font>' + embedded_font_attrib.tail
 
@@ -659,7 +659,7 @@ class Kassia:
 
     @staticmethod
     def str_to_class(str_to_change):
-        return reduce(getattr, str_to_change.split("."), sys.modules[__name__])
+        return getattr(sys.modules[__name__], str_to_change)
 
     @staticmethod
     def fill_page_dict(page_dict):
@@ -668,7 +668,7 @@ class Kassia:
             try:
                 page_dict[attrib_name] = int(page_dict[attrib_name])
             except ValueError as e:
-                print "{} error: {}".format(attrib_name,e)
+                print("{} error: {}".format(attrib_name,e))
                 page_dict.pop(attrib_name)
         return page_dict
 
@@ -685,7 +685,7 @@ class Kassia:
         """parse the font family"""
         if 'font_family' in attribute_dict:
             if not font_reader.is_registered_font(attribute_dict['font_family']):
-                print "{} not found, using Helvetica font instead".format(attribute_dict['font_family'])
+                print("{} not found, using Helvetica font instead".format(attribute_dict['font_family']))
                 # Helvetica is built into ReportLab, so we know it's safe
                 attribute_dict['font_family'] = "Helvetica"
 
@@ -694,7 +694,7 @@ class Kassia:
             try:
                 attribute_dict['font_size'] = int(attribute_dict['font_size'])
             except ValueError as e:
-                print "Font size error: {}".format(e)
+                print("Font size error: {}".format(e))
                 # Get rid of xml font size, will use default later
                 attribute_dict.pop('font_size')
 
@@ -704,7 +704,7 @@ class Kassia:
                 try:
                     attribute_dict[margin_attr] = int(attribute_dict[margin_attr])
                 except ValueError as e:
-                    print "{} error: {}".format(margin_attr,e)
+                    print("{} error: {}".format(margin_attr,e))
                     # Get rid of xml font size, will use default later
                     attribute_dict.pop(margin_attr)
         return attribute_dict
@@ -717,8 +717,8 @@ def main(argv):
         Kassia(argv[0], argv[1])
 
 if __name__ == "__main__":
-    # print "Starting up..."
+    # print("Starting up...")
     if len(sys.argv) == 1:
-        print "Input XML file required"
+        print("Input XML file required")
         sys.exit(1)
     main(sys.argv[1:])

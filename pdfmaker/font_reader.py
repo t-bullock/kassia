@@ -22,13 +22,13 @@ def register_fonts():
         try:
             pdfmetrics.registerFont(TTFont(font_name.font.family, fontLoc))
         except TTFError as e:
-            print "Error: {}".format(e)
+            print("Error: {}".format(e))
             raise SystemExit
 
     # Check that default fonts are registered
-    registered_fonts = pdfmetrics.getRegisteredFontNames()
-    if "Kassia Tsak Main" not in registered_fonts:
-        print "Warning: Default font 'Kassia Tsak Main' is missing from the fonts directory"
+    #registered_fonts = pdfmetrics.getRegisteredFontNames()
+    #if "Kassia Tsak Main" not in registered_fonts:
+    #    print "Warning: Default font 'Kassia Tsak Main' is missing from the fonts directory"
 
 
 def is_registered_font(font_name):
