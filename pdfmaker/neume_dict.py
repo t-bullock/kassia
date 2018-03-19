@@ -38,7 +38,7 @@ def chunk_neumes(neume_list):
         # So attach the next neume and increment the counter
         if neume_list[i].text in nonPreBreakingNeumes and (i+1) < len(neume_list):
             chunk.append(neume_list[i+1])
-            i += 1;
+            i += 1
         # Add more neumes to chunk like fthora, ison, etc
         j = 1
         if (i+1) < len(neume_list):
