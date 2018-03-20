@@ -3,10 +3,13 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont, TTFError
 from PIL import ImageFont
 from glob import glob
+import os
+import inspect
 
 
 def register_fonts():
-    root_dir = "fonts"
+    # Fonts folder within the current directory
+    root_dir = inspect.stack()[0][1].rsplit('/', 1)[0] + "/fonts"
 
     ftypes = ('/*.ttf', '/*.otf')
     files_grabbed = []
