@@ -11,12 +11,12 @@ def register_fonts():
     # Fonts folder within the current directory
     root_dir = inspect.stack()[0][1].rsplit('/', 1)[0] + "/fonts"
 
-    ftypes = ('/*.ttf', '/*.otf')
+    file_types = ('/*.ttf', '/*.otf')
     files_grabbed = []
 
     # Get all font files in fonts directory
-    for ftype in ftypes:
-        temp = glob(root_dir + ftype)
+    for f_type in file_types:
+        temp = glob(root_dir + f_type)
         files_grabbed.extend(temp)
 
     # Try to register them
@@ -27,6 +27,30 @@ def register_fonts():
         except TTFError as e:
             print("Error: {}".format(e))
             raise SystemExit
+
+    # Get all folders, used for families with bold, italic, etc.
+    for folders in next(os.walk(root_dir))[1]:
+        files_grabbed = []
+        for f_type in file_types:
+            temp = glob(root_dir + '/' + folders + '/' + f_type)
+            files_grabbed.extend(temp)
+
+        # Try to register them
+        for fontLoc in files_grabbed:
+            font_name = ImageFont.truetype(fontLoc, 1)
+            try:
+                new_font_name = font_name.font.family + font_name.font.style
+                new_font_name = new_font_name.replace(" ", "")
+                pdfmetrics.registerFont(TTFont(new_font_name, fontLoc))
+            except TTFError as e:
+                print("Error: {}".format(e))
+                raise SystemExit
+
+        pdfmetrics.registerFontFamily(font_name.font.family,
+                                      normal=font_name.font.family,
+                                      bold=font_name.font.family + '-Bold',
+                                      italic=font_name.font.family + '-Italic',
+                                      boldItalic=font_name.font.family + '-BoldItalic')
 
     # Check that default fonts are registered
     #registered_fonts = pdfmetrics.getRegisteredFontNames()
