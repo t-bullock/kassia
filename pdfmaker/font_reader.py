@@ -25,7 +25,7 @@ def register_fonts():
         try:
             pdfmetrics.registerFont(TTFont(font_name.font.family, fontLoc))
         except TTFError as e:
-            print("Error: {}".format(e))
+            logging.error("TTF registerFont Error: {}".format(e))
             raise SystemExit
 
     # Get all folders, used for families with bold, italic, etc.
@@ -43,7 +43,7 @@ def register_fonts():
                 new_font_name = new_font_name.replace(" ", "")
                 pdfmetrics.registerFont(TTFont(new_font_name, fontLoc))
             except TTFError as e:
-                print("Error: {}".format(e))
+                logging.error("TTF registerFont Error: {}".format(e))
                 raise SystemExit
 
         pdfmetrics.registerFontFamily(font_name.font.family,
