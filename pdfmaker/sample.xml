@@ -4,7 +4,7 @@
         <work-title>God is the Lord</work-title>
         <author type="composer">Trevor Bullock</author>
         <rights>Copyright John Doe 2018</rights>
-    </identification/>
+    </identification>
     <defaults>
         <page-layout>
             <!-- How far the lyrics are below a line of neumes. -->
