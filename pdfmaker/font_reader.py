@@ -1,10 +1,14 @@
 #!/usr/bin/python
+from reportlab.lib import fontfinder
+from reportlab.lib.fonts import addMapping
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont, TTFError
 from PIL import ImageFont
 from glob import glob
 import os
 import inspect
+from sys import platform
+import logging
 
 
 def register_fonts():
@@ -43,8 +47,8 @@ def register_fonts():
                 new_font_name = new_font_name.replace(" ", "")
                 pdfmetrics.registerFont(TTFont(new_font_name, fontLoc))
             except TTFError as e:
-                logging.error("TTF registerFont Error: {}".format(e))
-                raise SystemExit
+                logging.warning("Could not register {}. TTF registerFont Error: {}".format(font_name.font.family, e))
+                continue
 
         pdfmetrics.registerFontFamily(font_name.font.family,
                                       normal=font_name.font.family,
@@ -56,6 +60,47 @@ def register_fonts():
     #registered_fonts = pdfmetrics.getRegisteredFontNames()
     #if "Kassia Tsak Main" not in registered_fonts:
     #    print "Warning: Default font 'Kassia Tsak Main' is missing from the fonts directory"
+
+def register_system_fonts():
+    ff = fontfinder.FontFinder()
+
+    system_font_path = None
+    if platform.startswith("darwin"):
+        #system_font_path = os.path.expanduser("~/Library/Fonts")
+        system_font_path = '/Library/Fonts'
+    elif platform.startswith("win") or platform.startswith("cygwin"):
+        system_font_path = os.path.join(os.environ['WINDIR'], 'Fonts')
+    # elif platform.startswith("linux"):
+        # linux
+
+    if system_font_path:
+        ff.addDirectory(system_font_path)
+        try:
+            ff.search()
+        except TTFError as e:
+            logging.warning(e)
+        except KeyError as ke:
+            logging.warning("Problem parsing font: {}".format(ke))
+
+        for font_family in ff.getFamilyNames():
+            fonts_in_family = ff.getFontsInFamily(font_family.encode())
+            for index, font in enumerate(fonts_in_family):
+                if len(fonts_in_family) == 1:
+                    try:
+                        ttfont = TTFont(font_family, font.fileName)
+                        pdfmetrics.registerFont(ttfont)
+                    except TTFError as e:
+                        logging.warning("Could not register {}, {}".format(font_family, e))
+                        continue
+                elif len(fonts_in_family) > 1:
+                    font_name = font_family + "-" + font.styleName.decode("utf-8")
+                    try:
+                        ttfont = TTFont(font_name, font.fileName)
+                        pdfmetrics.registerFont(ttfont)
+                        addMapping(font.familyName, font.isBold, font.isItalic, font_name)
+                    except TTFError as e:
+                        logging.warning("Could not register {}, {}".format(font_family, e))
+                        continue
 
 
 def is_registered_font(font_name):
