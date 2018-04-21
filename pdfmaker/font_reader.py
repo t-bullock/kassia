@@ -10,16 +10,24 @@ import logging
 
 
 def register_fonts():
-    ff = fontfinder.FontFinder(useCache=False)
+    # Always check local kassia font folder first, so those fonts have precedence
+    dirs = [inspect.stack()[0][1].rsplit('/', 1)[0] + "/fonts"]
 
-    kassia_local_font_path = inspect.stack()[0][1].rsplit('/', 1)[0] + "/fonts"
-    ff.addDirectory(kassia_local_font_path, recur=True)
+    # Platform specific paths to search for additional fonts
     if platform.startswith("darwin"):
-        ff.addDirectories(['/Library/Fonts', os.path.expanduser("~/Library/Fonts")])
+        dirs.extend(['/Library/Fonts', os.path.expanduser("~/Library/Fonts")])
     elif platform.startswith("win") or platform.startswith("cygwin"):
-        ff.addDirectory(os.path.join(os.environ['WINDIR'], 'Fonts'))
+        dirs.append(os.path.join(os.environ['WINDIR'], 'Fonts'))
     # elif platform.startswith("linux"):
         # implement something for linux
+    for folder in dirs:
+        register_font_path(folder)
+
+
+def register_font_path(font_path):
+    # Caching seems to cause problems. Disable for now
+    ff = fontfinder.FontFinder(useCache=False)
+    ff.addDirectory(font_path, recur=True)
 
     try:
         ff.search()
@@ -50,7 +58,6 @@ def register_fonts():
                 except TTFError as e:
                     logging.warning("Could not register {}, {}".format(family_name, e))
                     continue
-    print(pdfmetrics.getRegisteredFontNames())
 
 
 def is_registered_font(font_name):
