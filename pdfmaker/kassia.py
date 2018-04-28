@@ -615,28 +615,24 @@ class Kassia:
 
         return neume_pos, lyric_pos
 
-    def line_justify(self, line_list, line_width, first_line_offset):
+    def line_justify(self, line_list, max_line_width, first_line_x_offset):
         """Takes a list of lines and justifies each one"""
-        for i, line in enumerate(line_list):
+        for line_index, line in enumerate(line_list):
             # Calc width of each chunk (and count how many chunks)
             total_chunk_width = 0
-            for i, chunk in enumerate(line):
+            for chunk in line:
                 total_chunk_width += chunk.width
 
-            # Skip current line is short
-            # or if last line
-            if total_chunk_width < (line_width * 0.75):
-                continue
-            # TODO: figure out why the second part is needed here
-            if (i + 1 == len(line_list) or len(line_list) == 1):
+            # Skip if last line
+            if line_index + 1 == len(line_list):
                 continue
 
             # Subtract total from line_width (gets space remaining)
-            space_remaining = (line_width - first_line_offset) - total_chunk_width
-            # Divine by num of chunks
-            chunk_spacing = space_remaining / i
+            space_remaining = (max_line_width - first_line_x_offset) - total_chunk_width
+            # Divine by num of chunks in line
+            chunk_spacing = space_remaining / len(line)
 
-            cr = Cursor(first_line_offset, 0)
+            cr = Cursor(first_line_x_offset, 0)
 
             for chunk in line:
                 adj_lyric_pos, adj_neume_pos = 0, 0
@@ -655,7 +651,7 @@ class Kassia:
                 cr.x += chunk.width + chunk_spacing
 
             # After first line (dropcap), set first line offset to zero
-            first_line_offset = 0
+            first_line_x_offset = 0
 
         return line_list
 
