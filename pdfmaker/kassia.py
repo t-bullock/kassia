@@ -94,6 +94,7 @@ class Kassia:
         self.paragraphAttrib['bottom_margin'] = 0
         self.paragraphAttrib['left_margin'] = 0
         self.paragraphAttrib['right_margin'] = 0
+        self.paragraphAttrib['first_line_indent'] = 20
         self.paragraphAttrib['text'] = ''
 
         # Set neume defaults
@@ -391,40 +392,40 @@ class Kassia:
 
         self.vert_pos -= (current_string_attrib['font_size'] + current_string_attrib['bottom_margin'])
 
-    def draw_paragraph(self, current_string_attrib):
-        self.vert_pos -= (current_string_attrib['font_size'] + current_string_attrib['top_margin'])
+    def draw_paragraph(self, current_paragraph_attrib):
+        self.vert_pos -= (current_paragraph_attrib['font_size'] + current_paragraph_attrib['top_margin'])
 
         if not self.is_space_for_another_line(self.vert_pos):
             self.draw_newpage()
-            self.vert_pos -= current_string_attrib['font_size'] + current_string_attrib['top_margin']
+            self.vert_pos -= current_paragraph_attrib['font_size'] + current_paragraph_attrib['top_margin']
 
-        self.canvas.setFillColor(current_string_attrib['color'])
-        self.canvas.setFont(current_string_attrib['font_family'], current_string_attrib['font_size'])
+        self.canvas.setFillColor(current_paragraph_attrib['color'])
+        self.canvas.setFont(current_paragraph_attrib['font_family'], current_paragraph_attrib['font_size'])
 
         paragraph_style = ParagraphStyle('test')
-        paragraph_style.fontName = current_string_attrib['font_family']
-        paragraph_style.fontSize = current_string_attrib['font_size']
-        paragraph_style.textColor = current_string_attrib['color']
+        paragraph_style.fontName = current_paragraph_attrib['font_family']
+        paragraph_style.fontSize = current_paragraph_attrib['font_size']
+        paragraph_style.textColor = current_paragraph_attrib['color']
+        paragraph_style.firstLineIndent = current_paragraph_attrib['first_line_indent']
         paragraph_style.autoLeading = "min"
-        paragraph_style.firstLineIndent = 20
 
-        if current_string_attrib['align'] == 'left':
+        if current_paragraph_attrib['align'] == 'left':
             paragraph_style.alignment = TA_LEFT
-        elif current_string_attrib['align'] == 'right':
+        elif current_paragraph_attrib['align'] == 'right':
             paragraph_style.alignment = TA_RIGHT
         else:
             paragraph_style.alignment = TA_CENTER
 
-        paragraph = Paragraph(current_string_attrib['text'], paragraph_style)
+        paragraph = Paragraph(current_paragraph_attrib['text'], paragraph_style)
         # returns size actually used
         w, h = paragraph.wrap(self.pageAttrib['line_width'], self.pageAttrib['bottom_margin'])
-        self.vert_pos -= (h + current_string_attrib['bottom_margin'])
+        self.vert_pos -= (h + current_paragraph_attrib['bottom_margin'])
 
         # self.canvas.saveState()
         paragraph.drawOn(self.canvas, self.pageAttrib['left_margin'], self.vert_pos)
         # self.canvas.restoreState()
 
-        #self.vert_pos -= (current_string_attrib['font_size'] + current_string_attrib['bottom_margin'])
+        #self.vert_pos -= (current_paragraph_attrib['font_size'] + current_paragraph_attrib['bottom_margin'])
 
     def get_dropcap_attributes(self, dropcap_elem, default_dropcap_attrib):
         current_dropcap_attrib = deepcopy(default_dropcap_attrib)
@@ -687,14 +688,15 @@ class Kassia:
                 # Helvetica is built into ReportLab, so we know it's safe
                 attribute_dict['font_family'] = "Helvetica"
 
-        """parse the font size"""
-        if 'font_size' in attribute_dict:
-            try:
-                attribute_dict['font_size'] = int(attribute_dict['font_size'])
-            except ValueError as e:
-                logging.warning("Font size warning: {}".format(e))
-                # Get rid of xml font size, will use default later
-                attribute_dict.pop('font_size')
+        """parse the font attributes"""
+        for font_attr in ['font_size', 'first_line_indent']:
+            if font_attr in attribute_dict:
+                try:
+                    attribute_dict[font_attr] = int(attribute_dict[font_attr])
+                except ValueError as e:
+                    logging.warning("{} warning: {}".format(font_attr, e))
+                    # Get rid of xml font attribute, will use default later
+                    attribute_dict.pop(font_attr)
 
         """parse the margins"""
         for margin_attr in ['top_margin', 'bottom_margin', 'left_margin', 'right_margin']:
@@ -703,7 +705,7 @@ class Kassia:
                     attribute_dict[margin_attr] = int(attribute_dict[margin_attr])
                 except ValueError as e:
                     logging.warning("{} warning: {}".format(margin_attr, e))
-                    # Get rid of xml font size, will use default later
+                    # Get rid of xml margin attribute, will use default later
                     attribute_dict.pop(margin_attr)
         return attribute_dict
 
