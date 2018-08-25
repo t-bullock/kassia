@@ -3,7 +3,7 @@
         <!-- These show up in the properties of the pdf file. -->
         <work-title>God is the Lord</work-title>
         <author type="composer">Trevor Bullock</author>
-        <rights>Copyright John Doe 2018</rights>
+        <subject>A great subject goes here</subject>
     </identification>
     <defaults>
         <page-layout>

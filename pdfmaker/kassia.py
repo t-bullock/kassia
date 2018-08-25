@@ -95,6 +95,9 @@ class Kassia:
         self.paragraphAttrib['left_margin'] = 0
         self.paragraphAttrib['right_margin'] = 0
         self.paragraphAttrib['first_line_indent'] = 20
+        self.paragraphAttrib['left_indent'] = 0
+        self.paragraphAttrib['right_indent'] = 0
+        self.paragraphAttrib['auto_leading'] = 'min'
         self.paragraphAttrib['text'] = ''
 
         # Set neume defaults
@@ -182,6 +185,9 @@ class Kassia:
             author = identification.find('author')
             if author is not None:
                 self.canvas.setAuthor(author.text)
+            subject = identification.find('subject')
+            if subject is not None:
+                self.canvas.setSubject(subject.text)
 
         # Read main xml content
         for child_elem in self.bnml:
@@ -407,7 +413,9 @@ class Kassia:
         paragraph_style.fontSize = current_paragraph_attrib['font_size']
         paragraph_style.textColor = current_paragraph_attrib['color']
         paragraph_style.firstLineIndent = current_paragraph_attrib['first_line_indent']
-        paragraph_style.autoLeading = "min"
+        paragraph_style.autoLeading = current_paragraph_attrib['auto_leading']
+        paragraph_style.leftIndent = current_paragraph_attrib['left_indent']
+        paragraph_style.rightIndent = current_paragraph_attrib['right_indent']
 
         if current_paragraph_attrib['align'] == 'left':
             paragraph_style.alignment = TA_LEFT
@@ -689,7 +697,7 @@ class Kassia:
                 attribute_dict['font_family'] = "Helvetica"
 
         """parse the font attributes"""
-        for font_attr in ['font_size', 'first_line_indent']:
+        for font_attr in ['font_size', 'first_line_indent', 'left_indent', 'right_indent']:
             if font_attr in attribute_dict:
                 try:
                     attribute_dict[font_attr] = int(attribute_dict[font_attr])
