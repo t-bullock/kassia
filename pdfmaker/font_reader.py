@@ -10,13 +10,13 @@ import logging
 
 
 def register_fonts():
-    # Always check local kassia font folder first, so those fonts have precedence
-    dirs = [inspect.stack()[0][1].rsplit('/', 1)[0] + "/fonts"]
-
     # Platform specific paths to search for additional fonts
     if platform.startswith("darwin"):
+        # Always check local kassia font folder first, so those fonts have precedence
+        dirs = [inspect.stack()[0][1].rsplit('/', 1)[0] + "/fonts"]
         dirs.extend(['/Library/Fonts', os.path.expanduser("~/Library/Fonts")])
     elif platform.startswith("win") or platform.startswith("cygwin"):
+        dirs = [inspect.stack()[0][1].rsplit('\\', 1)[0] + "\\fonts"]
         dirs.append(os.path.join(os.environ['WINDIR'], 'Fonts'))
     # elif platform.startswith("linux"):
         # implement something for linux
