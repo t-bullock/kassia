@@ -1,4 +1,1 @@
-*.pdf
 *.pyc
-editor/node_modules
-editor/.tmp
