@@ -18,8 +18,9 @@ def register_fonts():
     elif platform.startswith("win") or platform.startswith("cygwin"):
         dirs = [inspect.stack()[0][1].rsplit('\\', 1)[0] + "\\fonts"]
         dirs.append(os.path.join(os.environ['WINDIR'], 'Fonts'))
-    # elif platform.startswith("linux"):
+    elif platform.startswith("linux"):
         # implement something for linux
+        logging.warning("System fonts are not yet supported on Linux.")
     for folder in dirs:
         register_font_path(folder)
 
