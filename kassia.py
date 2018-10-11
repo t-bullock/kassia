@@ -32,11 +32,11 @@ class Cursor:
 
 class Kassia:
     """Base class for package"""
-    def __init__(self, file_name, out_file="out.pdf"):
-        self.file_name = file_name  # input file
-        self.out_file = out_file  # output file
+    def __init__(self, input_filename, output_file="out.pdf"):
+        self.input_filename = input_filename
+        self.output_file = output_file
         try:
-            open(file_name, "r")
+            open(input_filename, "r")
             file_readable = True
         except IOError:
             file_readable = False
@@ -56,7 +56,8 @@ class Kassia:
         self.pageAttrib['left_margin'] = 72
         self.pageAttrib['right_margin'] = 72
         self.pageAttrib['line_height'] = 72
-        self.pageAttrib['line_width'] = self.pageAttrib['paper_size'][0] - (self.pageAttrib['left_margin'] + self.pageAttrib['right_margin'])
+        self.pageAttrib['line_width'] = self.pageAttrib['paper_size'][0] - (self.pageAttrib['left_margin'] +
+                                                                            self.pageAttrib['right_margin'])
         self.pageAttrib['char_spacing'] = 2
 
         font_reader.register_fonts()
@@ -123,7 +124,7 @@ class Kassia:
 
     def parse_file(self):
         try:
-            bnml_tree = ET.parse(self.file_name)
+            bnml_tree = ET.parse(self.input_filename)
             bnml = bnml_tree.getroot()
             self.bnml = bnml
 
@@ -173,7 +174,7 @@ class Kassia:
                 temp_dict = self.fill_attribute_dict(paragraph_font_defaults.attrib)
                 self.paragraphAttrib.update(temp_dict)
 
-        self.canvas = canvas.Canvas(self.out_file, pagesize=self.pageAttrib['paper_size'])
+        self.canvas = canvas.Canvas(self.output_file, pagesize=self.pageAttrib['paper_size'])
         self.vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
 
         # Set pdf title and author
@@ -236,12 +237,12 @@ class Kassia:
                         self.draw_string(current_string_attrib)
 
                     if troparion_child_elem.tag == 'neumes':
-                        neumeAttrib = {}
+                        neume_attrib = {}
                         neumes_elem = troparion_child_elem
                         if neumes_elem is not None:
                             temp_neumes_attrib = neumes_elem.attrib
                             settings_from_xml = self.fill_attribute_dict(temp_neumes_attrib)
-                            neumeAttrib.update(settings_from_xml)
+                            neume_attrib.update(settings_from_xml)
 
                             neume_attrib = neumes_elem.attrib
 
@@ -288,7 +289,7 @@ class Kassia:
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
                 g_array = self.make_glyph_array(neume_chunks, lyrics_list)
-                line_list = self.line_break2(g_array, first_line_offset, self.pageAttrib['line_width'], self.pageAttrib['char_spacing'])
+                line_list = self.line_break(g_array, first_line_offset, self.pageAttrib['line_width'], self.pageAttrib['char_spacing'])
                 line_list = self.line_justify(line_list, self.pageAttrib['line_width'], first_line_offset)
 
                 line_counter = 0
@@ -307,8 +308,8 @@ class Kassia:
                         for i, neume in enumerate(ga.neumeChunk):
                             self.canvas.setFont(neume.font_family, neume.font_size)
                             self.canvas.setFillColor(neume.color)
-                            # Move over width of last neume before writing next nueme in chunk
-                            # TODO: Change font kerning and remove this logic
+                            # Move over width of last neume before writing next neume in chunk
+                            # TODO: Change font kerning and remove this logic?
                             if i > 0:
                                 xpos += ga.neumeChunk[i-1].width
 
@@ -318,7 +319,7 @@ class Kassia:
                             ypos -= ga.lyricsTopMargin
                             xpos = self.pageAttrib['left_margin'] + ga.lyricPos
 
-                            # TODO: Put this elafrom offset logic somewhere else
+                            # TODO: Put this elafron offset logic somewhere else
                             for neumeWithLyricOffset in neume_dict.neumesWithLyricOffset:
                                 if neumeWithLyricOffset[0] == ga.neumeChunk[0].text:
                                     xpos += neumeWithLyricOffset[1]
@@ -367,7 +368,6 @@ class Kassia:
             temp_font_family = current_string_attrib['font_family']
             temp_font_size = current_string_attrib['font_size']
             temp_font_color = current_string_attrib['color']
-            embedded_font_attrib.attrib
             if embedded_font_attrib.attrib is not None:
                 if 'font_family' in embedded_font_attrib.attrib:
                     temp_font_family = embedded_font_attrib.attrib['font_family']
@@ -375,7 +375,10 @@ class Kassia:
                     temp_font_size = embedded_font_attrib.attrib['font_size']
                 if 'color' in embedded_font_attrib.attrib:
                     temp_font_color = embedded_font_attrib.attrib['color']
-            embedded_args += '<font face="{0}" size="{1}">'.format(temp_font_family, temp_font_size) + embedded_font_attrib.text.strip() + '</font>' + embedded_font_attrib.tail
+            embedded_args += '<font face="{0}" size="{1}" color="{2}">'.format(temp_font_family,
+                                                                               temp_font_size,
+                                                                               temp_font_color) +\
+                             embedded_font_attrib.text.strip() + '</font>' + embedded_font_attrib.tail
 
         current_string_attrib['text'] = string_elem.text.strip() + embedded_args
 
@@ -390,10 +393,12 @@ class Kassia:
             x_pos = self.pageAttrib['left_margin'] - current_string_attrib['left_margin']
             self.canvas.drawString(x_pos, self.vert_pos, current_string_attrib['text'])
         elif current_string_attrib['align'] == 'right':
-            x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] - current_string_attrib['right_margin']
+            x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] -\
+                    current_string_attrib['right_margin']
             self.canvas.drawRightString(x_pos, self.vert_pos, current_string_attrib['text'])
         else:
-            x_pos = (self.pageAttrib['paper_size'][0]/2) + current_string_attrib['left_margin'] - current_string_attrib['right_margin']
+            x_pos = (self.pageAttrib['paper_size'][0]/2) + current_string_attrib['left_margin'] -\
+                    current_string_attrib['right_margin']
             self.canvas.drawCentredString(x_pos, self.vert_pos, current_string_attrib['text'])
 
         self.vert_pos -= (current_string_attrib['font_size'] + current_string_attrib['bottom_margin'])
@@ -520,7 +525,7 @@ class Kassia:
                     glyph = Glyph(neume_chunk)
                 l_ptr += 1
 
-                # To Do: see if lyric ends with '_' and if lyrics are
+                # Todo: see if lyric ends with '_' and if lyrics are
                 # wider than the neume, then combine with next chunk
             else:
                 # no lyric needed
@@ -531,7 +536,7 @@ class Kassia:
             i += 1
         return glyph_array
 
-    def line_break2(self, glyph_array, first_line_offset, line_width, char_spacing):
+    def line_break(self, glyph_array, first_line_offset, line_width, char_spacing):
         """Break neumes and lyrics into lines, currently greedy
         Returns a list of lines"""
         cr = Cursor(first_line_offset, 0)
@@ -567,63 +572,6 @@ class Kassia:
 
         return g_line_list
 
-    def linebreak(self, neumes, lyrics=None):
-        """Break neumes and lyrics into lines
-        Unused"""
-        cr = Cursor(0,0)
-        lyric_array = re.split(' ', lyrics)
-        # If lyric spans multiple neumes
-        #   then see if lyric is wider than span
-        #   else see if width of glypch is max of neume and lyric
-        char_space = 4 # default space between characters
-        text_offset = 20 # default space lyrics appear below neumes
-        # neume_array = neume_dict.translate(neumes).split(' ')
-        neume_array = neumes.split(' ')
-        neume_pos = []
-        lyric_pos = []
-        lyric_index = 0
-        for neume in neume_array:
-            # print("Neume length: " + str(pdfmetrics.stringWidth(neume,'Kassia Tsak Main',24)))
-            n_width = pdfmetrics.stringWidth(neume_dict.translate(neume), 'Kassia Tsak Main', self.nFontSize)
-            if n_width > 1.0: # if it's not a gorgon or other small symbol
-                # Neume might take lyric
-                if lyric_index < len(lyric_array):
-                    lyr = lyric_array[lyric_index]
-                else:
-                    lyr = ""
-                l_width = pdfmetrics.stringWidth(lyr, lyric_attrib['font_family'], lyric_attrib['font_size'])
-                # Glyph width will be the max of the two if lyric isn't stretched out
-                # across multiple neumes
-                add_lyric = False
-                # if (lyr[-1] != "_") & (neume_dict.takesLyric(neume)):
-                if neume_dict.takes_lyric(neume):
-                    gl_width = max(n_width, l_width)
-                    lyric_index += 1
-                    add_lyric = True
-                else:
-                    gl_width = n_width
-                if (gl_width + cr.x) >= self.lineWidth:  # line break
-                    cr.x, cr.y = 0, cr.y - self.lineHeight
-                    # does it take a lyric syllable?
-                    neume_pos.append((cr.x, cr.y, neume_dict.translate(neume)))
-                else:  # no line break
-                    # does it take a lyric syllable?
-                    neume_pos.append((cr.x, cr.y, neume_dict.translate(neume)))
-                if add_lyric:
-                    lyric_pos.append((cr.x, cr.y-text_offset, lyr))
-                cr.x += gl_width + char_space
-
-            else:
-                # offsets for gorgon
-                # offsets for apli
-                # offset for kentima
-                # offsets for omalon
-                # offsets for antikenoma
-                # offsets for eteron
-                neume_pos.append((cr.x - char_space, cr.y, neume_dict.translate(neume)))
-
-        return neume_pos, lyric_pos
-
     def line_justify(self, line_list, max_line_width, first_line_x_offset):
         """Takes a list of lines and justifies each one"""
         for line_index, line in enumerate(line_list):
@@ -638,7 +586,7 @@ class Kassia:
 
             # Subtract total from line_width (gets space remaining)
             space_remaining = (max_line_width - first_line_x_offset) - total_chunk_width
-            # Divine by num of chunks in line
+            # Divide by number of chunks in line
             chunk_spacing = space_remaining / len(line)
 
             cr = Cursor(first_line_x_offset, 0)
