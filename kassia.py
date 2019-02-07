@@ -316,6 +316,7 @@ class Kassia:
                             self.canvas.drawString(xpos, ypos, neume.text)
 
                         if ga.lyricsText:
+                            self.canvas.setFillColor(self.lyricAttrib['color'])
                             ypos -= ga.lyricsTopMargin
                             xpos = self.pageAttrib['left_margin'] + ga.lyricPos
 
