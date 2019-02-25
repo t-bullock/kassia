@@ -90,6 +90,7 @@ class Kassia:
         self.paragraphAttrib['font_family'] = 'Helvetica'
         self.paragraphAttrib['font_size'] = 12
         self.paragraphAttrib['color'] = colors.black
+        self.paragraphAttrib['back_color'] = None
         self.paragraphAttrib['align'] = 'left'
         self.paragraphAttrib['top_margin'] = 0
         self.paragraphAttrib['bottom_margin'] = 0
@@ -418,6 +419,7 @@ class Kassia:
         paragraph_style.fontName = current_paragraph_attrib['font_family']
         paragraph_style.fontSize = current_paragraph_attrib['font_size']
         paragraph_style.textColor = current_paragraph_attrib['color']
+        paragraph_style.backColor = current_paragraph_attrib['back_color']
         paragraph_style.firstLineIndent = current_paragraph_attrib['first_line_indent']
         paragraph_style.autoLeading = current_paragraph_attrib['auto_leading']
         paragraph_style.leftIndent = current_paragraph_attrib['left_indent']
@@ -631,12 +633,13 @@ class Kassia:
     @staticmethod
     def fill_attribute_dict(attribute_dict):
         """parse the color"""
-        if 'color' in attribute_dict:
-            if re.match("#[0-9a-fA-F]{6}", attribute_dict['color']):
-                col = [z/255. for z in hex_to_rgb(attribute_dict['color'])]
-                attribute_dict['color'] = colors.Color(col[0], col[1], col[2], 1)
-            else:
-                attribute_dict.pop('color')
+        for color_attr in ['color', 'back_color']:
+            if color_attr in attribute_dict:
+                if re.match("#[0-9a-fA-F]{6}", attribute_dict[color_attr]):
+                    col = [z/255. for z in hex_to_rgb(attribute_dict[color_attr])]
+                    attribute_dict[color_attr] = colors.Color(col[0], col[1], col[2], 1)
+                else:
+                    attribute_dict.pop(color_attr)
 
         """parse the font family"""
         if 'font_family' in attribute_dict:
