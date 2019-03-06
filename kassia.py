@@ -406,14 +406,8 @@ class Kassia:
         self.vert_pos -= (current_string_attrib['font_size'] + current_string_attrib['bottom_margin'])
 
     def draw_paragraph(self, current_paragraph_attrib):
+        # Remove top_margin here?
         self.vert_pos -= (current_paragraph_attrib['font_size'] + current_paragraph_attrib['top_margin'])
-
-        if not self.is_space_for_another_line(self.vert_pos):
-            self.draw_newpage()
-            self.vert_pos -= current_paragraph_attrib['font_size'] + current_paragraph_attrib['top_margin']
-
-        self.canvas.setFillColor(current_paragraph_attrib['color'])
-        self.canvas.setFont(current_paragraph_attrib['font_family'], current_paragraph_attrib['font_size'])
 
         paragraph_style = ParagraphStyle('test')
         paragraph_style.fontName = current_paragraph_attrib['font_family']
@@ -425,6 +419,9 @@ class Kassia:
         paragraph_style.leftIndent = current_paragraph_attrib['left_indent']
         paragraph_style.rightIndent = current_paragraph_attrib['right_indent']
 
+        self.canvas.setFillColor(current_paragraph_attrib['color'])
+        self.canvas.setFont(current_paragraph_attrib['font_family'], current_paragraph_attrib['font_size'])
+
         if current_paragraph_attrib['align'] == 'left':
             paragraph_style.alignment = TA_LEFT
         elif current_paragraph_attrib['align'] == 'right':
@@ -433,15 +430,14 @@ class Kassia:
             paragraph_style.alignment = TA_CENTER
 
         paragraph = Paragraph(current_paragraph_attrib['text'], paragraph_style)
-        # returns size actually used
-        w, h = paragraph.wrap(self.pageAttrib['line_width'], self.pageAttrib['bottom_margin'])
-        self.vert_pos -= (h + current_paragraph_attrib['bottom_margin'])
+
+        paragraph_width, paragraph_height = paragraph.wrap(self.pageAttrib['line_width'], self.pageAttrib['paper_size'][1] + self.pageAttrib['bottom_margin'])
+        if self.vert_pos <= paragraph_height:
+            self.draw_newpage()
 
         # self.canvas.saveState()
         paragraph.drawOn(self.canvas, self.pageAttrib['left_margin'], self.vert_pos)
         # self.canvas.restoreState()
-
-        #self.vert_pos -= (current_paragraph_attrib['font_size'] + current_paragraph_attrib['bottom_margin'])
 
     def get_dropcap_attributes(self, dropcap_elem, default_dropcap_attrib):
         current_dropcap_attrib = deepcopy(default_dropcap_attrib)
@@ -494,6 +490,7 @@ class Kassia:
 
         self.vert_pos = ypos
 
+    # TODO: Only check for lyricTopMargin? Do we know the proposed lyricPos?
     def is_space_for_another_line(self, cursor_y_pos, line_list=[]):
         max_height = 0
         for ga in line_list:
