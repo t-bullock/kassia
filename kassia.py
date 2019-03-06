@@ -432,8 +432,13 @@ class Kassia:
         paragraph = Paragraph(current_paragraph_attrib['text'], paragraph_style)
 
         paragraph_width, paragraph_height = paragraph.wrap(self.pageAttrib['line_width'], self.pageAttrib['paper_size'][1] + self.pageAttrib['bottom_margin'])
-        if self.vert_pos <= paragraph_height:
+        # is it necessary to add current_paragraph_attrib['bottom_margin'] to paragraph_height?
+        if (self.vert_pos - paragraph_height) <= self.pageAttrib['bottom_margin']:
             self.draw_newpage()
+
+        # Need logic for: if 'inline' is not specified, don't do this
+        if True:
+            self.vert_pos -= (paragraph_height + current_paragraph_attrib['bottom_margin'])
 
         # self.canvas.saveState()
         paragraph.drawOn(self.canvas, self.pageAttrib['left_margin'], self.vert_pos)
