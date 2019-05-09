@@ -290,7 +290,7 @@ An example XML file with some of the available options is shown below.
 ```
 ## Typing with Kassia Fonts
 
-Kassia utilizes 4 fonts: Main, Combo, Chronos, Martyria, Fthora.
+Kassia utilizes 5 fonts: Main, Combo, Chronos, Martyria, Fthora.
 
 - Main has the most commly used neumes
 - Combo has large jumps and large jumps with a kentimata
