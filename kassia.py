@@ -201,10 +201,6 @@ class Kassia:
             if child_elem.tag == 'linebreak':
                 self.draw_newline(self.pageAttrib['line_height'], self.lyricAttrib['top_margin'] + self.lyricAttrib['font_size'])
 
-            # TODO: Test this
-            if child_elem.tag == 'blankline':
-                self.draw_blankline(self.pageAttrib['line_height'])
-
             if child_elem.tag == 'title':
                 current_title_attrib = self.get_title_attributes(child_elem, self.titleAttrib)
                 self.draw_title(current_title_attrib)
@@ -485,20 +481,6 @@ class Kassia:
         self.vert_pos -= (line_height + top_margin)
         if not self.is_space_for_another_line(self.vert_pos):
             self.draw_newpage()
-
-    def draw_blankline(self, line_height):
-        ypos = self.vert_pos - line_height
-        self.canvas.setFont(self.defaultNeumeAttrib['font_family'], self.defaultNeumeAttrib['font_size'])
-        self.canvas.drawString(50, ypos, "")
-
-        ypos -= self.lyricAttrib['top_margin']
-
-        self.canvas.setFont(self.lyricAttrib['font_family'], self.lyricAttrib['font_size'])
-        self.canvas.drawString(50, ypos, "")
-
-        ypos -= line_height/2
-
-        self.vert_pos = ypos
 
     # TODO: Only check for lyricTopMargin? Do we know the proposed lyricPos?
     def is_space_for_another_line(self, cursor_y_pos, line_list=[]):
