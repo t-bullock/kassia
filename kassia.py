@@ -177,6 +177,11 @@ class Kassia:
                 temp_dict = self.fill_attribute_dict(paragraph_font_defaults.attrib)
                 self.defaultParagraphAttrib.update(temp_dict)
 
+            title_font_defaults = defaults.find('title-font')
+            if title_font_defaults is not None:
+                temp_dict = self.fill_attribute_dict(title_font_defaults.attrib)
+                self.defaultTitleAttrib.update(temp_dict)
+
         self.canvas = canvas.Canvas(self.output_file, pagesize=self.defaultPageAttrib['paper_size'])
         self.vert_pos = self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['top_margin']
 
