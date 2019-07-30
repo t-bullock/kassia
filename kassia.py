@@ -258,11 +258,12 @@ class Kassia:
                                 neumes_list.append(n)
 
                     if troparion_child_elem.tag == 'lyrics':
+                        lyric_attrib = {}
                         lyrics_elem = troparion_child_elem
                         if lyrics_elem is not None:
-                            lyrics_default_attrib = lyrics_elem.attrib
-                            settings_from_xml = self.fill_attribute_dict(lyrics_default_attrib)
-                            self.lyricAttrib.update(settings_from_xml)
+                            temp_lyrics_attrib = lyrics_elem.attrib
+                            settings_from_xml = self.fill_attribute_dict(temp_lyrics_attrib)
+                            lyric_attrib.update(settings_from_xml)
 
                             lyric_attrib = lyrics_elem.attrib
 
