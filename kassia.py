@@ -49,60 +49,60 @@ class Kassia:
 
     def set_defaults(self):
         # Set page defaults
-        self.pageAttrib = {}
-        self.pageAttrib['paper_size'] = letter
-        self.pageAttrib['top_margin'] = 72
-        self.pageAttrib['bottom_margin'] = 72
-        self.pageAttrib['left_margin'] = 72
-        self.pageAttrib['right_margin'] = 72
-        self.pageAttrib['line_height'] = 72
-        self.pageAttrib['line_width'] = self.pageAttrib['paper_size'][0] - (self.pageAttrib['left_margin'] +
-                                                                            self.pageAttrib['right_margin'])
-        self.pageAttrib['char_spacing'] = 2
+        self.defaultPageAttrib = {}
+        self.defaultPageAttrib['paper_size'] = letter
+        self.defaultPageAttrib['top_margin'] = 72
+        self.defaultPageAttrib['bottom_margin'] = 72
+        self.defaultPageAttrib['left_margin'] = 72
+        self.defaultPageAttrib['right_margin'] = 72
+        self.defaultPageAttrib['line_height'] = 72
+        self.defaultPageAttrib['line_width'] = self.defaultPageAttrib['paper_size'][0] - (self.defaultPageAttrib['left_margin'] +
+                                                                            self.defaultPageAttrib['right_margin'])
+        self.defaultPageAttrib['char_spacing'] = 2
 
         font_reader.register_fonts()
 
         # Set title defaults
-        self.titleAttrib = {}
-        self.titleAttrib['font_family'] = 'Helvetica'
-        self.titleAttrib['font_size'] = 18
-        self.titleAttrib['color'] = colors.black
-        self.titleAttrib['top_margin'] = 0
-        self.titleAttrib['bottom_margin'] = 0
-        self.titleAttrib['left_margin'] = 0
-        self.titleAttrib['right_margin'] = 0
-        self.titleAttrib['text'] = ''
+        self.defaultTitleAttrib = {}
+        self.defaultTitleAttrib['font_family'] = 'Helvetica'
+        self.defaultTitleAttrib['font_size'] = 18
+        self.defaultTitleAttrib['color'] = colors.black
+        self.defaultTitleAttrib['top_margin'] = 0
+        self.defaultTitleAttrib['bottom_margin'] = 0
+        self.defaultTitleAttrib['left_margin'] = 0
+        self.defaultTitleAttrib['right_margin'] = 0
+        self.defaultTitleAttrib['text'] = ''
 
         # Set string defaults
-        self.stringAttrib = {}
-        self.stringAttrib['font_family'] = 'Helvetica'
-        self.stringAttrib['font_size'] = 12
-        self.stringAttrib['color'] = colors.black
-        self.stringAttrib['align'] = 'center'
-        self.stringAttrib['top_margin'] = 0
-        self.stringAttrib['bottom_margin'] = 0
-        self.stringAttrib['left_margin'] = 0
-        self.stringAttrib['right_margin'] = 0
-        self.stringAttrib['text'] = ''
+        self.defaultStringAttrib = {}
+        self.defaultStringAttrib['font_family'] = 'Helvetica'
+        self.defaultStringAttrib['font_size'] = 12
+        self.defaultStringAttrib['color'] = colors.black
+        self.defaultStringAttrib['align'] = 'center'
+        self.defaultStringAttrib['top_margin'] = 0
+        self.defaultStringAttrib['bottom_margin'] = 0
+        self.defaultStringAttrib['left_margin'] = 0
+        self.defaultStringAttrib['right_margin'] = 0
+        self.defaultStringAttrib['text'] = ''
 
         # Set paragraph defaults
-        self.paragraphAttrib = {}
-        self.paragraphAttrib['font_family'] = 'Helvetica'
-        self.paragraphAttrib['font_size'] = 12
-        self.paragraphAttrib['color'] = colors.black
-        self.paragraphAttrib['back_color'] = None
-        self.paragraphAttrib['align'] = 'left'
-        self.paragraphAttrib['top_margin'] = 0
-        self.paragraphAttrib['bottom_margin'] = 0
-        self.paragraphAttrib['left_margin'] = 0
-        self.paragraphAttrib['right_margin'] = 0
-        self.paragraphAttrib['first_line_indent'] = 20
-        self.paragraphAttrib['left_indent'] = 0
-        self.paragraphAttrib['right_indent'] = 0
-        self.paragraphAttrib['auto_leading'] = 'min'
-        self.paragraphAttrib['space_before'] = 0
-        self.paragraphAttrib['space_after'] = 0
-        self.paragraphAttrib['text'] = ''
+        self.defaultParagraphAttrib = {}
+        self.defaultParagraphAttrib['font_family'] = 'Helvetica'
+        self.defaultParagraphAttrib['font_size'] = 12
+        self.defaultParagraphAttrib['color'] = colors.black
+        self.defaultParagraphAttrib['back_color'] = None
+        self.defaultParagraphAttrib['align'] = 'left'
+        self.defaultParagraphAttrib['top_margin'] = 0
+        self.defaultParagraphAttrib['bottom_margin'] = 0
+        self.defaultParagraphAttrib['left_margin'] = 0
+        self.defaultParagraphAttrib['right_margin'] = 0
+        self.defaultParagraphAttrib['first_line_indent'] = 20
+        self.defaultParagraphAttrib['left_indent'] = 0
+        self.defaultParagraphAttrib['right_indent'] = 0
+        self.defaultParagraphAttrib['auto_leading'] = 'min'
+        self.defaultParagraphAttrib['space_before'] = 0
+        self.defaultParagraphAttrib['space_after'] = 0
+        self.defaultParagraphAttrib['text'] = ''
 
         # Set neume defaults
         self.defaultNeumeAttrib = {}
@@ -111,19 +111,19 @@ class Kassia:
         self.defaultNeumeAttrib['color'] = colors.black
 
         # Set dropcap defaults
-        self.dropCap = {}
-        self.dropCap['font_family'] = 'Helvetica'
-        self.dropCap['font_size'] = 40
-        self.dropCap['color'] = colors.black
-        self.dropCap['text'] = ''
+        self.defaultDropCap = {}
+        self.defaultDropCap['font_family'] = 'Helvetica'
+        self.defaultDropCap['font_size'] = 40
+        self.defaultDropCap['color'] = colors.black
+        self.defaultDropCap['text'] = ''
 
         # Set lyric defaults
-        self.lyricAttrib = {}
-        self.lyricAttrib['font_family'] = 'Helvetica'
-        self.lyricAttrib['font_size'] = 12
-        self.lyricAttrib['color'] = colors.black
-        self.lyricAttrib['top_margin'] = 0
-        self.lyricAttrib['text'] = ''
+        self.defaultLyricAttrib = {}
+        self.defaultLyricAttrib['font_family'] = 'Helvetica'
+        self.defaultLyricAttrib['font_size'] = 12
+        self.defaultLyricAttrib['color'] = colors.black
+        self.defaultLyricAttrib['top_margin'] = 0
+        self.defaultLyricAttrib['text'] = ''
 
     def parse_file(self):
         try:
@@ -141,7 +141,7 @@ class Kassia:
         if self.bnml is not None:
             margin_attrib = self.bnml.attrib
             temp_dict = self.fill_page_dict(margin_attrib)
-            self.pageAttrib.update(temp_dict)
+            self.defaultPageAttrib.update(temp_dict)
 
         # Parse page defaults
         defaults = self.bnml.find('defaults')
@@ -151,11 +151,11 @@ class Kassia:
             if page_layout is not None:
                 paper_size = page_layout.find('paper-size')
                 if paper_size is not None:
-                    self.pageAttrib['paper_size'] = self.str_to_class(paper_size.text)
-                    self.pageAttrib['line_width'] = self.pageAttrib['paper_size'][0] - (self.pageAttrib['left_margin'] + self.pageAttrib['right_margin'])
+                    self.defaultPageAttrib['paper_size'] = self.str_to_class(paper_size.text)
+                    self.defaultPageAttrib['line_width'] = self.defaultPageAttrib['paper_size'][0] - (self.defaultPageAttrib['left_margin'] + self.defaultPageAttrib['right_margin'])
                 lyric_offset = page_layout.find('lyric-y-offset')
                 if lyric_offset is not None:
-                    self.lyricAttrib['top_margin'] = int(lyric_offset.text)
+                    self.defaultLyricAttrib['top_margin'] = int(lyric_offset.text)
 
             neume_font_defaults = defaults.find('neume-font')
             if neume_font_defaults is not None:
@@ -165,20 +165,20 @@ class Kassia:
             lyric_font_defaults = defaults.find('lyric-font')
             if lyric_font_defaults is not None:
                 temp_dict = self.fill_attribute_dict(lyric_font_defaults.attrib)
-                self.lyricAttrib.update(temp_dict)
+                self.defaultLyricAttrib.update(temp_dict)
 
             dropcap_font_defaults = defaults.find('dropcap-font')
             if dropcap_font_defaults is not None:
                 temp_dict = self.fill_attribute_dict(dropcap_font_defaults.attrib)
-                self.dropCap.update(temp_dict)
+                self.defaultDropCap.update(temp_dict)
 
             paragraph_font_defaults = defaults.find('paragraph-font')
             if paragraph_font_defaults is not None:
                 temp_dict = self.fill_attribute_dict(paragraph_font_defaults.attrib)
-                self.paragraphAttrib.update(temp_dict)
+                self.defaultParagraphAttrib.update(temp_dict)
 
-        self.canvas = canvas.Canvas(self.output_file, pagesize=self.pageAttrib['paper_size'])
-        self.vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
+        self.canvas = canvas.Canvas(self.output_file, pagesize=self.defaultPageAttrib['paper_size'])
+        self.vert_pos = self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['top_margin']
 
         # Set pdf title and author
         identification = self.bnml.find('identification')
@@ -199,18 +199,18 @@ class Kassia:
                 self.draw_newpage()
 
             if child_elem.tag == 'linebreak':
-                self.draw_newline(self.pageAttrib['line_height'], self.lyricAttrib['top_margin'] + self.lyricAttrib['font_size'])
+                self.draw_newline(self.defaultPageAttrib['line_height'], self.defaultLyricAttrib['top_margin'] + self.defaultLyricAttrib['font_size'])
 
             if child_elem.tag == 'title':
-                current_title_attrib = self.get_title_attributes(child_elem, self.titleAttrib)
+                current_title_attrib = self.get_title_attributes(child_elem, self.defaultTitleAttrib)
                 self.draw_title(current_title_attrib)
 
             if child_elem.tag == 'string':
-                current_string_attrib = self.get_string_attributes(child_elem, self.stringAttrib)
+                current_string_attrib = self.get_string_attributes(child_elem, self.defaultStringAttrib)
                 self.draw_string(current_string_attrib)
 
             if child_elem.tag == 'paragraph':
-                current_paragraph_attrib = self.get_string_attributes(child_elem, self.paragraphAttrib)
+                current_paragraph_attrib = self.get_string_attributes(child_elem, self.defaultParagraphAttrib)
                 self.draw_paragraph(current_paragraph_attrib)
 
             if child_elem.tag == 'troparion':
@@ -225,14 +225,11 @@ class Kassia:
 
                     # TODO: Test this
                     if troparion_child_elem.tag == 'linebreak':
-                        self.draw_newline(self.pageAttrib['line_height'])
+                        self.draw_newline(self.defaultPageAttrib['line_height'])
 
-                    # TODO: Test this
-                    if troparion_child_elem.tag == 'blankline':
-                        self.draw_blankline(self.pageAttrib['line_height'])
-
+                    # TODO: Use this to draw strings between neumes?
                     if troparion_child_elem.tag == 'string':
-                        current_string_attrib = self.get_string_attributes(troparion_child_elem, self.stringAttrib)
+                        current_string_attrib = self.get_string_attributes(troparion_child_elem, self.defaultStringAttrib)
                         self.draw_string(current_string_attrib)
 
                     if troparion_child_elem.tag == 'neumes':
@@ -265,10 +262,10 @@ class Kassia:
 
                             for lyric_text in lyrics_elem.text.strip().split():
                                 l = Lyric(text=lyric_text,
-                                          font_family=lyric_attrib['font_family'] if 'font_family' in lyric_attrib else self.lyricAttrib['font_family'],
-                                          font_size=lyric_attrib['font_size'] if 'font_size' in lyric_attrib else self.lyricAttrib['font_size'],
-                                          color=lyric_attrib['color'] if 'color' in lyric_attrib else self.lyricAttrib['color'],
-                                          top_margin=lyric_attrib['top_margin'] if 'top_margin' in lyric_attrib else self.lyricAttrib['top_margin'],
+                                          font_family=lyric_attrib['font_family'] if 'font_family' in lyric_attrib else self.defaultLyricAttrib['font_family'],
+                                          font_size=lyric_attrib['font_size'] if 'font_size' in lyric_attrib else self.defaultLyricAttrib['font_size'],
+                                          color=lyric_attrib['color'] if 'color' in lyric_attrib else self.defaultLyricAttrib['color'],
+                                          top_margin=lyric_attrib['top_margin'] if 'top_margin' in lyric_attrib else self.defaultLyricAttrib['top_margin'],
                                           )
                                 lyrics_list.append(l)
 
@@ -276,7 +273,7 @@ class Kassia:
                 dropcap_elem = child_elem.find('dropcap')
                 first_line_offset = 0
                 if dropcap_elem is not None:
-                    current_dropcap_attrib = self.get_dropcap_attributes(dropcap_elem, self.dropCap)
+                    current_dropcap_attrib = self.get_dropcap_attributes(dropcap_elem, self.defaultDropCap)
                     first_line_offset = 5 + pdfmetrics.stringWidth(current_dropcap_attrib['text'], current_dropcap_attrib['font_family'],
                                                                    current_dropcap_attrib['font_size'])
 
@@ -289,21 +286,21 @@ class Kassia:
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
                 g_array = self.make_glyph_array(neume_chunks, lyrics_list)
-                line_list = self.line_break(g_array, first_line_offset, self.pageAttrib['line_width'], self.pageAttrib['char_spacing'])
-                line_list = self.line_justify(line_list, self.pageAttrib['line_width'], first_line_offset)
+                line_list = self.line_break(g_array, first_line_offset, self.defaultPageAttrib['line_width'], self.defaultPageAttrib['char_spacing'])
+                line_list = self.line_justify(line_list, self.defaultPageAttrib['line_width'], first_line_offset)
 
                 line_counter = 0
                 for line_of_chunks in line_list:
                     # Make sure not at end of page
-                    calculated_ypos = self.vert_pos - (line_counter + 1) * self.pageAttrib['line_height']
+                    calculated_ypos = self.vert_pos - (line_counter + 1) * self.defaultPageAttrib['line_height']
                     if not self.is_space_for_another_line(calculated_ypos, line_of_chunks):
                         self.draw_newpage()
                         line_counter = 0
 
                     for ga in line_of_chunks:
                         self.canvas.setFillColor(self.defaultNeumeAttrib['color'])
-                        ypos = self.vert_pos - (line_counter + 1) * self.pageAttrib['line_height']
-                        xpos = self.pageAttrib['left_margin'] + ga.neumePos
+                        ypos = self.vert_pos - (line_counter + 1) * self.defaultPageAttrib['line_height']
+                        xpos = self.defaultPageAttrib['left_margin'] + ga.neumePos
 
                         for i, neume in enumerate(ga.neumeChunk):
                             self.canvas.setFont(neume.font_family, neume.font_size)
@@ -316,9 +313,9 @@ class Kassia:
                             self.canvas.drawString(xpos, ypos, neume.text)
 
                         if ga.lyricsText:
-                            self.canvas.setFillColor(self.lyricAttrib['color'])
+                            self.canvas.setFillColor(self.defaultLyricAttrib['color'])
                             ypos -= ga.lyricsTopMargin
-                            xpos = self.pageAttrib['left_margin'] + ga.lyricPos
+                            xpos = self.defaultPageAttrib['left_margin'] + ga.lyricPos
 
                             # TODO: Put this elafron offset logic somewhere else
                             for neumeWithLyricOffset in neume_dict.neumesWithLyricOffset:
@@ -331,7 +328,7 @@ class Kassia:
                             #    ga.lyrics += "_"
                             self.canvas.drawString(xpos, ypos, ga.lyricsText)
 
-                    self.vert_pos -= (line_counter + 1) * self.pageAttrib['line_height']# - current_lyric_attrib['top_margin']
+                    self.vert_pos -= (line_counter + 1) * self.defaultPageAttrib['line_height']# - current_lyric_attrib['top_margin']
 
                 line_counter += 1
 
@@ -351,7 +348,7 @@ class Kassia:
         self.vert_pos -= (current_title_attrib['font_size'] + current_title_attrib['top_margin'])
         self.canvas.setFillColor(current_title_attrib['color'])
         self.canvas.setFont(current_title_attrib['font_family'], current_title_attrib['font_size'])
-        self.canvas.drawCentredString(self.pageAttrib['paper_size'][0]/2, self.vert_pos, current_title_attrib['text'])
+        self.canvas.drawCentredString(self.defaultPageAttrib['paper_size'][0]/2, self.vert_pos, current_title_attrib['text'])
         # move down by the height of the text string
         #self.vert_pos -= (current_title_attrib['font_size'] + current_title_attrib['bottom_margin'])
 
@@ -391,14 +388,14 @@ class Kassia:
         self.canvas.setFont(current_string_attrib['font_family'], current_string_attrib['font_size'])
 
         if current_string_attrib['align'] == 'left':
-            x_pos = self.pageAttrib['left_margin'] - current_string_attrib['left_margin']
+            x_pos = self.defaultPageAttrib['left_margin'] - current_string_attrib['left_margin']
             self.canvas.drawString(x_pos, self.vert_pos, current_string_attrib['text'])
         elif current_string_attrib['align'] == 'right':
-            x_pos = self.pageAttrib['paper_size'][0] - self.pageAttrib['right_margin'] -\
+            x_pos = self.defaultPageAttrib['paper_size'][0] - self.defaultPageAttrib['right_margin'] -\
                     current_string_attrib['right_margin']
             self.canvas.drawRightString(x_pos, self.vert_pos, current_string_attrib['text'])
         else:
-            x_pos = (self.pageAttrib['paper_size'][0]/2) + current_string_attrib['left_margin'] -\
+            x_pos = (self.defaultPageAttrib['paper_size'][0]/2) + current_string_attrib['left_margin'] -\
                     current_string_attrib['right_margin']
             self.canvas.drawCentredString(x_pos, self.vert_pos, current_string_attrib['text'])
 
@@ -432,9 +429,9 @@ class Kassia:
 
         paragraph = Paragraph(current_paragraph_attrib['text'], paragraph_style)
 
-        paragraph_width, paragraph_height = paragraph.wrap(self.pageAttrib['line_width'], self.pageAttrib['paper_size'][1] + self.pageAttrib['bottom_margin'])
+        paragraph_width, paragraph_height = paragraph.wrap(self.defaultPageAttrib['line_width'], self.defaultPageAttrib['paper_size'][1] + self.defaultPageAttrib['bottom_margin'])
         # is it necessary to add current_paragraph_attrib['bottom_margin'] to paragraph_height?
-        if (self.vert_pos - paragraph_height) <= self.pageAttrib['bottom_margin']:
+        if (self.vert_pos - paragraph_height) <= self.defaultPageAttrib['bottom_margin']:
             self.draw_newpage()
 
         # Need logic for: if 'inline' is not specified, don't do this
@@ -442,7 +439,7 @@ class Kassia:
             self.vert_pos -= (paragraph_height + current_paragraph_attrib['bottom_margin'])
 
         # self.canvas.saveState()
-        paragraph.drawOn(self.canvas, self.pageAttrib['left_margin'], self.vert_pos)
+        paragraph.drawOn(self.canvas, self.defaultPageAttrib['left_margin'], self.vert_pos)
         # self.canvas.restoreState()
 
     def get_dropcap_attributes(self, dropcap_elem, default_dropcap_attrib):
@@ -453,13 +450,13 @@ class Kassia:
         return current_dropcap_attrib
 
     def draw_dropcap(self, current_dropcap_attrib, lyric):
-        xpos = self.pageAttrib['left_margin']
-        ypos = self.vert_pos - (self.pageAttrib['line_height'] + lyric.top_margin)
+        xpos = self.defaultPageAttrib['left_margin']
+        ypos = self.vert_pos - (self.defaultPageAttrib['line_height'] + lyric.top_margin)
 
         # If at edge of page, start new line
         if not self.is_space_for_another_line(ypos):#, lyrics_list):
             self.draw_newpage()
-            ypos = self.vert_pos - (self.pageAttrib['line_height'] + lyric.top_margin)
+            ypos = self.vert_pos - (self.defaultPageAttrib['line_height'] + lyric.top_margin)
 
         self.canvas.setFillColor(current_dropcap_attrib['color'])
         self.canvas.setFont(current_dropcap_attrib['font_family'], current_dropcap_attrib['font_size'])
@@ -475,7 +472,7 @@ class Kassia:
 
     def draw_newpage(self):
         self.canvas.showPage()
-        self.vert_pos = self.pageAttrib['paper_size'][1] - self.pageAttrib['top_margin']
+        self.vert_pos = self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['top_margin']
 
     def draw_newline(self, line_height, top_margin=0):
         self.vert_pos -= (line_height + top_margin)
@@ -488,7 +485,7 @@ class Kassia:
         for ga in line_list:
             if ga.lyricsTopMargin > max_height:
                 max_height = ga.lyricsTopMargin
-        return (cursor_y_pos - max_height) > self.pageAttrib['bottom_margin']
+        return (cursor_y_pos - max_height) > self.defaultPageAttrib['bottom_margin']
 
     def make_glyph_array(self, neume_chunk_list, lyrics_list):
         i, l_ptr = 0, 0
