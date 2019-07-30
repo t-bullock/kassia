@@ -100,6 +100,8 @@ class Kassia:
         self.paragraphAttrib['left_indent'] = 0
         self.paragraphAttrib['right_indent'] = 0
         self.paragraphAttrib['auto_leading'] = 'min'
+        self.paragraphAttrib['space_before'] = 0
+        self.paragraphAttrib['space_after'] = 0
         self.paragraphAttrib['text'] = ''
 
         # Set neume defaults
@@ -418,6 +420,8 @@ class Kassia:
         paragraph_style.autoLeading = current_paragraph_attrib['auto_leading']
         paragraph_style.leftIndent = current_paragraph_attrib['left_indent']
         paragraph_style.rightIndent = current_paragraph_attrib['right_indent']
+        paragraph_style.spaceBefore = current_paragraph_attrib['space_before']
+        paragraph_style.spaceAfter = current_paragraph_attrib['space_after']
 
         self.canvas.setFillColor(current_paragraph_attrib['color'])
         self.canvas.setFont(current_paragraph_attrib['font_family'], current_paragraph_attrib['font_size'])
@@ -651,7 +655,7 @@ class Kassia:
                 attribute_dict['font_family'] = "Helvetica"
 
         """parse the font attributes"""
-        for font_attr in ['font_size', 'first_line_indent', 'left_indent', 'right_indent']:
+        for font_attr in ['font_size', 'first_line_indent', 'left_indent', 'right_indent', 'space_before', 'space_after']:
             if font_attr in attribute_dict:
                 try:
                     attribute_dict[font_attr] = int(attribute_dict[font_attr])
