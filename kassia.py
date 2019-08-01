@@ -204,7 +204,19 @@ class Kassia:
                 self.draw_newpage()
 
             if child_elem.tag == 'linebreak':
-                self.draw_newline(self.defaultPageAttrib['line_height'], self.defaultLyricAttrib['top_margin'] + self.defaultLyricAttrib['font_size'])
+                # Default to line_height if no space is specified
+                space_amount = self.defaultPageAttrib['line_height'] +\
+                               self.defaultLyricAttrib['top_margin'] +\
+                               self.defaultLyricAttrib['font_size']
+
+                if 'space' in child_elem.attrib:
+                    try:
+                        space_amount = int(child_elem.attrib['space'])
+                    except ValueError as e:
+                        logging.warning("{} warning: {}".format('space', e))
+                        # Get rid of xml margin attribute, will use default later
+
+                self.draw_newline(space_amount)
 
             if child_elem.tag == 'title':
                 current_title_attrib = self.get_title_attributes(child_elem, self.defaultTitleAttrib)
