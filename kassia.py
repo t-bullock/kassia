@@ -73,6 +73,13 @@ class Kassia:
         self.defaultTitleAttrib['right_margin'] = 0
         self.defaultTitleAttrib['text'] = ''
 
+        # Set footer defaults
+        self.defaultFooterAttrib = {}
+        self.defaultFooterAttrib['font_family'] = 'Helvetica'
+        self.defaultFooterAttrib['font_size'] = 12
+        self.defaultFooterAttrib['color'] = colors.black
+        self.defaultFooterAttrib['align'] = 'center'
+
         # Set string defaults
         self.defaultStringAttrib = {}
         self.defaultStringAttrib['font_family'] = 'Helvetica'
@@ -181,6 +188,11 @@ class Kassia:
             if title_font_defaults is not None:
                 temp_dict = self.fill_attribute_dict(title_font_defaults.attrib)
                 self.defaultTitleAttrib.update(temp_dict)
+
+            footer_font_defaults = defaults.find('footer-font')
+            if footer_font_defaults is not None:
+                temp_dict = self.fill_attribute_dict(footer_font_defaults.attrib)
+                self.defaultFooterAttrib.update(temp_dict)
 
         self.canvas = canvas.Canvas(self.output_file, pagesize=self.defaultPageAttrib['paper_size'])
         self.vert_pos = self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['top_margin']
@@ -490,11 +502,42 @@ class Kassia:
     def draw_newpage(self):
         self.canvas.showPage()
         self.vert_pos = self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['top_margin']
+        self.draw_footer()
 
     def draw_newline(self, line_height, top_margin=0):
         self.vert_pos -= (line_height + top_margin)
         if not self.is_space_for_another_line(self.vert_pos):
             self.draw_newpage()
+
+    def draw_footer(self, text="", page_number=True, align='center', border=False):
+        if border:
+            self.canvas.setStrokeColorRGB(0, 0, 0)
+            self.canvas.setLineWidth(0.5)
+            self.canvas.line(
+                self.defaultPageAttrib['left_margin'],
+                self.defaultPageAttrib['bottom_margin'],
+                self.defaultPageAttrib['left_margin'],
+                self.defaultPageAttrib['bottom_margin'])
+
+        self.canvas.setFont(self.defaultFooterAttrib['font_family'], self.defaultFooterAttrib['font_size'])
+
+        if page_number:
+            footer_text = str(self.canvas.getPageNumber())
+        else:
+            footer_text = text
+
+        y_pos = self.defaultPageAttrib['bottom_margin'] / 2
+
+        # TODO: Support margins on string?
+        if self.defaultFooterAttrib['align'] == 'left':
+            x_pos = self.defaultPageAttrib['left_margin']
+            self.canvas.drawString(x_pos, y_pos, footer_text)
+        elif self.defaultFooterAttrib['align'] == 'right':
+            x_pos = self.defaultPageAttrib['paper_size'][0] - self.defaultPageAttrib['right_margin']
+            self.canvas.drawRightString(x_pos, y_pos, footer_text)
+        else:
+            x_pos = (self.defaultPageAttrib['paper_size'][0]/2)
+            self.canvas.drawCentredString(x_pos, y_pos, footer_text)
 
     # TODO: Only check for lyricTopMargin? Do we know the proposed lyricPos?
     def is_space_for_another_line(self, cursor_y_pos, line_list=[]):
