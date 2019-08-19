@@ -216,19 +216,20 @@ class Kassia:
                 self.draw_newpage()
 
             if child_elem.tag == 'linebreak':
-                # Default to line_height if no space is specified
-                space_amount = self.defaultPageAttrib['line_height'] +\
-                               self.defaultLyricAttrib['top_margin'] +\
-                               self.defaultLyricAttrib['font_size']
+                if self.is_at_top_of_page() is False:
+                    # Default to line_height if no space is specified
+                    space_amount = self.defaultPageAttrib['line_height'] +\
+                                   self.defaultLyricAttrib['top_margin'] +\
+                                   self.defaultLyricAttrib['font_size']
 
-                if 'space' in child_elem.attrib:
-                    try:
-                        space_amount = int(child_elem.attrib['space'])
-                    except ValueError as e:
-                        logging.warning("{} warning: {}".format('space', e))
-                        # Get rid of xml margin attribute, will use default later
+                    if 'space' in child_elem.attrib:
+                        try:
+                            space_amount = int(child_elem.attrib['space'])
+                        except ValueError as e:
+                            logging.warning("{} warning: {}".format('space', e))
+                            # Get rid of xml margin attribute, will use default later
 
-                self.draw_newline(space_amount)
+                    self.draw_newline(space_amount)
 
             if child_elem.tag == 'title':
                 current_title_attrib = self.get_title_attributes(child_elem, self.defaultTitleAttrib)
@@ -254,7 +255,8 @@ class Kassia:
 
                     # TODO: Test this
                     if troparion_child_elem.tag == 'linebreak':
-                        self.draw_newline(self.defaultPageAttrib['line_height'])
+                        if self.is_at_top_of_page() is False:
+                            self.draw_newline(self.defaultPageAttrib['line_height'])
 
                     # TODO: Use this to draw strings between neumes?
                     if troparion_child_elem.tag == 'string':
@@ -546,6 +548,9 @@ class Kassia:
             if ga.lyricsTopMargin > max_height:
                 max_height = ga.lyricsTopMargin
         return (cursor_y_pos - max_height) > self.defaultPageAttrib['bottom_margin']
+
+    def is_at_top_of_page(self):
+        return self.vert_pos == self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['top_margin']
 
     def make_glyph_array(self, neume_chunk_list, lyrics_list):
         i, l_ptr = 0, 0
