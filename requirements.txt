@@ -1,3 +1,2 @@
 Pillow==5.4.1
-reportlab==3.5.13
-webcolors==1.8.1
+reportlab==3.5.23

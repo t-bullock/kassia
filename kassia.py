@@ -11,16 +11,13 @@ from cursor import Cursor
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.lib.pagesizes import letter, A4, legal
-from reportlab.lib import colors
 from reportlab.platypus import Paragraph
 from reportlab.lib.styles import *
 from reportlab.lib.enums import *
 from typing import Dict, Any
-from webcolors import hex_to_rgb
 
 import sys
 import xml.etree.ElementTree as ET
-import re
 from copy import deepcopy
 
 import logging
@@ -698,15 +695,6 @@ class Kassia:
     def fill_attribute_dict(self, attribute_dict: Dict[str, str]) -> Dict[str, Any]:
         if 'align' in attribute_dict:
             attribute_dict['align'] = self.str_to_align(attribute_dict['align'])
-
-        """parse the color"""
-        for color_attr in ['color', 'bgcolor']:
-            if color_attr in attribute_dict:
-                if re.match("#[0-9a-fA-F]{6}", attribute_dict[color_attr]):
-                    col = [z/255. for z in hex_to_rgb(attribute_dict[color_attr])]
-                    attribute_dict[color_attr] = colors.Color(col[0], col[1], col[2], 1)
-                else:
-                    attribute_dict.pop(color_attr)
 
         """parse the font family"""
         if 'font_family' in attribute_dict:
