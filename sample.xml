@@ -1,9 +1,9 @@
 <bnml top_margin="50" bottom_margin="50" left_margin="60" right_margin="60" line_height="70" char_spacing="4">
     <identification>
         <!-- These show up in the properties of the pdf file. -->
-        <work-title>Vespers as chanted on the Holy Mountain</work-title>
-        <author type="composer">Father Ephraim</author>
-        <subject>A great subject goes here</subject>
+        <work-title>Vespers as chanted off of the Holy Mountain</work-title>
+        <author type="composer">Trevor bullock</author>
+        <subject>A great subject goes here.</subject>
     </identification>
     <defaults>
         <page-layout>
@@ -12,41 +12,63 @@
             <!-- Other page sizes are: legal and A4, but this has bugs. For now use letter size -->
             <paper-size>letter</paper-size>
         </page-layout>
-        <!-- Default neume font family, size, color, etc. For now you're stuck with Kassia Tsak Main, but you can change the size and color. -->
-        <neume-font font_family="Kassia Tsak Main" font_size="30" color="#000000" />
-        <!-- Change font_family to any font you have placed in your kassia/pdfmaker/fonts folder, or to a font you have installed. -->
-        <lyric-font font_family="Alegreya-Medium" font_size="14" color="#000000" />
-        <!-- Same as the lyric-font instructions. If you have something like the Athonite font installed, you may want to specify that for the font_family here. -->
-        <dropcap-font font_family="Alegreya-Bold" font_size="45" color="#cf232b" />
-        <!-- Same. See ReportLab documentation for more paragraph options (like first_line_indent). -->
-        <paragraph-font font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="0"/>
+        <!-- Default Styles -->
+        <styles>
+            <!-- Used in this score for mode name -->
+            <title font_family="Alegreya SC-Bold" font_size="30" color="#0000e6" align="center" space_after="16" />
+            <subtitle />
+            <!-- Used in this score for hymn title -->
+            <h1 font_family="Alegreya-Medium" font_size="16" color="#0000e6" align="center" />
+            <!-- Used in this score for mode/martyria signature -->
+            <h2 font_family="Alegreya-Medium" font_size="14" color="#cf232b" align="center" />
+            <!-- Used in this score for tempo -->
+            <h3 font_family="Alegreya-Medium" font_size="14" color="#cf232b" align="right" />
+            <!-- Used in this score for Greek hymn name -->
+            <h4 font_family="Alegreya-Medium" font_size="14" color="#0000e6" align="right" />
+            <!-- See ReportLab documentation for more paragraph style options. -->
+            <paragraph font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="20" space_after="20" />
+            <verse />
+            <!-- Default neume font family, size, color, etc. For now you're stuck with KA New Stathis Main, but you can change the size and color. -->
+            <neumes font_family="KA New Stathis Main" font_size="30" color="#000000" align="justify" />
+            <!--neumes-chronos font_family="KA New Stathis Chronos" font_size="30" color="#cf232b" /-->
+            <!--neumes-fthora font_family="KA New Stathis Fthora" font_size="30" color="#cf232b" /-->
+            <!--neumes-martyria font_family="KA New Stathis Martyria" font_size="30" color="#cf232b" /-->
+            <!--neumes-archaia font_family="KA New Stathis Archaia" font_size="30" color="#000000" /-->
+            <!--neumes-combo font_family="KA New Stathis Combo" font_size="30" color="#000000" /-->
+
+            <!-- font_family can be any font name in your kassia/fonts folder, or any font you have installed on your OS -->
+            <lyrics font_family="Alegreya-Medium" font_size="14" color="#000000" />
+            <dropcap font_family="Alegreya-Bold" font_size="45" color="#cf232b" />
+            <header font_family="Alegreya-Italic" font_size="12" color="#000000" align="center" />
+            <footer font_family="Alegreya-Italic" font_size="12" color="#000000" align="center" />
+        </styles>
     </defaults>
 
-    <!-- Titles are a lot like paragraphs, but they are centered by default. Underneath the hood they are simple strings, meaning they don't have all the options that 'paragraph' has  -->
-    <title font_family="Alegreya SC-Bold" font_size="30" color="#0000e6">
+    <!-- Paragraphs take more styling options that strings (background color, borders, etc.). They can also take a 'style' attribute like title, subtitle, h1, h2, subheading, footer, etc.  -->
+    <paragraph style="title">
         First Mode
-    </title>
+    </paragraph>
 
     <!-- Here is an example of a title using paragraph. Default settings come from paragraph-font above. -->
-    <paragraph align="center" font_size="16" color="#0000e6">
+    <paragraph style="h1">
         Lord, I Have Cried
     </paragraph>
 
     <!-- Here's our main martyria signature. -->
-    <paragraph align="center" color="#cf232b">
+    <paragraph style="h2" ending_cursor_pos="0">
         Mode
-        <font font_family="Kassia Tsak Martyria" font_size="30">i</font>
+        <!-- Paragraphs can take a 'font' tag inside for select styling of letters or words. This style overrides the outer paragraph style. -->
+        <font font_family="KA New Stathis Martyria" font_size="30">i</font>
         Πα
-        <font font_family="Kassia Tsak Fthora" font_size="18">œ</font>
+        <font font_family="KA New Stathis Fthora" font_size="18">œ</font>
     </paragraph>
 
-    <!-- To make this paragraph inline with the one above it, we use a negative top margin. Eventually we'll find a better way to do this. -->
-    <paragraph align="right" color="#cf232b" top_margin="-45">
-        <font font_family="Kassia Tsak Martyria" font_size="30">v</font>
+    <paragraph style="h3" ending_cursor_pos="2">
+        <font font_family="KA New Stathis Martyria" font_size="30">v</font>
         84
     </paragraph>
 
-    <paragraph align="right" color="#0000e6">
+    <paragraph style="h4">
         Κύριε ἐκέκραξα
     </paragraph>
 
@@ -55,63 +77,63 @@
             / 1 ; 0 ! 1 Z n ! ! ! l !
         </neumes>
         <!-- Any time you want to specify some nuemes that have an attribute different than the defaults at the top of this file, you'll need to specify them like this. Here we use a different font for time symbols (gorgon) and we're making it red. -->
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
         </neumes>
         <neumes>
             / P
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
         </neumes>
         <neumes>
             1 w ! s ,
         </neumes>
         <!-- Here we use a different font for Martyria and we're making it red. -->
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
             q !
         </neumes>
         <neumes>
             3 A X X
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             m
         </neumes>
         <neumes>
             ! _ 1 j
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             z
         </neumes>
         <!-- Notice here that a different type of klasma is placed on the ison for better alignment -->
         <neumes>
             ! 0 d
         </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
             q !
         </neumes>
         <neumes>
             1 a ' ! s p S / L 1 z Z
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             x
         </neumes>
         <neumes>
             / ! s -
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
         </neumes>
         <neumes>
             1 j
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             z
         </neumes>
         <neumes>
             ! 0 d
         </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
             q !
         </neumes>
         <!-- Notice that for this jump of three, the klasma goes between the oligon and kentima for proper alignment. -->
@@ -119,110 +141,110 @@
             1 a ~ 0 1 Z n
         </neumes>
         <!-- A flat. -->
-        <neumes font_family="Kassia Tsak Fthora" color="#cf232b">
-            _
-        </neumes>
-        <neumes>
-            ! ! Q S _ ` Z
-        </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
-            x
-        </neumes>
-        <neumes>
-            ! F
-        </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
-            e #
-        </neumes>
-        <neumes>
-            x n ! ! ! s ! l !
-        </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            / 1 -
-        </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
-            f
-        </neumes>
-        <neumes>
-            1 a
-        </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
-            y ^
-        </neumes>
-        <neumes>
-            4 q S ! ! 1 1 n -
-        </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            ! / L
-        </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            1 1 a Z
-        </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
-            x
-        </neumes>
-        <neumes>
-            ! Z / ! s -
-        </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            1 j
-        </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
-            z
-        </neumes>
-        <neumes>
-            ! 0 d
-        </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
-            q !
-        </neumes>
-        <neumes>
-            1 ~ 1 Z n
-        </neumes>
-        <neumes font_family="Kassia Tsak Fthora" color="#cf232b">
+        <neumes font_family="KA New Stathis Fthora" color="#cf232b">
             _
         </neumes>
         <neumes>
             ! ! Q S _ ` w ! F
         </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
             e #
         </neumes>
-        <!-- Notice the special klasma after the synechis elaphron for better alignment. -->
+        <neumes>
+            x n ! ! ! s ! l !
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            / 1 -
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            f
+        </neumes>
+        <neumes>
+            1 a
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            y ^
+        </neumes>
+        <neumes>
+            4 q S ! ! 1 1 n -
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            ! / L
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            1 1 a Z
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            x
+        </neumes>
+        <neumes>
+            ! Z Q ! !
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            x
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            μ
+        </neumes>
+        <neumes>
+            / 0 !
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            0 d
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            q !
+        </neumes>
+        <neumes>
+            1 ~ 1 Z n
+        </neumes>
+        <neumes font_family="KA New Stathis Fthora" color="#cf232b">
+            _
+        </neumes>
+        <neumes>
+            ! ! Q S _ ` w ! F
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            e #
+        </neumes>
+        <!-- Notice the special klasma after the syneches elaphron for better alignment. -->
         <neumes>
             0 ` 0 d Q S _ å 1 ` q M !
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
         </neumes>
         <neumes>
             / 0 d -
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
         </neumes>
         <neumes>
             1 j
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             z
         </neumes>
         <neumes>
             ! 0 f
         </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
             q !
         </neumes>
         <dropcap>
@@ -235,17 +257,19 @@
             heark- en un- to me _ _ O _ _ _ Lord
             Lord I have cried _ _ un- to _ Thee _
             heark- en _ un- to _ me _ _
-            at- tend to the voice _ _ _ of _ my sup- - pli- ca- - - - tion
+            at- tend to the voice _ _ _ of _ my sup- - pli- ca- - - - - - tion
             when I cry _ _ un- to _ Thee _
             Heark- - en un- to me _ _ _ O _ _ _ Lord
         </lyrics>
     </troparion>
 
-    <paragraph align="center" font_size="16" color="#0000e6">
+    <linebreak space="80" />
+
+    <paragraph style="h1">
         Let My Prayer
     </paragraph>
 
-    <paragraph align="right" color="#0000e6">
+    <paragraph style="h4">
         Κατευθυνθήτω
     </paragraph>
 
@@ -253,74 +277,80 @@
         <neumes>
             w ! 1 1 n -
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
         </neumes>
         <neumes>
             ! 0 d / L
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
         </neumes>
         <neumes>
             1 1 0 1 z a 1 j
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             z
         </neumes>
         <neumes>
-            ! s X / ! s -
+            ! s X Q ! !
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
         </neumes>
         <neumes>
-            1 j
+            x
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
-            z
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            μ
+        </neumes>
+        <neumes>
+            / 0 !
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
         </neumes>
         <!-- An example of barlines. -->
         <neumes>
-            ! \ 0 d
+            \ 0 d
         </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
             q !
         </neumes>
         <neumes>
             1 \  1 1 Z n ! ! Q S _ ` 1 a
         </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
             e #
         </neumes>
         <neumes>
             0 0 0 1 1 n a ! s ! s
         </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
             e #
         </neumes>
         <neumes>
             0 ` 0 d Q S _ å 1 ` q M !
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
         </neumes>
         <neumes>
             / 0 d -
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
         </neumes>
         <neumes>
             1 j
         </neumes>
-        <neumes font_family="Kassia Tsak Chronos" color="#cf232b">
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             z
         </neumes>
         <neumes>
             ! 0 f
         </neumes>
-        <neumes font_family="Kassia Tsak Martyria" color="#cf232b">
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
             q !
         </neumes>
         <dropcap>
@@ -328,7 +358,7 @@
         </dropcap>
         <!-- You can break the text into lines if it makes it easier to read. Kassia doesn't care. Here I start a new line whenever there's a martyria. -->
         <lyrics>
-            Let my pray'r _ _ _ be set _ forth as in- - - cense be- fore _ _ _ Thee
+            Let my pray'r _ _ _ be set _ forth as in- - - cense be- fore _ _ _ _ _ Thee
             the lift- ing up _ _ of my _ hands
             as an eve- ning sac- ri- fice
             heark- - en un- to me _ _ _ O _ _ _ Lord
