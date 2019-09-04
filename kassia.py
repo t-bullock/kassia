@@ -6,15 +6,13 @@ from dropcap import Dropcap
 from glyphs import Glyph
 from neume import Neume
 from lyric import Lyric
+from cursor import Cursor
 
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.lib.pagesizes import letter, A4, legal
 from reportlab.lib import colors
 from reportlab.platypus import Paragraph
-from reportlab.lib.styles import ParagraphStyle
-from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER
-
 from reportlab.lib.styles import *
 from reportlab.lib.enums import *
 from typing import Dict, Any
@@ -26,12 +24,6 @@ import re
 from copy import deepcopy
 
 import logging
-
-
-class Cursor:
-    def __init__(self, x=0, y=0):
-        self.x = x
-        self.y = y
 
 LN_RIGHT = 0
 LN_NEXT = 1
@@ -57,17 +49,15 @@ class Kassia:
 
     def set_defaults(self):
         # Set page defaults
-        self.defaultPageAttrib = {}
-        self.defaultPageAttrib['paper_size'] = letter
-        self.defaultPageAttrib['top_margin'] = 72
-        self.defaultPageAttrib['bottom_margin'] = 72
-        self.defaultPageAttrib['left_margin'] = 72
-        self.defaultPageAttrib['right_margin'] = 72
-        self.defaultPageAttrib['line_height'] = 72
-        self.defaultPageAttrib['line_width'] = self.defaultPageAttrib['paper_size'][0] - (self.defaultPageAttrib['left_margin'] +
-                                                                            self.defaultPageAttrib['right_margin'])
+        self.defaultPageAttrib = {'paper_size': letter,
+                                  'top_margin': 72,
+                                  'bottom_margin': 72,
+                                  'left_margin': 72,
+                                  'right_margin': 72,
+                                  'line_height': 72}
+        self.defaultPageAttrib['line_width'] = self.defaultPageAttrib['paper_size'][0] -\
+            (self.defaultPageAttrib['left_margin'] + self.defaultPageAttrib['right_margin'])
         self.defaultPageAttrib['char_spacing'] = 2
-
         font_reader.register_fonts()
         self.styleSheet: StyleSheet1 = getSampleStyleSheet()
 
@@ -175,10 +165,11 @@ class Kassia:
                         if self.is_at_top_of_page() is False:
                             self.draw_newline(self.defaultPageAttrib['line_height'])
 
-                    # TODO: Use this to draw strings between neumes?
-                    if troparion_child_elem.tag == 'string':
-                        current_string_attrib = self.get_string_attributes(troparion_child_elem, self.defaultStringAttrib)
-                        self.draw_string(current_string_attrib)
+                    # TODO: Use this to draw strings before, after, or between neumes
+                    # if troparion_child_elem.tag == 'string':
+                    #    current_string_attrib = self.get_string_attributes(troparion_child_elem,
+                    #                                                       self.defaultStringAttrib)
+                    #    self.draw_paragraph(current_string_attrib)
 
                     if troparion_child_elem.tag == 'neumes':
                         neumes_elem = troparion_child_elem
