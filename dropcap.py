@@ -1,4 +1,3 @@
-from reportlab.lib.colors import Color
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 

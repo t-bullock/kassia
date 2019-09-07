@@ -1,20 +1,23 @@
+from typing import List, Tuple
+
 from reportlab.pdfbase import pdfmetrics
 import neume_dict
 
 
 class Glyph:
-    def __init__(self, neume_chunk=None, neume_pos=[], lyrics_text=None, lyrics_font_family=None, lyrics_size=0,
-                 lyrics_color=None, lyrics_top_margin=0, lyrics_pos=[], fthora='', fthora_pos=[]):
+    def __init__(self, neume_chunk=None, neume_pos: Tuple[int, int] = None, lyrics_text=None, lyrics_font_family=None,
+                 lyrics_size=0, lyrics_color=None, lyrics_top_margin=0, lyrics_pos: Tuple[int, int] = None, fthora='',
+                 fthora_pos: Tuple = [int, int]):
         self.neumeChunk = neume_chunk
-        self.neumePos = neume_pos
+        # self.neumePos = neume_pos
         self.lyricsText = lyrics_text
-        #self.lyricsPos = lyrics_pos
+        # self.lyricsPos = lyrics_pos
         self.lyricsFontFamily = lyrics_font_family
         self.lyricsFontSize = lyrics_size
         self.lyricsFontColor = lyrics_color
         self.lyricsTopMargin = lyrics_top_margin
-        self.fthora = fthora
-        self.fthoraPos = fthora_pos
+        # self.fthora = fthora
+        # self.fthoraPos = fthora_pos
 
         self.nWidth = 0     # neume width
         self.lWidth = 0     # lyric width
@@ -51,7 +54,9 @@ class Glyph:
         self.width = max(self.nWidth, self.lWidth)
 
 
-class GlyphLine:
-    def __init__(self, glyphs, spacing):
-        self.glyphs = glyphs
-        self.spacing = spacing
+# class GlyphLine:
+#    def __init__(self, glyphs, spacing):
+#        self.glyphs = glyphs
+#        self.spacing = spacing
+
+GlyphLine = List[Glyph]

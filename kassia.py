@@ -1,35 +1,41 @@
 #!/usr/bin/python
-
-import neume_dict
-import font_reader
-from dropcap import Dropcap
-from glyphs import Glyph
-from neume import Neume
-from lyric import Lyric
-from cursor import Cursor
-
-from reportlab.pdfgen import canvas
-from reportlab.pdfbase import pdfmetrics
-from reportlab.lib.pagesizes import letter, A4, legal
-from reportlab.platypus import Paragraph
-from reportlab.lib.styles import *
-from reportlab.lib.enums import *
-from typing import Dict, Any
-
 import sys
-import xml.etree.ElementTree as ET
-from copy import deepcopy
-
 import logging
+from copy import deepcopy
+from typing import Any, Dict, Iterable, List
 
-LN_RIGHT = 0
-LN_NEXT = 1
-LN_BELOW = 2
+from reportlab.lib.enums import *
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import *
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfgen import canvas
+from reportlab.platypus import Paragraph
+from xml.etree.ElementTree import Element, ParseError, parse
+
+import font_reader
+import neume_dict
+from cursor import Cursor
+from dropcap import Dropcap
+from enums import *
+from glyphs import Glyph, GlyphLine
+from lyric import Lyric
+from neume import Neume
 
 
 class Kassia:
     """Base class for package"""
-    def __init__(self, input_filename, output_file="out.pdf"):
+    def __init__(self, input_filename, output_file="sample.pdf"):
+        self.bnml = None
+        self.canvas = None
+        self.defaultPageAttrib = {'paper_size': letter,
+                                  'top_margin': 72,
+                                  'bottom_margin': 72,
+                                  'left_margin': 72,
+                                  'right_margin': 72,
+                                  'line_height': 72,
+                                  'char_spacing': 3}
+        self.styleSheet = getSampleStyleSheet()
+        self.vert_pos = None
         self.input_filename = input_filename
         self.output_file = output_file
         try:
@@ -46,26 +52,16 @@ class Kassia:
 
     def set_defaults(self):
         # Set page defaults
-        self.defaultPageAttrib = {'paper_size': letter,
-                                  'top_margin': 72,
-                                  'bottom_margin': 72,
-                                  'left_margin': 72,
-                                  'right_margin': 72,
-                                  'line_height': 72}
         self.defaultPageAttrib['line_width'] = self.defaultPageAttrib['paper_size'][0] -\
             (self.defaultPageAttrib['left_margin'] + self.defaultPageAttrib['right_margin'])
-        self.defaultPageAttrib['char_spacing'] = 2
         font_reader.register_fonts()
-        self.styleSheet: StyleSheet1 = getSampleStyleSheet()
 
     def parse_file(self):
         try:
-            bnml_tree = ET.parse(self.input_filename)
-            bnml = bnml_tree.getroot()
-            self.bnml = bnml
-
-        except ET.ParseError:
-            logging.error("Failed to parse XML file.")
+            bnml_tree = parse(self.input_filename)
+            self.bnml = bnml_tree.getroot()
+        except ParseError as e:
+            logging.error("Failed to parse XML file: {}".format(e))
 
     def create_pdf(self):
         """Create PDF output file"""
@@ -79,7 +75,6 @@ class Kassia:
         # Parse page defaults
         defaults = self.bnml.find('defaults')
         if defaults is not None:
-
             page_layout = defaults.find('page-layout')
             if page_layout is not None:
                 paper_size = page_layout.find('paper-size')
@@ -266,19 +261,13 @@ class Kassia:
         except IOError:
             logging.error("Could not save XML file.")
 
-    def get_title_attributes(self, title_elem, default_title_attrib):
-        current_title_attrib = deepcopy(default_title_attrib)
-        settings_from_xml = self.fill_attribute_dict(title_elem.attrib)
-        current_title_attrib.update(settings_from_xml)
-        current_title_attrib['text'] = title_elem.text.strip()
-        return current_title_attrib
-
     @staticmethod
-    def get_embedded_paragraph_text(para_tag_attribs, default_style: ParagraphStyle) -> str:
-        """Merges Returns a text string with preformatted text.
+    def get_embedded_paragraph_text(para_tag_attribs: Element, default_style: ParagraphStyle) -> str:
+        """Merges Returns a text string with pre-formatted text.
+
         :param para_tag_attribs: The current paragraph tag style attributes.
         :param default_style: The default paragraph style.
-        :return: A string of preformatted text.
+        :return: A string of pre-formatted text.
         """
         embedded_args = ""
         for embedded_font_attrib in para_tag_attribs:
@@ -299,38 +288,7 @@ class Kassia:
 
         return para_tag_attribs.text.strip() + embedded_args
 
-    def get_paragraph_attributes(self, para_tag_attribs, default_attribs):
-        # Make a copy, because default_attribs is a pointer
-        current_string_attrib = deepcopy(default_attribs)
-        settings_from_xml = self.fill_attribute_dict(para_tag_attribs.attrib)
-        current_string_attrib.update(settings_from_xml)
-        # Translate text with neume_dict if specified (for EZ fonts)
-        # text = para_tag_attribs.text.strip()
-        # if 'translate' in current_string_attrib:
-        #    text = neume_dict.translate(text)
-
-        embedded_args = ""
-        for embedded_font_attrib in para_tag_attribs:
-            temp_font_family = current_string_attrib['font_family']
-            temp_font_size = current_string_attrib['font_size']
-            temp_font_color = current_string_attrib['color']
-            if embedded_font_attrib.attrib is not None:
-                if 'font_family' in embedded_font_attrib.attrib:
-                    temp_font_family = embedded_font_attrib.attrib['font_family']
-                if 'font_size' in embedded_font_attrib.attrib:
-                    temp_font_size = embedded_font_attrib.attrib['font_size']
-                if 'color' in embedded_font_attrib.attrib:
-                    temp_font_color = embedded_font_attrib.attrib['color']
-            embedded_args += '<font face="{0}" size="{1}" color="{2}">'.format(temp_font_family,
-                                                                               temp_font_size,
-                                                                               temp_font_color) +\
-                             embedded_font_attrib.text.strip() + '</font>' + embedded_font_attrib.tail
-
-        current_string_attrib['text'] = para_tag_attribs.text.strip() + embedded_args
-
-        return current_string_attrib
-
-    def draw_paragraph(self, bnml_elem, current_attribs: Dict[str, Any], ending_cursor_pos: int = LN_NEXT):
+    def draw_paragraph(self, bnml_elem, current_attribs: Dict[str, Any], ending_cursor_pos: int = Line.NEXT):
         """Draws a paragraph of text with the passed text attributes.
 
         :param bnml_elem: The bnml paragraph element.
@@ -351,7 +309,10 @@ class Kassia:
         paragraph_text = self.get_embedded_paragraph_text(bnml_elem, paragraph_style)
         paragraph = Paragraph(paragraph_text, paragraph_style)
 
-        paragraph_width, paragraph_height = paragraph.wrap(self.defaultPageAttrib['line_width'], self.defaultPageAttrib['paper_size'][1] + self.defaultPageAttrib['bottom_margin'])
+        avail_height = self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['bottom_margin']
+        __, paragraph_height = paragraph.wrap(
+            self.defaultPageAttrib['line_width'],
+            avail_height)
         if (self.vert_pos - paragraph_height) <= self.defaultPageAttrib['bottom_margin']:
             self.draw_newpage()
 
@@ -362,11 +323,11 @@ class Kassia:
         if 'ending_cursor_pos' in current_attribs:
             ending_cursor_pos = current_attribs['ending_cursor_pos']
 
-        if ending_cursor_pos == LN_RIGHT:
+        if ending_cursor_pos == Line.RIGHT:
             return
-        if ending_cursor_pos == LN_NEXT:
+        if ending_cursor_pos == Line.NEXT:
             self.vert_pos -= (paragraph_style.leading + paragraph_style.spaceAfter)
-        elif ending_cursor_pos == LN_BELOW:
+        elif ending_cursor_pos == Line.BELOW:
             self.vert_pos -= (paragraph_height + paragraph_style.leading + paragraph_style.spaceAfter)
 
     @staticmethod
@@ -439,13 +400,6 @@ class Kassia:
             default_style.spaceAfter = bnml_style['space_after']
         return default_style
 
-    def get_dropcap_attributes(self, dropcap_elem, default_dropcap_attrib):
-        current_dropcap_attrib = deepcopy(default_dropcap_attrib)
-        settings_from_xml = self.fill_attribute_dict(dropcap_elem.attrib)
-        current_dropcap_attrib.update(settings_from_xml)
-        current_dropcap_attrib['text'] = dropcap_elem.text.strip()
-        return current_dropcap_attrib
-
     def draw_dropcap(self, text: str, style_attrib: ParagraphStyle):
         """Draws a dropcap with passed text and style.
 
@@ -483,6 +437,11 @@ class Kassia:
             self.draw_newpage()
 
     def draw_header(self, text: str, style: ParagraphStyle, border: bool = False):
+        """Draws the header onto the canvas with the given text and style.
+        :param text: Text to draw in header.
+        :param style: Style to draw text in.
+        :param border: Whether to draw a border or not.
+        """
         if border:
             self.canvas.setStrokeColorRGB(0, 0, 0)
             self.canvas.setLineWidth(0.5)
@@ -538,7 +497,7 @@ class Kassia:
             self.canvas.drawCentredString(x_pos, y_pos, footer_text)
 
     # TODO: Only check for lyricTopMargin? Do we know the proposed lyricPos?
-    def is_space_for_another_line(self, cursor_y_pos, line_list=None):
+    def is_space_for_another_line(self, cursor_y_pos: int, line_list=None):
         if line_list is None:
             line_list = []
         max_height = 0
@@ -547,10 +506,17 @@ class Kassia:
                 max_height = ga.lyricsTopMargin
         return (cursor_y_pos - max_height) > self.defaultPageAttrib['bottom_margin']
 
-    def is_at_top_of_page(self):
+    def is_at_top_of_page(self) -> bool:
+        """Returns whether cursor is at top of page"""
         return self.vert_pos == self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['top_margin']
 
-    def make_glyph_array(self, neume_chunk_list, lyrics_list):
+    @staticmethod
+    def make_glyph_array(neume_chunk_list: List[Iterable], lyrics_list: List[Lyric]) -> GlyphLine:
+        """Takes a list of neumes and a list of lyrics and combines them into a single glyph list.
+        :param neume_chunk_list: A list of neume chunks.
+        :param lyrics_list: A list of lyrics.
+        :return glyph_array: A list of glyphs.
+        """
         i, l_ptr = 0, 0
         glyph_array = []
         while i < len(neume_chunk_list):
@@ -568,11 +534,11 @@ class Kassia:
                 if l_ptr < len(lyrics_list):
                     lyric = lyrics_list[l_ptr]
                     glyph = Glyph(neume_chunk=neume_chunk,
-                              lyrics_text=lyric.text,
-                              lyrics_font_family=lyric.font_family,
-                              lyrics_size=lyric.font_size,
-                              lyrics_color=lyric.color,
-                              lyrics_top_margin=lyric.top_margin)
+                                  lyrics_text=lyric.text,
+                                  lyrics_font_family=lyric.font_family,
+                                  lyrics_size=lyric.font_size,
+                                  lyrics_color=lyric.color,
+                                  lyrics_top_margin=lyric.top_margin)
                 else:
                     glyph = Glyph(neume_chunk)
                 l_ptr += 1
@@ -588,9 +554,16 @@ class Kassia:
             i += 1
         return glyph_array
 
-    def line_break(self, glyph_array, first_line_offset, line_width, char_spacing):
-        """Break neumes and lyrics into lines, currently greedy
-        Returns a list of lines"""
+    @staticmethod
+    def line_break(glyph_array: GlyphLine, first_line_offset: int, line_width: int, char_spacing: int)\
+            -> List[Iterable]:
+        """Break continuous list of glyphs into lines- currently greedy.
+        :param glyph_array: A list of glyphs.
+        :param first_line_offset: Where to start first line of neumes (usually due to dropcap).
+        :param line_width: Width of a line (usually page width minus margins).
+        :param char_spacing: Space between each neume group, from bnml.
+        :return g_line_list: A list of lines of Glyphs.
+        """
         cr = Cursor(first_line_offset, 0)
 
         g_line_list = []
@@ -624,8 +597,14 @@ class Kassia:
 
         return g_line_list
 
-    def line_justify(self, line_list, max_line_width, first_line_x_offset):
-        """Takes a list of lines and justifies each one"""
+    @staticmethod
+    def line_justify(line_list: List, max_line_width: int, first_line_x_offset: int) -> List:
+        """Justify a line of neumes by adjusting space between each neume group.
+        :param line_list: A list of neume groups.
+        :param max_line_width: Max width a line of neumes can take up.
+        :param first_line_x_offset: Offset of first line, usually from a dropcap.
+        :return line_list: The modified line_list with neume spacing adjusted.
+        """
         for line_index, line in enumerate(line_list):
             # Calc width of each chunk (and count how many chunks)
             total_chunk_width = 0
@@ -665,8 +644,13 @@ class Kassia:
         return line_list
 
     @staticmethod
-    def str_to_class(str_to_change):
-        return getattr(sys.modules[__name__], str_to_change)
+    def str_to_class(class_name_str):
+        class_obj = None
+        try:
+            class_obj = getattr(sys.modules[__name__], class_name_str)
+        except ValueError as e:
+            logging.warning("Could not convert class {}: {}".format(class_name_str, e))
+        return class_obj
 
     @staticmethod
     def str_to_align(align_str):
@@ -704,7 +688,8 @@ class Kassia:
                 attribute_dict['font_family'] = "Helvetica"
 
         """parse the font attributes"""
-        for font_attr in ['font_size', 'first_line_indent', 'left_indent', 'right_indent', 'leading', 'space_before', 'space_after', 'ending_cursor_pos']:
+        for font_attr in ['font_size', 'first_line_indent', 'left_indent', 'right_indent', 'leading', 'space_before',
+                          'space_after', 'ending_cursor_pos']:
             if font_attr in attribute_dict:
                 try:
                     attribute_dict[font_attr] = int(attribute_dict[font_attr])
