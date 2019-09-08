@@ -466,7 +466,13 @@ class Kassia:
             x_pos = (self.defaultPageAttrib['paper_size'][0]/2)
             self.canvas.drawCentredString(x_pos, y_pos, text)
 
-    def draw_footer(self, text, style: ParagraphStyle, page_number=True, border: bool = False):
+    def draw_footer(self, text, style: ParagraphStyle, page_number: bool = True, border: bool = False):
+        """Draws the header onto the canvas with the given text and style. Defaults to drawing page number.
+        :param text: Text to draw in header.
+        :param style: Style to draw text in.
+        :param page_number: Whether to draw page number.
+        :param border: Whether to draw a border or not.
+        """
         if border:
             self.canvas.setStrokeColorRGB(0, 0, 0)
             self.canvas.setLineWidth(0.5)
@@ -498,6 +504,7 @@ class Kassia:
 
     # TODO: Only check for lyricTopMargin? Do we know the proposed lyricPos?
     def is_space_for_another_line(self, cursor_y_pos: int, line_list=None):
+        """Returns whether there is space for a line of neumes and lyrics."""
         if line_list is None:
             line_list = []
         max_height = 0
