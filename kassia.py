@@ -5,7 +5,7 @@ from copy import deepcopy
 from typing import Any, Dict, Iterable, List
 
 from reportlab.lib.enums import *
-from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import *
 from reportlab.lib.styles import *
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfgen import canvas
@@ -20,6 +20,7 @@ from enums import *
 from glyphs import Glyph, GlyphLine
 from lyric import Lyric
 from neume import Neume
+from page import Page
 
 
 class Kassia:
@@ -27,13 +28,9 @@ class Kassia:
     def __init__(self, input_filename, output_file="sample.pdf"):
         self.bnml = None
         self.canvas = None
-        self.defaultPageAttrib = {'paper_size': letter,
-                                  'top_margin': 72,
-                                  'bottom_margin': 72,
-                                  'left_margin': 72,
-                                  'right_margin': 72,
-                                  'line_height': 72,
+        self.defaultPageAttrib = {'line_height': 72,
                                   'char_spacing': 3}
+        self.page = Page()
         self.styleSheet = getSampleStyleSheet()
         self.vert_pos = None
         self.input_filename = input_filename
@@ -52,8 +49,7 @@ class Kassia:
 
     def set_defaults(self):
         # Set page defaults
-        self.defaultPageAttrib['line_width'] = self.defaultPageAttrib['paper_size'][0] -\
-            (self.defaultPageAttrib['left_margin'] + self.defaultPageAttrib['right_margin'])
+        self.defaultPageAttrib['line_width'] = self.page.width
         font_reader.register_fonts()
 
     def parse_file(self):
@@ -79,11 +75,8 @@ class Kassia:
             if page_layout is not None:
                 paper_size = page_layout.find('paper-size')
                 if paper_size is not None:
-                    self.defaultPageAttrib['paper_size'] = self.str_to_class(paper_size.text)
-                    self.defaultPageAttrib['line_width'] = self.defaultPageAttrib['paper_size'][0] - (self.defaultPageAttrib['left_margin'] + self.defaultPageAttrib['right_margin'])
-                lyric_offset = page_layout.find('lyric-y-offset')
-                if lyric_offset is not None:
-                    self.defaultPageAttrib['lyric_y_offset'] = int(lyric_offset.text)
+                    self.page.size = self.str_to_class(paper_size.text)
+                    self.defaultPageAttrib['line_width'] = self.page.width
 
             score_styles = defaults.find('styles')
             for style in score_styles:
@@ -95,14 +88,14 @@ class Kassia:
                     new_paragraph_style = self.merge_paragraph_styles(
                         ParagraphStyle(style_name),
                         local_attrs_from_score)
-                    # Special case for paragraph, since this isn't included as a ReportLab by default
+                    # Special alias for paragraph, since this isn't included as a ReportLab by default
                     if style_name == 'paragraph':
                         self.styleSheet.add(new_paragraph_style, 'p')
                     else:
                         self.styleSheet.add(new_paragraph_style, style_name.lower())
 
-        self.canvas = canvas.Canvas(self.output_file, pagesize=self.defaultPageAttrib['paper_size'])
-        self.vert_pos = self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['top_margin']
+        self.canvas = canvas.Canvas(self.output_file, pagesize=self.page.size)
+        self.vert_pos = self.page.top
 
         # Set pdf title and author
         identification = self.bnml.find('identification')
@@ -123,10 +116,11 @@ class Kassia:
                 self.draw_newpage()
 
             if child_elem.tag == 'linebreak':
-                if self.is_at_top_of_page() is False:
+                # TODO: if not self.page.is_at_top_of_page(self.vert_pos):
+                if self.page.is_top_of_page(self.vert_pos) is False:
                     # Default to line_height if no space is specified
                     space_amount = self.defaultPageAttrib['line_height'] +\
-                                   self.defaultPageAttrib['lyric_y_offset'] +\
+                                   self.styleSheet['lyrics'].spaceBefore +\
                                    self.styleSheet['lyrics'].fontSize
 
                     if 'space' in child_elem.attrib:
@@ -154,7 +148,8 @@ class Kassia:
 
                     # TODO: Test this
                     if troparion_child_elem.tag == 'linebreak':
-                        if self.is_at_top_of_page() is False:
+                        # TODO: if not self.page.is_top_of_page(self.vert_pos):
+                        if self.page.is_top_of_page(self.vert_pos) is False:
                             self.draw_newline(self.defaultPageAttrib['line_height'])
 
                     # TODO: Use this to draw strings before, after, or between neumes
@@ -186,7 +181,7 @@ class Kassia:
                                           font_family=lyrics_style.fontName,
                                           font_size=lyrics_style.fontSize,
                                           color=lyrics_style.textColor,
-                                          top_margin=self.defaultPageAttrib['lyric_y_offset'])
+                                          top_margin=lyrics_style.spaceBefore)
                             lyrics_list.append(lyric)
 
                     if troparion_child_elem.tag == 'dropcap':
@@ -202,16 +197,17 @@ class Kassia:
                         dropcap = Dropcap(text=dropcap_text,
                                           style=dropcap_style)
 
-                if dropcap is not None:
-                    self.draw_dropcap(dropcap.text, dropcap.style)
-                    # Pop off first letter of lyrics, since it will be drawn as a dropcap
-                    if len(lyrics_list) > 0:
-                        lyrics_list[0].text = lyrics_list[0].text[1:]
-
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
                 g_array = self.make_glyph_array(neume_chunks, lyrics_list)
                 line_list = self.line_break(g_array, dropcap_offset, self.defaultPageAttrib['line_width'], self.defaultPageAttrib['char_spacing'])
                 line_list = self.line_justify(line_list, self.defaultPageAttrib['line_width'], dropcap_offset)
+
+                if dropcap is not None:
+                    # TODO: Replace hard-coded value with calculated glyph height
+                    self.draw_dropcap(dropcap.text, dropcap.style, self.defaultPageAttrib['line_height'] + self.styleSheet['lyrics'].spaceBefore)
+                    # Pop off first letter of lyrics, since it will be drawn as a dropcap
+                    if len(lyrics_list) > 0:
+                        lyrics_list[0].text = lyrics_list[0].text[1:]
 
                 line_counter = 0
                 for line_of_chunks in line_list:
@@ -224,7 +220,7 @@ class Kassia:
                     for ga in line_of_chunks:
                         self.canvas.setFillColor(self.styleSheet['neumes'].textColor)
                         ypos = self.vert_pos - (line_counter + 1) * self.defaultPageAttrib['line_height']
-                        xpos = self.defaultPageAttrib['left_margin'] + ga.neumePos
+                        xpos = self.page.left_margin + ga.neumePos
 
                         for i, neume in enumerate(ga.neumeChunk):
                             self.canvas.setFont(neume.font_family, neume.font_size)
@@ -239,9 +235,9 @@ class Kassia:
                         if ga.lyricsText:
                             self.canvas.setFillColor(self.styleSheet['lyrics'].textColor)
                             ypos -= ga.lyricsTopMargin
-                            xpos = self.defaultPageAttrib['left_margin'] + ga.lyricPos
+                            xpos = self.page.left_margin + ga.lyricPos
 
-                            # TODO: Put this elafron offset logic somewhere else
+                            # TODO: Put this elaphron offset logic somewhere else
                             for neumeWithLyricOffset in neume_dict.neumesWithLyricOffset:
                                 if neumeWithLyricOffset[0] == ga.neumeChunk[0].text:
                                     xpos += neumeWithLyricOffset[1]
@@ -309,15 +305,12 @@ class Kassia:
         paragraph_text = self.get_embedded_paragraph_text(bnml_elem, paragraph_style)
         paragraph = Paragraph(paragraph_text, paragraph_style)
 
-        avail_height = self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['bottom_margin']
-        __, paragraph_height = paragraph.wrap(
-            self.defaultPageAttrib['line_width'],
-            avail_height)
-        if (self.vert_pos - paragraph_height) <= self.defaultPageAttrib['bottom_margin']:
+        __, paragraph_height = paragraph.wrap(self.defaultPageAttrib['line_width'], self.page.height)
+        if (self.vert_pos - paragraph_height) <= self.page.bottom_margin:
             self.draw_newpage()
 
         # self.canvas.saveState()
-        paragraph.drawOn(self.canvas, self.defaultPageAttrib['left_margin'], self.vert_pos)
+        paragraph.drawOn(self.canvas, self.page.left_margin, self.vert_pos)
         # self.canvas.restoreState()
 
         if 'ending_cursor_pos' in current_attribs:
@@ -400,14 +393,14 @@ class Kassia:
             default_style.spaceAfter = bnml_style['space_after']
         return default_style
 
-    def draw_dropcap(self, text: str, style_attrib: ParagraphStyle):
+    def draw_dropcap(self, text: str, style_attrib: ParagraphStyle, glyph_height: int):
         """Draws a dropcap with passed text and style.
-
         :param text: The text to draw.
         :param style_attrib: The style to draw the text in.
+        :param glyph_height: The height of a glyph (neume chunk + lyrics)
         """
-        xpos = self.defaultPageAttrib['left_margin']
-        ypos = self.vert_pos - (self.defaultPageAttrib['line_height'] + self.defaultPageAttrib['lyric_y_offset'])
+        xpos = self.page.left_margin
+        ypos = self.vert_pos - glyph_height
 
         if not self.is_space_for_another_line(ypos):
             self.draw_newpage()
@@ -427,7 +420,7 @@ class Kassia:
 
     def draw_newpage(self):
         self.canvas.showPage()
-        self.vert_pos = self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['top_margin']
+        self.vert_pos = self.page.top
         self.draw_header("", style=self.styleSheet['header'])
         self.draw_footer("", style=self.styleSheet['footer'])
 
@@ -446,24 +439,25 @@ class Kassia:
             self.canvas.setStrokeColorRGB(0, 0, 0)
             self.canvas.setLineWidth(0.5)
             self.canvas.line(
-                self.defaultPageAttrib['left_margin'],
-                self.defaultPageAttrib['bottom_margin'],
-                self.defaultPageAttrib['left_margin'],
-                self.defaultPageAttrib['bottom_margin'])
+                self.page.left,
+                self.page.bottom,
+                self.page.right,
+                self.page.bottom)
 
         self.canvas.setFont(self.styleSheet['header'].fontName, self.styleSheet['header'].fontSize)
 
-        y_pos = self.defaultPageAttrib['top_margin'] / 2
+        # Vertically centered within top margin
+        y_pos = self.page.top_margin / 2
 
         # TODO: Support margins on string?
         if style.alignment == TA_LEFT:
-            x_pos = self.defaultPageAttrib['left_margin']
+            x_pos = self.page.left
             self.canvas.drawString(x_pos, y_pos, text)
         elif style.alignment == TA_RIGHT:
-            x_pos = self.defaultPageAttrib['paper_size'][0] - self.defaultPageAttrib['right_margin']
+            x_pos = self.page.right
             self.canvas.drawRightString(x_pos, y_pos, text)
         elif style.alignment == TA_CENTER:
-            x_pos = (self.defaultPageAttrib['paper_size'][0]/2)
+            x_pos = self.page.center
             self.canvas.drawCentredString(x_pos, y_pos, text)
 
     def draw_footer(self, text, style: ParagraphStyle, page_number: bool = True, border: bool = False):
@@ -477,10 +471,10 @@ class Kassia:
             self.canvas.setStrokeColorRGB(0, 0, 0)
             self.canvas.setLineWidth(0.5)
             self.canvas.line(
-                self.defaultPageAttrib['left_margin'],
-                self.defaultPageAttrib['bottom_margin'],
-                self.defaultPageAttrib['left_margin'],
-                self.defaultPageAttrib['bottom_margin'])
+                self.page.left,
+                self.page.bottom,
+                self.page.right,
+                self.page.bottom)
 
         self.canvas.setFont(style.fontName, style.fontSize)
 
@@ -493,13 +487,13 @@ class Kassia:
 
         # TODO: Support margins on string?
         if style.alignment == TA_LEFT:
-            x_pos = self.defaultPageAttrib['left_margin']
+            x_pos = self.page.left
             self.canvas.drawString(x_pos, y_pos, footer_text)
         elif style.alignment == TA_RIGHT:
-            x_pos = self.defaultPageAttrib['paper_size'][0] - self.defaultPageAttrib['right_margin']
+            x_pos = self.page.right
             self.canvas.drawRightString(x_pos, y_pos, footer_text)
         elif style.alignment == TA_CENTER:
-            x_pos = (self.defaultPageAttrib['paper_size'][0]/2)
+            x_pos = self.page.center
             self.canvas.drawCentredString(x_pos, y_pos, footer_text)
 
     # TODO: Only check for lyricTopMargin? Do we know the proposed lyricPos?
@@ -511,11 +505,7 @@ class Kassia:
         for ga in line_list:
             if ga.lyricsTopMargin > max_height:
                 max_height = ga.lyricsTopMargin
-        return (cursor_y_pos - max_height) > self.defaultPageAttrib['bottom_margin']
-
-    def is_at_top_of_page(self) -> bool:
-        """Returns whether cursor is at top of page"""
-        return self.vert_pos == self.defaultPageAttrib['paper_size'][1] - self.defaultPageAttrib['top_margin']
+        return not self.page.is_bottom_of_page(cursor_y_pos - max_height)
 
     @staticmethod
     def make_glyph_array(neume_chunk_list: List[Iterable], lyrics_list: List[Lyric]) -> GlyphLine:

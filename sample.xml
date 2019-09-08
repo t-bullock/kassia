@@ -7,9 +7,7 @@
     </identification>
     <defaults>
         <page-layout>
-            <!-- How far the lyrics are below a line of neumes. -->
-            <lyric-y-offset>25</lyric-y-offset>
-            <!-- Other page sizes are: legal and A4, but this has bugs. For now use letter size -->
+            <!-- See reportlab.lib.pagesizes for other page sizes. Right now some page sizes seem buggy. -->
             <paper-size>letter</paper-size>
         </page-layout>
         <!-- Default Styles -->
@@ -37,7 +35,7 @@
             <!--neumes-combo font_family="KA New Stathis Combo" font_size="30" color="#000000" /-->
 
             <!-- font_family can be any font name in your kassia/fonts folder, or any font you have installed on your OS -->
-            <lyrics font_family="Alegreya-Medium" font_size="14" color="#000000" />
+            <lyrics font_family="Alegreya-Medium" font_size="14" color="#000000" space_before="25" />
             <dropcap font_family="Alegreya-Bold" font_size="45" color="#cf232b" />
             <header font_family="Alegreya-Italic" font_size="12" color="#000000" align="center" />
             <footer font_family="Alegreya-Italic" font_size="12" color="#000000" align="center" />
