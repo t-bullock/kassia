@@ -1,4 +1,4 @@
-<bnml top_margin="50" bottom_margin="50" left_margin="60" right_margin="60" line_height="70" char_spacing="4">
+<bnml top_margin="50" bottom_margin="50" left_margin="60" right_margin="60" line_height="70">
     <identification>
         <!-- These show up in the properties of the pdf file. -->
         <work-title>Vespers as chanted off of the Holy Mountain</work-title>
@@ -27,7 +27,7 @@
             <paragraph font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="20" space_after="20" />
             <verse />
             <!-- Default neume font family, size, color, etc. For now you're stuck with KA New Stathis Main, but you can change the size and color. -->
-            <neumes font_family="KA New Stathis Main" font_size="30" color="#000000" align="justify" />
+            <neumes font_family="KA New Stathis Main" font_size="30" color="#000000" align="justify" word_spacing="4" />
             <!--neumes-chronos font_family="KA New Stathis Chronos" font_size="30" color="#cf232b" /-->
             <!--neumes-fthora font_family="KA New Stathis Fthora" font_size="30" color="#cf232b" /-->
             <!--neumes-martyria font_family="KA New Stathis Martyria" font_size="30" color="#cf232b" /-->

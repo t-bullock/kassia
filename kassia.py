@@ -28,8 +28,7 @@ class Kassia:
     def __init__(self, input_filename, output_file="sample.pdf"):
         self.bnml = None
         self.canvas = None
-        self.defaultPageAttrib = {'line_height': 72,
-                                  'char_spacing': 3}
+        self.defaultPageAttrib = {'line_height': 72}
         self.page = Page()
         self.styleSheet = getSampleStyleSheet()
         self.vert_pos = None
@@ -197,7 +196,7 @@ class Kassia:
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
                 g_array = self.make_glyph_array(neume_chunks, lyrics_list)
-                line_list = self.line_break(g_array, dropcap_offset, self.page.width, self.defaultPageAttrib['char_spacing'])
+                line_list = self.line_break(g_array, dropcap_offset, self.page.width, self.styleSheet['neumes'].wordSpace)
                 line_list = self.line_justify(line_list, self.page.width, dropcap_offset)
 
                 if dropcap is not None:
@@ -355,6 +354,8 @@ class Kassia:
             new_style.spaceBefore = bnml_style['space_before']
         if 'space_after' in bnml_style:
             new_style.spaceAfter = bnml_style['space_after']
+        if 'word_spacing' in bnml_style:
+            new_style.wordSpace = bnml_style['word_spacing']
         return new_style
 
     @staticmethod
@@ -389,6 +390,8 @@ class Kassia:
             default_style.spaceBefore = bnml_style['space_before']
         if 'space_after' in bnml_style:
             default_style.spaceAfter = bnml_style['space_after']
+        if 'word_spacing' in bnml_style:
+            default_style.wordSpace = bnml_style['word_spacing']
         return default_style
 
     def draw_dropcap(self, text: str, style_attrib: ParagraphStyle, glyph_height: int):
@@ -550,13 +553,13 @@ class Kassia:
         return glyph_array
 
     @staticmethod
-    def line_break(glyph_array: GlyphLine, first_line_offset: int, line_width: int, char_spacing: int)\
+    def line_break(glyph_array: GlyphLine, first_line_offset: int, line_width: int, glyph_spacing: int)\
             -> List[Iterable]:
         """Break continuous list of glyphs into lines- currently greedy.
         :param glyph_array: A list of glyphs.
         :param first_line_offset: Where to start first line of neumes (usually due to dropcap).
         :param line_width: Width of a line (usually page width minus margins).
-        :param char_spacing: Space between each neume group, from bnml.
+        :param glyph_spacing: Space between each glyph (neume group), from bnml.
         :return g_line_list: A list of lines of Glyphs.
         """
         cr = Cursor(first_line_offset, 0)
@@ -566,7 +569,7 @@ class Kassia:
 
         for g in glyph_array:
             new_line = False
-            if (cr.x + g.width + char_spacing) >= line_width:
+            if (cr.x + g.width + glyph_spacing) >= line_width:
                 cr.x = 0
                 new_line = True
 
@@ -580,7 +583,7 @@ class Kassia:
 
             g.neumePos = cr.x + adj_neume_pos
             g.lyricPos = cr.x + adj_lyric_pos
-            cr.x += g.width + char_spacing
+            cr.x += g.width + glyph_spacing
 
             if new_line:
                 g_line_list.append(g_line)
@@ -684,7 +687,7 @@ class Kassia:
 
         """parse the font attributes"""
         for font_attr in ['font_size', 'first_line_indent', 'left_indent', 'right_indent', 'leading', 'space_before',
-                          'space_after', 'ending_cursor_pos']:
+                          'space_after', 'ending_cursor_pos', 'word_spacing']:
             if font_attr in attribute_dict:
                 try:
                     attribute_dict[font_attr] = int(attribute_dict[font_attr])
