@@ -49,7 +49,6 @@ class Kassia:
 
     def set_defaults(self):
         # Set page defaults
-        self.defaultPageAttrib['line_width'] = self.page.width
         font_reader.register_fonts()
 
     def parse_file(self):
@@ -76,7 +75,6 @@ class Kassia:
                 paper_size = page_layout.find('paper-size')
                 if paper_size is not None:
                     self.page.size = self.str_to_class(paper_size.text)
-                    self.defaultPageAttrib['line_width'] = self.page.width
 
             score_styles = defaults.find('styles')
             for style in score_styles:
@@ -199,8 +197,8 @@ class Kassia:
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
                 g_array = self.make_glyph_array(neume_chunks, lyrics_list)
-                line_list = self.line_break(g_array, dropcap_offset, self.defaultPageAttrib['line_width'], self.defaultPageAttrib['char_spacing'])
-                line_list = self.line_justify(line_list, self.defaultPageAttrib['line_width'], dropcap_offset)
+                line_list = self.line_break(g_array, dropcap_offset, self.page.width, self.defaultPageAttrib['char_spacing'])
+                line_list = self.line_justify(line_list, self.page.width, dropcap_offset)
 
                 if dropcap is not None:
                     # TODO: Replace hard-coded value with calculated glyph height
@@ -305,7 +303,7 @@ class Kassia:
         paragraph_text = self.get_embedded_paragraph_text(bnml_elem, paragraph_style)
         paragraph = Paragraph(paragraph_text, paragraph_style)
 
-        __, paragraph_height = paragraph.wrap(self.defaultPageAttrib['line_width'], self.page.height)
+        __, paragraph_height = paragraph.wrap(self.page.width, self.page.height)
         if (self.vert_pos - paragraph_height) <= self.page.bottom_margin:
             self.draw_newpage()
 
