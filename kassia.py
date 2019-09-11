@@ -28,7 +28,6 @@ class Kassia:
     def __init__(self, input_filename, output_file="sample.pdf"):
         self.bnml = None
         self.canvas = None
-        self.defaultPageAttrib = {'line_height': 72}
         self.page = Page()
         self.styleSheet = getSampleStyleSheet()
         self.vert_pos = None
@@ -42,13 +41,10 @@ class Kassia:
             logging.error("XML file not readable.")
 
         if file_readable:
-            self.set_defaults()
+            font_reader.register_fonts()
             self.parse_file()
             self.create_pdf()
 
-    def set_defaults(self):
-        # Set page defaults
-        font_reader.register_fonts()
 
     def parse_file(self):
         try:
@@ -60,12 +56,6 @@ class Kassia:
     def create_pdf(self):
         """Create PDF output file"""
 
-        # Parse page layout and formatting
-        if self.bnml is not None:
-            margin_attrib = self.bnml.attrib
-            temp_dict = self.fill_page_dict(margin_attrib)
-            self.defaultPageAttrib.update(temp_dict)
-
         # Parse page defaults
         defaults = self.bnml.find('defaults')
         if defaults is not None:
@@ -74,6 +64,10 @@ class Kassia:
                 paper_size = page_layout.find('paper-size')
                 if paper_size is not None:
                     self.page.size = self.str_to_class(paper_size.text)
+                page_margins = page_layout.find('page-margins')
+                if page_margins is not None:
+                    margin_dict = self.fill_page_dict(page_margins.attrib)
+                    self.page.set_margins(margin_dict)
 
             score_styles = defaults.find('styles')
             for style in score_styles:
@@ -116,7 +110,7 @@ class Kassia:
                 # TODO: if not self.page.is_at_top_of_page(self.vert_pos):
                 if self.page.is_top_of_page(self.vert_pos) is False:
                     # Default to line_height if no space is specified
-                    space_amount = self.defaultPageAttrib['line_height'] +\
+                    space_amount = self.styleSheet['neumes'].leading +\
                                    self.styleSheet['lyrics'].spaceBefore +\
                                    self.styleSheet['lyrics'].fontSize
 
@@ -136,6 +130,7 @@ class Kassia:
             if child_elem.tag == 'troparion':
                 neumes_list = []
                 lyrics_list = []
+                neume_line_height = self.styleSheet['neumes'].leading
                 dropcap = None
                 dropcap_offset = 0
 
@@ -145,9 +140,8 @@ class Kassia:
 
                     # TODO: Test this
                     if troparion_child_elem.tag == 'linebreak':
-                        # TODO: if not self.page.is_top_of_page(self.vert_pos):
-                        if self.page.is_top_of_page(self.vert_pos) is False:
-                            self.draw_newline(self.defaultPageAttrib['line_height'])
+                        if not self.page.is_top_of_page(self.vert_pos):
+                            self.draw_newline(neume_line_height)
 
                     # TODO: Use this to draw strings before, after, or between neumes
                     # if troparion_child_elem.tag == 'string':
@@ -201,7 +195,7 @@ class Kassia:
 
                 if dropcap is not None:
                     # TODO: Replace hard-coded value with calculated glyph height
-                    self.draw_dropcap(dropcap.text, dropcap.style, self.defaultPageAttrib['line_height'] + self.styleSheet['lyrics'].spaceBefore)
+                    self.draw_dropcap(dropcap.text, dropcap.style, neume_line_height + self.styleSheet['lyrics'].spaceBefore)
                     # Pop off first letter of lyrics, since it will be drawn as a dropcap
                     if len(lyrics_list) > 0:
                         lyrics_list[0].text = lyrics_list[0].text[1:]
@@ -209,14 +203,14 @@ class Kassia:
                 line_counter = 0
                 for line_of_chunks in line_list:
                     # Make sure not at end of page
-                    calculated_ypos = self.vert_pos - (line_counter + 1) * self.defaultPageAttrib['line_height']
+                    calculated_ypos = self.vert_pos - (line_counter + 1) * neume_line_height
                     if not self.is_space_for_another_line(calculated_ypos, line_of_chunks):
                         self.draw_newpage()
                         line_counter = 0
 
                     for ga in line_of_chunks:
                         self.canvas.setFillColor(self.styleSheet['neumes'].textColor)
-                        ypos = self.vert_pos - (line_counter + 1) * self.defaultPageAttrib['line_height']
+                        ypos = self.vert_pos - (line_counter + 1) * neume_line_height
                         xpos = self.page.left_margin + ga.neumePos
 
                         for i, neume in enumerate(ga.neumeChunk):
@@ -245,7 +239,7 @@ class Kassia:
                             #    ga.lyrics += "_"
                             self.canvas.drawString(xpos, ypos, ga.lyricsText)
 
-                    self.vert_pos -= (line_counter + 1) * self.defaultPageAttrib['line_height']# - current_lyric_attrib['top_margin']
+                    self.vert_pos -= (line_counter + 1) * neume_line_height # - current_lyric_attrib['top_margin']
 
                 line_counter += 1
 
@@ -405,7 +399,7 @@ class Kassia:
 
         if not self.is_space_for_another_line(ypos):
             self.draw_newpage()
-            ypos = self.vert_pos - self.defaultPageAttrib['line_height']
+            ypos = self.vert_pos - self.styleSheet['neumes'].leading
 
         self.canvas.setFillColor(style_attrib.textColor)
         self.canvas.setFont(style_attrib.fontName, style_attrib.fontSize)
@@ -484,7 +478,7 @@ class Kassia:
         else:
             footer_text = text
 
-        y_pos = self.defaultPageAttrib['bottom_margin'] / 2
+        y_pos = self.page.bottom_margin / 2
 
         # TODO: Support margins on string?
         if style.alignment == TA_LEFT:

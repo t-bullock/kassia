@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Dict, Tuple
 
 from reportlab.lib.pagesizes import LETTER
 
@@ -76,3 +76,16 @@ class Page:
         :return: Whether passed y position is at top of page.
         """
         return cur_pos_y <= self.bottom
+    def set_margins(self, margins: Dict[str, int] = None):
+        """Sets the page margins.
+        :param margins: A dictionary of page margins.
+        """
+        if not margins:
+            margins = {self.top_margin: 72,
+                       self.bottom_margin: 72,
+                       self.left_margin: 72,
+                       self.right_margin: 72}
+        self.top_margin = margins['top_margin']
+        self.bottom_margin = margins['bottom_margin']
+        self.left_margin = margins['left_margin']
+        self.right_margin = margins['right_margin']
