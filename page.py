@@ -1,6 +1,8 @@
+import sys
 from typing import Dict, Tuple
 
-from reportlab.lib.pagesizes import LETTER
+# Import all pagesizes, so that set_size() can find all of them
+from reportlab.lib.pagesizes import *
 
 
 class Page:
@@ -76,6 +78,29 @@ class Page:
         :return: Whether passed y position is at top of page.
         """
         return cur_pos_y <= self.bottom
+
+    @staticmethod
+    def get_size(name: str) -> Tuple:
+        """Finds and returns a ReportLab page size by name.
+        :param name: The name of the page size.
+        :return: ReportLab page size.
+        """
+        page_size = None
+        try:
+            page_size = getattr(sys.modules[__name__], name)
+        except AttributeError as e:
+            pass
+        return page_size
+
+    def set_size(self, name: str):
+        """Sets a ReportLab page size with the passed name.
+        :param name: The name of the page size.
+        """
+        try:
+            self.size = getattr(sys.modules[__name__], name)
+        except AttributeError as e:
+            pass
+
     def set_margins(self, margins: Dict[str, int] = None):
         """Sets the page margins.
         :param margins: A dictionary of page margins.

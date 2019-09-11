@@ -5,7 +5,6 @@ from copy import deepcopy
 from typing import Any, Dict, Iterable, List
 
 from reportlab.lib.enums import *
-from reportlab.lib.pagesizes import *
 from reportlab.lib.styles import *
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfgen import canvas
@@ -63,7 +62,7 @@ class Kassia:
             if page_layout is not None:
                 paper_size = page_layout.find('paper-size')
                 if paper_size is not None:
-                    self.page.size = self.str_to_class(paper_size.text)
+                    self.page.set_size(paper_size.text)
                 page_margins = page_layout.find('page-margins')
                 if page_margins is not None:
                     margin_dict = self.fill_page_dict(page_margins.attrib)
@@ -634,15 +633,6 @@ class Kassia:
             first_line_x_offset = 0
 
         return line_list
-
-    @staticmethod
-    def str_to_class(class_name_str):
-        class_obj = None
-        try:
-            class_obj = getattr(sys.modules[__name__], class_name_str)
-        except ValueError as e:
-            logging.warning("Could not convert class {}: {}".format(class_name_str, e))
-        return class_obj
 
     @staticmethod
     def str_to_align(align_str):
