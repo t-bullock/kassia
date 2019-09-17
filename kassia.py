@@ -105,7 +105,7 @@ class Kassia:
                     self.page.set_margins(margin_dict)
 
             score_styles = defaults.find('styles')
-            for style in score_styles:
+            for style in score_styles or []:
                 style_name = style.tag
                 local_attrs_from_score = self.fill_attribute_dict(style.attrib)
                 if style_name in self.styleSheet:
@@ -320,9 +320,9 @@ class Kassia:
                              right), LN_NEXT (to the beginning of the next line),
                              and LN_BELOW (below the current paragraph).
         """
-        if len(current_attribs) is 0:
-        elif current_attribs['style'] is not None:
+        if not current_attribs:
             paragraph_style = self.styleSheet['Paragraph']
+        elif 'style' in current_attribs:
             paragraph_style = self.styleSheet[current_attribs['style']]
         else:
             paragraph_style = ParagraphStyle('defaults')
@@ -359,7 +359,7 @@ class Kassia:
         :return new_style: A new ParagraphStyle of default_style with attributes updated by bnml_style
         """
         new_style = deepcopy(default_style)
-        if 'font_family' in bnml_style:
+        if 'font_family' in bnml_style and font_reader.is_registered_font(bnml_style['font_family']):
             new_style.fontName = bnml_style['font_family']
         if 'font_size' in bnml_style:
             new_style.fontSize = bnml_style['font_size']
@@ -395,7 +395,7 @@ class Kassia:
         :param bnml_style: A dictionary of styles read a Kassia bnml file. The bnml_style needs to have ben already run
                            through fill_dict_attributes().
         """
-        if 'font_family' in bnml_style:
+        if 'font_family' in bnml_style and font_reader.is_registered_font(bnml_style['font_family']):
             default_style.fontName = bnml_style['font_family']
         if 'font_size' in bnml_style:
             default_style.fontSize = bnml_style['font_size']
