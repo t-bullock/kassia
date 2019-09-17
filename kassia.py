@@ -29,6 +29,7 @@ class Kassia:
         self.canvas = None
         self.page = Page()
         self.styleSheet = getSampleStyleSheet()
+        self.init_styles()
         self.vert_pos = None
         self.input_filename = input_filename
         self.output_file = output_file
@@ -44,7 +45,6 @@ class Kassia:
             self.parse_file()
             self.create_pdf()
 
-
     def parse_file(self):
         try:
             bnml_tree = parse(self.input_filename)
@@ -52,8 +52,44 @@ class Kassia:
         except ParseError as e:
             logging.error("Failed to parse XML file: {}".format(e))
 
+    def init_styles(self):
+        """Add specific Kassia styles to stylesheet.
+        """
+        self.styleSheet.add(ParagraphStyle(name='Neumes',
+                                           fontName="KA New Stathis Main",
+                                           fontSize=30,
+                                           leading=70,
+                                           wordSpace=4),
+                            "neum")
+        self.styleSheet.add(ParagraphStyle(name='Lyrics',
+                                           fontName="Alegreya-Medium",
+                                           fontSize=14,
+                                           leading=12,
+                                           spaceBefore=25),
+                            "lyr")
+        self.styleSheet.add(ParagraphStyle(name='Paragraph',
+                                           fontName="Alegreya-Medium",
+                                           fontSize=14,
+                                           leading=12),
+                            "p")
+        self.styleSheet.add(ParagraphStyle(name='DropCap',
+                                           fontName="Alegreya-Bold",
+                                           fontSize=30,
+                                           leading=12),
+                            "dc")
+        self.styleSheet.add(ParagraphStyle(name='Header',
+                                           fontName="Alegreya-Italic",
+                                           fontSize=12,
+                                           leading=12),
+                            "header")
+        self.styleSheet.add(ParagraphStyle(name='Footer',
+                                           fontName="Alegreya-Italic",
+                                           fontSize=12,
+                                           leading=12),
+                            "footer")
+
     def create_pdf(self):
-        """Create PDF output file"""
+        """Create a PDF output file."""
 
         # Parse page defaults
         defaults = self.bnml.find('defaults')
@@ -79,7 +115,7 @@ class Kassia:
                         ParagraphStyle(style_name),
                         local_attrs_from_score)
                     # Special alias for paragraph, since this isn't included as a ReportLab by default
-                    if style_name == 'paragraph':
+                    if style_name == 'Paragraph':
                         self.styleSheet.add(new_paragraph_style, 'p')
                     else:
                         self.styleSheet.add(new_paragraph_style, style_name.lower())
@@ -109,9 +145,9 @@ class Kassia:
                 # TODO: if not self.page.is_at_top_of_page(self.vert_pos):
                 if self.page.is_top_of_page(self.vert_pos) is False:
                     # Default to line_height if no space is specified
-                    space_amount = self.styleSheet['neumes'].leading +\
-                                   self.styleSheet['lyrics'].spaceBefore +\
-                                   self.styleSheet['lyrics'].fontSize
+                    space_amount = self.styleSheet['Neumes'].leading +\
+                                   self.styleSheet['Lyrics'].spaceBefore +\
+                                   self.styleSheet['Lyrics'].fontSize
 
                     if 'space' in child_elem.attrib:
                         try:
@@ -129,7 +165,7 @@ class Kassia:
             if child_elem.tag == 'troparion':
                 neumes_list = []
                 lyrics_list = []
-                neume_line_height = self.styleSheet['neumes'].leading
+                neume_line_height = self.styleSheet['Neumes'].leading
                 dropcap = None
                 dropcap_offset = 0
 
@@ -151,7 +187,7 @@ class Kassia:
                     if troparion_child_elem.tag == 'neumes':
                         neumes_elem = troparion_child_elem
                         attribs_from_bnml = self.fill_attribute_dict(neumes_elem.attrib)
-                        neumes_style = self.merge_paragraph_styles(self.styleSheet['neumes'], attribs_from_bnml)
+                        neumes_style = self.merge_paragraph_styles(self.styleSheet['Neumes'], attribs_from_bnml)
 
                         for neume_text in neumes_elem.text.strip().split():
                             neume = Neume(text=neume_text,
@@ -162,7 +198,7 @@ class Kassia:
 
                     if troparion_child_elem.tag == 'lyrics':
                         lyrics_elem = troparion_child_elem
-                        lyrics_style = self.styleSheet['lyrics']
+                        lyrics_style = self.styleSheet['Lyrics']
                         attribs_from_bnml = self.fill_attribute_dict(lyrics_elem.attrib)
                         lyrics_style = self.merge_paragraph_styles(lyrics_style, attribs_from_bnml)
 
@@ -176,7 +212,7 @@ class Kassia:
 
                     if troparion_child_elem.tag == 'dropcap':
                         dropcap_elem = troparion_child_elem
-                        dropcap_style = self.styleSheet['dropcap']
+                        dropcap_style = self.styleSheet['DropCap']
                         attribs_from_bnml = self.fill_attribute_dict(dropcap_elem.attrib)
                         dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
                         dropcap_text = dropcap_elem.text.strip()
@@ -189,12 +225,12 @@ class Kassia:
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
                 g_array = self.make_glyph_array(neume_chunks, lyrics_list)
-                line_list = self.line_break(g_array, dropcap_offset, self.page.width, self.styleSheet['neumes'].wordSpace)
+                line_list = self.line_break(g_array, dropcap_offset, self.page.width, self.styleSheet['Neumes'].wordSpace)
                 line_list = self.line_justify(line_list, self.page.width, dropcap_offset)
 
                 if dropcap is not None:
                     # TODO: Replace hard-coded value with calculated glyph height
-                    self.draw_dropcap(dropcap.text, dropcap.style, neume_line_height + self.styleSheet['lyrics'].spaceBefore)
+                    self.draw_dropcap(dropcap.text, dropcap.style, neume_line_height + self.styleSheet['Lyrics'].spaceBefore)
                     # Pop off first letter of lyrics, since it will be drawn as a dropcap
                     if len(lyrics_list) > 0:
                         lyrics_list[0].text = lyrics_list[0].text[1:]
@@ -208,7 +244,7 @@ class Kassia:
                         line_counter = 0
 
                     for ga in line_of_chunks:
-                        self.canvas.setFillColor(self.styleSheet['neumes'].textColor)
+                        self.canvas.setFillColor(self.styleSheet['Neumes'].textColor)
                         ypos = self.vert_pos - (line_counter + 1) * neume_line_height
                         xpos = self.page.left_margin + ga.neumePos
 
@@ -223,7 +259,7 @@ class Kassia:
                             self.canvas.drawString(xpos, ypos, neume.text)
 
                         if ga.lyricsText:
-                            self.canvas.setFillColor(self.styleSheet['lyrics'].textColor)
+                            self.canvas.setFillColor(self.styleSheet['Lyrics'].textColor)
                             ypos -= ga.lyricsTopMargin
                             xpos = self.page.left_margin + ga.lyricPos
 
@@ -285,8 +321,8 @@ class Kassia:
                              and LN_BELOW (below the current paragraph).
         """
         if len(current_attribs) is 0:
-            paragraph_style = self.styleSheet['paragraph']
         elif current_attribs['style'] is not None:
+            paragraph_style = self.styleSheet['Paragraph']
             paragraph_style = self.styleSheet[current_attribs['style']]
         else:
             paragraph_style = ParagraphStyle('defaults')
@@ -398,7 +434,7 @@ class Kassia:
 
         if not self.is_space_for_another_line(ypos):
             self.draw_newpage()
-            ypos = self.vert_pos - self.styleSheet['neumes'].leading
+            ypos = self.vert_pos - self.styleSheet['Neumes'].leading
 
         self.canvas.setFillColor(style_attrib.textColor)
         self.canvas.setFont(style_attrib.fontName, style_attrib.fontSize)
