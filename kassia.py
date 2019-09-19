@@ -224,8 +224,8 @@ class Kassia:
                                           style=dropcap_style)
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
-                g_array = self.make_glyph_array(neume_chunks, lyrics_list)
-                line_list = self.line_break(g_array, dropcap_offset, self.page.width, self.styleSheet['Neumes'].wordSpace)
+                glyph_line: GlyphLine = self.make_glyph_list(neume_chunks, lyrics_list)
+                line_list = self.line_break(glyph_line, dropcap_offset, self.page.width, self.styleSheet['Neumes'].wordSpace)
                 line_list = self.line_justify(line_list, self.page.width, dropcap_offset)
 
                 if dropcap is not None:
@@ -542,14 +542,14 @@ class Kassia:
         return not self.page.is_bottom_of_page(cursor_y_pos - max_height)
 
     @staticmethod
-    def make_glyph_array(neume_chunk_list: List[Iterable], lyrics_list: List[Lyric]) -> GlyphLine:
+    def make_glyph_list(neume_chunk_list: List[Iterable], lyrics_list: List[Lyric]) -> GlyphLine:
         """Takes a list of neumes and a list of lyrics and combines them into a single glyph list.
         :param neume_chunk_list: A list of neume chunks.
         :param lyrics_list: A list of lyrics.
-        :return glyph_array: A list of glyphs.
+        :return glyph_list: A list of glyphs.
         """
         i, l_ptr = 0, 0
-        glyph_array = []
+        glyph_list: GlyphLine = []
         while i < len(neume_chunk_list):
             # Grab next chunk
             neume_chunk = neume_chunk_list[i]
@@ -581,9 +581,9 @@ class Kassia:
                 glyph = Glyph(neume_chunk)
 
             glyph.calc_chunk_width()
-            glyph_array.append(glyph)
+            glyph_list.append(glyph)
             i += 1
-        return glyph_array
+        return glyph_list
 
     @staticmethod
     def line_break(glyph_array: GlyphLine, first_line_offset: int, line_width: int, glyph_spacing: int)\
