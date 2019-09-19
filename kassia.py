@@ -248,31 +248,8 @@ class Kassia:
                         ypos = self.vert_pos - (line_counter + 1) * neume_line_height
                         xpos = self.page.left_margin + ga.neumePos
 
-                        for i, neume in enumerate(ga.neumeChunk):
-                            self.canvas.setFont(neume.font_family, neume.font_size)
-                            self.canvas.setFillColor(neume.color)
-                            # Move over width of last neume before writing next neume in chunk
-                            # TODO: Change font kerning and remove this logic?
-                            if i > 0:
-                                xpos += ga.neumeChunk[i-1].width
-
-                            self.canvas.drawString(xpos, ypos, neume.text)
-
-                        if ga.lyricsText:
-                            self.canvas.setFillColor(self.styleSheet['Lyrics'].textColor)
-                            ypos -= ga.lyricsTopMargin
-                            xpos = self.page.left_margin + ga.lyricPos
-
-                            # TODO: Put this elaphron offset logic somewhere else
-                            for neumeWithLyricOffset in neume_dict.neumesWithLyricOffset:
-                                if neumeWithLyricOffset[0] == ga.neumeChunk[0].text:
-                                    xpos += neumeWithLyricOffset[1]
-
-                            self.canvas.setFont(ga.lyricsFontFamily, ga.lyricsFontSize)
-                            self.canvas.setFillColor(ga.lyricsFontColor)
-                            #if (ga.lyrics[-1] == "_"):
-                            #    ga.lyrics += "_"
-                            self.canvas.drawString(xpos, ypos, ga.lyricsText)
+                        self.draw_neumes(ga, xpos, ypos)
+                        self.draw_lyrics(ga, self.page.left, ypos)
 
                     self.vert_pos -= (line_counter + 1) * neume_line_height # - current_lyric_attrib['top_margin']
 
@@ -349,6 +326,33 @@ class Kassia:
         elif ending_cursor_pos == Line.BELOW:
             self.vert_pos -= (paragraph_height + paragraph_style.leading + paragraph_style.spaceAfter)
 
+    def draw_neumes(self, glyph: Glyph, pos_x: int, pos_y: int):
+        for i, neume in enumerate(glyph.neumeChunk):
+            self.canvas.setFont(neume.font_family, neume.font_size)
+            self.canvas.setFillColor(neume.color)
+            # Move over width of last neume before writing next neume in chunk
+            # TODO: Change font kerning and remove this logic?
+            if i > 0:
+                pos_x += glyph.neumeChunk[i - 1].width
+
+            self.canvas.drawString(pos_x, pos_y, neume.text)
+
+    def draw_lyrics(self, glyph: Glyph, pos_x: int, pos_y: int):
+        if glyph.lyricsText:
+            pos_x += glyph.lyricPos
+            pos_y -= glyph.lyricsTopMargin
+
+            # TODO: Put this elaphron offset logic somewhere else
+            for neumeWithLyricOffset in neume_dict.neumesWithLyricOffset:
+                if neumeWithLyricOffset[0] == glyph.neumeChunk[0].text:
+                    pos_x += neumeWithLyricOffset[1]
+
+            self.canvas.setFont(glyph.lyricsFontFamily, glyph.lyricsFontSize)
+            self.canvas.setFillColor(glyph.lyricsFontColor)
+            #if (glyph.lyrics[-1] == "_"):
+            #    glyph.lyrics += "_"
+            self.canvas.drawString(pos_x, pos_y, glyph.lyricsText)
+    
     @staticmethod
     def merge_paragraph_styles(default_style: ParagraphStyle, bnml_style: Dict[str, Any]) -> ParagraphStyle:
         """Merges ReportLab ParagraphStyle attributes with Kassia bnml attributes and returns the new style
