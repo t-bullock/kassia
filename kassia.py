@@ -72,7 +72,7 @@ class Kassia:
                                            fontSize=14,
                                            leading=12),
                             "p")
-        self.styleSheet.add(ParagraphStyle(name='DropCap',
+        self.styleSheet.add(ParagraphStyle(name='Dropcap',
                                            fontName="Alegreya-Bold",
                                            fontSize=30,
                                            leading=12),
@@ -106,7 +106,7 @@ class Kassia:
 
             score_styles = defaults.find('styles')
             for style in score_styles or []:
-                style_name = style.tag
+                style_name = style.tag.capitalize()
                 local_attrs_from_score = self.fill_attribute_dict(style.attrib)
                 if style_name in self.styleSheet:
                     self.update_paragraph_style(self.styleSheet[style_name], local_attrs_from_score)
@@ -212,9 +212,10 @@ class Kassia:
 
                     if troparion_child_elem.tag == 'dropcap':
                         dropcap_elem = troparion_child_elem
-                        dropcap_style = self.styleSheet['DropCap']
-                        attribs_from_bnml = self.fill_attribute_dict(dropcap_elem.attrib)
-                        dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
+                        dropcap_style = self.styleSheet['Dropcap']
+                        if dropcap_elem.attrib:
+                            attribs_from_bnml = self.fill_attribute_dict(dropcap_elem.attrib)
+                            dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
                         dropcap_text = dropcap_elem.text.strip()
 
                         dropcap_offset = 5 + pdfmetrics.stringWidth(dropcap_text,
@@ -223,17 +224,15 @@ class Kassia:
                         dropcap = Dropcap(text=dropcap_text,
                                           style=dropcap_style)
 
+                self.draw_dropcap(dropcap, neume_line_height + self.styleSheet['Lyrics'].spaceBefore)
+                # Pop off first letter of lyrics, since it will be drawn as a dropcap
+                if len(lyrics_list) > 0:
+                    lyrics_list[0].text = lyrics_list[0].text[1:]
+
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
                 glyph_line: GlyphLine = self.make_glyph_list(neume_chunks, lyrics_list)
                 line_list = self.line_break(glyph_line, dropcap_offset, self.page.width, self.styleSheet['Neumes'].wordSpace)
                 line_list = self.line_justify(line_list, self.page.width, dropcap_offset)
-
-                if dropcap is not None:
-                    # TODO: Replace hard-coded value with calculated glyph height
-                    self.draw_dropcap(dropcap.text, dropcap.style, neume_line_height + self.styleSheet['Lyrics'].spaceBefore)
-                    # Pop off first letter of lyrics, since it will be drawn as a dropcap
-                    if len(lyrics_list) > 0:
-                        lyrics_list[0].text = lyrics_list[0].text[1:]
 
                 line_counter = 0
                 for line_of_chunks in line_list:
@@ -427,22 +426,25 @@ class Kassia:
             default_style.wordSpace = bnml_style['word_spacing']
         return default_style
 
-    def draw_dropcap(self, text: str, style_attrib: ParagraphStyle, glyph_height: int):
+    def draw_dropcap(self, dropcap: Dropcap, glyph_height: int):
         """Draws a dropcap with passed text and style.
-        :param text: The text to draw.
-        :param style_attrib: The style to draw the text in.
+        :param dropcap: A Dropcap object to draw.
         :param glyph_height: The height of a glyph (neume chunk + lyrics)
         """
-        xpos = self.page.left_margin
-        ypos = self.vert_pos - glyph_height
+        if not dropcap:
+            return
 
-        if not self.is_space_for_another_line(ypos):
+        pos_x = self.page.left_margin
+        pos_y = self.vert_pos - glyph_height
+        style = dropcap.style
+
+        if not self.is_space_for_another_line(pos_y):
             self.draw_newpage()
-            ypos = self.vert_pos - self.styleSheet['Neumes'].leading
+            pos_y = self.vert_pos - self.styleSheet['Neumes'].leading
 
-        self.canvas.setFillColor(style_attrib.textColor)
-        self.canvas.setFont(style_attrib.fontName, style_attrib.fontSize)
-        self.canvas.drawString(xpos, ypos, text)
+        self.canvas.setFillColor(style.textColor)
+        self.canvas.setFont(style.fontName, style.fontSize)
+        self.canvas.drawString(pos_x, pos_y, dropcap.text)
 
     def get_lyric_attributes(self, lyric_elem, default_lyric_attrib):
         current_lyric_attrib = deepcopy(default_lyric_attrib)
