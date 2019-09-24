@@ -114,11 +114,14 @@ class Kassia:
                     new_paragraph_style = self.merge_paragraph_styles(
                         ParagraphStyle(style_name),
                         local_attrs_from_score)
-                    # Special alias for paragraph, since this isn't included as a ReportLab by default
+                    # Special alias for paragraph, since 'Paragraph' isn't included in ReportLab's stylesheet by default
                     if style_name == 'Paragraph':
                         self.styleSheet.add(new_paragraph_style, 'p')
                     else:
-                        self.styleSheet.add(new_paragraph_style, style_name.lower())
+                        try:
+                            self.styleSheet.add(new_paragraph_style, style_name.lower())
+                        except KeyError as e:
+                            logging.warning("Couldn't add style to stylesheet: {}".format(e))
 
         self.canvas = canvas.Canvas(self.output_file, pagesize=self.page.size)
         self.vert_pos = self.page.top

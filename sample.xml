@@ -17,13 +17,13 @@
             <title font_family="Alegreya SC-Bold" font_size="30" color="#0000e6" align="center" space_after="16" />
             <subtitle />
             <!-- Used in this score for hymn title -->
-            <h1 font_family="Alegreya-Medium" font_size="16" color="#0000e6" align="center" />
+            <heading1 font_family="Alegreya-Medium" font_size="16" color="#0000e6" align="center" />
             <!-- Used in this score for mode/martyria signature -->
-            <h2 font_family="Alegreya-Medium" font_size="14" color="#cf232b" align="center" />
+            <heading2 font_family="Alegreya-Medium" font_size="14" color="#cf232b" align="center" />
             <!-- Used in this score for tempo -->
-            <h3 font_family="Alegreya-Medium" font_size="14" color="#cf232b" align="right" />
+            <heading3 font_family="Alegreya-Medium" font_size="14" color="#cf232b" align="right" />
             <!-- Used in this score for Greek hymn name -->
-            <h4 font_family="Alegreya-Medium" font_size="14" color="#0000e6" align="right" />
+            <heading4 font_family="Alegreya-Medium" font_size="14" color="#0000e6" align="right" />
             <!-- See ReportLab documentation for more paragraph style options. -->
             <paragraph font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="20" space_after="20" />
             <verse />
