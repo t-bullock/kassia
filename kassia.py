@@ -226,7 +226,7 @@ class Kassia:
 
                 self.draw_dropcap(dropcap, neume_line_height + self.styleSheet['Lyrics'].spaceBefore)
                 # Pop off first letter of lyrics, since it will be drawn as a dropcap
-                if len(lyrics_list) > 0:
+                if dropcap and len(lyrics_list) > 0:
                     lyrics_list[0].text = lyrics_list[0].text[1:]
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
