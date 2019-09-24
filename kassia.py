@@ -291,15 +291,15 @@ class Kassia:
 
         :param bnml_elem: The bnml paragraph element.
         :param current_attribs: A dictionary of style attributes from a Kassia bnml file.
-        :param ending_cursor_pos: indicates where the cursor should be after
+        :param ending_cursor_pos: Indicates where the cursor should be after
                              drawing the paragraph. Values are LN_RIGHT (to the
                              right), LN_NEXT (to the beginning of the next line),
                              and LN_BELOW (below the current paragraph).
         """
-        if not current_attribs:
-            paragraph_style = self.styleSheet['Paragraph']
-        elif 'style' in current_attribs:
+        if 'style' in current_attribs and current_attribs['style'] in self.styleSheet:
             paragraph_style = self.styleSheet[current_attribs['style']]
+        elif 'Paragraph' in self.styleSheet:
+            paragraph_style = self.styleSheet['Paragraph']
         else:
             paragraph_style = ParagraphStyle('defaults')
 
