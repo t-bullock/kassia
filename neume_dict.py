@@ -1,55 +1,59 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from typing import Iterable, List
 
 from reportlab.pdfbase import pdfmetrics
 
+from neume import Neume
+from neume_chunk import NeumeChunk
 
-def takes_lyric(neume):
+
+def takes_lyric(neume: Neume):
     if neume.font_family.endswith("Main"):
-        return neume.text in neumesWithLyrics
+        return neume.char in neumesWithLyrics
     if neume.font_family.endswith("Combo"):
-        return neume.text in neumesWithLyricsCombo
+        return neume.char in neumesWithLyricsCombo
     else:
         return False
 
 
-def stand_alone(neume):
+def stand_alone(neume: Neume):
     if neume.font_family.endswith("Main"):
-        return neume.text in standAloneNeumes
+        return neume.char in standAloneNeumes
     if neume.font_family.endswith("Combo"):
-        return neume.text in standAloneNeumesCombo
+        return neume.char in standAloneNeumesCombo
     if neume.font_family.endswith("Martyria"):
-        return neume.text in standAloneNeumesMartyria
+        return neume.char in standAloneNeumesMartyria
     else:
         return False
 
 
-def chunk_neumes(neume_list):
-    """Breaks neumeArray into logical chunks based on whether a linebreak
-    can occur between them"""
-    chunks_list = []
+def chunk_neumes(neume_list: List[Neume]) -> List[NeumeChunk]:
+    """Break a list of neumes into logical chunks based on whether a linebreak can occur between them
+    :param neume_list: Iterable of type Neume
+    """
+    chunks_list: List[NeumeChunk] = []
     i = 0
     while i < len(neume_list):
-        chunk = []
         # Grab next neume
-        chunk.append(neume_list[i])
-        # Special case for Vareia, since it's non-breaking but
-        # comes before the next neume, unlike a fthora.
-        # So attach the next neume and increment the counter
-        if neume_list[i].text in nonPreBreakingNeumes and (i+1) < len(neume_list):
+        chunk = NeumeChunk(neume_list[i])
+
+        # Special case for Vareia, since it's non-breaking but comes before the next neume, unlike a fthora.
+        # So attach the next neume and increment the counter.
+        if neume_list[i].char in nonPreBreakingNeumes and (i+1) < len(neume_list):
             chunk.append(neume_list[i+1])
             i += 1
-        # Add more neumes to chunk like fthora, ison, etc
+
+        # Add more neumes to chunk like fthora, ison, etc.
         j = 1
         if (i+1) < len(neume_list):
             while not stand_alone(neume_list[i + j]):
                 chunk.append(neume_list[i+j])
                 j += 1
                 if i+j >= len(neume_list):
-                    #print "At the end!"
                     break
         i += j
-        chunks_list.append(list(chunk))
+        chunks_list.append(chunk)
         # Check if we're at the end of the array
         if i >= len(neume_list):
             break

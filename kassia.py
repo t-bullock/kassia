@@ -2,37 +2,40 @@
 import sys
 import logging
 from copy import deepcopy
-from typing import Any, Dict, Iterable, List
+from typing import Any, Dict, List
 
 from reportlab.lib.enums import *
 from reportlab.lib.styles import *
 from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfgen import canvas
-from reportlab.platypus import Paragraph
+from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer
 from xml.etree.ElementTree import Element, ParseError, parse
 
 import font_reader
 import neume_dict
 from cursor import Cursor
-from dropcap import Dropcap
+from drop_cap import Dropcap
 from enums import *
 from glyphs import Glyph, GlyphLine
 from lyric import Lyric
 from neume import Neume
+from neume_chunk import NeumeChunk
 from page import Page
 
 
 class Kassia:
     """Base class for package"""
+
     def __init__(self, input_filename, output_file="sample.pdf"):
         self.bnml = None
+        self.doc = None  # SimpleDocTemplate()
         self.canvas = None
         self.page = Page()
+        # self.story = [Spacer(1, 2 * inch)]
+        self.story = []
         self.styleSheet = getSampleStyleSheet()
         self.init_styles()
         self.vert_pos = None
         self.input_filename = input_filename
-        self.output_file = output_file
         try:
             open(input_filename, "r")
             file_readable = True
@@ -43,6 +46,7 @@ class Kassia:
         if file_readable:
             font_reader.register_fonts()
             self.parse_file()
+            self.build_document(output_file)
             self.create_pdf()
 
     def parse_file(self):
@@ -88,19 +92,30 @@ class Kassia:
                                            leading=12),
                             "footer")
 
-    def create_pdf(self):
-        """Create a PDF output file."""
+    def build_document(self, output_filename: str):
+        """Builds a pdf document file.
+        """
+        identification = self.bnml.find('identification')
+        if identification:
+            title = identification.find('work-title')
+            if title:
+                self.page.title = title.text
+            author = identification.find('author')
+            if author:
+                self.page.author = author.text
+            subject = identification.find('subject')
+            if subject:
+                self.page.subject = subject.text
 
-        # Parse page defaults
         defaults = self.bnml.find('defaults')
-        if defaults is not None:
+        if defaults:
             page_layout = defaults.find('page-layout')
-            if page_layout is not None:
+            if page_layout:
                 paper_size = page_layout.find('paper-size')
-                if paper_size is not None:
+                if paper_size:
                     self.page.set_size(paper_size.text)
                 page_margins = page_layout.find('page-margins')
-                if page_margins is not None:
+                if page_margins:
                     margin_dict = self.fill_page_dict(page_margins.attrib)
                     self.page.set_margins(margin_dict)
 
@@ -114,52 +129,40 @@ class Kassia:
                     new_paragraph_style = self.merge_paragraph_styles(
                         ParagraphStyle(style_name),
                         local_attrs_from_score)
-                    # Special alias for paragraph, since 'Paragraph' isn't included in ReportLab's stylesheet by default
-                    if style_name == 'Paragraph':
-                        self.styleSheet.add(new_paragraph_style, 'p')
-                    else:
-                        try:
-                            self.styleSheet.add(new_paragraph_style, style_name.lower())
-                        except KeyError as e:
-                            logging.warning("Couldn't add style to stylesheet: {}".format(e))
+                    try:
+                        self.styleSheet.add(new_paragraph_style, style_name.lower())
+                    except KeyError as e:
+                        logging.warning("Couldn't add style to stylesheet: {}".format(e))
 
-        self.canvas = canvas.Canvas(self.output_file, pagesize=self.page.size)
         self.vert_pos = self.page.top
 
-        # Set pdf title and author
-        identification = self.bnml.find('identification')
-        if identification is not None:
-            title = identification.find('work-title')
-            if title is not None:
-                self.canvas.setTitle(title.text)
-            author = identification.find('author')
-            if author is not None:
-                self.canvas.setAuthor(author.text)
-            subject = identification.find('subject')
-            if subject is not None:
-                self.canvas.setSubject(subject.text)
+        self.doc = SimpleDocTemplate(
+            filename=output_filename,
+            pagesize=self.page.size,
+            leftMargin=self.page.left_margin,
+            rightMargin=self.page.right_margin,
+            topMargin=self.page.top_margin,
+            bottomMargin=self.page.bottom_margin,
+            title=self.page.title,
+            author=self.page.author,
+            subject=self.page.subject
+        )
 
+    def create_pdf(self):
+        """Create a PDF output file."""
         # Read main xml content
         for child_elem in self.bnml:
             if child_elem.tag == 'pagebreak':
                 self.draw_newpage()
 
             if child_elem.tag == 'linebreak':
-                # TODO: if not self.page.is_at_top_of_page(self.vert_pos):
-                if self.page.is_top_of_page(self.vert_pos) is False:
-                    # Default to line_height if no space is specified
-                    space_amount = self.styleSheet['Neumes'].leading +\
-                                   self.styleSheet['Lyrics'].spaceBefore +\
-                                   self.styleSheet['Lyrics'].fontSize
-
-                    if 'space' in child_elem.attrib:
-                        try:
-                            space_amount = int(child_elem.attrib['space'])
-                        except ValueError as e:
-                            logging.warning("{} warning: {}".format('space', e))
-                            # Get rid of xml margin attribute, will use default later
-
-                    self.draw_newline(space_amount)
+                space_amount = 30
+                if 'space' in child_elem.attrib:
+                    try:
+                        space_amount = int(child_elem.attrib['space'])
+                    except ValueError as e:
+                        logging.error("Linebreak space error: {}".format(e))
+                self.story.append(Spacer(0, space_amount))
 
             if child_elem.tag == 'paragraph':
                 paragraph_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
@@ -174,12 +177,13 @@ class Kassia:
 
                 for troparion_child_elem in child_elem:
                     if troparion_child_elem.tag == 'pagebreak':
-                        self.draw_newpage()
+                        self.story.append((PageBreak()))
 
                     # TODO: Test this
                     if troparion_child_elem.tag == 'linebreak':
-                        if not self.page.is_top_of_page(self.vert_pos):
-                            self.draw_newline(neume_line_height)
+                        self.story.append(Spacer(0, 30))
+                        #if not self.page.is_top_of_page(self.vert_pos):
+                        #    self.draw_newline(neume_line_height)
 
                     # TODO: Use this to draw strings before, after, or between neumes
                     # if troparion_child_elem.tag == 'string':
@@ -192,8 +196,8 @@ class Kassia:
                         attribs_from_bnml = self.fill_attribute_dict(neumes_elem.attrib)
                         neumes_style = self.merge_paragraph_styles(self.styleSheet['Neumes'], attribs_from_bnml)
 
-                        for neume_text in neumes_elem.text.strip().split():
-                            neume = Neume(text=neume_text,
+                        for neume_char in neumes_elem.text.strip().split():
+                            neume = Neume(char=neume_char,
                                           font_family=neumes_style.fontName,
                                           font_size=neumes_style.fontSize,
                                           color=neumes_style.textColor)
@@ -224,41 +228,45 @@ class Kassia:
                         dropcap_offset = 5 + pdfmetrics.stringWidth(dropcap_text,
                                                                     dropcap_style.fontName,
                                                                     dropcap_style.fontSize)
-                        dropcap = Dropcap(text=dropcap_text,
-                                          style=dropcap_style)
+                        dropcap = Dropcap(dropcap_text, dropcap_offset, dropcap_style)
 
-                self.draw_dropcap(dropcap, neume_line_height + self.styleSheet['Lyrics'].spaceBefore)
+                #self.draw_dropcap(dropcap, neume_line_height + self.styleSheet['Lyrics'].spaceBefore)
+                self.story.append(dropcap)
                 # Pop off first letter of lyrics, since it will be drawn as a dropcap
                 if dropcap and len(lyrics_list) > 0:
                     lyrics_list[0].text = lyrics_list[0].text[1:]
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
                 glyph_line: GlyphLine = self.make_glyph_list(neume_chunks, lyrics_list)
-                line_list = self.line_break(glyph_line, dropcap_offset, self.page.width, self.styleSheet['Neumes'].wordSpace)
-                line_list = self.line_justify(line_list, self.page.width, dropcap_offset)
+                lines_list = self.line_break(glyph_line,
+                                             Cursor(dropcap_offset, 0),
+                                             self.page.width,
+                                             self.styleSheet['Neumes'].wordSpace)
+                lines_list = self.line_justify(lines_list, self.page.width, dropcap_offset)
 
                 line_counter = 0
-                for line_of_chunks in line_list:
+                for glyph_line in lines_list:
                     # Make sure not at end of page
                     calculated_ypos = self.vert_pos - (line_counter + 1) * neume_line_height
-                    if not self.is_space_for_another_line(calculated_ypos, line_of_chunks):
-                        self.draw_newpage()
+                    if not self.is_space_for_another_line(calculated_ypos, glyph_line):
+                        self.story.append(PageBreak())
                         line_counter = 0
 
-                    for ga in line_of_chunks:
-                        self.canvas.setFillColor(self.styleSheet['Neumes'].textColor)
+                    for glyph in glyph_line:
                         ypos = self.vert_pos - (line_counter + 1) * neume_line_height
-                        xpos = self.page.left_margin + ga.neumePos
+                        xpos = self.page.left_margin + glyph.neume_chunk_pos[0]
 
-                        self.draw_neumes(ga, xpos, ypos)
-                        self.draw_lyrics(ga, self.page.left, ypos)
+                        #self.draw_neumes(glyph, xpos, ypos)
+                        #self.draw_lyrics(glyph, self.page.left, ypos)
+                        #glyph.lyric_pos[1] -= ypos
+                        self.story.append(glyph)
 
                     self.vert_pos -= (line_counter + 1) * neume_line_height # - current_lyric_attrib['top_margin']
 
                 line_counter += 1
 
         try:
-            self.canvas.save()
+            self.doc.build(self.story)
         except IOError:
             logging.error("Could not save XML file.")
 
@@ -289,7 +297,33 @@ class Kassia:
 
         return para_tag_attribs.text.strip() + embedded_args
 
-    def draw_paragraph(self, bnml_elem, current_attribs: Dict[str, Any], ending_cursor_pos: int = Line.NEXT):
+    '''def _draw_paragraph(self, text: str, current_attribs: Dict[str, Any], ending_cursor_pos: int = Line.RIGHT):
+        """Recursive method to call self if text has embedded styles, else draw text in the passed style."""
+        embedded_args = ""
+        for embedded_font_attrib in text:
+            if embedded_font_attrib.attrib:
+                bnml_style = self.fill_attribute_dict(embedded_font_attrib.attrib)
+                new_style = self.merge_paragraph_styles(default_style, bnml_style)
+                self._draw_paragraph()
+
+            temp_font_family = default_style.fontName
+            temp_font_size = default_style.fontSize
+            temp_font_color = default_style.textColor
+            if embedded_font_attrib.attrib is not None:
+                if 'font_family' in embedded_font_attrib.attrib:
+                    temp_font_family = embedded_font_attrib.attrib['font_family']
+                if 'font_size' in embedded_font_attrib.attrib:
+                    temp_font_size = embedded_font_attrib.attrib['font_size']
+                if 'color' in embedded_font_attrib.attrib:
+                    temp_font_color = embedded_font_attrib.attrib['color']
+            embedded_args += '<font face="{0}" size="{1}" color="{2}">'.format(temp_font_family,
+                                                                               temp_font_size,
+                                                                               temp_font_color) + \
+                             embedded_font_attrib.text.strip() + '</font>' + embedded_font_attrib.tail
+
+        return para_tag_attribs.text.strip() + embedded_args'''
+
+    def draw_paragraph(self, bnml_elem: Element, current_attribs: Dict[str, Any], ending_cursor_pos: int = Line.NEXT):
         """Draws a paragraph of text with the passed text attributes.
 
         :param bnml_elem: The bnml paragraph element.
@@ -300,15 +334,15 @@ class Kassia:
                              and LN_BELOW (below the current paragraph).
         """
         if 'style' in current_attribs and current_attribs['style'] in self.styleSheet:
-            paragraph_style = self.styleSheet[current_attribs['style']]
-        elif 'Paragraph' in self.styleSheet:
-            paragraph_style = self.styleSheet['Paragraph']
+            default_paragraph_style = self.styleSheet[current_attribs['style']]
         else:
-            paragraph_style = ParagraphStyle('defaults')
+            default_paragraph_style = self.styleSheet['Paragraph']
 
-        paragraph_style = self.merge_paragraph_styles(paragraph_style, current_attribs)
+        paragraph_style = self.merge_paragraph_styles(default_paragraph_style, current_attribs)
         paragraph_text = self.get_embedded_paragraph_text(bnml_elem, paragraph_style)
-        paragraph = Paragraph(paragraph_text, paragraph_style)
+        self.story.append(Paragraph(paragraph_text, paragraph_style))
+
+        '''paragraph = Paragraph(paragraph_text, paragraph_style)
 
         __, paragraph_height = paragraph.wrap(self.page.width, self.page.height)
         if (self.vert_pos - paragraph_height) <= self.page.bottom_margin:
@@ -324,9 +358,9 @@ class Kassia:
         if ending_cursor_pos == Line.RIGHT:
             return
         if ending_cursor_pos == Line.NEXT:
-            self.vert_pos -= (paragraph_style.leading + paragraph_style.spaceAfter)
+            self.vert_pos -= (paragraph_height + paragraph_style.spaceAfter)
         elif ending_cursor_pos == Line.BELOW:
-            self.vert_pos -= (paragraph_height + paragraph_style.leading + paragraph_style.spaceAfter)
+            self.vert_pos -= (paragraph_height + paragraph_style.leading + paragraph_style.spaceAfter)'''
 
     def draw_neumes(self, glyph: Glyph, pos_x: int, pos_y: int):
         for i, neume in enumerate(glyph.neumeChunk):
@@ -340,21 +374,21 @@ class Kassia:
             self.canvas.drawString(pos_x, pos_y, neume.text)
 
     def draw_lyrics(self, glyph: Glyph, pos_x: int, pos_y: int):
-        if glyph.lyricsText:
-            pos_x += glyph.lyricPos
-            pos_y -= glyph.lyricsTopMargin
+        if glyph.lyric.text:
+            pos_x += glyph.lyric_pos[0]
+            pos_y -= glyph.lyric.top_margin
 
             # TODO: Put this elaphron offset logic somewhere else
             for neumeWithLyricOffset in neume_dict.neumesWithLyricOffset:
                 if neumeWithLyricOffset[0] == glyph.neumeChunk[0].text:
                     pos_x += neumeWithLyricOffset[1]
 
-            self.canvas.setFont(glyph.lyricsFontFamily, glyph.lyricsFontSize)
-            self.canvas.setFillColor(glyph.lyricsFontColor)
-            #if (glyph.lyrics[-1] == "_"):
+            self.canvas.setFont(glyph.lyric.font_family, glyph.lyric.font_size)
+            self.canvas.setFillColor(glyph.lyric.color)
+            # if (glyph.lyrics[-1] == "_"):
             #    glyph.lyrics += "_"
-            self.canvas.drawString(pos_x, pos_y, glyph.lyricsText)
-    
+            self.canvas.drawString(pos_x, pos_y, glyph.lyric.text)
+
     @staticmethod
     def merge_paragraph_styles(default_style: ParagraphStyle, bnml_style: Dict[str, Any]) -> ParagraphStyle:
         """Merges ReportLab ParagraphStyle attributes with Kassia bnml attributes and returns the new style
@@ -429,7 +463,7 @@ class Kassia:
             default_style.wordSpace = bnml_style['word_spacing']
         return default_style
 
-    def draw_dropcap(self, dropcap: Dropcap, glyph_height: int):
+    '''def draw_dropcap(self, dropcap: Dropcap, glyph_height: int):
         """Draws a dropcap with passed text and style.
         :param dropcap: A Dropcap object to draw.
         :param glyph_height: The height of a glyph (neume chunk + lyrics)
@@ -447,7 +481,7 @@ class Kassia:
 
         self.canvas.setFillColor(style.textColor)
         self.canvas.setFont(style.fontName, style.fontSize)
-        self.canvas.drawString(pos_x, pos_y, dropcap.text)
+        self.canvas.drawString(pos_x, pos_y, dropcap.text)'''
 
     def get_lyric_attributes(self, lyric_elem, default_lyric_attrib):
         current_lyric_attrib = deepcopy(default_lyric_attrib)
@@ -458,15 +492,17 @@ class Kassia:
         return current_lyric_attrib
 
     def draw_newpage(self):
-        self.canvas.showPage()
+        self.story.append(PageBreak())
         self.vert_pos = self.page.top
-        self.draw_header("", style=self.styleSheet['header'])
-        self.draw_footer("", style=self.styleSheet['footer'])
+        #self.draw_header("", style=self.styleSheet['header'])
+        #self.draw_footer("", style=self.styleSheet['footer'])
 
-    def draw_newline(self, line_height, top_margin=0):
-        self.vert_pos -= (line_height + top_margin)
+    def draw_newline(self, space):
+        self.vert_pos -= space
         if not self.is_space_for_another_line(self.vert_pos):
             self.draw_newpage()
+        else:
+            self.story.append(Spacer(0, space))
 
     def draw_header(self, text: str, style: ParagraphStyle, border: bool = False):
         """Draws the header onto the canvas with the given text and style.
@@ -535,19 +571,20 @@ class Kassia:
             x_pos = self.page.center
             self.canvas.drawCentredString(x_pos, y_pos, footer_text)
 
-    # TODO: Only check for lyricTopMargin? Do we know the proposed lyricPos?
-    def is_space_for_another_line(self, cursor_y_pos: int, line_list=None):
+    # TODO: Only check for lyricTopMargin? Do we know the proposed lyric_pos?
+    def is_space_for_another_line(self, cursor_y_pos: int, glyph_list: List[Glyph] = None):
         """Returns whether there is space for a line of neumes and lyrics."""
-        if line_list is None:
-            line_list = []
+        if glyph_list is None:
+            glyph_list = []
         max_height = 0
-        for ga in line_list:
-            if ga.lyricsTopMargin > max_height:
-                max_height = ga.lyricsTopMargin
+        for glyph in glyph_list:
+            lyric_height = getattr(glyph.lyric, 'top_margin', 0)
+            if lyric_height > max_height:
+                max_height = lyric_height > max_height
         return not self.page.is_bottom_of_page(cursor_y_pos - max_height)
 
     @staticmethod
-    def make_glyph_list(neume_chunk_list: List[Iterable], lyrics_list: List[Lyric]) -> GlyphLine:
+    def make_glyph_list(neume_chunk_list: List[NeumeChunk], lyrics_list: List[Lyric]) -> GlyphLine:
         """Takes a list of neumes and a list of lyrics and combines them into a single glyph list.
         :param neume_chunk_list: A list of neume chunks.
         :param lyrics_list: A list of lyrics.
@@ -560,83 +597,81 @@ class Kassia:
             neume_chunk = neume_chunk_list[i]
 
             # If any neumes within chunk take lyrics
-            neume_takes_lyric = False
+            neume_takes_lyric: bool = False
             for neume in neume_chunk:
                 if neume_dict.takes_lyric(neume):
                     neume_takes_lyric = True
 
             if neume_takes_lyric:
-                # Chunk needs a lyric
                 if l_ptr < len(lyrics_list):
                     lyric = lyrics_list[l_ptr]
                     glyph = Glyph(neume_chunk=neume_chunk,
-                                  lyrics_text=lyric.text,
-                                  lyrics_font_family=lyric.font_family,
-                                  lyrics_size=lyric.font_size,
-                                  lyrics_color=lyric.color,
-                                  lyrics_top_margin=lyric.top_margin)
+                                  lyric=lyric)
                 else:
                     glyph = Glyph(neume_chunk)
                 l_ptr += 1
 
-                # Todo: see if lyric ends with '_' and if lyrics are
-                # wider than the neume, then combine with next chunk
+                # Todo: See if lyric ends with '_' and if lyrics are wider than the neume, then combine with next chunk
             else:
                 # no lyric needed
                 glyph = Glyph(neume_chunk)
 
-            glyph.calc_chunk_width()
+            glyph.set_width()
             glyph_list.append(glyph)
             i += 1
         return glyph_list
 
     @staticmethod
-    def line_break(glyph_array: GlyphLine, first_line_offset: int, line_width: int, glyph_spacing: int)\
-            -> List[Iterable]:
+    def line_break(glyph_list: List[Glyph], starting_pos: Cursor, line_width: int, glyph_spacing: int) \
+            -> List[GlyphLine]:
         """Break continuous list of glyphs into lines- currently greedy.
-        :param glyph_array: A list of glyphs.
-        :param first_line_offset: Where to start first line of neumes (usually due to dropcap).
+        :param glyph_list: A list of glyphs.
+        :param starting_pos: Where to begin drawing glyphs.
         :param line_width: Width of a line (usually page width minus margins).
-        :param glyph_spacing: Space between each glyph (neume group), from bnml.
-        :return g_line_list: A list of lines of Glyphs.
+        :param glyph_spacing: Minimum space between each glyph, from bnml.
+        :return glyph_line_list: A list of lines of Glyphs.
         """
-        cr = Cursor(first_line_offset, 0)
+        cr = starting_pos
+        glyph_line_list: List[GlyphLine] = []
+        glyph_line: GlyphLine = []
 
-        g_line_list = []
-        g_line = []
-
-        for g in glyph_array:
+        for glyph in glyph_list:
             new_line = False
-            if (cr.x + g.width + glyph_spacing) >= line_width:
+            if (cr.x + glyph.width + glyph_spacing) >= line_width:
                 cr.x = 0
+                cr.y -= 70
                 new_line = True
 
             adj_lyric_pos, adj_neume_pos = 0, 0
-            if g.nWidth >= g.lWidth:
+
+            neume_width = getattr(glyph.neume_chunk, 'width', 0)
+            lyric_width = getattr(glyph.lyric, 'width', 0)
+            if neume_width >= lyric_width:
                 # center text
-                adj_lyric_pos = (g.width - g.lWidth) / 2.
+                adj_lyric_pos = (glyph.width - lyric_width) / 2.
             else:
                 # center neume
-                adj_neume_pos = (g.width - g.nWidth) / 2.
+                adj_neume_pos = (glyph.width - neume_width) / 2.
 
-            g.neumePos = cr.x + adj_neume_pos
-            g.lyricPos = cr.x + adj_lyric_pos
-            cr.x += g.width + glyph_spacing
+            glyph.neume_chunk_pos[0] = cr.x + adj_neume_pos
+            glyph.neume_chunk_pos[1] = cr.y
+            glyph.lyric_pos[0] = cr.x + adj_lyric_pos
+            glyph.lyric_pos[1] = cr.y - getattr(glyph.lyric, 'top_margin', 0)  # New
+            cr.x += glyph.width + glyph_spacing
 
             if new_line:
-                g_line_list.append(g_line)
-                g_line = []
-            g_line.append(g)
+                glyph_line_list.append(glyph_line)
+                glyph_line = []
+            glyph_line.append(glyph)
 
-        # One more time to grab the last line
-        g_line_list.append(g_line)
+        glyph_line_list.append(glyph_line)  # One more time to grab the last line
 
-        return g_line_list
+        return glyph_line_list
 
     @staticmethod
-    def line_justify(line_list: List, max_line_width: int, first_line_x_offset: int) -> List:
+    def line_justify(line_list: List[GlyphLine], max_line_width: int, first_line_x_offset: int) -> List[GlyphLine]:
         """Justify a line of neumes by adjusting space between each neume group.
-        :param line_list: A list of neume groups.
+        :param line_list: A list of glyphs
         :param max_line_width: Max width a line of neumes can take up.
         :param first_line_x_offset: Offset of first line, usually from a dropcap.
         :return line_list: The modified line_list with neume spacing adjusted.
@@ -644,8 +679,8 @@ class Kassia:
         for line_index, line in enumerate(line_list):
             # Calc width of each chunk (and count how many chunks)
             total_chunk_width = 0
-            for chunk in line:
-                total_chunk_width += chunk.width
+            for glyph in line:
+                total_chunk_width += glyph.width
 
             # Skip if last line
             if line_index + 1 == len(line_list):
@@ -654,25 +689,27 @@ class Kassia:
             # Subtract total from line_width (gets space remaining)
             space_remaining = (max_line_width - first_line_x_offset) - total_chunk_width
             # Divide by number of chunks in line
-            chunk_spacing = space_remaining / len(line)
+            glyph_spacing = space_remaining / len(line)
 
             cr = Cursor(first_line_x_offset, 0)
 
-            for chunk in line:
+            for glyph in line:
                 adj_lyric_pos, adj_neume_pos = 0, 0
-                if chunk.nWidth >= chunk.lWidth:
+                neume_width = getattr(glyph.neume_chunk, 'width', 0)
+                lyric_width = getattr(glyph.lyric, 'width', 0)
+                if neume_width >= lyric_width:
                     # center text
-                    adj_lyric_pos = (chunk.width - chunk.lWidth) / 2.
+                    adj_lyric_pos = (glyph.width - lyric_width) / 2.
                 else:
                     # center neume
-                    adj_neume_pos = (chunk.width - chunk.nWidth) / 2.
+                    adj_neume_pos = (glyph.width - neume_width) / 2.
 
-                chunk.neumePos = cr.x + adj_neume_pos
-                chunk.lyricPos = cr.x + adj_lyric_pos
-                #chunk.neumePos += chunk_spacing
-                #chunk.lyricPos += chunk_spacing
+                glyph.neume_chunk_pos[0] = cr.x + adj_neume_pos
+                glyph.lyric_pos[0] = cr.x + adj_lyric_pos
+                # glyph.neume_chunk_pos[0] += glyph_spacing
+                # glyph.lyric_pos[0] += glyph_spacing
 
-                cr.x += chunk.width + chunk_spacing
+                cr.x += glyph.width + glyph_spacing
 
             # After first line (dropcap), set first line offset to zero
             first_line_x_offset = 0
@@ -693,8 +730,8 @@ class Kassia:
         return align
 
     @staticmethod
-    def fill_page_dict(page_dict):
-        # TODO: better error handling; value could be empty string
+    def fill_page_dict(page_dict: Dict[str, str]) -> Dict[str, int]:
+
         for attrib_name in page_dict:
             try:
                 page_dict[attrib_name] = int(page_dict[attrib_name])
