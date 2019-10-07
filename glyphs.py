@@ -3,7 +3,6 @@ from typing import List, Tuple
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.platypus import Flowable
 
-import neume_dict
 from lyric import Lyric
 from neume_chunk import NeumeChunk
 
@@ -28,21 +27,14 @@ class Glyph(Flowable):
         # self.fthora_pos = fthora_pos if fthora_pos is not None else [0, 0]
 
         self.width = max(getattr(self.neume_chunk, 'width', 0), getattr(self.lyric, 'width', 0))
-        self.height = 0
+        self.height = getattr(self.neume_chunk, 'height', 0) + getattr(self.lyric, 'top_margin', 0)
 
         # self.height = max(self.neume_chunk.height, self.lyric.height + self.lyric.top_margin)
 
     def set_width(self):
         self.width = max(getattr(self.neume_chunk, 'width', 0), getattr(self.lyric, 'width', 0))
 
-    def wrap(self, *args):
-        # ascent, descent = pdfmetrics.getAscentDescent(self.style.fontName, self.style.fontSize)
-        # height = max(ascent - descent, self.style.leading)
-        return self.width, self.height
-
-    def draw(self):
-        canvas: Canvas = self.canv
-
+    def draw(self, canvas):
         canvas.saveState()
         canvas.translate(self.neume_chunk_pos[0], self.neume_chunk_pos[1])
         pos_x: float = 0
@@ -61,11 +53,3 @@ class Glyph(Flowable):
             canvas.setFont(self.lyric.font_family, self.lyric.font_size)
             canvas.drawString(self.lyric_pos[0], self.lyric_pos[1], self.lyric.text)
             #canvas.restoreState()
-
-
-# class GlyphLine:
-#    def __init__(self, glyphs, spacing):
-#        self.glyphs = glyphs
-#        self.spacing = spacing
-
-GlyphLine = List[Glyph]

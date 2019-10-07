@@ -15,7 +15,8 @@ import neume_dict
 from cursor import Cursor
 from drop_cap import Dropcap
 from enums import *
-from glyphs import Glyph, GlyphLine
+from glyph_line import GlyphLine
+from glyphs import Glyph
 from lyric import Lyric
 from neume import Neume
 from neume_chunk import NeumeChunk
@@ -237,12 +238,12 @@ class Kassia:
                     lyrics_list[0].text = lyrics_list[0].text[1:]
 
                 neume_chunks = neume_dict.chunk_neumes(neumes_list)
-                glyph_line: GlyphLine = self.make_glyph_list(neume_chunks, lyrics_list)
-                lines_list = self.line_break(glyph_line,
-                                             Cursor(dropcap_offset, 0),
-                                             self.page.width,
-                                             self.styleSheet['Neumes'].wordSpace)
-                lines_list = self.line_justify(lines_list, self.page.width, dropcap_offset)
+                glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
+                lines_list: List[GlyphLine] = self.line_break(glyph_line,
+                                                              Cursor(dropcap_offset, 0),
+                                                              self.page.width,
+                                                              self.styleSheet['Neumes'].wordSpace)
+                lines_list: List[GlyphLine] = self.line_justify(lines_list, self.page.width, dropcap_offset)
 
                 line_counter = 0
                 for glyph_line in lines_list:
@@ -252,14 +253,7 @@ class Kassia:
                         self.story.append(PageBreak())
                         line_counter = 0
 
-                    for glyph in glyph_line:
-                        ypos = self.vert_pos - (line_counter + 1) * neume_line_height
-                        xpos = self.page.left_margin + glyph.neume_chunk_pos[0]
-
-                        #self.draw_neumes(glyph, xpos, ypos)
-                        #self.draw_lyrics(glyph, self.page.left, ypos)
-                        #glyph.lyric_pos[1] -= ypos
-                        self.story.append(glyph)
+                    self.story.append(glyph_line)
 
                     self.vert_pos -= (line_counter + 1) * neume_line_height # - current_lyric_attrib['top_margin']
 
@@ -584,14 +578,14 @@ class Kassia:
         return not self.page.is_bottom_of_page(cursor_y_pos - max_height)
 
     @staticmethod
-    def make_glyph_list(neume_chunk_list: List[NeumeChunk], lyrics_list: List[Lyric]) -> GlyphLine:
+    def make_glyph_list(neume_chunk_list: List[NeumeChunk], lyrics_list: List[Lyric]) -> List[Glyph]:
         """Takes a list of neumes and a list of lyrics and combines them into a single glyph list.
         :param neume_chunk_list: A list of neume chunks.
         :param lyrics_list: A list of lyrics.
         :return glyph_list: A list of glyphs.
         """
         i, l_ptr = 0, 0
-        glyph_list: GlyphLine = []
+        glyph_line: List[Glyph] = []
         while i < len(neume_chunk_list):
             # Grab next chunk
             neume_chunk = neume_chunk_list[i]
@@ -617,13 +611,12 @@ class Kassia:
                 glyph = Glyph(neume_chunk)
 
             glyph.set_width()
-            glyph_list.append(glyph)
+            glyph_line.append(glyph)
             i += 1
-        return glyph_list
+        return glyph_line
 
     @staticmethod
-    def line_break(glyph_list: List[Glyph], starting_pos: Cursor, line_width: int, glyph_spacing: int) \
-            -> List[GlyphLine]:
+    def line_break(glyph_list: List[Glyph], starting_pos: Cursor, line_width: int, glyph_spacing: int) -> List[GlyphLine]:
         """Break continuous list of glyphs into lines- currently greedy.
         :param glyph_list: A list of glyphs.
         :param starting_pos: Where to begin drawing glyphs.
@@ -633,13 +626,12 @@ class Kassia:
         """
         cr = starting_pos
         glyph_line_list: List[GlyphLine] = []
-        glyph_line: GlyphLine = []
+        glyph_line: GlyphLine = GlyphLine()
 
         for glyph in glyph_list:
             new_line = False
             if (cr.x + glyph.width + glyph_spacing) >= line_width:
                 cr.x = 0
-                cr.y -= 70
                 new_line = True
 
             adj_lyric_pos, adj_neume_pos = 0, 0
@@ -661,7 +653,8 @@ class Kassia:
 
             if new_line:
                 glyph_line_list.append(glyph_line)
-                glyph_line = []
+                glyph_line = GlyphLine()
+
             glyph_line.append(glyph)
 
         glyph_line_list.append(glyph_line)  # One more time to grab the last line
