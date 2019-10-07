@@ -31,11 +31,9 @@ class Kassia:
         self.doc = None  # SimpleDocTemplate()
         self.canvas = None
         self.page = Page()
-        # self.story = [Spacer(1, 2 * inch)]
         self.story = []
         self.styleSheet = getSampleStyleSheet()
         self.init_styles()
-        self.vert_pos = None
         self.input_filename = input_filename
         try:
             open(input_filename, "r")
@@ -135,8 +133,6 @@ class Kassia:
                     except KeyError as e:
                         logging.warning("Couldn't add style to stylesheet: {}".format(e))
 
-        self.vert_pos = self.page.top
-
         self.doc = SimpleDocTemplate(
             filename=output_filename,
             pagesize=self.page.size,
@@ -183,8 +179,6 @@ class Kassia:
                     # TODO: Test this
                     if troparion_child_elem.tag == 'linebreak':
                         self.story.append(Spacer(0, 30))
-                        #if not self.page.is_top_of_page(self.vert_pos):
-                        #    self.draw_newline(neume_line_height)
 
                     # TODO: Use this to draw strings before, after, or between neumes
                     # if troparion_child_elem.tag == 'string':
@@ -231,8 +225,8 @@ class Kassia:
                                                                     dropcap_style.fontSize)
                         dropcap = Dropcap(dropcap_text, dropcap_offset, dropcap_style)
 
-                #self.draw_dropcap(dropcap, neume_line_height + self.styleSheet['Lyrics'].spaceBefore)
                 self.story.append(dropcap)
+
                 # Pop off first letter of lyrics, since it will be drawn as a dropcap
                 if dropcap and len(lyrics_list) > 0:
                     lyrics_list[0].text = lyrics_list[0].text[1:]
@@ -245,19 +239,8 @@ class Kassia:
                                                               self.styleSheet['Neumes'].wordSpace)
                 lines_list: List[GlyphLine] = self.line_justify(lines_list, self.page.width, dropcap_offset)
 
-                line_counter = 0
                 for glyph_line in lines_list:
-                    # Make sure not at end of page
-                    calculated_ypos = self.vert_pos - (line_counter + 1) * neume_line_height
-                    if not self.is_space_for_another_line(calculated_ypos, glyph_line):
-                        self.story.append(PageBreak())
-                        line_counter = 0
-
                     self.story.append(glyph_line)
-
-                    self.vert_pos -= (line_counter + 1) * neume_line_height # - current_lyric_attrib['top_margin']
-
-                line_counter += 1
 
         try:
             self.doc.build(self.story)
@@ -290,32 +273,6 @@ class Kassia:
                              embedded_font_attrib.text.strip() + '</font>' + embedded_font_attrib.tail
 
         return para_tag_attribs.text.strip() + embedded_args
-
-    '''def _draw_paragraph(self, text: str, current_attribs: Dict[str, Any], ending_cursor_pos: int = Line.RIGHT):
-        """Recursive method to call self if text has embedded styles, else draw text in the passed style."""
-        embedded_args = ""
-        for embedded_font_attrib in text:
-            if embedded_font_attrib.attrib:
-                bnml_style = self.fill_attribute_dict(embedded_font_attrib.attrib)
-                new_style = self.merge_paragraph_styles(default_style, bnml_style)
-                self._draw_paragraph()
-
-            temp_font_family = default_style.fontName
-            temp_font_size = default_style.fontSize
-            temp_font_color = default_style.textColor
-            if embedded_font_attrib.attrib is not None:
-                if 'font_family' in embedded_font_attrib.attrib:
-                    temp_font_family = embedded_font_attrib.attrib['font_family']
-                if 'font_size' in embedded_font_attrib.attrib:
-                    temp_font_size = embedded_font_attrib.attrib['font_size']
-                if 'color' in embedded_font_attrib.attrib:
-                    temp_font_color = embedded_font_attrib.attrib['color']
-            embedded_args += '<font face="{0}" size="{1}" color="{2}">'.format(temp_font_family,
-                                                                               temp_font_size,
-                                                                               temp_font_color) + \
-                             embedded_font_attrib.text.strip() + '</font>' + embedded_font_attrib.tail
-
-        return para_tag_attribs.text.strip() + embedded_args'''
 
     def draw_paragraph(self, bnml_elem: Element, current_attribs: Dict[str, Any], ending_cursor_pos: int = Line.NEXT):
         """Draws a paragraph of text with the passed text attributes.
@@ -355,33 +312,6 @@ class Kassia:
             self.vert_pos -= (paragraph_height + paragraph_style.spaceAfter)
         elif ending_cursor_pos == Line.BELOW:
             self.vert_pos -= (paragraph_height + paragraph_style.leading + paragraph_style.spaceAfter)'''
-
-    def draw_neumes(self, glyph: Glyph, pos_x: int, pos_y: int):
-        for i, neume in enumerate(glyph.neumeChunk):
-            self.canvas.setFont(neume.font_family, neume.font_size)
-            self.canvas.setFillColor(neume.color)
-            # Move over width of last neume before writing next neume in chunk
-            # TODO: Change font kerning and remove this logic?
-            if i > 0:
-                pos_x += glyph.neumeChunk[i - 1].width
-
-            self.canvas.drawString(pos_x, pos_y, neume.text)
-
-    def draw_lyrics(self, glyph: Glyph, pos_x: int, pos_y: int):
-        if glyph.lyric.text:
-            pos_x += glyph.lyric_pos[0]
-            pos_y -= glyph.lyric.top_margin
-
-            # TODO: Put this elaphron offset logic somewhere else
-            for neumeWithLyricOffset in neume_dict.neumesWithLyricOffset:
-                if neumeWithLyricOffset[0] == glyph.neumeChunk[0].text:
-                    pos_x += neumeWithLyricOffset[1]
-
-            self.canvas.setFont(glyph.lyric.font_family, glyph.lyric.font_size)
-            self.canvas.setFillColor(glyph.lyric.color)
-            # if (glyph.lyrics[-1] == "_"):
-            #    glyph.lyrics += "_"
-            self.canvas.drawString(pos_x, pos_y, glyph.lyric.text)
 
     @staticmethod
     def merge_paragraph_styles(default_style: ParagraphStyle, bnml_style: Dict[str, Any]) -> ParagraphStyle:
@@ -457,26 +387,6 @@ class Kassia:
             default_style.wordSpace = bnml_style['word_spacing']
         return default_style
 
-    '''def draw_dropcap(self, dropcap: Dropcap, glyph_height: int):
-        """Draws a dropcap with passed text and style.
-        :param dropcap: A Dropcap object to draw.
-        :param glyph_height: The height of a glyph (neume chunk + lyrics)
-        """
-        if not dropcap:
-            return
-
-        pos_x = self.page.left_margin
-        pos_y = self.vert_pos - glyph_height
-        style = dropcap.style
-
-        if not self.is_space_for_another_line(pos_y):
-            self.draw_newpage()
-            pos_y = self.vert_pos - self.styleSheet['Neumes'].leading
-
-        self.canvas.setFillColor(style.textColor)
-        self.canvas.setFont(style.fontName, style.fontSize)
-        self.canvas.drawString(pos_x, pos_y, dropcap.text)'''
-
     def get_lyric_attributes(self, lyric_elem, default_lyric_attrib):
         current_lyric_attrib = deepcopy(default_lyric_attrib)
         settings_from_xml = self.fill_attribute_dict(lyric_elem.attrib)
@@ -487,16 +397,8 @@ class Kassia:
 
     def draw_newpage(self):
         self.story.append(PageBreak())
-        self.vert_pos = self.page.top
         #self.draw_header("", style=self.styleSheet['header'])
         #self.draw_footer("", style=self.styleSheet['footer'])
-
-    def draw_newline(self, space):
-        self.vert_pos -= space
-        if not self.is_space_for_another_line(self.vert_pos):
-            self.draw_newpage()
-        else:
-            self.story.append(Spacer(0, space))
 
     def draw_header(self, text: str, style: ParagraphStyle, border: bool = False):
         """Draws the header onto the canvas with the given text and style.
