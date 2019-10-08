@@ -27,10 +27,8 @@ class GlyphLine(Flowable, collections.MutableSequence):
 
     def draw(self):
         canvas: Canvas = self.canv
-        canvas.saveState()
         for glyph in self.list:
             glyph.draw(canvas)
-        canvas.restoreState()
 
     def set_size(self):
         width = sum(glyph.width for glyph in self.list)

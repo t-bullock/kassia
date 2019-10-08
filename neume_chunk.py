@@ -3,11 +3,10 @@ import collections
 from reportlab.pdfbase import pdfmetrics
 
 import neume_dict
-from neume import Neume
 
 
 class NeumeChunk(collections.MutableSequence):
-    """This class is a collection of Neumes, but with a calculated width
+    """A collection of Neumes, but with a calculated width and height.
     """
     def __init__(self, *args):
         self.width = 0
@@ -67,7 +66,6 @@ class NeumeChunk(collections.MutableSequence):
 
     def set_height(self, neume):
         ascent, descent = pdfmetrics.getAscentDescent(neume.font_family, neume.font_size)
-        #self.height = max(ascent - descent, neume.leading)
         self.height = ascent - descent
 
     def add_width(self, neume):

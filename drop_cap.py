@@ -25,9 +25,6 @@ class Dropcap(Flowable):
             return
 
         canvas = self.canv
-        # canvas save/restore might not be needed
-        #canvas.saveState()
-
         canvas.setFillColor(self.style.textColor)
         canvas.setFont(self.style.fontName, self.style.fontSize)
 
@@ -35,7 +32,6 @@ class Dropcap(Flowable):
         # tx = canvas.beginText(text=self.text)
         # canvas.drawText(tx)
         canvas.drawString(0, 0, self.text)
-        #canvas.restoreState()
 
     '''def _draw_background(self):
         bw = getattr(style, 'borderWidth', None)

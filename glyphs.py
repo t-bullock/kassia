@@ -1,6 +1,5 @@
-from typing import List, Tuple
+from typing import Tuple
 
-from reportlab.pdfgen.canvas import Canvas
 from reportlab.platypus import Flowable
 
 from lyric import Lyric
@@ -44,9 +43,6 @@ class Glyph(Flowable):
         canvas.restoreState()
 
         if self.lyric:
-            #canvas.saveState()
-            #canvas.translate(self.lyric_pos[0], self.lyric_pos[1])
             canvas.setFillColor(self.lyric.color)
             canvas.setFont(self.lyric.font_family, self.lyric.font_size)
             canvas.drawString(self.lyric_pos[0], self.lyric_pos[1], self.lyric.text)
-            #canvas.restoreState()
