@@ -150,16 +150,11 @@ class Kassia:
         # Read main xml content
         for child_elem in self.bnml:
             if child_elem.tag == 'pagebreak':
-                self.draw_newpage()
+                self.story.append(PageBreak())
 
             if child_elem.tag == 'linebreak':
-                space_amount = 30
-                if 'space' in child_elem.attrib:
-                    try:
-                        space_amount = int(child_elem.attrib['space'])
-                    except ValueError as e:
-                        logging.error("Linebreak space error: {}".format(e))
-                self.story.append(Spacer(0, space_amount))
+                space = getattr(child_elem.attrib, 'space', 30)
+                self.story.append(Spacer(0, space))
 
             if child_elem.tag == 'paragraph':
                 paragraph_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
@@ -178,7 +173,8 @@ class Kassia:
 
                     # TODO: Test this
                     if troparion_child_elem.tag == 'linebreak':
-                        self.story.append(Spacer(0, 30))
+                        space = getattr(child_elem.attrib, 'space', 30)
+                        self.story.append(Spacer(0, space))
 
                     # TODO: Use this to draw strings before, after, or between neumes
                     # if troparion_child_elem.tag == 'string':
@@ -394,11 +390,6 @@ class Kassia:
         text = " ".join(lyric_elem.text.strip().split())
         current_lyric_attrib['text'] = text
         return current_lyric_attrib
-
-    def draw_newpage(self):
-        self.story.append(PageBreak())
-        #self.draw_header("", style=self.styleSheet['header'])
-        #self.draw_footer("", style=self.styleSheet['footer'])
 
     def draw_header(self, text: str, style: ParagraphStyle, border: bool = False):
         """Draws the header onto the canvas with the given text and style.
