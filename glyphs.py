@@ -19,20 +19,17 @@ class Glyph(Flowable):
         super().__init__()
         self.neume_chunk = neume_chunk  # A list of neumes, one base neume and some zero width supporting characters
         self.neume_chunk_pos = neume_chunk_pos if neume_chunk_pos is not None else [0, 0]
-
         self.lyric: Lyric = lyric
         self.lyric_pos = lyric_pos if lyric_pos is not None else [0, 0]
-
         # self.fthora = fthora
         # self.fthora_pos = fthora_pos if fthora_pos is not None else [0, 0]
+        self.set_size()
 
+    def set_size(self):
         self.width = max(getattr(self.neume_chunk, 'width', 0), getattr(self.lyric, 'width', 0))
-        self.height = getattr(self.neume_chunk, 'height', 0) + getattr(self.lyric, 'top_margin', 0)
-
-        # self.height = max(self.neume_chunk.height, self.lyric.height + self.lyric.top_margin)
-
-    def set_width(self):
-        self.width = max(getattr(self.neume_chunk, 'width', 0), getattr(self.lyric, 'width', 0))
+        self.height = getattr(self.neume_chunk, 'height', 0)\
+            + getattr(self.lyric, 'top_margin', 0)\
+            + getattr(self.lyric, 'height', 0)
 
     def draw(self, canvas):
         canvas.saveState()

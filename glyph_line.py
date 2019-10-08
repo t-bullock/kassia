@@ -10,16 +10,20 @@ from glyphs import Glyph
 class GlyphLine(Flowable, collections.MutableSequence):
     """This class is a collection of Glyphs.
     """
-    def __init__(self, line_spacing=0, *args):
+    def __init__(self, space_after=0, *args):
         super().__init__()
         self.list: List[Glyph] = list()
         self.extend(list(args))
-        self.height = 70
-        self.line_spacing = line_spacing
+        self.spaceAfter = space_after
+        self._showBoundary = True
 
     def wrap(self, *args):
         width = sum(glyph.width for glyph in self.list)
-        return width, self.height + self.line_spacing
+        self.width = width
+        if self.list:
+            height = max(glyph.height for glyph in self.list)
+            self.height = height
+        return width, self.height + self.spaceAfter
 
     def draw(self):
         canvas: Canvas = self.canv
@@ -28,6 +32,13 @@ class GlyphLine(Flowable, collections.MutableSequence):
             glyph.draw(canvas)
         canvas.restoreState()
 
+    def set_size(self):
+        width = sum(glyph.width for glyph in self.list)
+        self.width = width
+        if self.list:
+            height = max(glyph.height for glyph in self.list)
+            self.height = height
+
     def __len__(self):
         return len(self.list)
 
@@ -35,12 +46,15 @@ class GlyphLine(Flowable, collections.MutableSequence):
         return self.list[i]
 
     def __delitem__(self, i):
+        self.set_size()
         del self.list[i]
 
     def __setitem__(self, i, v):
+        self.set_size()
         self.list[i] = v
 
     def insert(self, i, v):
+        self.set_size()
         self.list.insert(i, v)
 
     def __str__(self):

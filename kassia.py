@@ -163,7 +163,6 @@ class Kassia:
             if child_elem.tag == 'troparion':
                 neumes_list = []
                 lyrics_list = []
-                neume_line_height = self.styleSheet['Neumes'].leading
                 dropcap = None
                 dropcap_offset = 0
 
@@ -232,6 +231,7 @@ class Kassia:
                 lines_list: List[GlyphLine] = self.line_break(glyph_line,
                                                               Cursor(dropcap_offset, 0),
                                                               self.page.width,
+                                                              self.styleSheet['Neumes'].leading,
                                                               self.styleSheet['Neumes'].wordSpace)
                 lines_list: List[GlyphLine] = self.line_justify(lines_list, self.page.width, dropcap_offset)
 
@@ -503,23 +503,25 @@ class Kassia:
                 # no lyric needed
                 glyph = Glyph(neume_chunk)
 
-            glyph.set_width()
+            glyph.set_size()
             glyph_line.append(glyph)
             i += 1
         return glyph_line
 
     @staticmethod
-    def line_break(glyph_list: List[Glyph], starting_pos: Cursor, line_width: int, glyph_spacing: int) -> List[GlyphLine]:
+    def line_break(glyph_list: List[Glyph], starting_pos: Cursor, line_width: int, line_spacing: int,
+                   glyph_spacing: int) -> List[GlyphLine]:
         """Break continuous list of glyphs into lines- currently greedy.
         :param glyph_list: A list of glyphs.
         :param starting_pos: Where to begin drawing glyphs.
         :param line_width: Width of a line (usually page width minus margins).
+        :param line_spacing: Vertical space between each line. Needed to create GlyphLine.
         :param glyph_spacing: Minimum space between each glyph, from bnml.
         :return glyph_line_list: A list of lines of Glyphs.
         """
         cr = starting_pos
         glyph_line_list: List[GlyphLine] = []
-        glyph_line: GlyphLine = GlyphLine()
+        glyph_line: GlyphLine = GlyphLine(space_after=line_spacing)
 
         for glyph in glyph_list:
             new_line = False
@@ -546,7 +548,7 @@ class Kassia:
 
             if new_line:
                 glyph_line_list.append(glyph_line)
-                glyph_line = GlyphLine()
+                glyph_line = GlyphLine(space_after=line_spacing)
 
             glyph_line.append(glyph)
 
