@@ -521,7 +521,7 @@ class Kassia:
         """
         cr = starting_pos
         glyph_line_list: List[GlyphLine] = []
-        glyph_line: GlyphLine = GlyphLine(space_after=line_spacing)
+        glyph_line: GlyphLine = GlyphLine(line_spacing, glyph_spacing)
 
         for glyph in glyph_list:
             new_line = False
@@ -548,7 +548,7 @@ class Kassia:
 
             if new_line:
                 glyph_line_list.append(glyph_line)
-                glyph_line = GlyphLine(space_after=line_spacing)
+                glyph_line = GlyphLine(line_spacing, glyph_spacing)
 
             glyph_line.append(glyph)
 
