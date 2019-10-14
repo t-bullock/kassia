@@ -287,27 +287,8 @@ class Kassia:
 
         paragraph_style = self.merge_paragraph_styles(default_paragraph_style, current_attribs)
         paragraph_text = self.get_embedded_paragraph_text(bnml_elem, paragraph_style)
-        self.story.append(Paragraph(paragraph_text, paragraph_style))
-
-        '''paragraph = Paragraph(paragraph_text, paragraph_style)
-
-        __, paragraph_height = paragraph.wrap(self.page.width, self.page.height)
-        if (self.vert_pos - paragraph_height) <= self.page.bottom_margin:
-            self.draw_newpage()
-
-        # self.canvas.saveState()
-        paragraph.drawOn(self.canvas, self.page.left_margin, self.vert_pos)
-        # self.canvas.restoreState()
-
-        if 'ending_cursor_pos' in current_attribs:
-            ending_cursor_pos = current_attribs['ending_cursor_pos']
-
-        if ending_cursor_pos == Line.RIGHT:
-            return
-        if ending_cursor_pos == Line.NEXT:
-            self.vert_pos -= (paragraph_height + paragraph_style.spaceAfter)
-        elif ending_cursor_pos == Line.BELOW:
-            self.vert_pos -= (paragraph_height + paragraph_style.leading + paragraph_style.spaceAfter)'''
+        p = Paragraph(paragraph_text, paragraph_style)
+        self.story.append(p)
 
     @staticmethod
     def merge_paragraph_styles(default_style: ParagraphStyle, bnml_style: Dict[str, Any]) -> ParagraphStyle:
