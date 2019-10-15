@@ -11,12 +11,18 @@ class Page:
                  bottom_margin: int = 72,
                  left_margin: int = 72,
                  right_margin: int = 72,
+                 title: str = None,
+                 author: str = None,
+                 subject: str = None,
                  ):
         self.size = size
         self.top_margin = top_margin
         self.bottom_margin = bottom_margin
         self.left_margin = left_margin
         self.right_margin = right_margin
+        self.title = title
+        self.author = author
+        self.subject = subject
 
     @property
     def width(self) -> int:
