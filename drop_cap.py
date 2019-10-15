@@ -16,8 +16,6 @@ class Dropcap(Flowable):
         #self.y_offset = -glyph_height
 
     def wrap(self, *args):
-        #ascent, descent = pdfmetrics.getAscentDescent(self.style.fontName, self.style.fontSize)
-        #height = max(ascent - descent, self.style.leading)
         return self.width + self.x_padding, self.height
 
     def draw(self):

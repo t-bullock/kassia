@@ -18,13 +18,7 @@ class GlyphLine(Flowable, collections.MutableSequence):
         self.glyphSpacing = glyph_spacing
 
     def wrap(self, *args):
-        #width = sum(glyph.width + self.glyphSpacing for glyph in self.list)
-        #self.width = width
-        if self.list:
-            width = (self.list[-1].neume_chunk_pos[0] + self.list[-1].width) - self.list[0].neume_chunk_pos[0]
-            self.width = width
-            height = max(glyph.height for glyph in self.list)
-            self.height = height
+        self.set_size()  # This might not be needed
         return self.width, self.height + self.spaceAfter
 
     def draw(self):
@@ -33,9 +27,9 @@ class GlyphLine(Flowable, collections.MutableSequence):
             glyph.draw(canvas)
 
     def set_size(self):
-        width = sum(glyph.width for glyph in self.list)
-        self.width = width
         if self.list:
+            width = (self.list[-1].neume_chunk_pos[0] + self.list[-1].width) - self.list[0].neume_chunk_pos[0]
+            self.width = width
             height = max(glyph.height for glyph in self.list)
             self.height = height
 
