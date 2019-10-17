@@ -6,8 +6,7 @@ from typing import Any, Dict, List
 
 from reportlab.lib.enums import *
 from reportlab.lib.styles import *
-from reportlab.pdfbase import pdfmetrics
-from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer
+from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 from xml.etree.ElementTree import Element, ParseError, parse
 
 import font_reader
@@ -214,29 +213,41 @@ class Kassia:
                             attribs_from_bnml = self.fill_attribute_dict(dropcap_elem.attrib)
                             dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
                         dropcap_text = dropcap_elem.text.strip()
-
-                        dropcap_offset = 5 + pdfmetrics.stringWidth(dropcap_text,
-                                                                    dropcap_style.fontName,
-                                                                    dropcap_style.fontSize)
-                        dropcap = Dropcap(dropcap_text, dropcap_offset, dropcap_style)
-
-                self.story.append(dropcap)
+                        dropcap = Dropcap(dropcap_text, 10, dropcap_style)
+                        dropcap_offset = dropcap.width + dropcap.x_padding
 
                 # Pop off first letter of lyrics, since it will be drawn as a dropcap
                 if dropcap and len(lyrics_list) > 0:
                     lyrics_list[0].text = lyrics_list[0].text[1:]
 
-                neume_chunks = neume_dict.chunk_neumes(neumes_list)
-                glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
-                lines_list: List[GlyphLine] = self.line_break(glyph_line,
-                                                              Cursor(dropcap_offset, 0),
-                                                              self.page.width,
-                                                              self.styleSheet['Neumes'].leading,
-                                                              self.styleSheet['Neumes'].wordSpace)
-                lines_list: List[GlyphLine] = self.line_justify(lines_list, self.page.width, dropcap_offset)
+                if neumes_list:
+                    neume_chunks = neume_dict.chunk_neumes(neumes_list)
+                    glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
+                    lines_list: List[GlyphLine] = self.line_break(glyph_line,
+                                                                  Cursor(dropcap_offset, 0),
+                                                                  self.page.width,
+                                                                  self.styleSheet['Neumes'].leading,
+                                                                  self.styleSheet['Neumes'].wordSpace)
+                    lines_list: List[GlyphLine] = self.line_justify(lines_list, self.page.width, dropcap_offset)
 
-                for glyph_line in lines_list:
-                    self.story.append(glyph_line)
+                    for i, glyph_line in enumerate(lines_list):
+                        if i == 0 and dropcap:
+                            data = [[dropcap, glyph_line]]
+                            row_height = max(dropcap.height, glyph_line.height)
+                            t = Table(data, colWidths=[dropcap_offset, None], rowHeights=[row_height])
+                            t.setStyle(
+                                TableStyle([
+                                    ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+                                    ('LEFTPADDING', (0, 0), (-1, -1), 0),
+                                    ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+                                    ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+                                    ('TOPPADDING', (0, 0), (-1, -1), 0),
+                                    ])
+                            )
+                            t.spaceAfter = glyph_line.spaceAfter
+                            self.story.append(t)
+                        else:
+                            self.story.append(glyph_line)
 
         try:
             self.doc.build(self.story)
@@ -560,7 +571,7 @@ class Kassia:
             # Divide by number of chunks in line
             glyph_spacing = space_remaining / len(line)
 
-            cr = Cursor(first_line_x_offset, 0)
+            cr = Cursor(0, 0)
 
             for glyph in line:
                 adj_lyric_pos, adj_neume_pos = 0, 0
