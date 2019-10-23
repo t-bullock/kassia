@@ -31,10 +31,10 @@ class Page:
 
     @property
     def height(self) -> int:
-        """Get the position at the bottom of the page, taking into account margins.
-        :return: Position at bottom of the page.
+        """Get the page height without margins (vertical size of page).
+        :return: Vertical size of page.
         """
-        return self.size[1] - self.bottom_margin
+        return self.size[1]
 
     @property
     def top(self) -> int:
@@ -86,7 +86,7 @@ class Page:
         return cur_pos_y <= self.bottom
 
     @staticmethod
-    def get_size(name: str) -> Tuple:
+    def get_size_by_name(name: str) -> Tuple:
         """Finds and returns a ReportLab page size by name.
         :param name: The name of the page size.
         :return: ReportLab page size.
@@ -97,6 +97,9 @@ class Page:
         except AttributeError as e:
             pass
         return page_size
+
+    def get_size(self) -> Tuple:
+        return self.size
 
     def set_size(self, name: str):
         """Sets a ReportLab page size with the passed name.

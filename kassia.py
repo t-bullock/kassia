@@ -28,7 +28,6 @@ class Kassia:
     def __init__(self, input_filename, output_file="sample.pdf"):
         self.bnml = None
         self.doc = None  # SimpleDocTemplate()
-        self.canvas = None
         self.page = Page()
         self.story = []
         self.styleSheet = getSampleStyleSheet()
@@ -146,8 +145,25 @@ class Kassia:
 
     def create_pdf(self):
         """Create a PDF output file."""
-        # Read main xml content
         for child_elem in self.bnml:
+            if child_elem.tag == 'header':
+                default_header_style = self.styleSheet['Header']
+                header_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
+                if 'style' in header_attrib_dict:
+                    default_header_style = getattr(self.styleSheet, header_attrib_dict['style'], 'Header')
+                header_style = self.merge_paragraph_styles(default_header_style, header_attrib_dict)
+                header_text = child_elem.text.strip()
+                self.header_paragraph: Paragraph = Paragraph(header_text, header_style)
+
+            if child_elem.tag == 'footer':
+                default_footer_style = self.styleSheet['Footer']
+                footer_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
+                if 'style' in footer_attrib_dict:
+                    default_footer_style = getattr(self.styleSheet, footer_attrib_dict['style'], 'Header')
+                footer_style = self.merge_paragraph_styles(default_footer_style, footer_attrib_dict)
+                footer_text = child_elem.text.strip()
+                self.footer_paragraph: Paragraph = Paragraph(footer_text, footer_style)
+
             if child_elem.tag == 'pagebreak':
                 self.story.append(PageBreak())
 
@@ -250,7 +266,7 @@ class Kassia:
                             self.story.append(glyph_line)
 
         try:
-            self.doc.build(self.story)
+            self.doc.build(self.story, onLaterPages=self.draw_header_footer)
         except IOError:
             logging.error("Could not save XML file.")
 
@@ -337,6 +353,10 @@ class Kassia:
             new_style.spaceAfter = bnml_style['space_after']
         if 'word_spacing' in bnml_style:
             new_style.wordSpace = bnml_style['word_spacing']
+        if 'border_width' in bnml_style:
+            new_style.borderWidth = bnml_style['border_width']
+        if 'border_color' in bnml_style:
+            new_style.borderColor = bnml_style['border_color']
         return new_style
 
     @staticmethod
@@ -373,6 +393,10 @@ class Kassia:
             default_style.spaceAfter = bnml_style['space_after']
         if 'word_spacing' in bnml_style:
             default_style.wordSpace = bnml_style['word_spacing']
+        if 'border_width' in bnml_style:
+            default_style.borderWidth = bnml_style['border_width']
+        if 'border_color' in bnml_style:
+            default_style.borderColor = bnml_style['border_color']
         return default_style
 
     def get_lyric_attributes(self, lyric_elem, default_lyric_attrib):
@@ -383,84 +407,79 @@ class Kassia:
         current_lyric_attrib['text'] = text
         return current_lyric_attrib
 
-    def draw_header(self, text: str, style: ParagraphStyle, border: bool = False):
-        """Draws the header onto the canvas with the given text and style.
-        :param text: Text to draw in header.
-        :param style: Style to draw text in.
-        :param border: Whether to draw a border or not.
+    def draw_header_footer(self, canvas, doc):
+        self.draw_header(canvas, doc)
+        self.draw_footer(canvas, doc)
+
+    def draw_header(self, canvas, doc):
+        """Draws the header onto the canvas.
+        :param canvas: Canvas, passed from document.build.
+        :param doc: SimpleDocTemplate, passed from document.build.
         """
-        if border:
-            self.canvas.setStrokeColorRGB(0, 0, 0)
-            self.canvas.setLineWidth(0.5)
-            self.canvas.line(
+        if not self.header_paragraph:
+            return
+
+        style = self.header_paragraph.style
+
+        if style.borderWidth:
+            canvas.setStrokeColor(style.borderColor)
+            canvas.setLineWidth(style.borderWidth)
+            canvas.line(
                 self.page.left,
-                self.page.bottom,
+                self.page.top,
                 self.page.right,
-                self.page.bottom)
+                self.page.top)
 
-        self.canvas.setFont(self.styleSheet['header'].fontName, self.styleSheet['header'].fontSize)
+        canvas.setFont(style.fontName, style.fontSize)
+        canvas.setFillColor(style.textColor)
 
-        # Vertically centered within top margin
-        y_pos = self.page.top_margin / 2
+        y_pos = self.page.height - (self.page.top_margin * 0.85)
 
-        # TODO: Support margins on string?
         if style.alignment == TA_LEFT:
             x_pos = self.page.left
-            self.canvas.drawString(x_pos, y_pos, text)
+            canvas.drawString(x_pos, y_pos, self.header_paragraph.text)
         elif style.alignment == TA_RIGHT:
             x_pos = self.page.right
-            self.canvas.drawRightString(x_pos, y_pos, text)
+            canvas.drawRightString(x_pos, y_pos, self.header_paragraph.text)
         elif style.alignment == TA_CENTER:
             x_pos = self.page.center
-            self.canvas.drawCentredString(x_pos, y_pos, text)
+            canvas.drawCentredString(x_pos, y_pos, self.header_paragraph.text)
 
-    def draw_footer(self, text, style: ParagraphStyle, page_number: bool = True, border: bool = False):
-        """Draws the header onto the canvas with the given text and style. Defaults to drawing page number.
-        :param text: Text to draw in header.
-        :param style: Style to draw text in.
-        :param page_number: Whether to draw page number.
-        :param border: Whether to draw a border or not.
+        canvas.drawString(self.page.left, y_pos, str(canvas.getPageNumber()))
+
+    def draw_footer(self, canvas, doc):
+        """Draws the footer onto the canvas.
+        :param canvas: Canvas, passed from document.build.
+        :param doc: SimpleDocTemplate, passed from document.build.
         """
-        if border:
-            self.canvas.setStrokeColorRGB(0, 0, 0)
-            self.canvas.setLineWidth(0.5)
-            self.canvas.line(
+        if not self.footer_paragraph:
+            return
+            
+        style = self.footer_paragraph.style
+
+        if style.borderWidth:
+            canvas.setStrokeColor(style.borderColor)
+            canvas.setLineWidth(style.borderWidth)
+            canvas.line(
                 self.page.left,
-                self.page.bottom,
+                self.page.top,
                 self.page.right,
-                self.page.bottom)
+                self.page.top)
 
-        self.canvas.setFont(style.fontName, style.fontSize)
-
-        if page_number:
-            footer_text = str(self.canvas.getPageNumber())
-        else:
-            footer_text = text
+        canvas.setFont(style.fontName, style.fontSize)
+        canvas.setFillColor(style.textColor)
 
         y_pos = self.page.bottom_margin / 2
 
-        # TODO: Support margins on string?
         if style.alignment == TA_LEFT:
             x_pos = self.page.left
-            self.canvas.drawString(x_pos, y_pos, footer_text)
+            canvas.drawString(x_pos, y_pos, self.footer_paragraph.text)
         elif style.alignment == TA_RIGHT:
             x_pos = self.page.right
-            self.canvas.drawRightString(x_pos, y_pos, footer_text)
+            canvas.drawRightString(x_pos, y_pos, self.footer_paragraph.text)
         elif style.alignment == TA_CENTER:
             x_pos = self.page.center
-            self.canvas.drawCentredString(x_pos, y_pos, footer_text)
-
-    # TODO: Only check for lyricTopMargin? Do we know the proposed lyric_pos?
-    def is_space_for_another_line(self, cursor_y_pos: int, glyph_list: List[Glyph] = None):
-        """Returns whether there is space for a line of neumes and lyrics."""
-        if glyph_list is None:
-            glyph_list = []
-        max_height = 0
-        for glyph in glyph_list:
-            lyric_height = getattr(glyph.lyric, 'top_margin', 0)
-            if lyric_height > max_height:
-                max_height = lyric_height > max_height
-        return not self.page.is_bottom_of_page(cursor_y_pos - max_height)
+            canvas.drawCentredString(x_pos, y_pos, self.footer_paragraph.text)
 
     @staticmethod
     def make_glyph_list(neume_chunk_list: List[NeumeChunk], lyrics_list: List[Lyric]) -> List[Glyph]:
@@ -641,6 +660,15 @@ class Kassia:
                     logging.warning("{} warning: {}".format(font_attr, e))
                     # Get rid of xml font attribute, will use default later
                     attribute_dict.pop(font_attr)
+
+        for float_attr in ['border_width']:
+            if float_attr in attribute_dict:
+                try:
+                    attribute_dict[float_attr] = float(attribute_dict[float_attr])
+                except ValueError as e:
+                    logging.warning("{} warning: {}".format(float_attr, e))
+                    # Get rid of xml font attribute, will use default later
+                    attribute_dict.pop(float_attr)
 
         """parse the margins"""
         for margin_attr in ['top_margin', 'bottom_margin', 'left_margin', 'right_margin']:
