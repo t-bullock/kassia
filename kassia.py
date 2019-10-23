@@ -24,7 +24,11 @@ from page import Page
 
 class Kassia:
     """Base class for package"""
-    def __init__(self, input_filename, output_file="sample.pdf"):
+    def __init__(self,
+                 input_filename: str = "sample.xml",
+                 output_file: str = "sample.pdf",
+                 use_system_fonts: bool = False
+                 ):
         self.bnml = None
         self.canvas = None
         self.page = Page()
@@ -40,7 +44,7 @@ class Kassia:
             logging.error("XML file not readable.")
 
         if file_readable:
-            font_reader.register_fonts()
+            font_reader.register_fonts(use_system_fonts)
             self.parse_file()
             self.create_pdf()
 
@@ -664,7 +668,7 @@ class Kassia:
 
         """parse the font family"""
         if 'font_family' in attribute_dict:
-            if not font_reader.is_registered_font(attribute_dict['font_family']):
+            if not font_reader.is_font_registered(attribute_dict['font_family']):
                 logging.warning("{} not found, using Helvetica instead".format(attribute_dict['font_family']))
                 # Helvetica is built into ReportLab, so we know it's safe
                 attribute_dict['font_family'] = "Helvetica"
