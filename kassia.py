@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import sys
+import argparse
 import logging
 from copy import deepcopy
 from typing import Any, Dict, Iterable, List
@@ -697,15 +698,26 @@ class Kassia:
 
 
 def main(argv):
-    if len(argv) == 1:
-        Kassia(argv[0])
-    elif len(argv) > 1:
-        Kassia(argv[0], argv[1])
+    parser = argparse.ArgumentParser(description='Run Kassia to create a pdf from a bnml score.')
+    parser.add_argument('input_file', metavar='INPUT FILE', type=str, nargs='?', default='sample.xml',
+                        help='the path to a bnml score')
+    parser.add_argument('output_file', metavar='OUTPUT FILE', type=str, nargs='?', default='sample.pdf',
+                        help='the destination path for the pdf score')
+    parser.add_argument('--sys-fonts', dest='use_system_fonts', default=False,
+                        help='search system for installed fonts')
+
+    args = parser.parse_args()
+    Kassia(args.input_file, args.output_file, args.use_system_fonts)
+
+    #if len(argv) == 1:
+    #    Kassia(argv[0])
+    #elif len(argv) > 1:
+    #    Kassia(argv[0], argv[1])
 
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    if len(sys.argv) == 1:
-        logging.error("Input XML file required.")
-        sys.exit(1)
+    #if len(sys.argv) == 1:
+    #    logging.error("Input XML file required.")
+    #    sys.exit(1)
     main(sys.argv[1:])
