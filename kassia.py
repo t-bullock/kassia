@@ -533,6 +533,10 @@ class Kassia:
         cr = starting_pos
         glyph_line_list: List[GlyphLine] = []
         glyph_line: GlyphLine = GlyphLine(line_spacing, glyph_spacing)
+        
+        # Need to shift nuemes and lyrics up by this amount, since glyph will be drawn aligned to bottom, and
+        # lyrics are being added below neumes
+        y_offset = max(getattr(glyph.lyric, 'top_margin', 0) for glyph in glyph_list)
 
         for glyph in glyph_list:
             new_line = False
@@ -552,9 +556,9 @@ class Kassia:
                 adj_neume_pos = (glyph.width - neume_width) / 2.
 
             glyph.neume_chunk_pos[0] = cr.x + adj_neume_pos
-            glyph.neume_chunk_pos[1] = cr.y
+            glyph.neume_chunk_pos[1] = y_offset/2.
             glyph.lyric_pos[0] = cr.x + adj_lyric_pos
-            glyph.lyric_pos[1] = cr.y - getattr(glyph.lyric, 'top_margin', 0)  # New
+            glyph.lyric_pos[1] = cr.y
             cr.x += glyph.width + glyph_spacing
 
             if new_line:

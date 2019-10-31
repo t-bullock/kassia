@@ -27,7 +27,8 @@ class Glyph(Flowable):
     def set_size(self):
         self.width = max(getattr(self.neume_chunk, 'width', 0), getattr(self.lyric, 'width', 0))
         self.height = getattr(self.neume_chunk, 'height', 0)\
-            + getattr(self.lyric, 'height', 0)
+            + getattr(self.lyric, 'height', 0)\
+            + getattr(self.lyric, 'top_margin', 0)
 
     def draw(self, canvas):
         canvas.saveState()

@@ -28,7 +28,7 @@
             <paragraph font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="20" space_after="20" />
             <verse />
             <!-- Default neume font family, size, color, etc. For now you're stuck with KA New Stathis Main, but you can change the size and color. -->
-            <neumes font_family="KA New Stathis Main" font_size="30" color="#000000" align="justify" word_spacing="4" leading="10" />
+            <neumes font_family="KA New Stathis Main" font_size="30" color="#000000" align="justify" word_spacing="4" leading="5" />
             <!--neumes-chronos font_family="KA New Stathis Chronos" font_size="30" color="#cf232b" /-->
             <!--neumes-fthora font_family="KA New Stathis Fthora" font_size="30" color="#cf232b" /-->
             <!--neumes-martyria font_family="KA New Stathis Martyria" font_size="30" color="#cf232b" /-->
@@ -36,7 +36,7 @@
             <!--neumes-combo font_family="KA New Stathis Combo" font_size="30" color="#000000" /-->
 
             <!-- font_family can be any font name in your kassia/fonts folder, or any font you have installed on your OS -->
-            <lyrics font_family="Alegreya-Medium" font_size="14" color="#000000" space_before="25" />
+            <lyrics font_family="Alegreya-Medium" font_size="14" color="#000000" space_before="26" />
             <dropcap font_family="Alegreya-Bold" font_size="45" color="#cf232b" />
             <header font_family="Alegreya-Italic" font_size="12" color="#0000e6" align="center" border_width="1.0" border_color="#0000e6" border_padding="10" />
             <footer font_family="Alegreya-Italic" font_size="8" color="#0000e6" align="center" />
@@ -269,8 +269,6 @@
             Heark- - en un- to me _ _ _ O _ _ _ Lord
         </lyrics>
     </troparion>
-
-    <linebreak space="80" />
 
     <paragraph style="h1">
         Let My Prayer
