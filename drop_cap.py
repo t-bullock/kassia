@@ -1,10 +1,11 @@
+from reportlab.lib.geomutils import normalizeTRBL
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.platypus.flowables import Flowable
 
 
 class Dropcap(Flowable):
-    def __init__(self, text: str = None, x_padding: int = 0, style: ParagraphStyle = ParagraphStyle('defaults')):
+    def __init__(self, text: str = None, x_padding: int = 0, style: ParagraphStyle = ParagraphStyle('Dropcap')):
         super().__init__()
         self.text = text
         self.x_padding = x_padding
@@ -12,8 +13,6 @@ class Dropcap(Flowable):
         self.width = pdfmetrics.stringWidth(self.text, self.style.fontName, self.style.fontSize)
         ascent, descent = pdfmetrics.getAscentDescent(self.style.fontName, self.style.fontSize)
         self.height = max(ascent - descent, self.style.leading)
-        #self.page_settings = page_settings
-        #self.y_offset = -glyph_height
 
     def wrap(self, *args):
         return self.width + self.x_padding, self.height
@@ -21,6 +20,8 @@ class Dropcap(Flowable):
     def draw(self):
         if not self.text:
             return
+
+        self._draw_background()
 
         canvas = self.canv
         canvas.setFillColor(self.style.textColor)
@@ -31,7 +32,14 @@ class Dropcap(Flowable):
         # canvas.drawText(tx)
         canvas.drawString(0, 0, self.text)
 
-    '''def _draw_background(self):
+    def _draw_background(self):
+        """
+        Draws a dropcap background. Logic copied from drawPara() method in Paragraph class.
+        """
+        canvas = self.canv
+        style = self.style
+        left_indent = style.leftIndent
+
         bw = getattr(style, 'borderWidth', None)
         bc = getattr(style, 'borderColor', None)
         bg = style.backColor
@@ -45,7 +53,7 @@ class Dropcap(Flowable):
                 canvas.setLineWidth(bw)
                 kwds['stroke'] = 1
                 br = getattr(style, 'borderRadius', 0)
-                if br and not debug:
+                if br:
                     op = canvas.roundRect
                     kwds['radius'] = br
             if bg:
@@ -53,10 +61,9 @@ class Dropcap(Flowable):
                 kwds['fill'] = 1
             bp = getattr(style, 'borderPadding', 0)
             tbp, rbp, bbp, lbp = normalizeTRBL(bp)
-            op(leftIndent - lbp,
+            op(left_indent - lbp,
                -bbp,
-               self.width - (leftIndent + style.rightIndent) + lbp + rbp,
+               self.width - (left_indent + style.rightIndent) + lbp + rbp,
                self.height + tbp + bbp,
                **kwds)
             canvas.restoreState()
-            '''
