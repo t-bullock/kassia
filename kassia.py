@@ -111,11 +111,11 @@ class Kassia:
             page_layout = defaults.find('page-layout')
             if page_layout:
                 paper_size = page_layout.find('paper-size')
-                if paper_size:
+                if paper_size is not None:
                     self.page.set_size(paper_size.text)
                 page_margins = page_layout.find('page-margins')
-                if page_margins:
                     margin_dict = self.fill_page_dict(page_margins.attrib)
+                if page_margins is not None:
                     self.page.set_margins(margin_dict)
 
             score_styles = defaults.find('styles')
