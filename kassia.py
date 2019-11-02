@@ -377,8 +377,8 @@ class Kassia:
             new_style.alignment = bnml_style['align']
         if 'first_line_indent' in bnml_style:
             new_style.firstLineIndent = bnml_style['first_line_indent']
-        if 'auto-leading' in bnml_style:
-            new_style.autoLeading = bnml_style['auto-leading']
+        if 'auto_leading' in bnml_style:
+            new_style.autoLeading = bnml_style['auto_leading']
         if 'leading' in bnml_style:
             new_style.leading = bnml_style['leading']
         if 'left_indent' in bnml_style:
@@ -413,8 +413,8 @@ class Kassia:
             default_style.alignment = bnml_style['align']
         if 'first_line_indent' in bnml_style:
             default_style.firstLineIndent = bnml_style['first_line_indent']
-        if 'auto-leading' in bnml_style:
-            default_style.autoLeading = bnml_style['auto-leading']
+        if 'auto_leading' in bnml_style:
+            default_style.autoLeading = bnml_style['auto_leading']
         if 'leading' in bnml_style:
             default_style.leading = bnml_style['leading']
         if 'left_indent' in bnml_style:
