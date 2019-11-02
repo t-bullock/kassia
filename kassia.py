@@ -31,6 +31,8 @@ class Kassia:
         self.page = Page()
         self.story = []
         self.styleSheet = getSampleStyleSheet()
+        self.header_paragraph = None
+        self.footer_paragraph = None
         self.init_styles()
         self.input_filename = input_filename
         try:
