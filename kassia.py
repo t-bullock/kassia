@@ -114,8 +114,8 @@ class Kassia:
                 if paper_size is not None:
                     self.page.set_size(paper_size.text)
                 page_margins = page_layout.find('page-margins')
-                    margin_dict = self.fill_page_dict(page_margins.attrib)
                 if page_margins is not None:
+                    margin_dict = self.fill_attribute_dict(page_margins.attrib)
                     self.page.set_margins(margin_dict)
 
             score_styles = defaults.find('styles')
@@ -401,14 +401,6 @@ class Kassia:
             default_style.borderColor = bnml_style['border_color']
         return default_style
 
-    def get_lyric_attributes(self, lyric_elem, default_lyric_attrib):
-        current_lyric_attrib = deepcopy(default_lyric_attrib)
-        settings_from_xml = self.fill_attribute_dict(lyric_elem.attrib)
-        current_lyric_attrib.update(settings_from_xml)
-        text = " ".join(lyric_elem.text.strip().split())
-        current_lyric_attrib['text'] = text
-        return current_lyric_attrib
-
     def draw_header_footer(self, canvas, doc):
         self.draw_header(canvas, doc)
         self.draw_footer(canvas, doc)
@@ -634,34 +626,20 @@ class Kassia:
             logging.warning("Alignment {} is not a proper value".format(align_str))
         return align
 
-    @staticmethod
-    def fill_page_dict(page_dict: Dict[str, str]) -> Dict[str, int]:
-
-        for attrib_name in page_dict:
-            try:
-                page_dict[attrib_name] = int(page_dict[attrib_name])
-            except ValueError as e:
-                logging.warning("{} warning: {}".format(attrib_name, e))
-                page_dict.pop(attrib_name)
-        return page_dict
-
     def fill_attribute_dict(self, attribute_dict: Dict[str, str]) -> Dict[str, Any]:
+        new_attr_dict: Dict[str, Any] = deepcopy(attribute_dict)
         if 'align' in attribute_dict:
-            attribute_dict['align'] = self.str_to_align(attribute_dict['align'])
+            new_attr_dict['align'] = self.str_to_align(attribute_dict['align'])
 
-        """parse the font family"""
         if 'font_family' in attribute_dict:
             if not font_reader.is_registered_font(attribute_dict['font_family']):
-                logging.warning("{} not found, using Helvetica instead".format(attribute_dict['font_family']))
-                # Helvetica is built into ReportLab, so we know it's safe
-                attribute_dict['font_family'] = "Helvetica"
+                logging.warning("{} not found, using default instead".format(attribute_dict['font_family']))
 
-        """parse the font attributes"""
         for font_attr in ['font_size', 'first_line_indent', 'left_indent', 'right_indent', 'leading', 'space_before',
                           'space_after', 'ending_cursor_pos', 'word_spacing']:
             if font_attr in attribute_dict:
                 try:
-                    attribute_dict[font_attr] = int(attribute_dict[font_attr])
+                    new_attr_dict[font_attr] = int(attribute_dict[font_attr])
                 except ValueError as e:
                     logging.warning("{} warning: {}".format(font_attr, e))
                     # Get rid of xml font attribute, will use default later
@@ -670,7 +648,7 @@ class Kassia:
         for float_attr in ['border_width']:
             if float_attr in attribute_dict:
                 try:
-                    attribute_dict[float_attr] = float(attribute_dict[float_attr])
+                    new_attr_dict[float_attr] = float(attribute_dict[float_attr])
                 except ValueError as e:
                     logging.warning("{} warning: {}".format(float_attr, e))
                     # Get rid of xml font attribute, will use default later
@@ -680,12 +658,12 @@ class Kassia:
         for margin_attr in ['top_margin', 'bottom_margin', 'left_margin', 'right_margin']:
             if margin_attr in attribute_dict:
                 try:
-                    attribute_dict[margin_attr] = int(attribute_dict[margin_attr])
+                    new_attr_dict[margin_attr] = int(attribute_dict[margin_attr])
                 except ValueError as e:
                     logging.warning("{} warning: {}".format(margin_attr, e))
                     # Get rid of xml margin attribute, will use default later
                     attribute_dict.pop(margin_attr)
-        return attribute_dict
+        return new_attr_dict
 
 
 def main(argv):
