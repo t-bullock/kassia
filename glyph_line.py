@@ -10,16 +10,16 @@ from glyphs import Glyph
 class GlyphLine(Flowable, collections.MutableSequence):
     """This class is a collection of Glyphs.
     """
-    def __init__(self, space_after=0, glyph_spacing=0, *args):
+    def __init__(self, leading=0, glyph_spacing=0, *args):
         super().__init__()
         self.list: List[Glyph] = list()
         self.extend(list(args))
-        self.spaceAfter = space_after
+        self.leading = leading
         self.glyphSpacing = glyph_spacing
 
     def wrap(self, *args):
         self.set_size()  # This might not be needed
-        return self.width, self.height + self.spaceAfter
+        return self.width, self.height
 
     def draw(self):
         canvas: Canvas = self.canv
@@ -30,8 +30,8 @@ class GlyphLine(Flowable, collections.MutableSequence):
         if self.list:
             width = (self.list[-1].neume_chunk_pos[0] + self.list[-1].width) - self.list[0].neume_chunk_pos[0]
             self.width = width
-            height = max(glyph.height for glyph in self.list)
-            self.height = height
+            glyphs_height = max(glyph.height for glyph in self.list)
+            self.height = max(glyphs_height, self.leading)
 
     def __len__(self):
         return len(self.list)

@@ -262,7 +262,7 @@ class Kassia:
                                     ('TOPPADDING', (0, 0), (-1, -1), 0),
                                     ])
                             )
-                            t.spaceAfter = glyph_line.spaceAfter
+                            t.spaceAfter = glyph_line.leading - glyph_line.height
                             self.story.append(t)
                         else:
                             self.story.append(glyph_line)

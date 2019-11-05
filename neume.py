@@ -12,3 +12,5 @@ class Neume:
         self.offset_x = 0
         self.offset_y = 0
         self.width = pdfmetrics.stringWidth(self.char, self.font_family, self.font_size)
+        ascent, descent = pdfmetrics.getAscentDescent(self.font_family, self.font_size)
+        self.height = ascent - descent

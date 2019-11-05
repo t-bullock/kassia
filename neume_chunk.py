@@ -69,5 +69,4 @@ class NeumeChunk(collections.MutableSequence):
         self.height = ascent - descent
 
     def add_width(self, neume):
-        neume_width = pdfmetrics.stringWidth(neume.char, neume.font_family, neume.font_size)
-        self.width += neume_width
+        self.width += neume.width
