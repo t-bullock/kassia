@@ -6,6 +6,7 @@ from typing import Any, Dict, List
 
 from reportlab.lib.enums import *
 from reportlab.lib.styles import *
+from reportlab.pdfbase import pdfmetrics
 from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle, PageTemplate
 from xml.etree.ElementTree import Element, ParseError, parse
 
@@ -551,8 +552,18 @@ class Kassia:
             neume_width = getattr(glyph.neume_chunk, 'width', 0)
             lyric_width = getattr(glyph.lyric, 'width', 0)
             if neume_width >= lyric_width:
-                # center text
+                # center lyrics
                 adj_lyric_pos = (glyph.width - lyric_width) / 2.
+
+                # special cases
+                primary_neume = glyph.neume_chunk[0]
+                if primary_neume.char == '/':
+                    # If variea, center lyric under neume chunk without vareia
+                    adj_lyric_pos += primary_neume.width / 2.
+                elif primary_neume.char == '_':
+                    # If syneches elaphron, center lyric under elaphron
+                    apostr_width = pdfmetrics.stringWidth('!', primary_neume.font_family, primary_neume.font_size)
+                    adj_lyric_pos += apostr_width / 2.
             else:
                 # center neume
                 adj_neume_pos = (glyph.width - neume_width) / 2.
@@ -603,16 +614,24 @@ class Kassia:
                 neume_width = getattr(glyph.neume_chunk, 'width', 0)
                 lyric_width = getattr(glyph.lyric, 'width', 0)
                 if neume_width >= lyric_width:
-                    # center text
+                    # center lyrics
                     adj_lyric_pos = (glyph.width - lyric_width) / 2.
+
+                    # special cases
+                    primary_neume = glyph.neume_chunk[0]
+                    if primary_neume.char == '/':
+                        # If variea, center lyric under neume chunk without vareia
+                        adj_lyric_pos += primary_neume.width / 2.
+                    elif primary_neume.char == '_':
+                        # If syneches elaphron, center lyric under elaphron
+                        apostr_width = pdfmetrics.stringWidth('!', primary_neume.font_family, primary_neume.font_size)
+                        adj_lyric_pos += apostr_width / 2.
                 else:
                     # center neume
                     adj_neume_pos = (glyph.width - neume_width) / 2.
 
                 glyph.neume_chunk_pos[0] = cr.x + adj_neume_pos
                 glyph.lyric_pos[0] = cr.x + adj_lyric_pos
-                # glyph.neume_chunk_pos[0] += glyph_spacing
-                # glyph.lyric_pos[0] += glyph_spacing
 
                 cr.x += glyph.width + glyph_spacing
 
