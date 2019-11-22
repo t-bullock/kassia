@@ -246,6 +246,7 @@ class Kassia:
                 # Pop off first letter of lyrics, since it will be drawn as a dropcap
                 if dropcap and len(lyrics_list) > 0:
                     lyrics_list[0].text = lyrics_list[0].text[1:]
+                    lyrics_list[0].recalc_width()
 
                 if neumes_list:
                     neume_chunks = neume_dict.chunk_neumes(neumes_list)
@@ -255,7 +256,8 @@ class Kassia:
                                                                   self.page.width,
                                                                   self.styleSheet['Neumes'].leading,
                                                                   self.styleSheet['Neumes'].wordSpace)
-                    lines_list: List[GlyphLine] = self.line_justify(lines_list, self.page.width, dropcap_offset)
+                    if len(lines_list) > 1 or self.styleSheet['Neumes'].alignment is TA_JUSTIFY:
+                        lines_list: List[GlyphLine] = self.line_justify(lines_list, self.page.width, dropcap_offset)
 
                     for i, glyph_line in enumerate(lines_list):
                         if i == 0 and dropcap:
