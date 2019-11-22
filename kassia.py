@@ -6,7 +6,7 @@ from typing import Any, Dict, List
 
 from reportlab.lib.enums import *
 from reportlab.lib.styles import *
-from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle, PageTemplate
 from xml.etree.ElementTree import Element, ParseError, parse
 
 import font_reader
@@ -94,29 +94,37 @@ class Kassia:
     def build_document(self, output_filename: str):
         """Builds a pdf document file.
         """
+        self.doc = SimpleDocTemplate(filename=output_filename)
+
         identification = self.bnml.find('identification')
-        if identification:
+        if identification is not None:
             title = identification.find('work-title')
-            if title:
-                self.page.title = title.text
+            if title is not None:
+                self.doc.__setattr__('title', title.text)
             author = identification.find('author')
-            if author:
-                self.page.author = author.text
+            if author is not None:
+                self.doc.__setattr__('author', author.text)
             subject = identification.find('subject')
-            if subject:
-                self.page.subject = subject.text
+            if subject is not None:
+                self.doc.__setattr__('subject', subject.text)
 
         defaults = self.bnml.find('defaults')
-        if defaults:
+        if defaults is not None:
             page_layout = defaults.find('page-layout')
-            if page_layout:
-                paper_size = page_layout.find('paper-size')
-                if paper_size is not None:
-                    self.page.set_size(paper_size.text)
+            if page_layout is not None:
+                page_size_elem = page_layout.find('paper-size')
+                if page_size_elem is not None:
+                    #self.page.set_size(paper_size.text)
+                    page_size = self.page.get_size_by_name(page_size_elem.text)
+                    self.doc.__setattr__('pagesize', page_size)
                 page_margins = page_layout.find('page-margins')
                 if page_margins is not None:
                     margin_dict = self.fill_attribute_dict(page_margins.attrib)
-                    self.page.set_margins(margin_dict)
+                    #self.page.set_margins(margin_dict)
+                    self.doc.__setattr__('leftMargin', margin_dict['left_margin'])
+                    self.doc.__setattr__('rightMargin', margin_dict['right_margin'])
+                    self.doc.__setattr__('topMargin', margin_dict['top_margin'])
+                    self.doc.__setattr__('bottomMargin', margin_dict['bottom_margin'])
 
             score_styles = defaults.find('styles')
             for style in score_styles or []:
@@ -133,7 +141,7 @@ class Kassia:
                     except KeyError as e:
                         logging.warning("Couldn't add style to stylesheet: {}".format(e))
 
-        self.doc = SimpleDocTemplate(
+        '''self.doc = SimpleDocTemplate(
             filename=output_filename,
             pagesize=self.page.size,
             leftMargin=self.page.left_margin,
@@ -143,7 +151,7 @@ class Kassia:
             title=self.page.title,
             author=self.page.author,
             subject=self.page.subject
-        )
+        )'''
 
     def create_pdf(self):
         """Create a PDF output file."""
