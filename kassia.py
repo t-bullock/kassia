@@ -12,6 +12,7 @@ from xml.etree.ElementTree import Element, ParseError, parse
 
 import font_reader
 import neume_dict
+from complex_doc_template import ComplexDocTemplate
 from cursor import Cursor
 from drop_cap import Dropcap
 from enums import *
@@ -20,7 +21,6 @@ from glyphs import Glyph
 from lyric import Lyric
 from neume import Neume
 from neume_chunk import NeumeChunk
-from page import Page
 
 
 class Kassia:
@@ -29,7 +29,6 @@ class Kassia:
     def __init__(self, input_filename, output_file="sample.pdf"):
         self.bnml = None
         self.doc = None  # SimpleDocTemplate()
-        self.page = Page()
         self.story = []
         self.styleSheet = getSampleStyleSheet()
         self.header_paragraph = None
@@ -95,19 +94,19 @@ class Kassia:
     def build_document(self, output_filename: str):
         """Builds a pdf document file.
         """
-        self.doc = SimpleDocTemplate(filename=output_filename)
+        self.doc = ComplexDocTemplate(filename=output_filename)
 
         identification = self.bnml.find('identification')
         if identification is not None:
             title = identification.find('work-title')
             if title is not None:
-                self.doc.__setattr__('title', title.text)
+                setattr(self.doc, 'title', title.text)
             author = identification.find('author')
             if author is not None:
-                self.doc.__setattr__('author', author.text)
+                setattr(self.doc, 'author', author.text)
             subject = identification.find('subject')
             if subject is not None:
-                self.doc.__setattr__('subject', subject.text)
+                setattr(self.doc, 'subject', subject.text)
 
         defaults = self.bnml.find('defaults')
         if defaults is not None:
@@ -115,17 +114,11 @@ class Kassia:
             if page_layout is not None:
                 page_size_elem = page_layout.find('paper-size')
                 if page_size_elem is not None:
-                    #self.page.set_size(paper_size.text)
-                    page_size = self.page.get_size_by_name(page_size_elem.text)
-                    self.doc.__setattr__('pagesize', page_size)
+                    self.doc.set_pagesize_by_name(page_size_elem.text)
                 page_margins = page_layout.find('page-margins')
                 if page_margins is not None:
                     margin_dict = self.fill_attribute_dict(page_margins.attrib)
-                    #self.page.set_margins(margin_dict)
-                    self.doc.__setattr__('leftMargin', margin_dict['left_margin'])
-                    self.doc.__setattr__('rightMargin', margin_dict['right_margin'])
-                    self.doc.__setattr__('topMargin', margin_dict['top_margin'])
-                    self.doc.__setattr__('bottomMargin', margin_dict['bottom_margin'])
+                    self.doc.set_margins(margin_dict)
 
             score_styles = defaults.find('styles')
             for style in score_styles or []:
@@ -141,18 +134,6 @@ class Kassia:
                         self.styleSheet.add(new_paragraph_style, style_name.lower())
                     except KeyError as e:
                         logging.warning("Couldn't add style to stylesheet: {}".format(e))
-
-        '''self.doc = SimpleDocTemplate(
-            filename=output_filename,
-            pagesize=self.page.size,
-            leftMargin=self.page.left_margin,
-            rightMargin=self.page.right_margin,
-            topMargin=self.page.top_margin,
-            bottomMargin=self.page.bottom_margin,
-            title=self.page.title,
-            author=self.page.author,
-            subject=self.page.subject
-        )'''
 
     def create_pdf(self):
         """Create a PDF output file."""
@@ -253,11 +234,11 @@ class Kassia:
                     glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
                     lines_list: List[GlyphLine] = self.line_break(glyph_line,
                                                                   Cursor(dropcap_offset, 0),
-                                                                  self.page.width,
+                                                                  self.doc.width,
                                                                   self.styleSheet['Neumes'].leading,
                                                                   self.styleSheet['Neumes'].wordSpace)
                     if len(lines_list) > 1 or self.styleSheet['Neumes'].alignment is TA_JUSTIFY:
-                        lines_list: List[GlyphLine] = self.line_justify(lines_list, self.page.width, dropcap_offset)
+                        lines_list: List[GlyphLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
 
                     for i, glyph_line in enumerate(lines_list):
                         if i == 0 and dropcap:
@@ -430,27 +411,27 @@ class Kassia:
             canvas.setStrokeColor(style.borderColor)
             canvas.setLineWidth(style.borderWidth)
             canvas.line(
-                self.page.left,
-                self.page.top,
-                self.page.right,
-                self.page.top)
+                self.doc.left,
+                self.doc.top,
+                self.doc.right,
+                self.doc.top)
 
         canvas.setFont(style.fontName, style.fontSize)
         canvas.setFillColor(style.textColor)
 
-        y_pos = self.page.height - (self.page.top_margin * 0.85)
+        y_pos = self.doc.pagesize[1] - (self.doc.topMargin * 0.85)
 
         if style.alignment == TA_LEFT:
-            x_pos = self.page.left
+            x_pos = self.doc.left
             canvas.drawString(x_pos, y_pos, self.header_paragraph.text)
         elif style.alignment == TA_RIGHT:
-            x_pos = self.page.right
+            x_pos = self.doc.right
             canvas.drawRightString(x_pos, y_pos, self.header_paragraph.text)
         elif style.alignment == TA_CENTER:
-            x_pos = self.page.center
+            x_pos = self.doc.center
             canvas.drawCentredString(x_pos, y_pos, self.header_paragraph.text)
 
-        canvas.drawString(self.page.left, y_pos, str(canvas.getPageNumber()))
+        canvas.drawString(self.doc.left, y_pos, str(canvas.getPageNumber()))
 
     def draw_footer(self, canvas, doc):
         """Draws the footer onto the canvas.
@@ -466,24 +447,24 @@ class Kassia:
             canvas.setStrokeColor(style.borderColor)
             canvas.setLineWidth(style.borderWidth)
             canvas.line(
-                self.page.left,
-                self.page.top,
-                self.page.right,
-                self.page.top)
+                self.doc.left,
+                self.doc.top,
+                self.doc.right,
+                self.doc.top)
 
         canvas.setFont(style.fontName, style.fontSize)
         canvas.setFillColor(style.textColor)
 
-        y_pos = self.page.bottom_margin / 2
+        y_pos = self.doc.bottomMargin / 2
 
         if style.alignment == TA_LEFT:
-            x_pos = self.page.left
+            x_pos = self.doc.left
             canvas.drawString(x_pos, y_pos, self.footer_paragraph.text)
         elif style.alignment == TA_RIGHT:
-            x_pos = self.page.right
+            x_pos = self.doc.right
             canvas.drawRightString(x_pos, y_pos, self.footer_paragraph.text)
         elif style.alignment == TA_CENTER:
-            x_pos = self.page.center
+            x_pos = self.doc.center
             canvas.drawCentredString(x_pos, y_pos, self.footer_paragraph.text)
 
     @staticmethod
