@@ -41,7 +41,7 @@ class Glyph(Flowable):
             canvas.drawString(pos_x, self.neume_chunk_pos[1], neume.char)
         canvas.restoreState()
 
-        if self.lyric:
+        if self.lyric and self.lyric.text is not '_':
             canvas.setFillColor(self.lyric.color)
             canvas.setFont(self.lyric.font_family, self.lyric.font_size)
             canvas.drawString(self.lyric_pos[0], self.lyric_pos[1], self.lyric.text)
