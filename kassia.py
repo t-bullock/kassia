@@ -661,17 +661,14 @@ class Kassia:
                     new_attr_dict[float_attr] = float(attribute_dict[float_attr])
                 except ValueError as e:
                     logging.warning("{} warning: {}".format(float_attr, e))
-                    # Get rid of xml font attribute, will use default later
                     attribute_dict.pop(float_attr)
 
-        """parse the margins"""
         for margin_attr in ['top_margin', 'bottom_margin', 'left_margin', 'right_margin']:
             if margin_attr in attribute_dict:
                 try:
                     new_attr_dict[margin_attr] = int(attribute_dict[margin_attr])
                 except ValueError as e:
                     logging.warning("{} warning: {}".format(margin_attr, e))
-                    # Get rid of xml margin attribute, will use default later
                     attribute_dict.pop(margin_attr)
         return new_attr_dict
 
