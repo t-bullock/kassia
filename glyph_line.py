@@ -12,7 +12,7 @@ class GlyphLine(Flowable, collections.MutableSequence):
     """This class is a collection of Glyphs.
     """
     def __init__(self, leading=0, glyph_spacing=0, *args):
-        super().__init__()
+        super().__init__(*args)
         self.list: List[Glyph] = list()
         self.extend(list(args))
         self.leading = leading
