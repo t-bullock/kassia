@@ -1,5 +1,5 @@
 import collections
-from typing import List
+from typing import List, Tuple
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfgen.canvas import Canvas
@@ -29,33 +29,56 @@ class GlyphLine(Flowable, collections.MutableSequence):
         self.draw_underscore(canvas)
 
     def draw_underscore(self, canvas):
-        for i, glyph in enumerate(self.list):
-            if glyph.lyric and glyph.lyric.text == '_':
+        for i in range(0, len(self.list)-1):
+            glyph = self.list[i]
+            next_glyph = self.list[i+1]
+            x1, x2 = None, None  # Starting x pos for underscore
+
+            # Starting line with underscore
+            if i == 0 and glyph.has_lyric_text('_'):
+                x1 = glyph.neume_chunk_pos[0]
+            # When next glyph will be underscore
+            elif next_glyph.has_lyric_text('_'):
+                # Make sure not a martyria or other special case
+                if glyph.lyric:
+                    lyric_space_width = pdfmetrics.stringWidth(' ', glyph.lyric.font_family, glyph.lyric.font_size)
+                    x1 = glyph.lyric_pos[0] + glyph.lyric.width + lyric_space_width
+                else:
+                    x1 = glyph.neume_chunk_pos[0]
+
+            if x1 is not None:
+                x2, i = self.recurse_last_underscore_pos(i)
+                y1, y2 = (glyph.lyric_pos[1], glyph.lyric_pos[1])
                 canvas.setStrokeColor(glyph.lyric.color)
                 canvas.setFont(glyph.lyric.font_family, glyph.lyric.font_size)
-
-                # Check if glyph with underscore is on a new line or not
-                if i-1 >= 0:
-                    prev_glyph = self.list[i-1]
-                    lyric_space_width = pdfmetrics.stringWidth(' ', glyph.lyric.font_family, glyph.lyric.font_size)
-                    x1 = prev_glyph.lyric_pos[0] + prev_glyph.lyric.width + lyric_space_width
-                else:
-                    x1 = glyph.lyric_pos[0]
-
-                # Check if next neume is syneches elaphron (special extend beneath next neume)
-                if i+1 < len(self.list) and self.list[i+1].neume_chunk[0].char == '_':
-                    next_glyph = self.list[i+1]
-                    apostrophos_width = pdfmetrics.stringWidth('!', glyph.neume_chunk[0].font_family, glyph.neume_chunk[0].font_size)
-                    x2 = next_glyph.neume_chunk_pos[0] + apostrophos_width
-                else:
-                    j = i
-                    while j < len(self.list) and self.list[j].lyric and self.list[j].lyric.text == '_':
-                        j += 1
-                    x2 = self.list[j-1].neume_chunk_pos[0] + self.list[j-1].width
-
-                y1, y2 = (glyph.lyric_pos[1], glyph.lyric_pos[1])
-
                 canvas.line(x1, y1, x2, y2)
+
+    def recurse_last_underscore_pos(self, index: int) -> Tuple[float, int]:
+        curr_glyph = self.list[index]
+        curr_neume = curr_glyph.get_standalone_neume()
+
+        # Check if at end of line
+        if index + 1 >= len(self.list):
+            x2 = curr_glyph.neume_chunk_pos[0] + curr_glyph.width
+            return x2, index
+
+        next_glyph = self.list[index+1]
+        next_neume = next_glyph.get_standalone_neume()
+
+        # Check next neume is syneches elaphron
+        # Should extend beneath apostrophos part of neume
+        if next_neume.char == '_':
+            apostrophos_width = pdfmetrics.stringWidth('!', curr_neume.font_family, curr_neume.font_size)
+            x2 = next_glyph.neume_chunk_pos[0] + apostrophos_width
+            return x2, index
+
+        # Check for end of underscores
+        if not next_glyph.has_lyric_text('_'):
+            x2 = curr_glyph.neume_chunk_pos[0] + curr_glyph.width
+            return x2, index
+        else:
+            index += 1
+            return self.recurse_last_underscore_pos(index)
 
     def set_size(self):
         if self.list:

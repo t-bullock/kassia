@@ -4,6 +4,7 @@ from reportlab.platypus import Flowable
 
 from lyric import Lyric
 from neume_chunk import NeumeChunk
+from neume_dict import stand_alone
 
 
 class Glyph(Flowable):
@@ -45,3 +46,15 @@ class Glyph(Flowable):
             canvas.setFillColor(self.lyric.color)
             canvas.setFont(self.lyric.font_family, self.lyric.font_size)
             canvas.drawString(self.lyric_pos[0], self.lyric_pos[1], self.lyric.text)
+
+    def has_lyric_text(self, text: str):
+        if self.lyric and self.lyric.text == text:
+            return True
+        else:
+            return False
+
+    def get_standalone_neume(self):
+        for neume in self.neume_chunk:
+            if stand_alone(neume):
+                return neume
+
