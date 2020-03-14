@@ -49,8 +49,9 @@ class GlyphLine(Flowable, collections.MutableSequence):
             if x1 is not None:
                 x2, i = self.recurse_last_underscore_pos(i)
                 y1, y2 = (glyph.lyric_pos[1], glyph.lyric_pos[1])
-                canvas.setStrokeColor(glyph.lyric.color)
-                canvas.setFont(glyph.lyric.font_family, glyph.lyric.font_size)
+                if glyph.lyric:
+                    canvas.setStrokeColor(glyph.lyric.color)
+                    canvas.setFont(glyph.lyric.font_family, glyph.lyric.font_size)
                 canvas.line(x1, y1, x2, y2)
 
     def recurse_last_underscore_pos(self, index: int) -> Tuple[float, int]:
