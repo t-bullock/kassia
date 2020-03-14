@@ -449,9 +449,9 @@ class Kassia:
             canvas.setLineWidth(style.borderWidth)
             canvas.line(
                 self.doc.left,
-                self.doc.top,
+                self.doc.bottom,
                 self.doc.right,
-                self.doc.top)
+                self.doc.bottom)
 
         canvas.setFont(style.fontName, style.fontSize)
         canvas.setFillColor(style.textColor)
