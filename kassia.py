@@ -233,7 +233,6 @@ class Kassia:
                     neume_chunks = neume_dict.chunk_neumes(neumes_list)
                     glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
                     lines_list: List[GlyphLine] = self.line_break(glyph_line,
-                                                                  Cursor(dropcap_offset, 0),
                                                                   self.doc.width,
                                                                   self.styleSheet['Neumes'].leading,
                                                                   self.styleSheet['Neumes'].wordSpace)
@@ -506,17 +505,16 @@ class Kassia:
         return glyph_line
 
     @staticmethod
-    def line_break(glyph_list: List[Glyph], starting_pos: Cursor, line_width: int, line_spacing: int,
+    def line_break(glyph_list: List[Glyph], line_width: int, line_spacing: int,
                    glyph_spacing: int) -> List[GlyphLine]:
         """Break continuous list of glyphs into lines- currently greedy.
         :param glyph_list: A list of glyphs.
-        :param starting_pos: Where to begin drawing glyphs.
         :param line_width: Width of a line (usually page width minus margins).
         :param line_spacing: Vertical space between each line. Needed to create GlyphLine.
         :param glyph_spacing: Minimum space between each glyph, from bnml.
         :return glyph_line_list: A list of lines of Glyphs.
         """
-        cr = starting_pos
+        cr = Cursor(0, 0)
         glyph_line_list: List[GlyphLine] = []
         glyph_line: GlyphLine = GlyphLine(line_spacing, glyph_spacing)
         
