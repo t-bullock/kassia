@@ -1,62 +1,60 @@
-from typing import List, Tuple
+from typing import Tuple
 
-from reportlab.pdfbase import pdfmetrics
-import neume_dict
+from reportlab.platypus import Flowable
+
+from lyric import Lyric
+from neume_chunk import NeumeChunk
+from neume_dict import stand_alone
 
 
-class Glyph:
-    def __init__(self, neume_chunk=None, neume_pos: Tuple[int, int] = None, lyrics_text=None, lyrics_font_family=None,
-                 lyrics_size=0, lyrics_color=None, lyrics_top_margin=0, lyrics_pos: Tuple[int, int] = None, fthora='',
-                 fthora_pos: Tuple = [int, int]):
-        self.neumeChunk = neume_chunk
-        # self.neumePos = neume_pos
-        self.lyricsText = lyrics_text
-        # self.lyricsPos = lyrics_pos
-        self.lyricsFontFamily = lyrics_font_family
-        self.lyricsFontSize = lyrics_size
-        self.lyricsFontColor = lyrics_color
-        self.lyricsTopMargin = lyrics_top_margin
+class Glyph(Flowable):
+    def __init__(self,
+                 neume_chunk: NeumeChunk = None,
+                 neume_chunk_pos: Tuple[float, float] = None,
+                 lyric: Lyric = None,
+                 lyric_pos: Tuple[float, float] = None,
+                 # fthora: Fthora = None,
+                 # fthora_pos: Tuple = [float, float]
+                 ):
+        super().__init__()
+        self.neume_chunk = neume_chunk  # A list of neumes, one base neume and some zero width supporting characters
+        self.neume_chunk_pos = neume_chunk_pos if neume_chunk_pos is not None else [0, 0]
+        self.lyric: Lyric = lyric
+        self.lyric_pos = lyric_pos if lyric_pos is not None else [0, 0]
         # self.fthora = fthora
-        # self.fthoraPos = fthora_pos
+        # self.fthora_pos = fthora_pos if fthora_pos is not None else [0, 0]
+        self.set_size()
 
-        self.nWidth = 0     # neume width
-        self.lWidth = 0     # lyric width
-        self.width = 0      # glyph width
+    def set_size(self):
+        self.width = max(getattr(self.neume_chunk, 'width', 0), getattr(self.lyric, 'width', 0))
+        self.height = getattr(self.neume_chunk, 'height', 0)\
+            + getattr(self.lyric, 'height', 0)
 
-        self.height = 0     # glyph height
+    def draw(self, canvas):
+        canvas.saveState()
+        canvas.translate(self.neume_chunk_pos[0], self.neume_chunk_pos[1])
+        pos_x: float = 0
+        for i, neume in enumerate(self.neume_chunk):
+            canvas.setFillColor(neume.color)
+            canvas.setFont(neume.font_family, neume.font_size)
+            if i > 0:
+                pos_x += self.neume_chunk[i - 1].width
+            canvas.drawString(pos_x, self.neume_chunk_pos[1], neume.char)
+        canvas.restoreState()
 
-    def calc_chunk_width(self):
-        max_neume_width = 0
-        for i, neume in enumerate(self.neumeChunk):
-            neume_width = pdfmetrics.stringWidth(neume.text, neume.font_family, neume.font_size)
+        if self.lyric and self.lyric.text is not '_':
+            canvas.setFillColor(self.lyric.color)
+            canvas.setFont(self.lyric.font_family, self.lyric.font_size)
+            canvas.drawString(self.lyric_pos[0], self.lyric_pos[1], self.lyric.text)
 
-            # If kentima (or similar), add width of oligon.
-            # Kentima may come at the end of the chunk, after
-            # a psefeston, etc., so can't just check i-1
-            # TODO: Find a better way to do this
-            if neume.text in neume_dict.nonPostBreakingNeumes:
-                neume_width += pdfmetrics.stringWidth('1', neume.font_family, neume.font_size)
-
-            # If vareia (or similar), add width of next neume.
-            # This prevents vareia from being at the end of a line.
-            if neume.text in neume_dict.nonPreBreakingNeumes and (i+1) < len(self.neumeChunk):
-                next_neume = self.neumeChunk[i+1]
-                neume_width += pdfmetrics.stringWidth(next_neume.text, next_neume.font_family, next_neume.font_size)
-
-            if max_neume_width < neume_width:
-                max_neume_width = neume_width
-
-        self.nWidth = max_neume_width
-        if self.lyricsText is not None:
-            self.lWidth = pdfmetrics.stringWidth(self.lyricsText, self.lyricsFontFamily, self.lyricsFontSize)
+    def has_lyric_text(self, text: str):
+        if self.lyric and self.lyric.text == text:
+            return True
         else:
-            self.lWidth = 0
-        self.width = max(self.nWidth, self.lWidth)
+            return False
 
+    def get_standalone_neume(self):
+        for neume in self.neume_chunk:
+            if stand_alone(neume):
+                return neume
 
-# class GlyphLine:
-#    def __init__(self, glyphs, spacing):
-#        self.glyphs = glyphs
-#        self.spacing = spacing
-
-GlyphLine = List[Glyph]

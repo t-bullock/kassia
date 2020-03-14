@@ -9,3 +9,8 @@ class Lyric:
         self.color = color
         self.top_margin = top_margin
         self.width = pdfmetrics.stringWidth(self.text, self.font_family, self.font_size)
+        ascent, descent = pdfmetrics.getAscentDescent(self.font_family, self.font_size)
+        self.height = ascent - descent
+
+    def recalc_width(self):
+        self.width = pdfmetrics.stringWidth(self.text, self.font_family, self.font_size)
