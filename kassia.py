@@ -160,8 +160,9 @@ class Kassia:
                 self.story.append(PageBreak())
 
             if child_elem.tag == 'linebreak':
-                space = getattr(child_elem.attrib, 'space', 30)
-                self.story.append(Spacer(0, space))
+                space = child_elem.attrib.get('space', '30')
+                space_amt = int(space)
+                self.story.append(Spacer(0, space_amt))
 
             if child_elem.tag == 'paragraph':
                 paragraph_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
@@ -179,8 +180,9 @@ class Kassia:
 
                     # TODO: Test this
                     if troparion_child_elem.tag == 'linebreak':
-                        space = getattr(child_elem.attrib, 'space', 30)
-                        self.story.append(Spacer(0, space))
+                        space = child_elem.attrib.get('space', '30')
+                        space_amt = int(space)
+                        self.story.append(Spacer(0, space_amt))
 
                     # TODO: Use this to draw strings before, after, or between neumes
                     # if troparion_child_elem.tag == 'string':
