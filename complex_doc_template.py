@@ -1,12 +1,47 @@
 import sys
 from typing import Dict
 
-from reportlab.platypus import SimpleDocTemplate
+from reportlab.pdfgen import canvas
+from reportlab.platypus import Frame, PageTemplate, BaseDocTemplate
+from reportlab.platypus.doctemplate import _doNothing
 
 
-class ComplexDocTemplate(SimpleDocTemplate):
-    """A SimpleDocTemplate with special helper functions to make life easier.
+class ComplexDocTemplate(BaseDocTemplate):
+    """A DocTemplate that allows for even and odd page templates.
     """
+
+    _invalidInitArgs = ('pageTemplates',)
+
+    def __init__(self, *args, **kwargs):
+        BaseDocTemplate.__init__(self, *args, **kwargs)
+
+    def build(self, flowables, onFirstPage=_doNothing, onEvenPages=_doNothing, onOddPages=_doNothing, canvasmaker=canvas.Canvas):
+        self._calc()  # In case we changed margins sizes etc. Copied from SampleDocTemplate
+
+        frameT = Frame(self.leftMargin, self.bottomMargin, self.width, self.height, id='normal')
+
+        self.addPageTemplates([
+            PageTemplate(id='First', frames=frameT, onPage=onFirstPage, pagesize=self.pagesize),
+            PageTemplate(id='Even', frames=frameT, onPage=onEvenPages, pagesize=self.pagesize),
+            PageTemplate(id='Odd', frames=frameT, onPage=onOddPages, pagesize=self.pagesize)])
+
+        if onFirstPage is _doNothing and hasattr(self, 'onFirstPage'):
+            self.pageTemplates[0].beforeDrawPage = self.onFirstPage
+        if onEvenPages is _doNothing and hasattr(self, 'onEvenPages'):
+            self.pageTemplates[1].beforeDrawPage = self.onEvenPages
+        if onOddPages is _doNothing and hasattr(self, 'onOddPages'):
+            self.pageTemplates[2].beforeDrawPage = self.onOddPages
+
+        BaseDocTemplate.build(self, flowables, canvasmaker=canvasmaker)
+
+    def handle_pageBegin(self):
+        curr_page_number = self.page
+        self._handle_pageBegin()
+
+        if curr_page_number % 2 == 0:
+            self._handle_nextPageTemplate('Even')
+        else:
+            self._handle_nextPageTemplate('Odd')
 
     def set_pagesize_by_name(self, name: str):
         """Sets a ReportLab page size with the passed name.

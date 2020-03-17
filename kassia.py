@@ -7,7 +7,7 @@ from typing import Any, Dict, List
 from reportlab.lib.enums import *
 from reportlab.lib.styles import *
 from reportlab.pdfbase import pdfmetrics
-from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle, PageTemplate
+from reportlab.platypus import PageBreak, Paragraph, Spacer, Table, TableStyle, NextPageTemplate
 from xml.etree.ElementTree import Element, ParseError, parse
 
 import font_reader
@@ -31,7 +31,10 @@ class Kassia:
         self.doc = None  # SimpleDocTemplate()
         self.story = []
         self.styleSheet = getSampleStyleSheet()
-        self.header_paragraph = None
+        self.header_even_paragraph = None
+        self.header_even_pagenum_style = None
+        self.header_odd_paragraph = None
+        self.header_odd_pagenum_style = None
         self.footer_paragraph = None
         self.init_styles()
         self.input_filename = input_filename
@@ -138,14 +141,33 @@ class Kassia:
     def create_pdf(self):
         """Create a PDF output file."""
         for child_elem in self.bnml:
-            if child_elem.tag == 'header':
+            if child_elem.tag == 'header-even' or child_elem.tag == 'header':
                 default_header_style = self.styleSheet['Header']
                 header_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
                 if 'style' in header_attrib_dict:
                     default_header_style = getattr(self.styleSheet, header_attrib_dict['style'], 'Header')
                 header_style = self.merge_paragraph_styles(default_header_style, header_attrib_dict)
                 header_text = child_elem.text.strip()
-                self.header_paragraph: Paragraph = Paragraph(header_text, header_style)
+                self.header_even_paragraph: Paragraph = Paragraph(header_text, header_style)
+
+                for embedded_attrib in child_elem:
+                    if embedded_attrib.tag is not None and embedded_attrib.tag == 'page-number':
+                        pagenum_attrib_dict = self.fill_attribute_dict(embedded_attrib.attrib)
+                        self.header_even_pagenum_style = self.merge_paragraph_styles(default_header_style, pagenum_attrib_dict)
+
+            if child_elem.tag == 'header-odd':
+                default_header_style = self.styleSheet['Header']
+                header_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
+                if 'style' in header_attrib_dict:
+                    default_header_style = getattr(self.styleSheet, header_attrib_dict['style'], 'Header')
+                header_style = self.merge_paragraph_styles(default_header_style, header_attrib_dict)
+                header_text = child_elem.text.strip()
+                self.header_odd_paragraph: Paragraph = Paragraph(header_text, header_style)
+
+                for embedded_attrib in child_elem:
+                    if embedded_attrib.tag is not None and embedded_attrib.tag == 'page-number':
+                        pagenum_attrib_dict = self.fill_attribute_dict(embedded_attrib.attrib)
+                        self.header_odd_pagenum_style = self.merge_paragraph_styles(default_header_style, pagenum_attrib_dict)
 
             if child_elem.tag == 'footer':
                 default_footer_style = self.styleSheet['Footer']
@@ -261,7 +283,10 @@ class Kassia:
                             self.story.append(glyph_line)
 
         try:
-            self.doc.build(self.story, onLaterPages=self.draw_header_footer)
+            self.doc.build(self.story,
+                           onFirstPage=self.draw_footer,
+                           onEvenPages=self.draw_header_footer,
+                           onOddPages=self.draw_header_footer)
         except IOError:
             logging.error("Could not save XML file.")
 
@@ -395,18 +420,24 @@ class Kassia:
         return default_style
 
     def draw_header_footer(self, canvas, doc):
-        self.draw_header(canvas, doc)
+        if doc.pageTemplate.id == 'Even':
+            self.draw_header(canvas, doc, self.header_even_paragraph, self.header_even_pagenum_style)
+        elif doc.pageTemplate.id == 'Odd':
+            self.draw_header(canvas, doc, self.header_odd_paragraph, self.header_odd_pagenum_style)
+
         self.draw_footer(canvas, doc)
 
-    def draw_header(self, canvas, doc):
+    def draw_header(self, canvas, doc, header_paragraph: Paragraph, header_pagenum_style: ParagraphStyle):
         """Draws the header onto the canvas.
         :param canvas: Canvas, passed from document.build.
         :param doc: SimpleDocTemplate, passed from document.build.
+        :param header_paragraph: Paragraph of header text/style to draw.
+        :param header_pagenum_style: The style of page number to draw.
         """
-        if not self.header_paragraph:
+        if not header_paragraph:
             return
 
-        style = self.header_paragraph.style
+        style = header_paragraph.style
 
         if style.borderWidth:
             canvas.setStrokeColor(style.borderColor)
@@ -424,15 +455,21 @@ class Kassia:
 
         if style.alignment == TA_LEFT:
             x_pos = self.doc.left
-            canvas.drawString(x_pos, y_pos, self.header_paragraph.text)
+            canvas.drawString(x_pos, y_pos, header_paragraph.text)
         elif style.alignment == TA_RIGHT:
             x_pos = self.doc.right
-            canvas.drawRightString(x_pos, y_pos, self.header_paragraph.text)
+            canvas.drawRightString(x_pos, y_pos, header_paragraph.text)
         elif style.alignment == TA_CENTER:
             x_pos = self.doc.center
-            canvas.drawCentredString(x_pos, y_pos, self.header_paragraph.text)
+            canvas.drawCentredString(x_pos, y_pos, header_paragraph.text)
 
-        canvas.drawString(self.doc.left, y_pos, str(canvas.getPageNumber()))
+        if header_pagenum_style is not None:
+            if header_pagenum_style.alignment == TA_LEFT:
+                canvas.drawString(self.doc.left, y_pos, str(canvas.getPageNumber()))
+            elif header_pagenum_style.alignment == TA_RIGHT:
+                canvas.drawRightString(self.doc.right, y_pos, str(canvas.getPageNumber()))
+            elif header_pagenum_style.alignment == TA_CENTER:
+                canvas.drawCenteredString(self.doc.center, y_pos, str(canvas.getPageNumber()))
 
     def draw_footer(self, canvas, doc):
         """Draws the footer onto the canvas.

@@ -25,11 +25,12 @@
             <!-- Used in this score for Greek hymn name -->
             <heading4 font_family="Alegreya-Medium" font_size="14" color="#0000e6" align="right" />
             <!-- See ReportLab documentation for more paragraph style options. -->
-            <paragraph font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="20" space_after="20" />
-            <verse />
+            <paragraph />
+            <verse font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="20" space_after="15" leading="17" /> />
             <!-- Default neume font family, size, color, etc. For now you're stuck with KA New Stathis Main, but you can change the size and color. -->
-            <!-- 'word_spacing' is the space between glyphs, line height is the greater of either 'leading' or the calculated height of glyphs -->
-            <neumes font_family="KA New Stathis Main" font_size="30" color="#000000" align="justify" word_spacing="4" leading="60" />
+            <!-- 'word_spacing' is the space between glyphs, line height is the greater of either 'leading' or the calculated height of glyphs. -->
+            <!-- 'align' can be 'left', 'right', 'center', or 'justify'. This affects both troparia that wrap lines and troparia that are only one line long, so be careful. -->
+            <neumes font_family="KA New Stathis Main" font_size="30" color="#000000" align="left" word_spacing="4" leading="60" />
             <!--neumes-chronos font_family="KA New Stathis Chronos" font_size="30" color="#cf232b" /-->
             <!--neumes-fthora font_family="KA New Stathis Fthora" font_size="30" color="#cf232b" /-->
             <!--neumes-martyria font_family="KA New Stathis Martyria" font_size="30" color="#cf232b" /-->
@@ -39,14 +40,19 @@
             <!-- font_family can be any font name in your kassia/fonts folder, or any font you have installed on your OS -->
             <lyrics font_family="Alegreya-Medium" font_size="14" color="#000000" space_before="26" />
             <dropcap font_family="Alegreya-Bold" font_size="45" color="#cf232b" />
-            <header font_family="Alegreya-Italic" font_size="12" color="#0000e6" align="center" border_width="1.0" border_color="#0000e6" border_padding="10" />
-            <footer font_family="Alegreya-Italic" font_size="8" color="#0000e6" align="center" />
+            <header font_family="Alegreya-Italic" font_size="8" color="#0000e6" align="center" border_width="1.0" border_color="#0000e6" border_padding="10" />
+            <footer font_family="Alegreya-Italic" font_size="8" color="#0000e6" align="center" border_width="1.0" border_color="#0000e6" border_padding="10" />
         </styles>
     </defaults>
 
-    <header>
-        First Mode - Lord, I Have Cried
-    </header>
+    <header-odd>
+        First Mode – Lord, I Have Cried
+        <page-number align="right" />
+    </header-odd>
+    <header-even>
+        <page-number align="left" />
+        First Mode – Lord, I Have Cried
+    </header-even>
 
     <footer>
         https://github.com/t-bullock/kassia
@@ -68,13 +74,16 @@
         <!-- Paragraphs can take a 'font' tag inside for select styling of letters or words. This style overrides the outer paragraph style. -->
         <font font_family="KA New Stathis Martyria" font_size="30">i</font>
         Πα
-        <font font_family="KA New Stathis Fthora" font_size="18">œ</font>
+        <font font_family="KA New Stathis Fthora" font_size="30">œ</font>
     </paragraph>
 
     <paragraph style="h3" ending_cursor_pos="2">
         <font font_family="KA New Stathis Martyria" font_size="30">v</font>
         84
     </paragraph>
+
+    <!-- Use linebreak to force a new line. 'space' is the vertical amount to move down. -->
+    <linebreak space="5" />
 
     <paragraph style="h4">
         Κύριε ἐκέκραξα
@@ -271,6 +280,8 @@
         </lyrics>
     </troparion>
 
+    <pagebreak />
+
     <paragraph style="h1">
         Let My Prayer
     </paragraph>
@@ -293,13 +304,7 @@
             v
         </neumes>
         <neumes>
-            1 1 0 1 z a 1 j
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            z
-        </neumes>
-        <neumes>
-            ! s X Q ! !
+            1 1 0 1 z 1 j ! s X Q ! !
         </neumes>
         <neumes font_family="KA New Stathis Chronos" color="#cf232b">
             v
@@ -371,25 +376,353 @@
         </lyrics>
     </troparion>
 
-    <!-- Use linebreak to force a new line. -->
     <linebreak />
 
-    <!-- Paragraphs automatically wrap text. Alternatively we could set a value to top_margin to push this paragraph down. -->
-    <paragraph>
+    <!-- Paragraphs automatically wrap text. -->
+    <paragraph style="verse">
         Verse 1: Set, O Lord, a watch before my mouth, and a door of enclosure round about my lips.
     </paragraph>
-    <paragraph>
+    <paragraph style="verse">
         Verse 2: Incline not my heart to words of evil, to make excuses with excuses in sins.
     </paragraph>
-    <paragraph>
+    <paragraph style="verse">
         Verse 3: With men that work iniquity; and I will not join with their chosen.
     </paragraph>
+    <paragraph style="verse">
+        Verse 4: The righteous man will chasten me with mercy and reprove me; as for the oil of the sinner, let it not annoint my head.
+    </paragraph>
+    <paragraph style="verse">
+        Verse 5: For yet more is my prayer in the presence of their pleasures; swallowed up near by the rock have their judges been.
+    </paragraph>
+    <paragraph style="verse">
+        Verse 6: They shall hear my words, for they be sweetened; as a clod of earth is broken upon the earth, so have their bones been scattered nigh unto Hades.
+    </paragraph>
 
-    <!-- Use pagebreak to force eveyrthing below it to a new page. -->
+    <!-- Use pagebreak to force everything below it to a new page. -->
     <pagebreak />
 
+    <header-odd>
+        First Mode – Slow Stichera
+        <page-number align="right" />
+    </header-odd>
+    <header-even>
+        <page-number align="left" />
+        First Mode – Slow Stichera
+    </header-even>
+
+    <paragraph style="title">
+        Slow Stichera
+    </paragraph>
+
+    <paragraph style="h1">
+        Verse #1
+    </paragraph>
+    <paragraph style="h4">
+        Ἐξάγαγε ἐκ φυλακῆς
+    </paragraph>
+
     <troparion>
-    <!-- Another hymn. -->
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            n
+        </neumes>
+        <neumes>
+            ! 0 0 d 1 0 0 0 d
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            0 0 0 0 1 ` q M !
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            / 0 d -
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            1 j
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            z
+        </neumes>
+        <neumes>
+            ! 0 d
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            q !
+        </neumes>
+        <dropcap>
+            B
+        </dropcap>
+        <!-- You can break the text into lines if it makes it easier to read. Kassia doesn't care. Here I start a new line whenever there's a martyria. -->
+        <lyrics>
+            Bring my soul out of pris- on
+            that I may con- fess _ _ _ Thy _ _ _ name
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph style="h1">
+        Stichera #1
+    </paragraph>
+    <paragraph style="h4">
+        Τὰς ἑσπερινάς
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            1 1 a n ! s ! l !
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            / P
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            1 1 0 1 ` q M !
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            / 0 d -
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            1 j
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            z
+        </neumes>
+        <neumes>
+            ! \ 0 d
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            q !
+        </neumes>
+        <neumes>
+            1 \ Z n ! ! ! 0 x n ! ! ! s Z
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            x
+        </neumes>
+        <neumes>
+            ! 0 ` 0
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            q !
+        </neumes>
+        <neumes>
+            1 ~ 1 a 0 n -
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            \ 1 0 q \ Q S _ ` 0 ` 0 0 0 ! w S # å 1 z K !
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            x
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            m
+        </neumes>
+        <neumes>
+            ! _ 1 j
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            z
+        </neumes>
+        <neumes>
+            ! 0 d
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            q !
+        </neumes>
+        <dropcap>
+            A
+        </dropcap>
+        <lyrics>
+            Ac- cept our eve- - ning _ pray'ers O ho- - - - ly _ _ _ Lord
+            and grant us _ the re- mis- - - sion of _ sins _ _
+            for Thou a- - lone art He Who hath _ shown _ forth the Res- ur- rec- tion un- - - to _ the _ _ world
+        </lyrics>
+    </troparion>
+
+    <pagebreak />
+
+    <paragraph style="h1">
+        Verse #2
+    </paragraph>
+    <paragraph style="h4">
+        Ἐμὲ ὑπομενοῦσι
+    </paragraph>
+
+    <troparion>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            n
+        </neumes>
+        <neumes>
+            ! 0 d 1 0 0 0 0 0 0 0 d
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            1 1 1 a ! 1 / ! s -
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            1 j
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            z
+        </neumes>
+        <neumes>
+            ! 0 d
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            q !
+        </neumes>
+        <dropcap>
+            T
+        </dropcap>
+        <lyrics>
+            The right- eous shall wait pa- tient- ly for me
+            un- til Thou shalt re- ward _ _ _ me
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph style="h1">
+        Stichera #2
+    </paragraph>
+    <paragraph style="h4">
+        Κυκλώσατε λαοί
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            0 \ 1 ; 0 ! 1 Z n ! ! ! s p S / L 1 ` x
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            μ
+        </neumes>
+        <neumes>
+            / 0 !
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            0 d 1 ~ 1 q S ! -
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            1 a
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            e #
+        </neumes>
+        <neumes>
+            @ 1 \ 1 n ! ! \ q ! 2 N ! ! 0 x n ! ! ! s Z
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            x
+        </neumes>
+        <neumes>
+            ! 1 a
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            q !
+        </neumes>
+        <neumes font_family="KA New Stathis Fthora" color="#cf232b">
+            †
+        </neumes>
+        <neumes>
+            0 d ! s Z n ! ! X n ! ! / 0 ! D
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            4 Q
+        </neumes>
+        <neumes>
+            6
+        </neumes>
+        <neumes font_family="KA New Stathis Fthora" color="#cf232b">
+            e
+        </neumes>
+        <neumes>
+            \ x / L / 0 ! D
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            Z
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            x
+        </neumes>
+        <neumes>
+            ! w ! s
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            e #
+        </neumes>
+        <neumes>
+            @ 0 0 1 ` q M !
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            / 0 d -
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            1 j
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            z
+        </neumes>
+        <neumes>
+            ! 0 d
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            q !
+        </neumes>
+        <dropcap>
+            E
+        </dropcap>
+        <lyrics>
+            En- cir- - cle _ Si- - - on O ye peo- - - - - ples
+            and en- com- pass _ her
+            and give glo- ry there- in to Him that is a- rise- en _ from the _ dead
+            for He is _ _ our _ _ God _
+            Who hath de- liv- - ered _ us _
+            from our in- iq- - - - ui- - - - ties
+        </lyrics>
     </troparion>
 
 </bnml>
