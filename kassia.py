@@ -141,7 +141,7 @@ class Kassia:
     def create_pdf(self):
         """Create a PDF output file."""
         for child_elem in self.bnml:
-            if child_elem.tag == 'header-even' or child_elem.tag == 'header':
+            if child_elem.tag in ['header-even', 'header']:
                 default_header_style = self.styleSheet['Header']
                 header_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
                 if 'style' in header_attrib_dict:
@@ -200,18 +200,6 @@ class Kassia:
                     if troparion_child_elem.tag == 'pagebreak':
                         self.story.append((PageBreak()))
 
-                    # TODO: Test this
-                    if troparion_child_elem.tag == 'linebreak':
-                        space = child_elem.attrib.get('space', '30')
-                        space_amt = int(space)
-                        self.story.append(Spacer(0, space_amt))
-
-                    # TODO: Use this to draw strings before, after, or between neumes
-                    # if troparion_child_elem.tag == 'string':
-                    #    current_string_attrib = self.get_string_attributes(troparion_child_elem,
-                    #                                                       self.defaultStringAttrib)
-                    #    self.draw_paragraph(current_string_attrib)
-
                     if troparion_child_elem.tag == 'neumes':
                         neumes_elem = troparion_child_elem
                         attribs_from_bnml = self.fill_attribute_dict(neumes_elem.attrib)
@@ -249,7 +237,7 @@ class Kassia:
                         dropcap_offset = dropcap.width + dropcap.x_padding
 
                 # Pop off first letter of lyrics, since it will be drawn as a dropcap
-                if dropcap and len(lyrics_list) > 0:
+                if dropcap and lyrics_list:
                     lyrics_list[0].text = lyrics_list[0].text[1:]
                     lyrics_list[0].recalc_width()
 
@@ -616,10 +604,8 @@ class Kassia:
         """
         for line_index, line in enumerate(line_list):
             # Calc width of each chunk (and count how many chunks)
-            total_chunk_width = 0
-            for glyph in line:
-                total_chunk_width += glyph.width
-
+            total_chunk_width = sum(glyph.width for glyph in line)
+            
             # Skip if last line
             if line_index + 1 == len(line_list):
                 continue
@@ -680,9 +666,10 @@ class Kassia:
         if 'align' in attribute_dict:
             new_attr_dict['align'] = self.str_to_align(attribute_dict['align'])
 
-        if 'font_family' in attribute_dict:
-            if not font_reader.is_registered_font(attribute_dict['font_family']):
-                logging.warning("{} not found, using default instead".format(attribute_dict['font_family']))
+        if 'font_family' in attribute_dict and not font_reader.is_registered_font(
+            attribute_dict['font_family']
+        ):
+            logging.warning("{} not found, using default instead".format(attribute_dict['font_family']))
 
         for font_attr in ['font_size', 'first_line_indent', 'left_indent', 'right_indent', 'leading', 'space_before',
                           'space_after', 'ending_cursor_pos', 'word_spacing']:
