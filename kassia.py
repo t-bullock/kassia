@@ -20,6 +20,7 @@ from glyph_line import GlyphLine
 from glyphs import Glyph
 from lyric import Lyric
 from neume import Neume
+from abstract_neume import AbstractNeume
 from neume_chunk import NeumeChunk
 
 
@@ -191,7 +192,7 @@ class Kassia:
                 self.draw_paragraph(child_elem, paragraph_attrib_dict)
 
             if child_elem.tag == 'troparion':
-                neumes_list = []
+                abstract_neumes_list = []
                 lyrics_list = []
                 dropcap = None
                 dropcap_offset = 0
@@ -205,12 +206,12 @@ class Kassia:
                         attribs_from_bnml = self.fill_attribute_dict(neumes_elem.attrib)
                         neumes_style = self.merge_paragraph_styles(self.styleSheet['Neumes'], attribs_from_bnml)
 
-                        for neume_char in neumes_elem.text.strip().split():
-                            neume = Neume(char=neume_char,
+                        for abstract_neume_char in neumes_elem.text.strip().split():
+                            abstract_neume = AbstractNeume(char=abstract_neume_char,
                                           font_family=neumes_style.fontName,
                                           font_size=neumes_style.fontSize,
                                           color=neumes_style.textColor)
-                            neumes_list.append(neume)
+                            abstract_neumes_list.append(abstract_neume)
 
                     if troparion_child_elem.tag == 'lyrics':
                         lyrics_elem = troparion_child_elem
@@ -241,8 +242,19 @@ class Kassia:
                     lyrics_list[0].text = lyrics_list[0].text[1:]
                     lyrics_list[0].recalc_width()
 
-                if neumes_list:
-                    neume_chunks = neume_dict.chunk_neumes(neumes_list)
+                if abstract_neumes_list:
+                    abstract_neume_chunks = neume_dict.chunk_neumes(abstract_neumes_list)
+                    neume_chunks = abstract_neume_chunks # TEMP
+                    for abstract_chunk in abstract_neume_chunks:
+                        for abstract_neume in abstract_chunk.list:
+                            """
+                            TO DO: Implement font configuration
+                            For every neume in abstract_neume_chunks, translate it into
+                            the font's character which is mapped to that neume and reconstruct
+                            the neume_chunk and then reconstruct the chunks_list
+                            """ 
+                            abstract_char = abstract_neume.char # TEMP
+
                     glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
                     lines_list: List[GlyphLine] = self.line_break(glyph_line,
                                                                   Cursor(dropcap_offset, 0),

@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from reportlab.pdfbase import pdfmetrics
+from neume import Neume
 
 
 class AbstractNeume(Neume):
