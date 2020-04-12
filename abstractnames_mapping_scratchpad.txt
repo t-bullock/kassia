@@ -1,6 +1,51 @@
 Char    Shorthand           Proper
 ---------------------------------------------
-B       psif                psif
+
+Main: ---------------------------------------
+
+A       klasD               klasD2
+a       klasL               klasL
+D       apli                apli
+d       klas                klas
+F       dipliR              dipliR
+f       dipli               dipli
+G       tripliR             tripliR
+g       tripli              tripli
+H       quadripliR          quadripliR
+h       quadripli           quadripli
+J       antikD2             antikD2
+j       antik               antik
+K       antikapliD2         antikD2[apli]
+k       antikapli           antik[apli]
+l       antikapliR          antikR[apli]
+M       psifklasR           psifR[klas]
+m       psifklas            psif[klas]
+N       psifD2              psifD2
+n       psif                psif
+S       klasDR              klasDR
+s       klasR               klasR
+
+[       ete                 ete
+]       endo                endo
+{       eteD2               eteD2
+|       barlineUC           barlineUC
+}       barlineUL           barlineUL
+~       ken                 ken
+«       barlineUR           barlineUR
+å       klasU2L             klasU2L
+ƒ       special_dipli       dipliDR1.5
+˚       special_antikapli   antikD1.5[apli]
+‘       slanted_psif        slanted_psif
+“       eteD2R2             eteD2R2
+”       eteD3               eteD3
+∂       apliD2R             apliD2R
+≠       corona              corona
+'       oma                 oma
+:       omaD2R              omaD2r
+;       omaR                omaR
+
+
+B       lpsif               lpsif
 C       oliapoelafken2      oli[apoelaf,ken2]
 E       petapoelaf          pet[apoelaf]
 I       pethamham           pet[ham[ham]]
@@ -55,3 +100,13 @@ $       ham                 ham
 -       ypo                 ypo
 _       synelaf             synelaf
 `       ken2                ken2
+
++       br                  br
+=       brw                 brw
+<       rest2               var[dipli]
+,       rest                var[apli]
+>       rest4               var[dipli,dipli]
+.       rest3               var[tripli]
+/       var                 var
+?       restg               var[apli[g]]
+\       barline             barline
