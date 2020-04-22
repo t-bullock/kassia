@@ -113,49 +113,47 @@ _       syne                syne
 
 
 Martyria ------------------------------------
-!     
-#
-$
-%
-&
-,
-/
-1
-2
-3
-4
-5
-6
-7
-<
-@
-A
-B
-C
-D
-E
-F
-G
-H
-I
-J
-K
-L
-M
-N
+!       martyriapaC
+#       martyriagaC
+$       martyriadiC
+%       martyriakeC
+&       martyrianiC
+,       chronosf3
+/       plagal
+1       lowmartyriapa
+2       lowmartyriavou
+3       lowmartyriaga
+4       lowmartyriadi
+5       lowmartyriake
+6       lowmartyriazo
+7       lowmartyriani
+<       chronosf3U
+@       martyriavouC
+A       martyriahardchromaticpaC
+B       chronosmU
+C       chronoss2U
+D       martyriasoftchromaticdiC
+E       martyriadiatonicgaC
+F       martyriasoftchromatickeC
+G       zygosC
+H       klitonC
+I       lowmartyriake
+J       spathiC
+M       chronosf2U
+N       chronosfU
 O
 P
-Q
-R
-S
-T
-U
-V
+Q       martyriadiatonicpaC
+R       martyriadiatonicdiC
+S       martyriahardchromaticdiC
+T       martyriadiatonickeC
+U       martyriadiatonicniC
+V       chronossU
 W
-X
+X       chronoss3U
 Y
-Z
-[
+Z       chronoss4U
+[       fourthmode
 ^
 `
 a       martyriahardchromaticpa
@@ -170,20 +168,20 @@ i       firstmode
 j       spathi
 m       chronosf2
 n       chronosf
-o
+o       secondmode
 p
-q
-r
-s
-t
-u
-v
-w
-x
-y
-z
+q       martyriadiatonicpa
+r       martyriadiatonicdi
+s       martyriahardchromaticdi
+t       martyriadiatonicke
+u       martyriadiatonicni
+v       chronoss
+w       martyriadiatonicvou
+x       chronoss3
+y       martyriadiatoniczo
+z       chronoss4
 {
 |
-~
-π
-“
+~       highmartyria
+π       thirdmode
+“       legetos
