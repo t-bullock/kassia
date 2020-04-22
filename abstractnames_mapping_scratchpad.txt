@@ -46,8 +46,8 @@ s       klasR               klasR
 
 
 B       lpsif               lpsif
-C       olapoelkmta         olig[aposelaf,kmta]
-E       petapoel            peta[aposelaf]
+C       olapelkmta          olig[apel,kmta]
+E       petapel             peta[apel]
 I       pethh               peta[hami[hami]]
 L       apoapo              apos[apos]
 O       petapohh            peta[apos[hami[hami]]]
@@ -55,7 +55,7 @@ P       isoapo              ison[apos]
 Q       petapo              peta[apos]
 R       peth                peta[hami]
 T       petapoh             peta[apos[hami]]
-U       petapoelh           peta[aposelaf[hami]]
+U       petapelh            peta[apel[hami]]
 V       olsynekmta          olig[syne,kmta]
 W       petel               peta[elaf]
 X       olapokmta           olig[apos,kmta]
@@ -90,11 +90,11 @@ z       olkmtaD             olig[kmtaD]
 9       olkenypyp           olig[kent,ypsi[ypsi]]
 !       apos                apos
 @       elaf                elaf
-#       apoel               aposelaf
+#       apel                apel
 $       hami                hami
 %       apoh                apos[hami]
 ^       elh                 elaf[hami]
-&       apoelh              aposelaf[hami]
+&       apelh               apel[hami]
 *       hh                  hami[hami]
 (       apohh               apos[hami[hami]]
 -       ypor                ypor
