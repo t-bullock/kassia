@@ -46,7 +46,7 @@ s       klasR               klasR
 
 
 B       lpsif               lpsif
-C       olapoelken2         olig[aposelaf,ken2]
+C       olapoelkmta         olig[aposelaf,kmta]
 E       petapoel            peta[aposelaf]
 I       pethh               peta[hami[hami]]
 L       apoapo              apos[apos]
@@ -56,13 +56,13 @@ Q       petapo              peta[apos]
 R       peth                peta[hami]
 T       petapoh             peta[apos[hami]]
 U       petapoelh           peta[aposelaf[hami]]
-V       olsynelken2         olig[synelaf,ken2]
+V       olsynekmta          olig[syne,kmta]
 W       petel               peta[elaf]
-X       olapoken2           olig[apos,ken2]
+X       olapokmta           olig[apos,kmta]
 Y       petelh              peta[elaf[hami]]
-Z       olken2              olig[ken2]
-b       olhken2             olig[hami,ken2]
-c       olelken2            olig[elaf,ken2]
+Z       olkmta              olig[kmta]
+b       olhkmta             olig[hami,kmta]
+c       olelkmta            olig[elaf,kmta]
 e       petken              peta[kent]
 i       petypyp             peta[ypsi[ypsi]]
 o       petkenypyp          peta[kent,ypsi[ypsi]]
@@ -71,12 +71,12 @@ q       peta                peta
 r       petyp               peta[ypsi]
 t       petypL              peta[ypsiL]
 u       petkenypU2          peta[kent,ypsiU2]
-v       olypoken2           olig[ypor,ken2]
+v       olypokmta           olig[ypor,kmta]
 w       petol               peta[olig]
-x       olisoken2           olig[ison,ken2]
+x       olisokmta           olig[ison,kmta]
 y       petkenyp            peta[kent,ypsi]
-z       olken2D             olig[ken2D]
-Ω       olken2DC            olig[ken2DC]
+z       olkmtaD             olig[kmtaD]
+Ω       olkmtaDC            olig[kmtaDC]
 ™       olkentD             olig[kentD]
 0       iso                 ison
 1       olig                olig
@@ -98,8 +98,8 @@ $       hami                hami
 *       hh                  hami[hami]
 (       apohh               apos[hami[hami]]
 -       ypor                ypor
-_       synel               synelaf
-`       ken2                ken2
+_       syne                syne
+`       kmta                kmta
 
 +       brea                brea
 =       brec                brec
