@@ -169,7 +169,7 @@ j       spathi
 m       chronosf2
 n       chronosf
 o       secondmode
-p
+p       thirdmodenana
 q       martyriadiatonicpa
 r       martyriadiatonicdi
 s       martyriahardchromaticdi
