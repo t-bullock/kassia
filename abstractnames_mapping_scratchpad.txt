@@ -25,7 +25,7 @@ n       psif                psif
 S       klasDR              klasDR
 s       klasR               klasR
 
-[       synd                synd
+[       eter                eter
 ]       endo                endo
 {       eterD2              eterD2
 |       blinUC              blinUC
