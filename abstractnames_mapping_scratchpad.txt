@@ -141,21 +141,21 @@ I       lowmartyriake
 J       spathiC
 M       chronosf2U
 N       chronosfU
-O
-P
+O       plagalsecondsoftchromatic
+P       gravemode
 Q       martyriadiatonicpaC
 R       martyriadiatonicdiC
 S       martyriahardchromaticdiC
 T       martyriadiatonickeC
 U       martyriadiatonicniC
 V       chronossU
-W
+W       martyriadiatonicvouC
 X       chronoss3U
-Y
+Y       martyriadiatoniczoC
 Z       chronoss4U
 [       fourthmode
-^
-`
+^       martyriazoC
+`       martyriaprimeD
 a       martyriahardchromaticpa
 b       chronosm
 c       chronoss2
@@ -180,8 +180,8 @@ w       martyriadiatonicvou
 x       chronoss3
 y       martyriadiatoniczo
 z       chronoss4
-{
+{       
 |
-~       highmartyria
+~       martyriaprimeC
 π       thirdmode
 “       legetos
