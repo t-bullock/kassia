@@ -180,8 +180,7 @@ w       martyriadiatonicvou
 x       chronoss3
 y       martyriadiatoniczo
 z       chronoss4
-{       
-|
+{       plagalfourth
 ~       martyriaprimeC
 π       thirdmode
 “       legetos
