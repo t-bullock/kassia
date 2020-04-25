@@ -184,3 +184,87 @@ z       chrons4
 ~       martprimeC
 π       thirdmode
 “       legetos
+
+
+Fthora --------------------------------------
+!       indicatepaR
+"       sharp2R
+#       indicategaR
+$       indicatediR
+%       indicatekeR
+&       indicateniR
+'       sharp2
+*
++       sharpR
+,
+-       flat
+.
+1       indicatepiL
+2       indicatevouL
+3       indicategaL
+4       indicatediL
+5       indicatekeL
+6       indicatezoL
+7       indicateniL
+:       flat2R
+;       flat2
+<
+=       sharp
+>
+@       indicatevouR
+A       fthorahardchromaticpaDR
+D       fthorasoftchromaticdiDR
+E
+F       fthorasoftchromatickeDR
+G       chroizygosDR
+H       chroiklitonDR
+I       fthoradiatonicniDR
+J       chroispathiDR
+K       fthoraajemDR
+Q       fthoradiatonicpaDR
+R       fthoradiatonicdiDR
+S       fthorahardchromaticdiDR
+T       fthoradiatonickeDR
+U       fthoradiatonichighniDR
+W       fthoradiatonicvouDR
+Y       fthoradiatonichighzoDR
+[       flat1
+]       sharp1
+^       indicatezoR
+_       flatR
+`
+a       fthorahardchromaticpaU
+d       fthorasoftchromaticdiU
+e
+f       fthorasoftchromatickeU
+g       chroizygosU
+h       chroiklitonU
+i       fthoradiatonicniU
+j       chroispathiU
+k       fthoraajemU
+q       fthoradiatonicpaU
+r       fthoradiatonicdiU
+s       fthorahardchromaticdiU
+t       fthoradiatonickeU
+u       fthoradiatonichighniU
+w       fthoradiatonicvouU
+y       fthoradiatonichighzoU
+{       flat1R
+}       sharp1R
+¥       fthoradiatonichighzoUR
+¨       fthoradiatonichighniUR
+©       chroizygosUR
+®       fthoradiatonicdiUR
+´
+ß       fthorahardchromaticdiUR
+å       fthorahardchromaticpaUR
+œ       fthoradiatonicpaUR
+ƒ       fthorasoftchromatickeUR
+ˆ       fthoradiatonicniUR
+˚       fthoraajemUR
+–       flatR2
+†       fthoradiatonickeUR
+∂       fthorasoftchromaticdiUR
+∆       chroispathiUR
+∑       fthoradiatonicvouUR
+≠       sharpD2
