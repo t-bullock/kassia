@@ -64,8 +64,8 @@ Z       olken2              olig[ken2]
 b       olhken2             olig[hami,ken2]
 c       olelken2            olig[elaf,ken2]
 e       petken              peta[kent]
-i       petypyp             peta[ypsi[ypsi]]
-o       petkenypyp          peta[kent,ypsi[ypsi]]
+i       petypyp             peta[ypsi,ypsiL]
+o       petkenypyp          peta[kent,ypsiU2,ypsi]
 p       petiso              peta[ison]
 q       peta                peta
 r       petyp               peta[ypsi]
@@ -86,8 +86,8 @@ z       olken2D             olig[ken2D]
 5       olypL               olig[ypsiL]
 6       olkenyp             olig[kent,ypsi]
 7       olkenypU2           olig[kent,ypsiU2]
-8       olypyp              olig[ypsi[ypsi]]
-9       olkenypyp           olig[kent,ypsi[ypsi]]
+8       olypyp              olig[ypsi,ypsiL]
+9       olkenypyp           olig[kent,ypsiU2,ypsi]
 !       apos                apos
 @       elaf                elaf
 #       apel                apel
