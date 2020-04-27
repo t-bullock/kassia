@@ -32,7 +32,7 @@ s       klasR               klasR
 }       blinUL              blinUL
 ~       kent                kent
 «       blinUR              blinUR
-å       klasU2L             klasU2L
+å       klasU1.1L0.9        klasU1.1L0.9
 ƒ       diplDR1.5           diplDR1.5
 ˚       akaplD1.5           akenD1.5[apli]
 ‘       spsif               spsif
@@ -64,17 +64,17 @@ Z       olken2              olig[ken2]
 b       olhken2             olig[hami,ken2]
 c       olelken2            olig[elaf,ken2]
 e       petken              peta[kent]
-i       petypyp             peta[ypsi,ypsiL]
-o       petkenypyp          peta[kent,ypsiU2,ypsi]
+i       pethyhy             peta[hyps,hypsL]
+o       petkenhyhy          peta[kent,hypsU2,hyps]
 p       petiso              peta[ison]
 q       peta                peta
-r       petyp               peta[ypsi]
-t       petypL              peta[ypsiL]
-u       petkenypU2          peta[kent,ypsiU2]
-v       olypoken2           olig[ypor,ken2]
+r       pethy               peta[hyps]
+t       pethyL              peta[hypsL]
+u       petkenhyU2          peta[kent,hypsU2]
+v       olyporken2           olig[ypor,ken2]
 w       petol               peta[olig]
 x       olisoken2           olig[ison,ken2]
-y       petkenyp            peta[kent,ypsi]
+y       petkenhy            peta[kent,hyps]
 z       olken2D             olig[ken2D]
 Ω       olken2DC            olig[ken2DC]
 ™       olkentD             olig[kentD]
@@ -82,12 +82,12 @@ z       olken2D             olig[ken2D]
 1       olig                olig
 2       olkenDC             olig[kentDC]
 3       olken               olig[kent]
-4       olyp                olig[ypsi]
-5       olypL               olig[ypsiL]
-6       olkenyp             olig[kent,ypsi]
-7       olkenypU2           olig[kent,ypsiU2]
-8       olypyp              olig[ypsi,ypsiL]
-9       olkenypyp           olig[kent,ypsiU2,ypsi]
+4       olhy                olig[hyps]
+5       olhyL               olig[hypsL]
+6       olkenhy             olig[kent,hyps]
+7       olkenhyU2           olig[kent,hypsU2]
+8       olhyhy              olig[hyps,hypsL]
+9       olkenhyhy           olig[kent,hypsU2,hyps]
 !       apos                apos
 @       elaf                elaf
 #       apel                apel
@@ -268,3 +268,26 @@ y       fthoradiatonichighzoU
 ∆       chroispathiUR
 ∑       fthoradiatonicvouUR
 ≠       sharpD2
+
+
+Combo ---------------------------------------
+-       petypor
+0       olken2hyhyU2
+1       olkenthyLhyU2
+2       olhyhyLhyUC
+3       olken2hyhyLhyU2
+4       olkenhyhyLhyU2
+C       olapel
+V       olh
+X       olapo
+[       
+]       
+_       petsyne
+c       olel
+i       olken2hyL
+s       klasU2L
+u       olken2hy
+v       olypor
+x       oliso
+{       tripD0.9R
+}       spsifD2
