@@ -71,7 +71,7 @@ q       peta                peta
 r       pethy               peta[hyps]
 t       pethyL              peta[hypsL]
 u       petkenhyU2          peta[kent,hypsU2]
-v       olyporken2           olig[ypor,ken2]
+v       olyporken2          olig[ypor,ken2]
 w       petol               peta[olig]
 x       olisoken2           olig[ison,ken2]
 y       petkenhy            peta[kent,hyps]
