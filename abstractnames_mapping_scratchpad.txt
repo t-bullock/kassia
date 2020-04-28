@@ -340,3 +340,51 @@ z       gorgon
 √       gorgondotR
 ∫       gorgondotU2L
 ≈       gorgondotU2
+
+
+
+Archaia --------------------------------------
+!       oxeiaapo
+#       oxeiaapel
+$       oxeiah
+.       
+0       oxeiaiso
+1       oxeia
+2       oxeiakentDC
+3       oxeiakent
+4       oxeiahy
+5       oxeiahyL
+6       oxeiakenthy
+8       oxeiahyhyL
+9       oxeiakenthyhyU2
+@       oxeiael
+A       
+B       
+C       oxeiaapelken2
+L       
+M       
+N       
+P       
+S       
+V       oxeiasyneken2
+X       oxeiaapoken2
+Z       oxeiaken2
+[       
+]       
+a       
+b       oxeiahken2
+c       oxeiaelken2
+d       
+l       
+m       
+n       
+p       
+s       
+v       oxeiayporken2
+x       oxeiaisoken2
+z       oxeiaken2D
+{       
+|       
+~       
+Ω       oxeiaken2DC
+™       oxeiakentD
