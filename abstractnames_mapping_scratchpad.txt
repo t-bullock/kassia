@@ -291,3 +291,52 @@ v       olypor
 x       oliso
 {       tripD0.9R
 }       spsifD2
+
+
+
+
+Chronos --------------------------------------
+,       argon
+.       hemiolion
+/       diargon
+A       dotdigorgon
+B       dotgorgonU2L
+C       dotgorgonD
+F       dotdigorgonR
+M       dotgorgonU2R
+N       dotgorgonDR
+Q       dottrigorgon
+R       dottrigorgonR
+S       dotdigorgonU2
+V       dotgorgonR
+W       dottrigorgonU2
+X       dotgorgonU2
+Z       dotgorgon
+\       coroL
+a       digorgon
+b       gorgonU2L
+c       gorgonD
+f       digorgonR
+m       gorgonU2R
+n       gorgonDR
+q       trigorgon
+r       trigorgonR
+s       digorgonU2
+v       gorgonR
+w       trigorgonU2
+x       gorgonU2
+z       gorgon
+|       
+®       trigorgondotR
+ß       digorgondotU2
+å       digorgondot
+ç       gorgondotD
+œ       trigorgondot
+ƒ       digorgondotR
+˜       gorgondotDR
+Ω       gorgondot
+μ       gorgondotU2R
+∑       trigorgondotU2
+√       gorgondotR
+∫       gorgondotU2L
+≈       gorgondotU2
