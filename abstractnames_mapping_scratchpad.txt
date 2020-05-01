@@ -3,113 +3,113 @@ Char    Shorthand           Proper
 
 Main: ---------------------------------------
 
-A       klasD               klasD2
-a       klasL               klasL
-D       apli                apli
-d       klas                klas
-F       diplR               diplR
-f       dipl                dipl
-G       tripR               tripR
-g       trip                trip
-H       tetrR               tetrR
-h       tetr                tetr
-J       akenD2              akenD2
-j       aken                aken
-K       akaplD2             akenD2[apli]
-k       akapl               aken[apli]
-l       akaplR              akenR[apli]
-M       psklasR             psifR[klas]
-m       psklas              psif[klas]
-N       psifD2              psifD2
-n       psif                psif
+A       klasD               klasD
+a       klasL               klasU
+D       hapl                haplD
+d       klas                klasU (if after ison)
+F       diplR               diplD (if after apos)
+f       dipl                diplD
+G       tripR               tripD (if after apos)
+g       trip                tripD
+H       tetrR               tetrD (if after apos)
+h       tetr                tetrD
+J       antiD2              antiD2
+j       anti                antiD
+K       akaplD2             antiD2_hapl
+k       akapl               antiD_hapl
+l       akaplR              anti_hapl (if after apostrophos)
+M       psklasR             klasD_psefD2 (if after oligon)
+m       psklas              klasD_psefD2
+N       psefD2              psefD2
+n       psef                psef
 S       klasDR              klasDR
-s       klasR               klasR
+s       klasR               klasR (or just klas after apos. Depends on if this is used for chamele)
 
-[       eter                eter
-]       endo                endo
-{       eterD2              eterD2
-|       blinUC              blinUC
-}       blinUL              blinUL
+[       hete                heteD
+]       endo                endoD
+{       heteD2              heteD2
+|       barlU               barlU
+}       barlUL              barlUL
 ~       kent                kent
-«       blinUR              blinUR
-å       klasU1.1L0.9        klasU1.1L0.9
-ƒ       diplDR1.5           diplDR1.5
-˚       akaplD1.5           akenD1.5[apli]
-‘       spsif               spsif
-“       eterD2R2            eterD2R2
-”       eterD3              eterD3
-∂       apliD2R             apliD2R
+«       barlUR              barlUR
+å       klasU1.1L0.9        klasU (if elafron)
+ƒ       diplDR1.5           diplD (if chamele)
+˚       akaplD1.5           antiD (if petaste, but really only needed if both vareia and petaste)
+‘       spsef               psef (if heteron, must be separate from heteron if making heteron red)
+“       heteD2R2            heteD2 (if apostrofos)
+”       heteD3              heteD3 (don't remember what this is used for, or if it's used)
+∂       haplDR              haplDR (special haple for hypporoe)
 ≠       coro                coro
-'       omal                omal
-:       omalD2R             omalD2r
-;       omalR               omalR
+'       homa                homaD
+:       homaD2R             homaD2R
+;       homaR               homaDR
 
 
-B       lpsif               lpsif
-C       olapelken2          olig[apel,ken2]
-E       petapel             peta[apel]
-I       pethh               peta[hami[hami]]
-L       apoapo              apos[apos]
-O       petapohh            peta[apos[hami[hami]]]
-P       isoapo              ison[apos]
-Q       petapo              peta[apos]
-R       peth                peta[hami]
-T       petapoh             peta[apos[hami]]
-U       petapelh            peta[apel[hami]]
-V       olsyneken2          olig[syne,ken2]
-W       petel               peta[elaf]
-X       olapoken2           olig[apos,ken2]
-Y       petelh              peta[elaf[hami]]
-Z       olken2              olig[ken2]
-b       olhken2             olig[hami,ken2]
-c       olelken2            olig[elaf,ken2]
-e       petken              peta[kent]
-i       pethyhy             peta[hyps,hypsL]
-o       petkenhyhy          peta[kent,hypsU2,hyps]
-p       petiso              peta[ison]
+B       lpsef               psef (after long oligon)
+C       olapelken2          olig_apelUL_ken2UR
+E       petapel             peta_apelU
+I       pethh               peta_chamU_chamU2
+L       apoapo              apo2 (this probably makes more sense that apos_aposD, since it's really just two consecutive apostrophoi. It's not one base apostrophos with another secondary one at a certain position.)
+O       petapohh            peta_aposU_chamU2_chamU3 (3rd level... uh oh!)
+P       isoapo              ison_aposD
+Q       petapo              peta_aposU
+R       peth                peta_chamU
+T       petapoh             peta_aposU_chamU2
+U       petapelh            peta_apelU_chamU2
+V       olsyneken2          olig_syneUL_ken2UR
+W       petel               peta_elafU
+X       olapoken2           olig_aposUL_ken2UR
+Y       petelh              peta_elafU_chamU2
+Z       olken2              olig_ken2U
+b       olhken2             olig_chamUL_ken2UR
+c       olelken2            olig_elafUL_ken2UR
+e       petken              peta_kentU
+i       pethyhy             peta_hypsUL_hypsUR
+o       petkenhyhy          peta_kentU_hypsUR_hypsU2
+p       petiso              peta_isonU
 q       peta                peta
-r       pethy               peta[hyps]
-t       pethyL              peta[hypsL]
-u       petkenhyU2          peta[kent,hypsU2]
-v       olyporken2          olig[ypor,ken2]
-w       petol               peta[olig]
-x       olisoken2           olig[ison,ken2]
-y       petkenhy            peta[kent,hyps]
-z       olken2D             olig[ken2D]
-Ω       olken2DC            olig[ken2DC]
-™       olkentD             olig[kentD]
+r       pethy               peta_hypsUR
+t       pethyL              peta_hypsUL
+u       petkenhyU2          peta_kentU_hypsU2
+v       olhypoken2          olig_hypoUL_ken2UR
+w       petol               peta_oligU
+x       olisoken2           olig_isonUL_ken2UR
+y       petkenhy            peta_kentU_hypsUR
+z       olken2D             olig_ken2D
+Ω       olken2DC            olig_ken2D_psefD2
+™       olkentD             olig_kentD_psefD2 (this is only used with psefeston, might as well make it all one neume)
 0       iso                 ison
 1       olig                olig
-2       olkenDC             olig[kentDC]
-3       olken               olig[kent]
-4       olhy                olig[hyps]
-5       olhyL               olig[hypsL]
-6       olkenhy             olig[kent,hyps]
-7       olkenhyU2           olig[kent,hypsU2]
-8       olhyhy              olig[hyps,hypsL]
-9       olkenhyhy           olig[kent,hypsU2,hyps]
+2       olkenD              olig_kentD
+3       olken               olig_kentU
+4       olhy                olig_hypsUR
+5       olhyL               olig_hypsUL
+6       olkenhy             olig_kentU_hypsUR
+7       olkenhyU2           olig_kentU_hypsU2
+8       olhyhy              olig_hypsUL_hypsUR
+9       olkenhyhy           olig_kentU_hypsUR_hypsU2
 !       apos                apos
 @       elaf                elaf
-#       apel                apel
-$       hami                hami
-%       apoh                apos[hami]
-^       elh                 elaf[hami]
-&       apelh               apel[hami]
-*       hh                  hami[hami]
-(       apohh               apos[hami[hami]]
--       ypor                ypor
+#       apel                apel (technically elaf_aposD, but maybe a font would never keep these as separate neumes)
+$       cham                cham
+%       apoh                apos_chamU
+^       elh                 elaf_chamU
+&       apelh               apel_chamU
+*       hh                  cham_chamU
+(       apohh               apos_chamU_chamU2
+-       hypo                hypo
 _       syne                syne
 `       ken2                ken2
 
-+       brea                brea
-=       brec                brec
-<       rest2               vare[dipl]
-,       rest                vare[apli]
->       rest4               vare[tetr]
-.       rest3               vare[trip]
++       stav                stav
+=       brea                brea
+<       rest2               vare_dipl
+,       rest                vare_hapl
+>       rest4               vare_tetr
+.       rest3               vare_trip
 /       vare                vare
-?       restg               vare[apli[g]]
-\       blin                blin
+?       restg               vare_hapl_gorg
+\       barl                barl
 
 
 Martyria ------------------------------------
@@ -194,11 +194,11 @@ $       indicatediR
 %       indicatekeR
 &       indicateniR
 '       sharp2
-*
+*       (nothing)
 +       sharpR
-,
+,       permflat
 -       flat
-.
+.       permsharp
 1       indicatepiL
 2       indicatevouL
 3       indicategaL
@@ -208,13 +208,13 @@ $       indicatediR
 7       indicateniL
 :       flat2R
 ;       flat2
-<
+<       permflatD
 =       sharp
->
+>       permsharpD
 @       indicatevouR
 A       fthorahardchromaticpaDR
 D       fthorasoftchromaticdiDR
-E
+E       fthoradiatonicgaDR
 F       fthorasoftchromatickeDR
 G       chroizygosDR
 H       chroiklitonDR
@@ -232,10 +232,10 @@ Y       fthoradiatonichighzoDR
 ]       sharp1
 ^       indicatezoR
 _       flatR
-`
+`       (nothing)
 a       fthorahardchromaticpaU
 d       fthorasoftchromaticdiU
-e
+e       fthoradiatonicgaU
 f       fthorasoftchromatickeU
 g       chroizygosU
 h       chroiklitonU
@@ -255,7 +255,7 @@ y       fthoradiatonichighzoU
 ¨       fthoradiatonichighniUR
 ©       chroizygosUR
 ®       fthoradiatonicdiUR
-´
+´       (over martyria)
 ß       fthorahardchromaticdiUR
 å       fthorahardchromaticpaUR
 œ       fthoradiatonicpaUR
@@ -271,120 +271,121 @@ y       fthoradiatonichighzoU
 
 
 Combo ---------------------------------------
--       petypor
-0       olken2hyhyU2
-1       olkenthyLhyU2
-2       olhyhyLhyUC
-3       olken2hyhyLhyU2
-4       olkenhyhyLhyU2
-C       olapel
-V       olh
-X       olapo
-[       
-]       
-_       petsyne
-c       olel
-i       olken2hyL
-s       klasU2L
-u       olken2hy
-v       olypor
-x       oliso
-{       tripD0.9R
-}       spsifD2
+-       peta_hypo
+0       olken2UhyhyU2       olig_ken2U_hypsUR_hypsU2
+1       olkenthyLhyU2       olig_hypsUL_ken1U_hypsU2
+2       olhyhyLhyUC         olig_hypsUL_hypsU_hypsUR
+3       olken2hyhyLhyU2     olig_hypsUL_ken2U_hypsUR_hypsU2
+4       olkenhyhyLhyU2      olig_hypsUL_ken1U_hypsUR_hypsU2
+C       olapel              olig_apelU
+V       olig_h              olig_chamU
+X       olapo               olig_aposU
+[       diplD_heteD         diplD_heteD
+]       tetrD_heteD         tetrD_heteD
+_       petsyne             peta_syneU
+c       olel                olig_petaU
+i       olken2hyL           olig_hypsUL_ken2U
+s       klasU2L             (if olig_aposU) klasU
+u       olken2hy            olig_ken2U_hypsUR
+v       olhypo              olig_hypoU
+x       oliso               olig_isonU
+{       tripD0.9R           tripD_heteD
+}       spsefD2             psef (if hapl/dipl/trip/tetr/ and hete), duplicated in Main
 
 
 
 
 Chronos --------------------------------------
 ,       argon
-.       hemiolion
+.       hemi (hemiolion)
 /       diargon
-A       dotdigorgon
-B       dotgorgonU2L
-C       dotgorgonD
-F       dotdigorgonR
-M       dotgorgonU2R
-N       dotgorgonDR
-Q       dottrigorgon
-R       dottrigorgonR
-S       dotdigorgonU2
-V       dotgorgonR
-W       dottrigorgonU2
-X       dotgorgonU2
-Z       dotgorgon
-\       coroL
-a       digorgon
-b       gorgonU2L
-c       gorgonD
-f       digorgonR
-m       gorgonU2R
-n       gorgonDR
-q       trigorgon
-r       trigorgonR
-s       digorgonU2
-v       gorgonR
-w       trigorgonU2
-x       gorgonU2
-z       gorgon
-|       
-®       trigorgondotR
-ß       digorgondotU2
-å       digorgondot
-ç       gorgondotD
-œ       trigorgondot
-ƒ       digorgondotR
-˜       gorgondotDR
-Ω       gorgondot
-μ       gorgondotU2R
-∑       trigorgondotU2
-√       gorgondotR
-∫       gorgondotU2L
-≈       gorgondotU2
+A       dotdigorg
+B       dotgorgU2L
+C       dotgorgD
+F       dotdigorgR
+M       dotgorgU2R
+N       dotgorgDR
+Q       dottrigorg
+R       dottrigorgR
+S       dotdigorgU2
+V       dotgorgR
+W       dottrigorgU2
+X       dotgorgU2
+Z       gorgpare (gorgon parestigmenon)
+\       coro
+a       digorg
+b       gorgU2L
+c       gorgD
+f       digorgR
+m       gorgU2R
+n       gorgDR
+q       trigorg
+r       trigorgR
+s       digorgU2
+v       gorgR
+w       trigorgU2
+x       gorgU2
+z       gorgU
+|       hyfeU (hyfen)
+®       trigorgdotR
+ß       digorgdotU2
+å       digorgdot
+ç       gorgdotD
+œ       trigorgdot
+ƒ       digorgdotR
+˜       gorgdotDR
+Ω       gorgdot
+μ       gorgdotU2R
+∑       trigorgdotU2
+√       gorgdotR
+∫       gorgdotU2L
+≈       gorgdotU2
 
 
 
 Archaia --------------------------------------
-!       oxeiaapo
-#       oxeiaapel
-$       oxeiah
-.       
-0       oxeiaiso
-1       oxeia
-2       oxeiakentDC
-3       oxeiakent
-4       oxeiahy
-5       oxeiahyL
-6       oxeiakenthy
-8       oxeiahyhyL
-9       oxeiakenthyhyU2
-@       oxeiael
-A       
-B       
-C       oxeiaapelken2
-L       
-M       
-N       
-P       
-S       
-V       oxeiasyneken2
-X       oxeiaapoken2
-Z       oxeiaken2
-[       
-]       
-a       
-b       oxeiahken2
-c       oxeiaelken2
-d       
-l       
-m       
-n       
-p       
-s       
-v       oxeiayporken2
-x       oxeiaisoken2
-z       oxeiaken2D
-{       
-|       
-~       
-Ω       oxeiaken2DC
-™       oxeiakentD
+!       oxeiaapo            oxei_aposU
+#       oxeiaapel           oxei_apelU
+$       oxeiah              oxei_chamU
+.       syna                syna
+0       oxeiaiso            oxei_isonU
+1       oxeia               oxei
+2       oxeiakentDC         oxei_kentD
+3       oxeiakent           oxei_kentU
+4       oxeiahy             oxei_hypsUR
+5       oxeiahyL            oxei_hypsUL
+6       oxeiakenthy         oxei_kentU_hypsUR
+7                           oxei_kentU_hypsU2
+8       oxeiahyhyL          oxei_hypsUL_hypsUR
+9       oxeiakenthyhyU2     oxei_kentU_hypsUR_hypsU2
+@       oxeiael             oxei_elafU
+A       oldklasD            oldklasD
+B                           (after long oligon)
+C       oxeiaapelken2       oxei_apelUL_ken2UR
+L       lygiD               lygiD
+M       (delete?, copied from Main font)
+N       psefD2              psefD2
+P       isakU               isakU (extra isaki, position should be determined by someone who uses old notation)
+S       oldklasD            oldklasD (after apos)
+V       oxeiasyneken2       oxei_syneUL_ken2UR
+X       oxeiaapoken2        oxei_aposUL_ken2UR
+Z       oxeiaken2           oxei_ken2U
+[       tromD               tromDR
+]       ekstD               ekstD
+a       oldklasU            oldklasU
+b       oxeiahken2          oxei_chamUL_ken2UR
+c       oxeiaelken2         oxei_elafUL_ken2UR
+d       oldklasU            oldklasU (needed?)
+l       lygiDL              lygiDL
+m       psklas              klasD_psefD2 (for oxeia only)
+n       psef                psefD
+p       isakU               isakU
+s       oldklasU            oldklasU (above apos)
+v       oxeiayporken2       oxei_hypoUL_ken2UR
+x       oxeiaisoken2        oxei_isonUL_ken2UR
+z       oxeiaken2D          oxei_ken2D
+{       tromD               tromDR (after apos)
+|       pias                pias
+~       kent                kent
+Ω       oxeiaken2DC         olig_ken2D_psefD2 (only used with psefeston)
+™       oxeiakentD          olig_kentD_psefD2 (only used with psefeston)
