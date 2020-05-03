@@ -75,8 +75,8 @@ v       olhypoken2          olig_hypoUL_ken2UR
 w       petol               peta_oligU
 x       olisoken2           olig_isonUL_ken2UR
 y       petkenhy            peta_kentU_hypsUR
-z       olken2D             olig_ken2D
-Ω       olken2DC            olig_ken2D_psefD2
+z       olken2DR            olig_ken2DR
+Ω       olken2D             olig_ken2D_psefD2
 ™       olkentD             olig_kentD_psefD2 (this is only used with psefeston, might as well make it all one neume)
 0       iso                 ison
 1       olig                olig
