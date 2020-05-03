@@ -25,517 +25,620 @@ fonts:
 
 shorthand-to-char:
   ## KA New Stathis Main
-  - in: klasD
-    out:
+  - neume:
+    - in: klasD
+    - out:
       - char: "A"
       - font: "Main"
 
-  - in: klasL
-    out:
+  - neume:
+    - in: klasL
+    - out:
       - char: "a"
       - font: "Main"
 
-  - in: hapl
-    out:
+  - neume:
+    - in: hapl
+    - out:
       - char: "D"
       - font: "Main"
 
-  - in: klas
-    out:
+  - neume:
+    - in: klas
+    - out:
       - char: "d"
       - font: "Main"
 
-  - in: diplR
-    out:
+  - neume:
+    - in: diplR
+    - out:
       - char: "F"
       - font: "Main"
 
-  - in: dipl
-    out:
+  - neume:
+    - in: dipl
+    - out:
       - char: "f"
       - font: "Main"
 
-  - in: tripR
-    out:
+  - neume:
+    - in: tripR
+    - out:
       - char: "G"
       - font: "Main"
 
-  - in: trip
-    out:
+  - neume:
+    - in: trip
+    - out:
       - char: "g"
       - font: "Main"
 
-  - in: tetrR
-    out:
+  - neume:
+    - in: tetrR
+    - out:
       - char: "H"
       - font: "Main"
 
-  - in: tetr
-    out:
+  - neume:
+    - in: tetr
+    - out:
       - char: "h"
       - font: "Main"
 
-  - in: antiD2
-    out:
+  - neume:
+    - in: antiD2
+    - out:
       - char: "J"
       - font: "Main"
 
-  - in: anti
-    out:
+  - neume:
+    - in: anti
+    - out:
       - char: "j"
       - font: "Main"
 
-  - in: akaplD2
-    out:
+  - neume:
+    - in: akaplD2
+    - out:
       - char: "K"
       - font: "Main"
 
-  - in: akapl
-    out:
+  - neume:
+    - in: akapl
+    - out:
       - char: "k"
       - font: "Main"
 
-  - in: akaplR
-    out:
+  - neume:
+    - in: akaplR
+    - out:
       - char: "l"
       - font: "Main"
 
-  - in: psklasR
-    out:
+  - neume:
+    - in: psklasR
+    - out:
       - char: "M"
       - font: "Main"
 
-  - in: psklas
-    out:
+  - neume:
+    - in: psklas
+    - out:
       - char: "m"
       - font: "Main"
 
-  - in: psefD2
-    out:
+  - neume:
+    - in: psefD2
+    - out:
       - char: "N"
       - font: "Main"
 
-  - in: psef
-    out:
+  - neume:
+    - in: psef
+    - out:
       - char: "n"
       - font: "Main"
 
-  - in: klasDR
-    out:
+  - neume:
+    - in: klasDR
+    - out:
       - char: "S"
       - font: "Main"
 
-  - in: klasR
-    out:
+  - neume:
+    - in: klasR
+    - out:
       - char: "s"
       - font: "Main"
 
-  - in: hete
-    out:
+  - neume:
+    - in: hete
+    - out:
       - char: "["
       - font: "Main"
 
-  - in: endo
-    out:
+  - neume:
+    - in: endo
+    - out:
       - char: "]"
       - font: "Main"
 
-  - in: heteD2
-    out:
+  - neume:
+    - in: heteD2
+    - out:
       - char: "{"
       - font: "Main"
 
-  - in: barlU
-    out:
+  - neume:
+    - in: barlU
+    - out:
       - char: "|"
       - font: "Main"
 
-  - in: barlUL
-    out:
+  - neume:
+    - in: barlUL
+    - out:
       - char: "}"
       - font: "Main"
 
-  - in: kent
-    out:
+  - neume:
+    - in: kent
+    - out:
       - char: "~"
       - font: "Main"
 
-  - in: barlUR
-    out:
+  - neume:
+    - in: barlUR
+    - out:
       - char: "«"
       - font: "Main"
 
-  - in: klasU1.1L0.9
-    out:
+  - neume:
+    - in: klasU1.1L0.9
+    - out:
       - char: "å"
       - font: "Main"
 
-  - in: diplDR1.5
-    out:
+  - neume:
+    - in: diplDR1.5
+    - out:
       - char: "ƒ"
       - font: "Main"
 
-  - in: akaplD1.5
-    out:
+  - neume:
+    - in: akaplD1.5
+    - out:
       - char: "˚"
       - font: "Main"
 
-  - in: spsef
-    out:
+  - neume:
+    - in: spsef
+    - out:
       - char: "‘"
       - font: "Main"
 
-  - in: heteD2R2
-    out:
+  - neume:
+    - in: heteD2R2
+    - out:
       - char: "“"
       - font: "Main"
 
-  - in: heteD3
-    out:
+  - neume:
+    - in: heteD3
+    - out:
       - char: "”"
       - font: "Main"
 
-  - in: haplDR
-    out:
+  - neume:
+    - in: haplDR
+    - out:
       - char: "∂"
       - font: "Main"
 
-  - in: coro
-    out:
+  - neume:
+    - in: coro
+    - out:
       - char: "≠"
       - font: "Main"
 
-  - in: homa
-    out:
+  - neume:
+    - in: homa
+    - out:
       - char: "'"
       - font: "Main"
 
-  - in: homaD2R
-    out:
+  - neume:
+    - in: homaD2R
+    - out:
       - char: ":"
       - font: "Main"
 
-  - in: homaR
-    out:
+  - neume:
+    - in: homaR
+    - out:
       - char: ";"
       - font: "Main"
 
-  - in: lpsef
-    out:
+  - neume:
+    - in: lpsef
+    - out:
       - char: "B"
       - font: "Main"
 
-  - in: olapelken2
-    out:
+  - neume:
+    - in: olapelken2
+    - out:
       - char: "C"
       - font: "Main"
 
-  - in: petapel
-    out:
+  - neume:
+    - in: petapel
+    - out:
       - char: "E"
       - font: "Main"
 
-  - in: pethh
-    out:
+  - neume:
+    - in: pethh
+    - out:
       - char: "I"
       - font: "Main"
 
-  - in: apoapo
-    out:
+  - neume:
+    - in: apoapo
+    - out:
       - char: "L"
       - font: "Main"
 
-  - in: petapohh
-    out:
+  - neume:
+    - in: petapohh
+    - out:
       - char: "O"
       - font: "Main"
 
-  - in: isoapo
-    out:
+  - neume:
+    - in: isoapo
+    - out:
       - char: "P"
       - font: "Main"
 
-  - in: petapo
-    out:
+  - neume:
+    - in: petapo
+    - out:
       - char: "Q"
       - font: "Main"
 
-  - in: peth
-    out:
+  - neume:
+    - in: peth
+    - out:
       - char: "R"
       - font: "Main"
 
-  - in: petapoh
-    out:
+  - neume:
+    - in: petapoh
+    - out:
       - char: "T"
       - font: "Main"
 
-  - in: petapelh
-    out:
+  - neume:
+    - in: petapelh
+    - out:
       - char: "U"
       - font: "Main"
 
-  - in: olsyneken2
-    out:
+  - neume:
+    - in: olsyneken2
+    - out:
       - char: "V"
       - font: "Main"
 
-  - in: petel
-    out:
+  - neume:
+    - in: petel
+    - out:
       - char: "W"
       - font: "Main"
 
-  - in: olapoken2
-    out:
+  - neume:
+    - in: olapoken2
+    - out:
       - char: "X"
       - font: "Main"
 
-  - in: petelh
-    out:
+  - neume:
+    - in: petelh
+    - out:
       - char: "Y"
       - font: "Main"
 
-  - in: olken2
-    out:
+  - neume:
+    - in: olken2
+    - out:
       - char: "Z"
       - font: "Main"
 
-  - in: olhken2
-    out:
+  - neume:
+    - in: olhken2
+    - out:
       - char: "b"
       - font: "Main"
 
-  - in: olelken2
-    out:
+  - neume:
+    - in: olelken2
+    - out:
       - char: "c"
       - font: "Main"
 
-  - in: petken
-    out:
+  - neume:
+    - in: petken
+    - out:
       - char: "e"
       - font: "Main"
 
-  - in: pethyhy
-    out:
+  - neume:
+    - in: pethyhy
+    - out:
       - char: "i"
       - font: "Main"
 
-  - in: petkenhyhy
-    out:
+  - neume:
+    - in: petkenhyhy
+    - out:
       - char: "o"
       - font: "Main"
 
-  - in: petiso
-    out:
+  - neume:
+    - in: petiso
+    - out:
       - char: "p"
       - font: "Main"
 
-  - in: peta
-    out:
+  - neume:
+    - in: peta
+    - out:
       - char: "q"
       - font: "Main"
 
-  - in: pethy
-    out:
+  - neume:
+    - in: pethy
+    - out:
       - char: "r"
       - font: "Main"
 
-  - in: pethyL
-    out:
+  - neume:
+    - in: pethyL
+    - out:
       - char: "t"
       - font: "Main"
 
-  - in: petkenhyU2
-    out:
+  - neume:
+    - in: petkenhyU2
+    - out:
       - char: "u"
       - font: "Main"
 
-  - in: olhypoken2
-    out:
+  - neume:
+    - in: olhypoken2
+    - out:
       - char: "v"
       - font: "Main"
 
-  - in: petol
-    out:
+  - neume:
+    - in: petol
+    - out:
       - char: "w"
       - font: "Main"
 
-  - in: olisoken2
-    out:
+  - neume:
+    - in: olisoken2
+    - out:
       - char: "x"
       - font: "Main"
 
-  - in: petkenhy
-    out:
+  - neume:
+    - in: petkenhy
+    - out:
       - char: "y"
       - font: "Main"
 
-  - in: olken2D
-    out:
+  - neume:
+    - in: olken2D
+    - out:
       - char: "z"
       - font: "Main"
 
-  - in: olken2DC
-    out:
+  - neume:
+    - in: olken2DC
+    - out:
       - char: "Ω"
       - font: "Main"
 
-  - in: olkentD
-    out:
+  - neume:
+    - in: olkentD
+    - out:
       - char: "™"
       - font: "Main"
 
-  - in: iso
-    out:
+  - neume:
+    - in: iso
+    - out:
       - char: "0"
       - font: "Main"
 
-  - in: olig
-    out:
+  - neume:
+    - in: olig
+    - out:
       - char: "1"
       - font: "Main"
 
-  - in: olkenD
-    out:
+  - neume:
+    - in: olkenD
+    - out:
       - char: "2"
       - font: "Main"
 
-  - in: olken
-    out:
+  - neume:
+    - in: olken
+    - out:
       - char: "3"
       - font: "Main"
 
-  - in: olhy
-    out:
+  - neume:
+    - in: olhy
+    - out:
       - char: "4"
       - font: "Main"
 
-  - in: olhyL
-    out:
+  - neume:
+    - in: olhyL
+    - out:
       - char: "5"
       - font: "Main"
 
-  - in: olkenhy
-    out:
+  - neume:
+    - in: olkenhy
+    - out:
       - char: "6"
       - font: "Main"
 
-  - in: olkenhyU2
-    out:
+  - neume:
+    - in: olkenhyU2
+    - out:
       - char: "7"
       - font: "Main"
 
-  - in: olhyhy
-    out:
+  - neume:
+    - in: olhyhy
+    - out:
       - char: "8"
       - font: "Main"
 
-  - in: olkenhyhy
-    out:
+  - neume:
+    - in: olkenhyhy
+    - out:
       - char: "9"
       - font: "Main"
 
-  - in: apos
-    out:
+  - neume:
+    - in: apos
+    - out:
       - char: "!"
       - font: "Main"
 
-  - in: elaf
-    out:
+  - neume:
+    - in: elaf
+    - out:
       - char: "@"
       - font: "Main"
 
-  - in: apel
-    out:
+  - neume:
+    - in: apel
+    - out:
       - char: "#"
       - font: "Main"
 
-  - in: cham
-    out:
+  - neume:
+    - in: cham
+    - out:
       - char: "$"
       - font: "Main"
 
-  - in: apoh
-    out:
+  - neume:
+    - in: apoh
+    - out:
       - char: "%"
       - font: "Main"
 
-  - in: elh
-    out:
+  - neume:
+    - in: elh
+    - out:
       - char: "^"
       - font: "Main"
 
-  - in: apelh
-    out:
+  - neume:
+    - in: apelh
+    - out:
       - char: "&"
       - font: "Main"
 
-  - in: hh
-    out:
+  - neume:
+    - in: hh
+    - out:
       - char: "*"
       - font: "Main"
 
-  - in: apohh
-    out:
+  - neume:
+    - in: apohh
+    - out:
       - char: "("
       - font: "Main"
 
-  - in: hypo
-    out:
+  - neume:
+    - in: hypo
+    - out:
       - char: "-"
       - font: "Main"
 
-  - in: syne
-    out:
+  - neume:
+    - in: syne
+    - out:
       - char: "_"
       - font: "Main"
 
-  - in: ken2
-    out:
+  - neume:
+    - in: ken2
+    - out:
       - char: "`"
       - font: "Main"
 
-  - in: stav
-    out:
+  - neume:
+    - in: stav
+    - out:
       - char: "+"
       - font: "Main"
 
-  - in: brea
-    out:
+  - neume:
+    - in: brea
+    - out:
       - char: "="
       - font: "Main"
 
-  - in: rest2
-    out:
+  - neume:
+    - in: rest2
+    - out:
       - char: "<"
       - font: "Main"
 
-  - in: rest
-    out:
+  - neume:
+    - in: rest
+    - out:
       - char: ","
       - font: "Main"
 
-  - in: rest4
-    out:
+  - neume:
+    - in: rest4
+    - out:
       - char: ">"
       - font: "Main"
 
-  - in: rest3
-    out:
+  - neume:
+    - in: rest3
+    - out:
       - char: "."
       - font: "Main"
 
-  - in: vare
-    out:
+  - neume:
+    - in: vare
+    - out:
       - char: "/"
       - font: "Main"
 
-  - in: restg
-    out:
+  - neume:
+    - in: restg
+    - out:
       - char: "?"
       - font: "Main"
 
-  - in: barl
-    out:
+  - neume:
+    - in: barl
+    - out:
       - char: "\"
       - font: "Main"
