@@ -452,7 +452,7 @@ shorthand-to-char:
       - font: "Main"
 
   - neume:
-    - in: olkentD
+    - in: olkentDR
     - out:
       - char: "™"
       - font: "Main"
