@@ -383,9 +383,9 @@ p       isakU               isakU
 s       oldklasU            oldklasU (above apos)
 v       oxeiayporken2       oxei_hypoUL_ken2UR
 x       oxeiaisoken2        oxei_isonUL_ken2UR
-z       oxeiaken2D          oxei_ken2D
+z       oxeiaken2DR         oxei_ken2DR
 {       tromD               tromDR (after apos)
 |       pias                pias
 ~       kent                kent
-Ω       oxeiaken2DC         olig_ken2D_psefD2 (only used with psefeston)
-™       oxeiakentD          olig_kentD_psefD2 (only used with psefeston)
+Ω       oxeiaken2D          oxei_ken2D_psefD2 (only used with psefeston)
+™       oxeiakentDR         oxei_kentDR_psefD2 (only used with psefeston)
