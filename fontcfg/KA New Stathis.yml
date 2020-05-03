@@ -1,0 +1,435 @@
+fonts:
+  - family: KA New Stathis Main
+    alias:  "Main"
+
+  - family: KA New Stathis Martyria
+    alias:  "Martyria"
+
+  - family: KA New Stathis Combo
+    alias:  "Combo"
+
+  - family: KA New Stathis Archaia
+    alias:  "Archaia"
+
+  - family: KA New Stathis Fthora
+    alias:  "Fthora"
+
+  - family: KA New Stathis Chronos
+    alias:  "Chronos"
+
+default-font: "Main"
+
+shorthand-to-char:
+  ## KA New Stathis Main
+  - in: klasD
+    out:
+      -  "A": "Main"
+
+  - in: klasL
+    out:
+      -  "a": "Main"
+
+  - in: hapl
+    out:
+      -  "D": "Main"
+
+  - in: klas
+    out:
+      -  "d": "Main"
+
+  - in: diplR
+    out:
+      -  "F": "Main"
+
+  - in: dipl
+    out:
+      -  "f": "Main"
+
+  - in: tripR
+    out:
+      -  "G": "Main"
+
+  - in: trip
+    out:
+      -  "g": "Main"
+
+  - in: tetrR
+    out:
+      -  "H": "Main"
+
+  - in: tetr
+    out:
+      -  "h": "Main"
+
+  - in: antiD2
+    out:
+      -  "J": "Main"
+
+  - in: anti
+    out:
+      -  "j": "Main"
+
+  - in: akaplD2
+    out:
+      -  "K": "Main"
+
+  - in: akapl
+    out:
+      -  "k": "Main"
+
+  - in: akaplR
+    out:
+      -  "l": "Main"
+
+  - in: psklasR
+    out:
+      -  "M": "Main"
+
+  - in: psklas
+    out:
+      -  "m": "Main"
+
+  - in: psefD2
+    out:
+      -  "N": "Main"
+
+  - in: psef
+    out:
+      -  "n": "Main"
+
+  - in: klasDR
+    out:
+      -  "S": "Main"
+
+  - in: klasR
+    out:
+      -  "s": "Main"
+
+  - in: hete
+    out:
+      -  "[": "Main"
+
+  - in: endo
+    out:
+      -  "]": "Main"
+
+  - in: heteD2
+    out:
+      -  "{": "Main"
+
+  - in: barlU
+    out:
+      -  "|": "Main"
+
+  - in: barlUL
+    out:
+      -  "}": "Main"
+
+  - in: kent
+    out:
+      -  "~": "Main"
+
+  - in: barlUR
+    out:
+      -  "«": "Main"
+
+  - in: klasU1.1L0.9
+    out:
+      -  "å": "Main"
+
+  - in: diplDR1.5
+    out:
+      -  "ƒ": "Main"
+
+  - in: akaplD1.5
+    out:
+      -  "˚": "Main"
+
+  - in: spsef
+    out:
+      -  "‘": "Main"
+
+  - in: heteD2R2
+    out:
+      -  "“": "Main"
+
+  - in: heteD3
+    out:
+      -  "”": "Main"
+
+  - in: haplDR
+    out:
+      -  "∂": "Main"
+
+  - in: coro
+    out:
+      -  "≠": "Main"
+
+  - in: homa
+    out:
+      -  "'": "Main"
+
+  - in: homaD2R
+    out:
+      -  ":": "Main"
+
+  - in: homaR
+    out:
+      -  ";": "Main"
+
+  - in: lpsef
+    out:
+      -  "B": "Main"
+
+  - in: olapelken2
+    out:
+      -  "C": "Main"
+
+  - in: petapel
+    out:
+      -  "E": "Main"
+
+  - in: pethh
+    out:
+      -  "I": "Main"
+
+  - in: apoapo
+    out:
+      -  "L": "Main"
+
+  - in: petapohh
+    out:
+      -  "O": "Main"
+
+  - in: isoapo
+    out:
+      -  "P": "Main"
+
+  - in: petapo
+    out:
+      -  "Q": "Main"
+
+  - in: peth
+    out:
+      -  "R": "Main"
+
+  - in: petapoh
+    out:
+      -  "T": "Main"
+
+  - in: petapelh
+    out:
+      -  "U": "Main"
+
+  - in: olsyneken2
+    out:
+      -  "V": "Main"
+
+  - in: petel
+    out:
+      -  "W": "Main"
+
+  - in: olapoken2
+    out:
+      -  "X": "Main"
+
+  - in: petelh
+    out:
+      -  "Y": "Main"
+
+  - in: olken2
+    out:
+      -  "Z": "Main"
+
+  - in: olhken2
+    out:
+      -  "b": "Main"
+
+  - in: olelken2
+    out:
+      -  "c": "Main"
+
+  - in: petken
+    out:
+      -  "e": "Main"
+
+  - in: pethyhy
+    out:
+      -  "i": "Main"
+
+  - in: petkenhyhy
+    out:
+      -  "o": "Main"
+
+  - in: petiso
+    out:
+      -  "p": "Main"
+
+  - in: peta
+    out:
+      -  "q": "Main"
+
+  - in: pethy
+    out:
+      -  "r": "Main"
+
+  - in: pethyL
+    out:
+      -  "t": "Main"
+
+  - in: petkenhyU2
+    out:
+      -  "u": "Main"
+
+  - in: olhypoken2
+    out:
+      -  "v": "Main"
+
+  - in: petol
+    out:
+      -  "w": "Main"
+
+  - in: olisoken2
+    out:
+      -  "x": "Main"
+
+  - in: petkenhy
+    out:
+      -  "y": "Main"
+
+  - in: olken2D
+    out:
+      -  "z": "Main"
+
+  - in: olken2DC
+    out:
+      -  "Ω": "Main"
+
+  - in: olkentD
+    out:
+      -  "™": "Main"
+
+  - in: iso
+    out:
+      -  "0": "Main"
+
+  - in: olig
+    out:
+      -  "1": "Main"
+
+  - in: olkenD
+    out:
+      -  "2": "Main"
+
+  - in: olken
+    out:
+      -  "3": "Main"
+
+  - in: olhy
+    out:
+      -  "4": "Main"
+
+  - in: olhyL
+    out:
+      -  "5": "Main"
+
+  - in: olkenhy
+    out:
+      -  "6": "Main"
+
+  - in: olkenhyU2
+    out:
+      -  "7": "Main"
+
+  - in: olhyhy
+    out:
+      -  "8": "Main"
+
+  - in: olkenhyhy
+    out:
+      -  "9": "Main"
+
+  - in: apos
+    out:
+      -  "!": "Main"
+
+  - in: elaf
+    out:
+      -  "@": "Main"
+
+  - in: apel
+    out:
+      -  "#": "Main"
+
+  - in: cham
+    out:
+      -  "$": "Main"
+
+  - in: apoh
+    out:
+      -  "%": "Main"
+
+  - in: elh
+    out:
+      -  "^": "Main"
+
+  - in: apelh
+    out:
+      -  "&": "Main"
+
+  - in: hh
+    out:
+      -  "*": "Main"
+
+  - in: apohh
+    out:
+      -  "(": "Main"
+
+  - in: hypo
+    out:
+      -  "-": "Main"
+
+  - in: syne
+    out:
+      -  "_": "Main"
+
+  - in: ken2
+    out:
+      -  "`": "Main"
+
+  - in: stav
+    out:
+      -  "+": "Main"
+
+  - in: brea
+    out:
+      -  "=": "Main"
+
+  - in: rest2
+    out:
+      -  "<": "Main"
+
+  - in: rest
+    out:
+      -  ",": "Main"
+
+  - in: rest4
+    out:
+      -  ">": "Main"
+
+  - in: rest3
+    out:
+      -  ".": "Main"
+
+  - in: vare
+    out:
+      -  "/": "Main"
+
+  - in: restg
+    out:
+      -  "?": "Main"
+
+  - in: barl
+    out:
+      -  "\": "Main"
+
