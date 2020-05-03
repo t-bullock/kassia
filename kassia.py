@@ -21,6 +21,7 @@ from glyphs import Glyph
 from lyric import Lyric
 from neume import Neume
 from neume_chunk import NeumeChunk
+from troparion import Troparion
 
 
 class Kassia:
@@ -194,7 +195,6 @@ class Kassia:
                 neumes_list = []
                 lyrics_list = []
                 dropcap = None
-                dropcap_offset = 0
 
                 for troparion_child_elem in child_elem:
                     if troparion_child_elem.tag == 'pagebreak':
@@ -234,42 +234,9 @@ class Kassia:
                             dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
                         dropcap_text = dropcap_elem.text.strip()
                         dropcap = Dropcap(dropcap_text, 10, dropcap_style)
-                        dropcap_offset = dropcap.width + dropcap.x_padding
-
-                # Pop off first letter of lyrics, since it will be drawn as a dropcap
-                if dropcap and lyrics_list:
-                    lyrics_list[0].text = lyrics_list[0].text[1:]
-                    lyrics_list[0].recalc_width()
 
                 if neumes_list:
-                    neume_chunks = neume_dict.chunk_neumes(neumes_list)
-                    glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
-                    lines_list: List[GlyphLine] = self.line_break(glyph_line,
-                                                                  Cursor(dropcap_offset, 0),
-                                                                  self.doc.width,
-                                                                  self.styleSheet['Neumes'].leading,
-                                                                  self.styleSheet['Neumes'].wordSpace)
-                    if len(lines_list) > 1 or self.styleSheet['Neumes'].alignment is TA_JUSTIFY:
-                        lines_list: List[GlyphLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
-
-                    for i, glyph_line in enumerate(lines_list):
-                        if i == 0 and dropcap:
-                            data = [[dropcap, glyph_line]]
-                            row_height = max(dropcap.height, glyph_line.height)
-                            t = Table(data, colWidths=[dropcap_offset, None], rowHeights=[row_height])
-                            t.setStyle(
-                                TableStyle([
-                                    ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-                                    ('LEFTPADDING', (0, 0), (-1, -1), 0),
-                                    ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-                                    ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
-                                    ('TOPPADDING', (0, 0), (-1, -1), 0),
-                                    ])
-                            )
-                            t.spaceAfter = glyph_line.leading - glyph_line.height
-                            self.story.append(t)
-                        else:
-                            self.story.append(glyph_line)
+                    self.draw_troparion(neumes_list, lyrics_list, dropcap)
 
         try:
             self.doc.build(self.story,
@@ -325,6 +292,34 @@ class Kassia:
         paragraph_text = self.get_embedded_paragraph_text(bnml_elem, paragraph_style)
         p = Paragraph(paragraph_text, paragraph_style)
         self.story.append(p)
+
+    def draw_troparion(self, neumes_list: List[Neume], lyrics_list: List[Lyric], dropcap: Dropcap):
+        """Draws a troparion with the passed text attributes.
+        :param neumes_list: A list of neumes.
+        :param lyrics_list: A list of Lyrics.
+        :param dropcap: A dropcap object.
+        """
+        dropcap_offset = 0
+
+        # Pop off first letter of lyrics, since it will be drawn as a dropcap
+        if dropcap and len(lyrics_list) > 0:
+            lyrics_list[0].text = lyrics_list[0].text[1:]
+            lyrics_list[0].recalc_width()
+            dropcap_offset = dropcap.width + dropcap.x_padding
+
+        if neumes_list:
+            neume_chunks = neume_dict.chunk_neumes(neumes_list)
+            glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
+            lines_list: List[GlyphLine] = self.line_break(glyph_line,
+                                                          Cursor(dropcap_offset, 0),
+                                                          self.doc.width,
+                                                          self.styleSheet['Neumes'].leading,
+                                                          self.styleSheet['Neumes'].wordSpace)
+            if len(lines_list) > 1 or self.styleSheet['Neumes'].alignment is TA_JUSTIFY:
+                lines_list: List[GlyphLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
+
+            tropar = Troparion(lines_list, dropcap, self.doc.width)
+            self.story.append(tropar)
 
     @staticmethod
     def merge_paragraph_styles(default_style: ParagraphStyle, bnml_style: Dict[str, Any]) -> ParagraphStyle:

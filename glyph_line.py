@@ -22,8 +22,15 @@ class GlyphLine(Flowable, collections.MutableSequence):
         self.set_size()  # This might not be needed
         return self.width, self.height
 
-    def draw(self):
-        canvas: Canvas = self.canv
+    def draw(self, canvas: Canvas = None):
+        """This class is overloaded from Flowable's draw function.
+        :param canvas: The canvas. This only gets passed to draw when called by Troparion directly.
+        If a troparion gets split, platypus will treat the glyphline as a Flowable and call draw without
+        any parameters.
+        """
+        if not canvas:
+            canvas = self.canv
+
         for glyph in self.list:
             glyph.draw(canvas)
         self.draw_underscore(canvas)
