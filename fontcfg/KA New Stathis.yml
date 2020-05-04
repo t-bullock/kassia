@@ -440,19 +440,19 @@ shorthand-to-char:
       - font: "Main"
 
   - neume:
-    - in: olken2D
+    - in: olken2DR
     - out:
       - char: "z"
       - font: "Main"
 
   - neume:
-    - in: olken2DC
+    - in: olken2D
     - out:
       - char: "Ω"
       - font: "Main"
 
   - neume:
-    - in: olkentD
+    - in: olkentDR
     - out:
       - char: "™"
       - font: "Main"
