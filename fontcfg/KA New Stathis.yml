@@ -537,355 +537,355 @@ shorthand-to-char:
   ## KA New Stathis Martyria
   - in: martpaC
     out:
-    - char: "!"
-      font: Martyria
+      - char: "!"
+        font: Martyria
 
   - in: martgaC
     out:
-    - char: "#"
-      font: Martyria
+      - char: "#"
+        font: Martyria
 
   - in: martdiC
     out:
-    - char: "$"
-      font: Martyria
+      - char: "$"
+        font: Martyria
 
   - in: martkeC
     out:
-    - char: "%"
-      font: Martyria
+      - char: "%"
+        font: Martyria
 
   - in: martniC
     out:
-    - char: "&"
-      font: Martyria
+      - char: "&"
+        font: Martyria
 
   - in: chronf3
     out:
-    - char: ","
-      font: Martyria
+      - char: ","
+        font: Martyria
 
   - in: plagal
     out:
-    - char: "/"
-      font: Martyria
+      - char: "/"
+        font: Martyria
 
   - in: lowmartpa
     out:
-    - char: "1"
-      font: Martyria
+      - char: "1"
+        font: Martyria
 
   - in: lowmartvou
     out:
-    - char: "2"
-      font: Martyria
+      - char: "2"
+        font: Martyria
 
   - in: lowmartga
     out:
-    - char: "3"
-      font: Martyria
+      - char: "3"
+        font: Martyria
 
   - in: lowmartdi
     out:
-    - char: "4"
-      font: Martyria
+      - char: "4"
+        font: Martyria
 
   - in: lowmartke
     out:
-    - char: "5"
-      font: Martyria
+      - char: "5"
+        font: Martyria
 
   - in: lowmartzo
     out:
-    - char: "6"
-      font: Martyria
+      - char: "6"
+        font: Martyria
 
   - in: lowmartni
     out:
-    - char: "7"
-      font: Martyria
+      - char: "7"
+        font: Martyria
 
   - in: chronf3U
     out:
-    - char: "<"
-      font: Martyria
+      - char: "<"
+        font: Martyria
 
   - in: martvouC
     out:
-    - char: "@"
-      font: Martyria
+      - char: "@"
+        font: Martyria
 
   - in: marthchrompaC
     out:
-    - char: "A"
-      font: Martyria
+      - char: "A"
+        font: Martyria
 
   - in: chronmU
     out:
-    - char: "B"
-      font: Martyria
+      - char: "B"
+        font: Martyria
 
   - in: chrons2U
     out:
-    - char: "C"
-      font: Martyria
+      - char: "C"
+        font: Martyria
 
   - in: martschromdiC
     out:
-    - char: "D"
-      font: Martyria
+      - char: "D"
+        font: Martyria
 
   - in: martdiagaC
     out:
-    - char: "E"
-      font: Martyria
+      - char: "E"
+        font: Martyria
 
   - in: martschromkeC
     out:
-    - char: "F"
-      font: Martyria
+      - char: "F"
+        font: Martyria
 
   - in: zygosC
     out:
-    - char: "G"
-      font: Martyria
+      - char: "G"
+        font: Martyria
 
   - in: klitonC
     out:
-    - char: "H"
-      font: Martyria
+      - char: "H"
+        font: Martyria
 
   - in: plfirst
     out:
-    - char: "I"
-      font: Martyria
+      - char: "I"
+        font: Martyria
 
   - in: spathiC
     out:
-    - char: "J"
-      font: Martyria
+      - char: "J"
+        font: Martyria
 
   - in: chronf2U
     out:
-    - char: "M"
-      font: Martyria
+      - char: "M"
+        font: Martyria
 
   - in: chronfU
     out:
-    - char: "N"
-      font: Martyria
+      - char: "N"
+        font: Martyria
 
   - in: plsecondschrom
     out:
-    - char: "O"
-      font: Martyria
+      - char: "O"
+        font: Martyria
 
   - in: gravemode
     out:
-    - char: "P"
-      font: Martyria
+      - char: "P"
+        font: Martyria
 
   - in: martdiapaC
     out:
-    - char: "Q"
-      font: Martyria
+      - char: "Q"
+        font: Martyria
 
   - in: martdiadiC
     out:
-    - char: "R"
-      font: Martyria
+      - char: "R"
+        font: Martyria
 
   - in: marthchromdiC
     out:
-    - char: "S"
-      font: Martyria
+      - char: "S"
+        font: Martyria
 
   - in: martdiakeC
     out:
-    - char: "T"
-      font: Martyria
+      - char: "T"
+        font: Martyria
 
   - in: martdianiC
     out:
-    - char: "U"
-      font: Martyria
+      - char: "U"
+        font: Martyria
 
   - in: chronsU
     out:
-    - char: "V"
-      font: Martyria
+      - char: "V"
+        font: Martyria
 
   - in: martdiavouC
     out:
-    - char: "W"
-      font: Martyria
+      - char: "W"
+        font: Martyria
 
   - in: chrons3U
     out:
-    - char: "X"
-      font: Martyria
+      - char: "X"
+        font: Martyria
 
   - in: martdiazoC
     out:
-    - char: "Y"
-      font: Martyria
+      - char: "Y"
+        font: Martyria
 
   - in: chrons4U
     out:
-    - char: "Z"
-      font: Martyria
+      - char: "Z"
+        font: Martyria
 
   - in: fourthmode
     out:
-    - char: "["
-      font: Martyria
+      - char: "["
+        font: Martyria
 
   - in: martzoC
     out:
-    - char: "^"
-      font: Martyria
+      - char: "^"
+        font: Martyria
 
   - in: martprimeD
     out:
-    - char: "`"
-      font: Martyria
+      - char: "`"
+        font: Martyria
 
   - in: marthchrompa
     out:
-    - char: "a"
-      font: Martyria
+      - char: "a"
+        font: Martyria
 
   - in: chronm
     out:
-    - char: "b"
-      font: Martyria
+      - char: "b"
+        font: Martyria
 
   - in: chrons2
     out:
-    - char: "c"
-      font: Martyria
+      - char: "c"
+        font: Martyria
 
   - in: martschromdi
     out:
-    - char: "d"
-      font: Martyria
+      - char: "d"
+        font: Martyria
 
   - in: martdiaga
     out:
-    - char: "e"
-      font: Martyria
+      - char: "e"
+        font: Martyria
 
   - in: martschromke
     out:
-    - char: "f"
-      font: Martyria
+      - char: "f"
+        font: Martyria
 
   - in: zygos
     out:
-    - char: "g"
-      font: Martyria
+      - char: "g"
+        font: Martyria
 
   - in: kliton
     out:
-    - char: "h"
-      font: Martyria
+      - char: "h"
+        font: Martyria
 
   - in: firstmode
     out:
-    - char: "i"
-      font: Martyria
+      - char: "i"
+        font: Martyria
 
   - in: spathi
     out:
-    - char: "j"
-      font: Martyria
+      - char: "j"
+        font: Martyria
 
   - in: chronf2
     out:
-    - char: "m"
-      font: Martyria
+      - char: "m"
+        font: Martyria
 
   - in: chronf
     out:
-    - char: "n"
-      font: Martyria
+      - char: "n"
+        font: Martyria
 
   - in: secondmode
     out:
-    - char: "o"
-      font: Martyria
+      - char: "o"
+        font: Martyria
 
   - in: thirdmodenana
     out:
-    - char: "p"
-      font: Martyria
+      - char: "p"
+        font: Martyria
 
   - in: martdiapa
     out:
-    - char: "q"
-      font: Martyria
+      - char: "q"
+        font: Martyria
 
   - in: martdiadi
     out:
-    - char: "r"
-      font: Martyria
+      - char: "r"
+        font: Martyria
 
   - in: marthchromdi
     out:
-    - char: "s"
-      font: Martyria
+      - char: "s"
+        font: Martyria
 
   - in: martdiake
     out:
-    - char: "t"
-      font: Martyria
+      - char: "t"
+        font: Martyria
 
   - in: martdiani
     out:
-    - char: "u"
-      font: Martyria
+      - char: "u"
+        font: Martyria
 
   - in: chrons
     out:
-    - char: "v"
-      font: Martyria
+      - char: "v"
+        font: Martyria
 
   - in: martdiavou
     out:
-    - char: "w"
-      font: Martyria
+      - char: "w"
+        font: Martyria
 
   - in: chrons3
     out:
-    - char: "x"
-      font: Martyria
+      - char: "x"
+        font: Martyria
 
   - in: martdiazo
     out:
-    - char: "y"
-      font: Martyria
+      - char: "y"
+        font: Martyria
 
   - in: chrons4
     out:
-    - char: "z"
-      font: Martyria
+      - char: "z"
+        font: Martyria
 
   - in: plfourth
     out:
-    - char: "{"
-      font: Martyria
+      - char: "{"
+        font: Martyria
 
   - in: martprimeC
     out:
-    - char: "~"
-      font: Martyria
+      - char: "~"
+        font: Martyria
 
   - in: thirdmode
     out:
-    - char: "π"
-      font: Martyria
+      - char: "π"
+        font: Martyria
 
   - in: legetos
     out:
-    - char: "“"
-      font: Martyria
+      - char: "“"
+        font: Martyria
