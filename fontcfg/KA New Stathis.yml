@@ -535,27 +535,27 @@ shorthand-to-char:
         font: Main
 
   ## KA New Stathis Martyria
-  - in: martpaC
+  - in: martpaU
     out:
       - char: "!"
         font: Martyria
 
-  - in: martgaC
+  - in: martgaU
     out:
       - char: "#"
         font: Martyria
 
-  - in: martdiC
+  - in: martdiU
     out:
       - char: "$"
         font: Martyria
 
-  - in: martkeC
+  - in: martkeU
     out:
       - char: "%"
         font: Martyria
 
-  - in: martniC
+  - in: martniU
     out:
       - char: "&"
         font: Martyria
@@ -610,12 +610,12 @@ shorthand-to-char:
       - char: "<"
         font: Martyria
 
-  - in: martvouC
+  - in: martvouU
     out:
       - char: "@"
         font: Martyria
 
-  - in: marthchrompaC
+  - in: marthchrompaU
     out:
       - char: "A"
         font: Martyria
@@ -630,17 +630,17 @@ shorthand-to-char:
       - char: "C"
         font: Martyria
 
-  - in: martschromdiC
+  - in: martschromdiU
     out:
       - char: "D"
         font: Martyria
 
-  - in: martdiagaC
+  - in: martdiagaU
     out:
       - char: "E"
         font: Martyria
 
-  - in: martschromkeC
+  - in: martschromkeU
     out:
       - char: "F"
         font: Martyria
@@ -685,27 +685,27 @@ shorthand-to-char:
       - char: "P"
         font: Martyria
 
-  - in: martdiapaC
+  - in: martdiapaU
     out:
       - char: "Q"
         font: Martyria
 
-  - in: martdiadiC
+  - in: martdiadiU
     out:
       - char: "R"
         font: Martyria
 
-  - in: marthchromdiC
+  - in: marthchromdiU
     out:
       - char: "S"
         font: Martyria
 
-  - in: martdiakeC
+  - in: martdiakeU
     out:
       - char: "T"
         font: Martyria
 
-  - in: martdianiC
+  - in: martdianiU
     out:
       - char: "U"
         font: Martyria
@@ -715,7 +715,7 @@ shorthand-to-char:
       - char: "V"
         font: Martyria
 
-  - in: martdiavouC
+  - in: martdiavouU
     out:
       - char: "W"
         font: Martyria
@@ -725,7 +725,7 @@ shorthand-to-char:
       - char: "X"
         font: Martyria
 
-  - in: martdiazoC
+  - in: martdiazoU
     out:
       - char: "Y"
         font: Martyria
@@ -740,12 +740,12 @@ shorthand-to-char:
       - char: "["
         font: Martyria
 
-  - in: martzoC
+  - in: martzoU
     out:
       - char: "^"
         font: Martyria
 
-  - in: martprimeD
+  - in: martprime
     out:
       - char: "`"
         font: Martyria
@@ -875,7 +875,7 @@ shorthand-to-char:
       - char: "{"
         font: Martyria
 
-  - in: martprimeC
+  - in: martprimeU
     out:
       - char: "~"
         font: Martyria

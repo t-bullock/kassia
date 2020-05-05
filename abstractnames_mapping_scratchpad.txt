@@ -113,11 +113,11 @@ _       syne                syne
 
 
 Martyria ------------------------------------
-!       martpaC
-#       martgaC
-$       martdiC
-%       martkeC
-&       martniC
+!       martpaU
+#       martgaU
+$       martdiU
+%       martkeU
+&       martniU
 ,       chronf3
 /       plagal
 1       lowmartpa
@@ -128,13 +128,13 @@ $       martdiC
 6       lowmartzo
 7       lowmartni
 <       chronf3U
-@       martvouC
-A       marthchrompaC
+@       martvouU
+A       marthchrompaU
 B       chronmU
 C       chrons2U
-D       martschromdiC
-E       martdiagaC
-F       martschromkeC
+D       martschromdiU
+E       martdiagaU
+F       martschromkeU
 G       zygosC
 H       klitonC
 I       plfirst
@@ -143,19 +143,19 @@ M       chronf2U
 N       chronfU
 O       plsecondschrom
 P       gravemode
-Q       martdiapaC
-R       martdiadiC
-S       marthchromdiC
-T       martdiakeC
-U       martdianiC
+Q       martdiapaU
+R       martdiadiU
+S       marthchromdiU
+T       martdiakeU
+U       martdianiU
 V       chronsU
-W       martdiavouC
+W       martdiavouU
 X       chrons3U
-Y       martdiazoC
+Y       martdiazoU
 Z       chrons4U
 [       fourthmode
-^       martzoC
-`       martprimeD
+^       martzoU
+`       martprime
 a       marthchrompa
 b       chronm
 c       chrons2
@@ -181,7 +181,7 @@ x       chrons3
 y       martdiazo
 z       chrons4
 {       plfourth
-~       martprimeC
+~       martprimeU
 π       thirdmode
 “       legetos
 
