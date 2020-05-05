@@ -458,7 +458,7 @@ class Kassia:
             elif header_pagenum_style.alignment == TA_RIGHT:
                 canvas.drawRightString(self.doc.right, y_pos, str(canvas.getPageNumber()))
             elif header_pagenum_style.alignment == TA_CENTER:
-                canvas.drawCenteredString(self.doc.center, y_pos, str(canvas.getPageNumber()))
+                canvas.drawCentredString(self.doc.center, y_pos, str(canvas.getPageNumber()))
 
     def draw_footer(self, canvas, doc):
         """Draws the footer onto the canvas.
