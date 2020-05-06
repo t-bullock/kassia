@@ -39,7 +39,7 @@ s       klasR               klasR (or just klas after apos. Depends on if this i
 “       heteD2R2            heteD2 (if apostrofos)
 ”       heteD3              heteD3 (don't remember what this is used for, or if it's used)
 ∂       haplDR              haplDR (special haple for hypporoe)
-≠       coro                coro
+≠       coroL               coroL
 '       homa                homaD
 :       homaD2R             homaD2R
 ;       homaR               homaDR
@@ -194,7 +194,6 @@ $       indicatediR
 %       indicatekeR
 &       indicateniR
 '       sharp2
-*       (nothing)
 +       sharpR
 ,       permflat
 -       flat
@@ -232,7 +231,6 @@ Y       fthoradiatonichighzoDR
 ]       sharp1
 ^       indicatezoR
 _       flatR
-`       (nothing)
 a       fthorahardchromaticpaU
 d       fthorasoftchromaticdiU
 e       fthoradiatonicgaU
@@ -364,9 +362,9 @@ B                           (after long oligon)
 C       oxeiaapelken2       oxei_apelUL_ken2UR
 L       lygiD               lygiD
 M       (delete?, copied from Main font)
-N       psefD2              psefD2
+N       opsefD2             opsefD2 (for oxeia)
 P       isakU               isakU (extra isaki, position should be determined by someone who uses old notation)
-S       oldklasD            oldklasD (after apos)
+S       oldklasDR           oldklasDR (after apos)
 V       oxeiasyneken2       oxei_syneUL_ken2UR
 X       oxeiaapoken2        oxei_aposUL_ken2UR
 Z       oxeiaken2           oxei_ken2U
@@ -375,17 +373,17 @@ Z       oxeiaken2           oxei_ken2U
 a       oldklasU            oldklasU
 b       oxeiahken2          oxei_chamUL_ken2UR
 c       oxeiaelken2         oxei_elafUL_ken2UR
-d       oldklasU            oldklasU (needed?)
+d       oldklasUR0.1        oldklasUR0.1 (needed?)
 l       lygiDL              lygiDL
-m       psklas              klasD_psefD2 (for oxeia only)
-n       psef                psefD
-p       isakU               isakU
-s       oldklasU            oldklasU (above apos)
+m       opsklas             klasD_psefD2 (for oxeia only)
+n       opsef               opsefD (psef for oxeia)
+p       isakUL1.1           isakUL1.1
+s       oldklasUR           oldklasUR (above apos)
 v       oxeiayporken2       oxei_hypoUL_ken2UR
 x       oxeiaisoken2        oxei_isonUL_ken2UR
 z       oxeiaken2DR         oxei_ken2DR
-{       tromD               tromDR (after apos)
+{       tromDR              tromDR (after apos)
 |       pias                pias
-~       kent                kent
+~       kentU0.1            kentU0.1
 Ω       oxeiaken2D          oxei_ken2D_psefD2 (only used with psefeston)
 ™       oxeiakentDR         oxei_kentDR_psefD2 (only used with psefeston)
