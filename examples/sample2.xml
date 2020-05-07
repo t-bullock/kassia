@@ -1,0 +1,1014 @@
+<bnml>
+    <identification>
+        <work-title>Ἀναστασιματάριον</work-title>
+        <author>Δανιήλ Πρωτοψάλτου</author>
+    </identification>
+    <defaults>
+        <page-layout>
+            <paper-size>letter</paper-size>
+            <page-margins top_margin="60" bottom_margin="50" left_margin="60" right_margin="60" />
+        </page-layout>
+        <styles>
+            <title font_family="EB Garamond-Medium" font_size="30" align="center" space_after="16" />
+            <subtitle />
+            <heading1 font_family="EB Garamond-Regular" font_size="16" align="center" />
+            <heading2 font_family="EB Garamond-Medium" font_size="14" align="center" space_after="15" />
+            <heading3 font_family="EB Garamond-Italic" font_size="16" align="right" space_before="15" />
+            <heading4 font_family="EB Garamond-Italic" font_size="16" align="center" space_before="30" />
+            <paragraph />
+            <verse font_family="EB Garamond-Regular" font_size="16" align="left" first_line_indent="20" space_after="15" leading="17" space_before="30" /> />
+            <neumes font_family="KA Almouzios Main" font_size="30" align="left" word_spacing="4" leading="60" />
+            <lyrics font_family="EB Garamond-Medium" font_size="16" space_before="26" />
+            <dropcap font_family="Gentium Plus-Regular" font_size="50" />
+            <header font_family="EB Garamond-Bold" font_size="14" align="center" />
+            <footer font_family="EB Garamond-Bold" font_size="14" align="center" />
+        </styles>
+    </defaults>
+
+    <header-odd>
+        ΑΝΑΣΤΑΣΙΜΑΤΑΡΙΟΝ ΣΥΝΤΟΜΟΝ
+    </header-odd>
+    <header-even>
+        ΕΣΠΕΡΙΝΟΣ — ΗΧΟΣ ΒΑΡΥΣ
+    </header-even>
+
+    <footer>
+        <page-number align="center" />
+    </footer>
+
+    <paragraph style="title">
+        Ἀναστασιματάριον Σύντομον
+    </paragraph>
+
+    <paragraph style="h1">
+        Ἑσπερινός
+    </paragraph>
+
+    <paragraph style="h2">
+        Ἦχος
+        <font font_family="KA Almouzios Martyria" font_size="30">P</font>
+        Ζω
+        <font font_family="KA Almouzios Main" font_size="25">4</font>
+    </paragraph>
+
+    <paragraph style="h3">
+        τοῦ Δανιήλ Πρωτοψάλτου
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            y ! 0 1 1 n
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! ! q ! p ! Z 0 ! 1 0 p ! 0 n ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            r ! 0 1 1 n
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! ! q ! p ! Z 0 d
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            1 n ! ! ! ! s ! 1 0 @ Z @ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <neumes>
+            1 ~ 0 1 1 1 0 ! ! ! 0 p ! 1 ~ 0 ! ! ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Κ
+        </dropcap>
+        <lyrics>
+            Κυ ρι ε Ε κε κρα ξα προς σε
+            ει σα κου σον μου
+            ει σα κου σον μου Κυ ρι ε
+            Κυ ρι ε Ε κε κρα ξα προς σε
+            ει σα κου σον μου
+            προ σχες τη φω νη της δε η σε ως μου
+            εν τω κε κρα γε ναι με προς σε
+            Ει σα κου σον μου Κυ ρι ε
+        </lyrics>
+    </troparion>
+
+    <troparion>
+        <neumes>
+            5 0 0 Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            ! ! ! 0 ! Z 0 d
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            0 ! 1 n ! ! 1 0 @ Z @ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes font_family="KA Almouzios Combo">
+            u
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            ! ! ! 0 ! Z 0 ! x n ! _ 1 1 q ! q ! _ ! Z / L / 0 ! D
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Κ
+        </dropcap>
+        <lyrics>
+            Κα τευ θυν θη η τω η προ σευ χη μου
+            ως θυ μι α μα ε νω πι ον σου
+            ε ε παρ σις των χει ρων μου
+            θυ σι α ε σπε ρι νη
+            Ει σα κου σον μου Κυ ρι ε ε
+        </lyrics>
+    </troparion>
+
+    <paragraph style="h3">
+        τοῦ Γεωργίου τοῦ Κρητός
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            5 A q S ! ! 1 1 q ! 1 ~ 0 ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            1 q S
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! ! ! 1 n ! ! ! 1 n ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Θ
+        </dropcap>
+        <lyrics>
+            Θου Κυ ρι ε φυ λα κην τω στο μα τι ι μου
+            και θυ ραν πε ρι ο χης πε ρι τα χει λη μου
+        </lyrics>
+    </troparion>
+
+    <paragraph style="h3">
+        τοῦ Δανιήλ Πρωτοψάλτου
+    </paragraph>
+
+    <paragraph style="verse">
+        Στιχ. Ἐξάγαγε ἐκ φυλακῆς τὴν ψυχήν μου, τοῦ ἐξομολογήσασθαι τῷ ὀνόματί σου.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            y ! 0 0 0 0 / L 1 1 @ 1 0 ` 0 d
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            0 1 1 n ! ! _ Z 0 ! 0 n ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            0 1 w ! _ 0 q S ! _ Z @ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <neumes>
+            5 1 0 0 0 / P 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            ! 0 ! 2 N ! ! ! / P 1 1 1 n ! / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Δ
+        </dropcap>
+        <lyrics>
+            Δευ τε α γαλ λι α σω με θα τω Κυ ρι ι ω
+            τω συν τρι ψαν τι θα να του το κρα α τος
+            και φω τι σαν τι αν θρω πων το γε νος
+            με τα των Α σω μα τω ων κραυ γα ζον τες
+            Δη μι ουρ γε ε και Σω τηρ η μων δο ο ξα σοι οι
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ἐμὲ ὑπομενοῦσι δίκαιοι, ἕως οὐ ἀνταποδῷς μοι.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            5 q ! 0 n ! ! 1 1 a ! 0 / L 1 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            0 Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            ! ! ! ! 1 1 a p ! _ 1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <neumes>
+            4 1 @ 1 Z 0 d ! 0 1 n ! / L 1 1 p ! _ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            / L 1 1 q S / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Σ
+        </dropcap>
+        <lyrics>
+            Σταυ ρον υ πε μει νας Σω τηρ
+            και τα φην δι η μας
+            θα να α τω δε ως Θε ος
+            θα να τον ε νε κρω σας
+            δι ο προ σκυ νου μεν την τρι η με ρον σου α να στα σιν
+            Κυ ρι ε δο ξα σοι οι
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ἐκ βαθέων ἐκέκραξά σοι, Κύριε. Κύριε, εἰσάκουσον τῆς φωνῆς μου.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            5 1 n ! ! ! Z 0 1 2 N ! ! ! 0 ! ! 1 1 0 2 N
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! 1 2 N ! ! ! Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            ! ! ! ! ! 1 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            q ! _ 1 n ! ! ! 1 n _ Z @ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <neumes>
+            y ! 0 / L 1 1 @ 1 0 ` 0 d
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            ! 1 1 n ! ! ! ! s / L 1 1 q S / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Α
+        </dropcap>
+        <lyrics>
+            Α πο στο λοι ι δον τες την Ε ε γερ σιν του Δη μι ουρ γου
+            ε θαυ μα σαν βο ω ων τες την αι αι νε σιν την Αγ γε λι κην
+            Αυ τη η δο ο ξα της Εκ κλη σι ας
+            ου τος ο πλου τος της Βα σι λει ει ας
+            ο πα θω ων δι η μας Κυ ρι ε δο ξα σοι οι
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Γενηθήτω τὰ ὦτά σου προσέχοντα εἰς τὴν φωνὴν τῆς δεήσεώς μου.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            6 A ! 1 2 N ! ! ! q ! 0 ! 1 n ! ! 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            ! 1 q ! 1 n ! ! ! 1 1 p ! _ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            0 0
+        </neumes>
+        <neumes font_family="KA Almouzios Combo">
+            u
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            ! ! ! q ! p ! Z 0 ! q S ! _ 2 N ! ! _ Z @ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <neumes>
+            5 0 / L 1 1 @ 1 0 ` 0
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            ! 1 n ! ! Z 0 ! 0 n ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            0 0 3 ` 0 ! 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            1 n ! ! ! 1 n ! / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Κ
+        </dropcap>
+        <lyrics>
+            Καν συ νε λη η φθης Χρι στε
+            υ πο α νο ο μων αν δρων
+            αλ λα συ μου ει Θε ος και ουκ αι σχυ νο μαι
+            ε μα στι ι χθης τον νω τον ουκ αρ νου μαι
+            Σταυ ρω προ ση λω θης και ου κρυ πτω
+            εις την Ε γερ σιν σου καυ χω ω μαι
+            ο γαρ θα να τος σου ζω η η μου
+            Παν το δυ υ να με και αι φι λαν θρω πε
+            Κυ υ ρι ε δο ο ξα σοι οι
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ἐὰν ἀνομίας παρατηρήσῃς, Κύριε Κύριε, τίς ὑποστήσεται; Ὅτι παρὰ σοὶ ὁ ἱλασμός ἐστιν.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            5 0 0 Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            ! ! ! 1 n ! ! ! 1 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            ! 1 1 1 n
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! 0 ! 1 n ! ! Z 0 d
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            0 ! Z n ! ! 0 n ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            1 1 q ! 1 @ 1 q ! 0 ! 1 @ 1 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            0 ! q S ! _ 2 N ! ! _ Z @ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <neumes>
+            y ! 0 ! 1 n ! ! 1 0 ` 0 d
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            3 n ! ! ! 0 d ! ! 1 1 0 ! 0 n ! !
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            0 1 ~ 1 q ! 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            # 1 1 Z ! 0 0 ! q ! 0 ! 1 n ! / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Δ
+        </dropcap>
+        <lyrics>
+            Δαυ ι τι κη ην προ φη τει αν εκ πλη ρων Χρι στος
+            με γα λει ο τη τα εν Σι ων την οι κει αν
+            Μα θη ταις ε ξε κα λυ ψεν
+            αι νε τον δει κνυς ε αυ τον και δο ξα ζο με νον α ει
+            συν Πα τρι τε και Πνευ μα τι α γι ω
+            προ τε ρον μεν α σαρ κον ως Λο ο γον
+            υ υ στε ρον δε δι η μας σε σαρ κω με ε νον
+            και νε κρω θε εν τα α ως αν θρω πον
+            και α να σταν τα κατ ε ξου σι αν ως φι λα αν θρω πο ον
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ἕνεκεν τοῦ ὀνόματός σου ὑπέμεινά σε, Κύριε, ὑπέμεινεν ἡ ψυχή μου εἰς τὸν λόγον σου. Ἤλπισεν ἡ ψυχή μου ἐπὶ τὸν Κύριον.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            5 1 n ! ! 1 1 n ! ! ! 2 N ! ! 1 0 ` 0 0 Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            @ 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            # 0 1 n ! ! ! q ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <neumes>
+            4 1 q ! 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            ! 0 ! 1 @ 1 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            ! 1 1 2 N ! ! ! 0 n ! ! 1 1 1 Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            @ 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            3 n ! ! ! ! 1 1 n ! ! 1 n ! ! 1 n ! / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Κ
+        </dropcap>
+        <lyrics>
+            Κα τηλ θες εν τω Α α δη Χρι στε ως η βου λη η θης
+            ε σκυ λευ σα ας τον θα να τον
+            ως Θε ο ος και Δε σπο της
+            και α νε ε στη ης τρι η με ρος
+            συ να να στη σας τον Α δαμ
+            εκ των του Α α δου δε σμων και της φθο ρας κραυ γα ζον τα α και λε γον τα
+            Δο ο ξα τη Α να στα σει σου μο νε φι λα αν θρω πε ε
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ἀπὸ φυλακῆς πρωΐας μέχρι νυκτός· ἀπὸ φυλακῆς πρωΐας ἐλπισάτω Ἰσραὴλ ἐπὶ τὸν Κύριον.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            5 q ! 0 1 2 N ! ! ! ! ! Z p ! _ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            1 ~ 0 q ! 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! 0 ! ! Z @ 1 0 ` 0 ! 0 ! 1 @ 1 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            0 ! ! Z 0 ! 0 n ! ! ! 1 1 1 n ! / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Ε
+        </dropcap>
+        <lyrics>
+            Εν τα φω κα τε τε ε θης ως ο υ πνων Κυ ρι ε
+            και α νε ε στη ης τρι η με ρος ως δυ να τος εν ι σχυ υ ι
+            συ να να στη σας τον Α δαμ
+            εκ της φθο ρας του θα να α του ως παν το δυ υ να μο ος
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ὅτι παρὰ τῷ Κυρίῳ τὸ ἔλεος καὶ πολλὴ παρ' αὐτῷ λύτρωσις. Καὶ αὐτὸς λυτρώσεται τὸν Ἰσραὴλ ἐκ πασῶν τῶν ἀνομιῶν αὐτοῦ.
+    </paragraph>
+    <paragraph style="verse">
+        Στιχ. Αἰνεῖτε τὸν Κύριον, πάντα τὰ ἔθνη, ἐπαινέσατε αὐτόν, πάντες οἱ λαοί.
+    </paragraph>
+    <paragraph style="verse">
+        Στιχ. Ὅτι ἐκραταιώθη τὸ ἔλεος αὐτοῦ ἐφ' ἡμᾶς, καὶ ἡ ἀλήθεια τοῦ Κυρίου μένει εἰς τὸν αἰῶνα.
+    </paragraph>
+
+    <paragraph style="h4">
+        Δόξα. Καὶ νῦν.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            y ! 0 1 1 n
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! ! q ! 0 ! Z 0 d
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            3 n ! ! ! ! 1 Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            ! ! s 0 ! Z n ! ! 0 n ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            0 0 3 ` 0 ! 1  @ 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            ! ! 1 @ Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            ! ! 1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <neumes>
+            5 1 1 n
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            ! ! s 0 ! 0 _ 1 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            0 1 1 n
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! ! 1 0 ! ! 1 1 p ! _ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            4 n ! ! 1 n ! ! 1 1 a @ 1 n ! ! q ! _ Z @ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <neumes>
+            0 4 0 Z 0 ! 1 0 0 ! 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! 0 1 n ! ! _ 1 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            2 N
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! s ! ! 1 n ! ! 0 q S / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Μ
+        </dropcap>
+        <lyrics>
+            Μη τηρ μεν ε γνω σθης υ περ φυ σιν Θε ο το κε
+            ε ε μει νας δε παρ θε ε νος
+            υ περ λο γον και εν νοι αν
+            και το θα αυ μα του το κου σου
+            ερ μη νευ σαι γλω ωσ σα ου δυ να ται
+            πα ρα δο ξου γαρ ου ου σης της συλ λη ψε ως Α γνη
+            α κα τα λη πτος ε στιν ο τρο πος της κυ η σε ως
+            ο που γαρ βου λε ται Θε ος
+            νι κα α ται φυ σε ως τα ξις
+            Δι ο σε παν τες Μη τε ρα του Θε ου ου γι νω σκον τες
+            δε ο με θα σου εκ τε νως
+            Πρε σβευ ε του σω θη ναι τας ψυ χας η μω ων
+        </lyrics>
+    </troparion>
+
+    <paragraph style="h1">
+        Ἀπόστιχα
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            5 q ! 0 0 / L 1 1 1 @ 0 ` 0 d
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            0 1 1 n ! ! ! 1 Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            ! ! ! 0 ! Z 0 p ! _ q S / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Α
+        </dropcap>
+        <lyrics>
+            Α νε στης εκ του τα φου Σω τηρ του κο ο σμου
+            και συ νη γει ρας τους αν θρω ω πους συν τη σαρ κι σου Κυ ρι ε δο ξα σοι οι
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ὁ Κύριος ἐβασίλευσεν, εὐπρέπειαν ἐνεδύσατο. Ἐνεδύσατο Κύριος δύναμιν καὶ περιεζώσατο.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            5 0 1 1 n
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! 0 1 n ! ! 1 n ! ! Z 0 d ! ! 1 1 p ! _ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            0 1 1 q ! 1 n ! ! Z 0 0 q ! 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            # 0 1 1 1 0 ! 1 n ! ! 1 1 0 0 1 0 / P 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            ! ! 1 @ q S / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Τ
+        </dropcap>
+        <lyrics>
+            Τον α να σταν τα εκ νε κρων
+            και φω τι σαν τα παν τα
+            δευ τε προ σκυ νη σω μεν
+            εκ της του Α δου γαρ τυ ραν νι δος
+            η μα ας η η λευ θε ρω σε
+            δι α της αυ του τρι η με ρου Ε γερ σε ως
+            ζω ην η μιν δω ω ρη σα με νος
+            και το με γα ε λε ο ος
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Καὶ γὰρ ἐστερέωσε τὴν οἰκουμένην, ἥτις οὐ σαλευθήσεται.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            1 ~ 1 1 1 0 ! 1 1 @ q S ! ! 1 1 p ! _ å
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            0 0 3 ` 0 0 @ 1 1 0 / P 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! 0 2 N
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            ! ! 0 1 n ! ! 1 n ! ! 1 1 0 d p ! _ 0 q S / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Υ
+        </dropcap>
+        <lyrics>
+            Ὑ πο τον Α δην κα τελ θων Χρι στε θα να τον ε σκυ λευ σας
+            και τρι η η με ρος α να στας η μας συ υ να νε στη σας
+            δο ξα ζον τας την σην παν το δυ να μον Ε γερ σιν
+            Κυ ρι ε φι λαν θρω πε ε
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Τῷ οἴκῳ σου πρέπει ἁγίασμα, Κύριε, εἰς μακρότητα ἡμερῶν.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            5 1 2 N ! ! ! q ! 0 1 1
+        </neumes>
+        <neumes font_family="KA Almouzios Fthora" color="#bb000e">
+            -
+        </neumes>
+        <neumes>
+            @ 1 n ! ! _ 1 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            0 1 2 N ! ! ! 1 n ! ! _ 1 1 1 a
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            # 0 3 ` 0 0 x
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            m
+        </neumes>
+        <neumes>
+            @ 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            3 n ! ! ! ! 1 1 n ! ! q ! _ q S / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Φ
+        </dropcap>
+        <lyrics>
+            Φο βε ρο ος ω φθης Κυ ρι ε εν τα φω κει με νος ω ο υ πνων
+            α να α στας δε τρι η με ρος ως δυ να τος
+            τον Α δα αμ συ να νε στη σα ας κραυ γα ζον τα
+            Δο ο ξα τη Α να στα σει σου μο νε φι λαν θρω πε ε
+        </lyrics>
+    </troparion>
+
+    <paragraph style="h4">
+        Δόξα. Καὶ νῦν.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            1 ~ 1 1 1 0 n ! ! Z 0 p S ! _ 1 1 1 0 0 ! Z n ! ! 0 n ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            q !
+        </neumes>
+        <neumes>
+            1 ~ 1 Z
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            x
+        </neumes>
+        <neumes>
+            @ 1 `
+        </neumes>
+        <neumes font_family="KA Almouzios Chronos" color="#bb000e">
+            n
+        </neumes>
+        <neumes>
+            1 n ! ! ! s
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            r $
+        </neumes>
+        <neumes>
+            3 n ! ! ! 1 n ! ! ! Z @ 1 0 ` 0 ! q ! _ 0 q S / L / 0 ! F
+        </neumes>
+        <neumes font_family="KA Almouzios Martyria" color="#bb000e">
+            y ^
+        </neumes>
+        <dropcap>
+            Υ
+        </dropcap>
+        <lyrics>
+            Υ πο την σην Δε σποι να σκε πην
+            παν τες οι γη γε νεις
+            προ σπε φευ γο τες βο ω μεν σοι
+            Θε ο το κε η η ελ πις η μων
+            ρυ υ σαι η μα ας εξ α με τρων πται σμα α των
+            και σω σον τας ψυ χας η μω ων
+        </lyrics>
+    </troparion>
+</bnml>

@@ -26,7 +26,7 @@ from neume_chunk import NeumeChunk
 class Kassia:
     """Base class for package"""
 
-    def __init__(self, input_filename, output_file="sample.pdf"):
+    def __init__(self, input_filename, output_file="examples/sample.pdf"):
         self.bnml = None
         self.doc = None  # SimpleDocTemplate()
         self.story = []
