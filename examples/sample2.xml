@@ -16,7 +16,7 @@
             <heading3 font_family="EB Garamond-Italic" font_size="16" align="right" space_before="15" />
             <heading4 font_family="EB Garamond-Italic" font_size="16" align="center" space_before="30" />
             <paragraph />
-            <verse font_family="EB Garamond-Regular" font_size="16" align="left" first_line_indent="20" space_after="15" leading="17" space_before="30" /> />
+            <verse font_family="EB Garamond-Regular" font_size="16" align="left" first_line_indent="20" space_after="15" leading="17" space_before="30" />
             <neumes font_family="KA Almouzios Main" font_size="30" align="left" word_spacing="4" leading="60" />
             <lyrics font_family="EB Garamond-Medium" font_size="16" space_before="26" />
             <dropcap font_family="Gentium Plus-Regular" font_size="50" />
