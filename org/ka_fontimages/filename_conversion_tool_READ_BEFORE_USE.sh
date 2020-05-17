@@ -1,4 +1,5 @@
 #! /bin/sh
+alias MV_COMMAND="echo mv"
 
 char-to-charname ()
 {
@@ -79,14 +80,14 @@ char-to-charname ()
 rename-filenames-num-to-charname ()
 {
     SUBFONT="$1"
-    while read -r
+    while read -r f
     do
 
         NUMBERBOYS="$(echo "$f" | awk '{ printf "%03d", $1 }')"
         NUMBERBOYS="$(echo "$NUMBERBOYS" - 1 | bc | awk '{ printf "%03d", $1 }')" 
         CHARBOYS="$(echo "$f" | awk '{ print $2 }' | sed -e 's,/,\slash,')"
         CHARNAMEBOYS="$(char-to-charname "${CHARBOYS}")"
-        echo mv "${SUBFONT}-${NUMBERBOYS}.png" "${SUBFONT}-${CHARNAMEBOYS}.png"
+        MV_COMMAND "${SUBFONT}-${NUMBERBOYS}.png" "${SUBFONT}-${CHARNAMEBOYS}.png"
 
     done < <(awk -F "|" '{ print $3 }' ../neume_names_phase1.org \
                  | tail -n +3 | head -104 \
@@ -102,10 +103,12 @@ rename-filenames-char-to-charname ()
     SUBFONT="$1"
     while read -r f
     do
+
         CHARBOYS="$(echo "$f" | sed -e "s/${1}-//" -e 's/\.png//')"
         CHARNAMEBOYS="$(char-to-charname "${CHARBOYS}")"
-        echo mv "$f" "${SUBFONT}-${CHARNAMEBOYS}.png"
-    done < <(ls -A1 . | grep '\.png$')
+        MV_COMMAND "$f" "${SUBFONT}-${CHARNAMEBOYS}.png"
+
+    done < <(ls -A1 . | grep -e "^$SUBFONT.*\.png$")
 
 }
 
@@ -118,6 +121,14 @@ big-svg-to-small-pngs ()
 {
     SUBFONT="$1"
     convert -crop '100%x0.95%' \
-            "~/Documents/prog/python3/kassia/org/ka_fontimages/${SUBFONT}.svg" \
-            '${SUBFONT}.png'
+            "${HOME}/Documents/prog/python3/kassia/org/ka_fontimages/${SUBFONT}.svg" \
+            "${SUBFONT}.png"
+    while read -r f
+    do
+        PREFIX="$(echo "$f" | awk -F '-' '{ print $1 }')"
+        NUMBERBOYS="$(echo "$f" \
+                    | awk -F '-' '{ print $2 }' \
+                    | awk -F '.' '{ printf "%03d\n", $1 }')"
+        MV_COMMAND "$f" "${PREFIX}-${NUMBERBOYS}.png"
+    done < <(ls -A1 . | grep -e "^$SUBFONT.*\.png$")
 }
