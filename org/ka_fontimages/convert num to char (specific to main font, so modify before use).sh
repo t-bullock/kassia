@@ -74,8 +74,11 @@ char-to-charname ()
     esac
 }
 
+ # Takes font name (prefix of png filenames) as argument
+ # ie. "main"
 rename-filenames-num-to-charname ()
 {
+    SUBFONT="$1"
     while read -r
     do
 
@@ -83,7 +86,7 @@ rename-filenames-num-to-charname ()
         NUMBERBOYS="$(echo "$NUMBERBOYS" - 1 | bc | awk '{ printf "%03d", $1 }')" 
         CHARBOYS="$(echo "$f" | awk '{ print $2 }' | sed -e 's,/,\slash,')"
         CHARNAMEBOYS="$(char-to-charname "${CHARBOYS}")"
-        echo mv "main-${NUMBERBOYS}.png" "main-${CHARNAMEBOYS}.png"
+        echo mv "${SUBFONT}-${NUMBERBOYS}.png" "${SUBFONT}-${CHARNAMEBOYS}.png"
 
     done < <(awk -F "|" '{ print $3 }' ../neume_names_phase1.org \
                  | tail -n +3 | head -104 \
@@ -92,13 +95,26 @@ rename-filenames-num-to-charname ()
 
 }
 
+# Takes font name (prefix of png filenames) as argument
+# ie. "main"
 rename-filenames-char-to-charname ()
 {
+    SUBFONT="$1"
     while read -r f
     do
-        CHARBOYS="$(echo "$f" | sed -e 's/main-//' -e 's/\.png//')"
+        CHARBOYS="$(echo "$f" | sed -e "s/${1}-//" -e 's/\.png//')"
         CHARNAMEBOYS="$(char-to-charname "${CHARBOYS}")"
         echo mv "$f" "main-${CHARNAMEBOYS}.png"
     done < <(ls -A1 . | grep '\.png$')
 
+}
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Only works for main font, needs to be
+# modified to work with the other subfonts
+# Requires ImageMagick to be installed
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+big-svg-to-small-pngs () 
+{
+    convert -crop '100%x0.95%' ~/Documents/prog/python3/kassia/org/ka_fontimages/main.svg '1.png'
 }
