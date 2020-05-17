@@ -1,5 +1,14 @@
 #! /bin/sh
-alias MV_COMMAND="echo mv"
+unset MV_GREENLIGHT
+safe-mv ()
+{
+    if [ -z "${MV_GREENLIGHT}" ]
+    then
+        echo mv $@
+    else
+        mv $@
+    fi
+}
 
 char-to-charname ()
 {
@@ -71,7 +80,26 @@ char-to-charname ()
         'Z')  echo "capital-Z"                ;;
         'å')  echo "a-ring"                   ;;
         'ƒ')  echo "florin"                   ;;
-         * )  echo "$1"                       ;;
+        '_')  echo "underscore"                ;;
+        '¨')  echo "diaeresis"                 ;;
+        '©')  echo "copyright"                 ;;
+        '®')  echo "restricted"                ;;
+        '´')  echo "acute"                     ;;
+        'ˆ')  echo "circumflex"                ;;
+        '˜')  echo "small-tilde"               ;;
+        '†')  echo "dagger"                    ;;
+        '∆')  echo "capital-delta"             ;;
+        '∑')  echo "capital-sigma"             ;;
+        '√')  echo "sqrt"                      ;;
+        '∫')  echo "integral"                  ;;
+        '≈')  echo "almost-equal"              ;;
+        '¥')  echo "yen"                       ;;
+        'ç')  echo "c-cedilla"                 ;;
+        'œ')  echo "oe"                        ;;
+        'ß')  echo "eszett"                    ;;
+        'μ')  echo "mu"                        ;;
+        'π')  echo "pi"                        ;;
+         * )  echo $1                         ;;
     esac
 }
 
@@ -80,6 +108,14 @@ char-to-charname ()
 rename-filenames-num-to-charname ()
 {
     SUBFONT="$1"
+    case "$SUBFONT" in
+        "main"    ) RANGE_START=3   ; LENGTH=104  ;;
+        "martyria") RANGE_START=109 ; LENGTH=71   ;;
+        "fthora"  ) RANGE_START=182 ; LENGTH=79   ;;
+        "combo"   ) RANGE_START=263 ; LENGTH=20   ;;
+        "chronos" ) RANGE_START=285 ; LENGTH=44   ;;
+        "archaia" ) RANGE_START=331 ; LENGTH=45   ;;
+    esac
     while read -r f
     do
 
@@ -87,10 +123,10 @@ rename-filenames-num-to-charname ()
         NUMBERBOYS="$(echo "$NUMBERBOYS" - 1 | bc | awk '{ printf "%03d", $1 }')" 
         CHARBOYS="$(echo "$f" | awk '{ print $2 }' | sed -e 's,/,\slash,')"
         CHARNAMEBOYS="$(char-to-charname "${CHARBOYS}")"
-        MV_COMMAND "${SUBFONT}-${NUMBERBOYS}.png" "${SUBFONT}-${CHARNAMEBOYS}.png"
+        safe-mv "${SUBFONT}-${NUMBERBOYS}.png" "${SUBFONT}-${CHARNAMEBOYS}.png"
 
     done < <(awk -F "|" '{ print $3 }' ../neume_names_phase1.org \
-                 | tail -n +3 | head -104 \
+                 | tail -n +"$RANGE_START" | head -"$LENGTH" \
                  | sed -e 's/\\vert/|/' -e 's/\\`/`/' \
                  | nl)
 
@@ -106,7 +142,7 @@ rename-filenames-char-to-charname ()
 
         CHARBOYS="$(echo "$f" | sed -e "s/${1}-//" -e 's/\.png//')"
         CHARNAMEBOYS="$(char-to-charname "${CHARBOYS}")"
-        MV_COMMAND "$f" "${SUBFONT}-${CHARNAMEBOYS}.png"
+        safe-mv "$f" "${SUBFONT}-${CHARNAMEBOYS}.png"
 
     done < <(ls -A1 . | grep -e "^$SUBFONT.*\.png$")
 
@@ -114,13 +150,13 @@ rename-filenames-char-to-charname ()
 
 # Takes font name (prefix of png filenames) as argument
 # ie. "main"
-# Also, the 0.95% number is specific to main.svg...
+# Also, the 1.05% number is specific to martyria.svg...
 # either change the number before using the function, or
-# use main.svg as a template and don't change the height
+# use martyria.svg as a template and don't change the height
 big-svg-to-small-pngs () 
 {
     SUBFONT="$1"
-    convert -crop '100%x0.95%' \
+    convert -crop '100%x1.05%' \
             "${HOME}/Documents/prog/python3/kassia/org/ka_fontimages/${SUBFONT}.svg" \
             "${SUBFONT}.png"
     while read -r f
@@ -129,6 +165,6 @@ big-svg-to-small-pngs ()
         NUMBERBOYS="$(echo "$f" \
                     | awk -F '-' '{ print $2 }' \
                     | awk -F '.' '{ printf "%03d\n", $1 }')"
-        MV_COMMAND "$f" "${PREFIX}-${NUMBERBOYS}.png"
+        safe-mv "$f" "${PREFIX}-${NUMBERBOYS}.png"
     done < <(ls -A1 . | grep -e "^$SUBFONT.*\.png$")
 }
