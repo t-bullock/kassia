@@ -104,17 +104,20 @@ rename-filenames-char-to-charname ()
     do
         CHARBOYS="$(echo "$f" | sed -e "s/${1}-//" -e 's/\.png//')"
         CHARNAMEBOYS="$(char-to-charname "${CHARBOYS}")"
-        echo mv "$f" "main-${CHARNAMEBOYS}.png"
+        echo mv "$f" "${SUBFONT}-${CHARNAMEBOYS}.png"
     done < <(ls -A1 . | grep '\.png$')
 
 }
 
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# Only works for main font, needs to be
-# modified to work with the other subfonts
-# Requires ImageMagick to be installed
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Takes font name (prefix of png filenames) as argument
+# ie. "main"
+# Also, the 0.95% number is specific to main.svg...
+# either change the number before using the function, or
+# use main.svg as a template and don't change the height
 big-svg-to-small-pngs () 
 {
-    convert -crop '100%x0.95%' ~/Documents/prog/python3/kassia/org/ka_fontimages/main.svg '1.png'
+    SUBFONT="$1"
+    convert -crop '100%x0.95%' \
+            "~/Documents/prog/python3/kassia/org/ka_fontimages/${SUBFONT}.svg" \
+            '${SUBFONT}.png'
 }
