@@ -25,6 +25,7 @@ char-to-charname ()
         '+')  echo "plus"                     ;;
         ',')  echo "comma"                    ;;
         '-')  echo "hyphen"                   ;;
+        '–')  echo "dash"                     ;;
         '.')  echo "period"                   ;;
         ':')  echo "colon"                    ;;
         ';')  echo "semicolon"                ;;
@@ -80,25 +81,25 @@ char-to-charname ()
         'Z')  echo "capital-Z"                ;;
         'å')  echo "a-ring"                   ;;
         'ƒ')  echo "florin"                   ;;
-        '_')  echo "underscore"                ;;
-        '¨')  echo "diaeresis"                 ;;
-        '©')  echo "copyright"                 ;;
-        '®')  echo "restricted"                ;;
-        '´')  echo "acute"                     ;;
-        'ˆ')  echo "circumflex"                ;;
-        '˜')  echo "small-tilde"               ;;
-        '†')  echo "dagger"                    ;;
-        '∆')  echo "capital-delta"             ;;
-        '∑')  echo "capital-sigma"             ;;
-        '√')  echo "sqrt"                      ;;
-        '∫')  echo "integral"                  ;;
-        '≈')  echo "almost-equal"              ;;
-        '¥')  echo "yen"                       ;;
-        'ç')  echo "c-cedilla"                 ;;
-        'œ')  echo "oe"                        ;;
-        'ß')  echo "eszett"                    ;;
-        'μ')  echo "mu"                        ;;
-        'π')  echo "pi"                        ;;
+        '_')  echo "underscore"               ;;
+        '¨')  echo "diaeresis"                ;;
+        '©')  echo "copyright"                ;;
+        '®')  echo "restricted"               ;;
+        '´')  echo "acute"                    ;;
+        'ˆ')  echo "circumflex"               ;;
+        '˜')  echo "small-tilde"              ;;
+        '†')  echo "dagger"                   ;;
+        '∆')  echo "capital-delta"            ;;
+        '∑')  echo "capital-sigma"            ;;
+        '√')  echo "sqrt"                     ;;
+        '∫')  echo "integral"                 ;;
+        '≈')  echo "almost-equal"             ;;
+        '¥')  echo "yen"                      ;;
+        'ç')  echo "c-cedilla"                ;;
+        'œ')  echo "oe"                       ;;
+        'ß')  echo "eszett"                   ;;
+        'μ')  echo "mu"                       ;;
+        'π')  echo "pi"                       ;;
          * )  echo $1                         ;;
     esac
 }
@@ -150,13 +151,18 @@ rename-filenames-char-to-charname ()
 
 # Takes font name (prefix of png filenames) as argument
 # ie. "main"
-# Also, the 1.05% number is specific to martyria.svg...
-# either change the number before using the function, or
-# use martyria.svg as a template and don't change the height
 big-svg-to-small-pngs () 
 {
     SUBFONT="$1"
-    convert -crop '100%x1.05%' \
+    case "$SUBFONT" in
+        "main"    ) HEIGHT_PERCENT="0.96"               ;;
+        "martyria") HEIGHT_PERCENT="1.05"         ;;
+        "fthora"  ) HEIGHT_PERCENT="1.05"         ;;
+        "combo"   ) HEIGHT_PERCENT="1.05"         ;;
+        "chronos" ) HEIGHT_PERCENT="1.05"         ;;
+        "archaia" ) HEIGHT_PERCENT="1.05"         ;;
+    esac
+    convert -crop "100%x${HEIGHT_PERCENT}%" \
             "${HOME}/Documents/prog/python3/kassia/org/ka_fontimages/${SUBFONT}.svg" \
             "${SUBFONT}.png"
     while read -r f
