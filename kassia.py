@@ -37,6 +37,7 @@ class Kassia:
         self.header_odd_paragraph = None
         self.header_odd_pagenum_style = None
         self.footer_paragraph = None
+        self.footer_pagenum_style = None
         self.init_styles()
         self.input_filename = input_filename
         try:
@@ -174,10 +175,14 @@ class Kassia:
                 default_footer_style = self.styleSheet['Footer']
                 footer_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
                 if 'style' in footer_attrib_dict:
-                    default_footer_style = getattr(self.styleSheet, footer_attrib_dict['style'], 'Header')
+                    default_footer_style = getattr(self.styleSheet, footer_attrib_dict['style'], 'Footer')
                 footer_style = self.merge_paragraph_styles(default_footer_style, footer_attrib_dict)
                 footer_text = child_elem.text.strip()
                 self.footer_paragraph: Paragraph = Paragraph(footer_text, footer_style)
+                for embedded_attrib in child_elem:
+                    if embedded_attrib.tag is not None and embedded_attrib.tag == 'page-number':
+                        pagenum_attrib_dict = self.fill_attribute_dict(embedded_attrib.attrib)
+                        self.footer_pagenum_style = self.merge_paragraph_styles(default_footer_style, pagenum_attrib_dict)
 
             if child_elem.tag == 'pagebreak':
                 self.story.append(PageBreak())
@@ -240,7 +245,7 @@ class Kassia:
 
         try:
             self.doc.build(self.story,
-                           onFirstPage=self.draw_footer,
+                           onFirstPage=self.draw_header_footer,
                            onEvenPages=self.draw_header_footer,
                            onOddPages=self.draw_header_footer)
         except IOError:
@@ -409,19 +414,19 @@ class Kassia:
         elif doc.pageTemplate.id == 'Odd':
             self.draw_header(canvas, doc, self.header_odd_paragraph, self.header_odd_pagenum_style)
 
-        self.draw_footer(canvas, doc)
+        self.draw_footer(canvas, doc, self.footer_pagenum_style)
 
-    def draw_header(self, canvas, doc, header_paragraph: Paragraph, header_pagenum_style: ParagraphStyle):
+    def draw_header(self, canvas, doc, paragraph: Paragraph, pagenum_style: ParagraphStyle):
         """Draws the header onto the canvas.
         :param canvas: Canvas, passed from document.build.
         :param doc: SimpleDocTemplate, passed from document.build.
-        :param header_paragraph: Paragraph of header text/style to draw.
-        :param header_pagenum_style: The style of page number to draw.
+        :param paragraph: Paragraph of header text/style to draw.
+        :param pagenum_style: The style of page number to draw.
         """
-        if not header_paragraph:
+        if not paragraph:
             return
 
-        style = header_paragraph.style
+        style = paragraph.style
 
         if style.borderWidth:
             canvas.setStrokeColor(style.borderColor)
@@ -439,26 +444,27 @@ class Kassia:
 
         if style.alignment == TA_LEFT:
             x_pos = self.doc.left
-            canvas.drawString(x_pos, y_pos, header_paragraph.text)
+            canvas.drawString(x_pos, y_pos, paragraph.text)
         elif style.alignment == TA_RIGHT:
             x_pos = self.doc.right
-            canvas.drawRightString(x_pos, y_pos, header_paragraph.text)
+            canvas.drawRightString(x_pos, y_pos, paragraph.text)
         elif style.alignment == TA_CENTER:
             x_pos = self.doc.center
-            canvas.drawCentredString(x_pos, y_pos, header_paragraph.text)
+            canvas.drawCentredString(x_pos, y_pos, paragraph.text)
 
-        if header_pagenum_style is not None:
-            if header_pagenum_style.alignment == TA_LEFT:
+        if pagenum_style is not None:
+            if pagenum_style.alignment == TA_LEFT:
                 canvas.drawString(self.doc.left, y_pos, str(canvas.getPageNumber()))
-            elif header_pagenum_style.alignment == TA_RIGHT:
+            elif pagenum_style.alignment == TA_RIGHT:
                 canvas.drawRightString(self.doc.right, y_pos, str(canvas.getPageNumber()))
-            elif header_pagenum_style.alignment == TA_CENTER:
+            elif pagenum_style.alignment == TA_CENTER:
                 canvas.drawCentredString(self.doc.center, y_pos, str(canvas.getPageNumber()))
 
-    def draw_footer(self, canvas, doc):
+    def draw_footer(self, canvas, doc, pagenum_style: ParagraphStyle):
         """Draws the footer onto the canvas.
         :param canvas: Canvas, passed from document.build.
         :param doc: SimpleDocTemplate, passed from document.build.
+        :param pagenum_style: The style of page number to draw.
         """
         if not self.footer_paragraph:
             return
@@ -488,6 +494,14 @@ class Kassia:
         elif style.alignment == TA_CENTER:
             x_pos = self.doc.center
             canvas.drawCentredString(x_pos, y_pos, self.footer_paragraph.text)
+
+        if pagenum_style is not None:
+            if pagenum_style.alignment == TA_LEFT:
+                canvas.drawString(self.doc.left, y_pos, str(canvas.getPageNumber()))
+            elif pagenum_style.alignment == TA_RIGHT:
+                canvas.drawRightString(self.doc.right, y_pos, str(canvas.getPageNumber()))
+            elif pagenum_style.alignment == TA_CENTER:
+                canvas.drawCentredString(self.doc.center, y_pos, str(canvas.getPageNumber()))
 
     @staticmethod
     def make_glyph_list(neume_chunk_list: List[NeumeChunk], lyrics_list: List[Lyric]) -> List[Glyph]:
