@@ -3291,14 +3291,69 @@
 
 
 |
+|d
+|image:ka_fontimages/chronos-d.png[]
+|digoD
+|
+|digoD
+|
+|
+|Digorgon below olig, ison, etc.
+
+
+|
+|e
+|image:ka_fontimages/chronos-e.png[]
+|trigD
+|
+|trigD
+|
+|
+|Trigorgon below olig, ison, etc.
+
+
+|
 |f
 |image:ka_fontimages/chronos-f.png[]
-|digorgR
+|digorgUR
+|
+|digoUR
+|if above apos or hypo
+|
+|Not sure if this combo is technically possible...
+
+
+|
+|g
+|image:ka_fontimages/chronos-g.png[]
+|digorgU2L
+|
+|digoU2L
 |
 |
+|Above olig-[hypo/apos/elaf]-ken2UR
+
+
+|
+|h
+|image:ka_fontimages/chronos-h.png[]
+|digorgDR
+|
+|digoDR
+|if after apos or hypo
+|
+|Below apostrophos or hyporroe.
+
+
+|
+|j
+|image:ka_fontimages/chronos-j.png[]
+|digoU2R
+|
+|digoU2R
 |
 |
-|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
@@ -3326,23 +3381,23 @@
 |
 |q
 |image:ka_fontimages/chronos-q.png[]
-|trigorg
+|trigU
+|
+|trigU
 |
 |
-|
-|
-|
+|Above oligon, ison, etc.
 
 
 |
 |r
 |image:ka_fontimages/chronos-r.png[]
-|trigorgR
+|trigUR
 |
+|trigUR
+|if after apos
 |
-|
-|
-|
+|Trigorgon above apostrophos.
 
 
 |
@@ -3357,6 +3412,28 @@
 
 
 |
+|t
+|image:ka_fontimages/chronos-t.png[]
+|trigU2L
+|
+|trigU2L
+|
+|
+|Above olig-[hypo/apos/elaf]-ken2UR
+
+
+|
+|u
+|image:ka_fontimages/chronos-u.png[]
+|trigU2R
+|
+|trigU2R
+|
+|
+|Above olig-[hypo/apos/elaf]-ken2U
+
+
+|
 |v
 |image:ka_fontimages/chronos-v.png[]
 |gorgR
@@ -3364,18 +3441,18 @@
 |gorgUR
 |if after apos
 |
-|Gorgon above apostrophos.
+|Above apostrophos.
 
 
 |
 |w
 |image:ka_fontimages/chronos-w.png[]
-|trigorgU2
+|trigU2
 |
+|trig
+|if after olig-ken2U
 |
-|
-|
-|
+|Should be only trigorgon choice if olig-ken2U.
 
 
 |
@@ -3387,6 +3464,17 @@
 |if after olig-ken2U
 |
 |Should be only gorgon choice if olig-ken2U.
+
+
+|
+|y
+|image:ka_fontimages/chronos-y.png[]
+|trigDR
+|
+|trigDR
+|if after apos or hypo
+|
+|Below apostrophos or hyporroe.
 
 
 |
