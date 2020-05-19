@@ -1,5 +1,6 @@
 #! /bin/sh
 unset MV_GREENLIGHT
+source ../adoctablescripts.sh
 safe-mv ()
 {
     if [ -z "${MV_GREENLIGHT}" ]
@@ -110,12 +111,12 @@ rename-filenames-num-to-charname ()
 {
     SUBFONT="$1"
     case "$SUBFONT" in
-        "main"    ) RANGE_START=3   ; LENGTH=104  ;;
-        "martyria") RANGE_START=109 ; LENGTH=71   ;;
-        "fthora"  ) RANGE_START=182 ; LENGTH=79   ;;
-        "combo"   ) RANGE_START=263 ; LENGTH=20   ;;
-        "chronos" ) RANGE_START=285 ; LENGTH=44   ;;
-        "archaia" ) RANGE_START=331 ; LENGTH=45   ;;
+        "main"    ) RANGE_START=0   ; LENGTH=104  ;;
+        "martyria") RANGE_START=106 ; LENGTH=71   ;;
+        "fthora"  ) RANGE_START=179 ; LENGTH=79   ;;
+        "combo"   ) RANGE_START=260 ; LENGTH=20   ;;
+        "chronos" ) RANGE_START=282 ; LENGTH=44   ;;
+        "archaia" ) RANGE_START=328 ; LENGTH=45   ;;
     esac
     while read -r f
     do
@@ -126,9 +127,8 @@ rename-filenames-num-to-charname ()
         CHARNAMEBOYS="$(char-to-charname "${CHARBOYS}")"
         safe-mv "${SUBFONT}-${NUMBERBOYS}.png" "${SUBFONT}-${CHARNAMEBOYS}.png"
 
-    done < <(awk -F "|" '{ print $3 }' ../neume_names_phase1.org \
+    done < <(print-column 1 <../neume_names.adoc             \
                  | tail -n +"$RANGE_START" | head -"$LENGTH" \
-                 | sed -e 's/\\vert/|/' -e 's/\\`/`/' \
                  | nl)
 
 }
