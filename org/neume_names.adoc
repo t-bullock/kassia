@@ -1962,9 +1962,20 @@
 |Fthora
 |!
 |image:ka_fontimages/fthora-exclamation-point.png[]
-|indicatepaR
+|indicatepaUR
+|
+|indpaUR
 |
 |
+|
+
+
+|
+|@
+|image:ka_fontimages/fthora-at-sign.png[]
+|indicatevouUR
+|
+|indvouUR
 |
 |
 |
@@ -1984,9 +1995,9 @@
 |
 |#
 |image:ka_fontimages/fthora-number-sign.png[]
-|indicategaR
+|indicategaUR
 |
-|
+|indgaUR
 |
 |
 |
@@ -1995,9 +2006,9 @@
 |
 |$
 |image:ka_fontimages/fthora-dollarsign.png[]
-|indicatediR
+|indicatediUR
 |
-|
+|inddiUR
 |
 |
 |
@@ -2006,9 +2017,20 @@
 |
 |%
 |image:ka_fontimages/fthora-percent-sign.png[]
-|indicatekeR
+|indicatekeUR
+|
+|indkeUR
 |
 |
+|
+
+
+|
+|^
+|image:ka_fontimages/fthora-up-caret.png[]
+|indicatezoUR
+|
+|indzoUR
 |
 |
 |
@@ -2019,7 +2041,7 @@
 |image:ka_fontimages/fthora-ampersand.png[]
 |indicateneR
 |
-|
+|indneUR
 |
 |
 |
@@ -2083,9 +2105,9 @@
 |
 |1
 |image:ka_fontimages/fthora-1.png[]
-|indicatepaL
+|indicatepaUL
 |
-|
+|indpaUL
 |
 |
 |
@@ -2094,9 +2116,9 @@
 |
 |2
 |image:ka_fontimages/fthora-2.png[]
-|indicatevouL
+|indicatevouUL
 |
-|
+|indvouUL
 |
 |
 |
@@ -2105,9 +2127,9 @@
 |
 |3
 |image:ka_fontimages/fthora-3.png[]
-|indicategaL
+|indicategaUL
 |
-|
+|indgaUL
 |
 |
 |
@@ -2116,9 +2138,9 @@
 |
 |4
 |image:ka_fontimages/fthora-4.png[]
-|indicatediL
+|indicatediUL
 |
-|
+|inddiUL
 |
 |
 |
@@ -2127,9 +2149,9 @@
 |
 |5
 |image:ka_fontimages/fthora-5.png[]
-|indicatekeL
+|indicatekeUL
 |
-|
+|indkeUL
 |
 |
 |
@@ -2138,9 +2160,9 @@
 |
 |6
 |image:ka_fontimages/fthora-6.png[]
-|indicatezoL
+|indicatezoUL
 |
-|
+|indzoUL
 |
 |
 |
@@ -2149,9 +2171,9 @@
 |
 |7
 |image:ka_fontimages/fthora-7.png[]
-|indicateneL
+|indicateneUL
 |
-|
+|indneUL
 |
 |
 |
@@ -2213,22 +2235,11 @@
 
 
 |
-|@
-|image:ka_fontimages/fthora-at-sign.png[]
-|indicatevouR
-|
-|
-|
-|
-|
-
-
-|
 |A
 |image:ka_fontimages/fthora-capital-A.png[]
 |fthorahardchromaticpaDR
 |
-|fthorahardchromaticpaDR
+|fhcpaDR
 |if after apos
 |
 |
@@ -2239,7 +2250,7 @@
 |image:ka_fontimages/fthora-capital-D.png[]
 |fthorasoftchromaticdiDR
 |
-|fthorasoftchromaticdiDR
+|fscdiDR
 |if after apos
 |
 |
@@ -2250,7 +2261,7 @@
 |image:ka_fontimages/fthora-capital-E.png[]
 |fthoradiatonicgaDR
 |
-|fthoradiatonicgaDR
+|fdgaDR
 |if after apos
 |
 |
@@ -2261,7 +2272,7 @@
 |image:ka_fontimages/fthora-capital-F.png[]
 |fthorasoftchromatickeDR
 |
-|fthorasoftchromatickeDR
+|fscnenanoDR
 |if after apos
 |
 |
@@ -2272,7 +2283,7 @@
 |image:ka_fontimages/fthora-capital-G.png[]
 |chroizygosDR
 |
-|chroizygosDR
+|fzygosDR
 |if after apos
 |
 |
@@ -2283,7 +2294,7 @@
 |image:ka_fontimages/fthora-capital-H.png[]
 |chroiklitonDR
 |
-|chroiklitonDR
+|fklitonDR
 |if after apos
 |
 |
@@ -2292,9 +2303,9 @@
 |
 |I
 |image:ka_fontimages/fthora-capital-I.png[]
-|fthoradiatonicniDR
+|fthoradiatonicneDR
 |
-|fthoradiatonicniDR
+|fdneDR
 |if after apos
 |
 |
@@ -2305,7 +2316,7 @@
 |image:ka_fontimages/fthora-capital-J.png[]
 |chroispathiDR
 |
-|chroispathiDR
+|fspathiDR
 |if after apos
 |
 |
@@ -2316,7 +2327,7 @@
 |image:ka_fontimages/fthora-capital-K.png[]
 |fthoraajemDR
 |
-|fthoraajemDR
+|fajemDR
 |if after apos
 |
 |
@@ -2327,7 +2338,7 @@
 |image:ka_fontimages/fthora-capital-Q.png[]
 |fthoradiatonicpaDR
 |
-|fthoradiatonicpaDR
+|fdpaDR
 |if after apos
 |
 |
@@ -2338,7 +2349,7 @@
 |image:ka_fontimages/fthora-capital-R.png[]
 |fthoradiatonicdiDR
 |
-|fthoradiatonicdiDR
+|fddiDR
 |if after apos
 |
 |
@@ -2349,7 +2360,7 @@
 |image:ka_fontimages/fthora-capital-S.png[]
 |fthorahardchromaticdiDR
 |
-|fthorahardchromaticdiDR
+|fnenanoDR
 |if after apos
 |
 |
@@ -2360,7 +2371,7 @@
 |image:ka_fontimages/fthora-capital-T.png[]
 |fthoradiatonickeDR
 |
-|fthoradiatonickeDR
+|fdkeDR
 |if after apos
 |
 |
@@ -2369,9 +2380,9 @@
 |
 |U
 |image:ka_fontimages/fthora-capital-U.png[]
-|fthoradiatonichighniDR
+|fthoradiatonichighneDR
 |
-|fthoradiatonichighniDR
+|fdhineDR
 |if after apos
 |
 |
@@ -2382,7 +2393,7 @@
 |image:ka_fontimages/fthora-capital-W.png[]
 |fthoradiatonicvouDR
 |
-|fthoradiatonicvouDR
+|fdvouDR
 |if after apos
 |
 |
@@ -2393,7 +2404,7 @@
 |image:ka_fontimages/fthora-capital-Y.png[]
 |fthoradiatonichighzoDR
 |
-|fthoradiatonichighzoDR
+|fdhizoDR
 |if after apos
 |
 |
@@ -2422,17 +2433,6 @@
 
 
 |
-|^
-|image:ka_fontimages/fthora-up-caret.png[]
-|indicatezoR
-|
-|
-|
-|
-|
-
-
-|
 |+
 |image:ka_fontimages/fthora-plus.png[]
 |sharpD
@@ -2446,7 +2446,7 @@
 |
 |a
 |image:ka_fontimages/fthora-a.png[]
-|fthorahardchromaticpaU
+|fhcpaU
 |
 |fhcpaU
 |
@@ -2457,9 +2457,9 @@
 |
 |d
 |image:ka_fontimages/fthora-d.png[]
-|fthorasoftchromaticdiU
+|fscdiU
 |
-|
+|fscdiU
 |
 |
 |
@@ -2470,7 +2470,7 @@
 |image:ka_fontimages/fthora-e.png[]
 |fthoradiatonicgaU
 |
-|
+|fdgaU
 |
 |
 |
@@ -2481,7 +2481,7 @@
 |image:ka_fontimages/fthora-f.png[]
 |fthorasoftchromatickeU
 |
-|
+|fscnenanoU
 |
 |
 |
@@ -2512,12 +2512,12 @@
 |
 |i
 |image:ka_fontimages/fthora-i.png[]
-|fthoradiatonicniU
+|fthoradiatonicneU
+|
+|fdhineU
 |
 |
-|
-|
-|
+|Diatonic high Ne
 
 
 |
@@ -2525,7 +2525,7 @@
 |image:ka_fontimages/fthora-j.png[]
 |chroispathiU
 |
-|
+|fspathiU
 |
 |
 |
@@ -2536,7 +2536,7 @@
 |image:ka_fontimages/fthora-k.png[]
 |fthoraajemU
 |
-|
+|fajemU
 |
 |
 |
@@ -2547,7 +2547,7 @@
 |image:ka_fontimages/fthora-q.png[]
 |fthoradiatonicpaU
 |
-|
+|fdpaU
 |
 |
 |
@@ -2558,7 +2558,7 @@
 |image:ka_fontimages/fthora-r.png[]
 |fthoradiatonicdiU
 |
-|
+|fddiU
 |
 |
 |
@@ -2569,7 +2569,7 @@
 |image:ka_fontimages/fthora-s.png[]
 |fthorahardchromaticdiU
 |
-|
+|fnenanoU
 |
 |
 |
@@ -2580,7 +2580,7 @@
 |image:ka_fontimages/fthora-t.png[]
 |fthoradiatonickeU
 |
-|
+|fdkeU
 |
 |
 |
@@ -2589,9 +2589,9 @@
 |
 |u
 |image:ka_fontimages/fthora-u.png[]
-|fthoradiatonichighniU
+|fthoradiatonichighneU
 |
-|
+|fdhineU
 |
 |
 |
@@ -2602,7 +2602,7 @@
 |image:ka_fontimages/fthora-w.png[]
 |fthoradiatonicvouU
 |
-|
+|fdvouU
 |
 |
 |
@@ -2613,7 +2613,7 @@
 |image:ka_fontimages/fthora-y.png[]
 |fthoradiatonichighzoU
 |
-|
+|fdhizoU
 |
 |
 |
@@ -2646,7 +2646,7 @@
 |image:ka_fontimages/fthora-yen.png[]
 |fthoradiatonichighzoUR
 |
-|
+|fdhizoUR
 |
 |
 |Goes above martyria.
@@ -2655,9 +2655,9 @@
 |
 |¨
 |image:ka_fontimages/fthora-diaeresis.png[]
-|fthoradiatonichighniUR
+|fthoradiatonichighneUR
 |
-|
+|fdhineUR
 |
 |
 |Goes above martyria.
@@ -2679,7 +2679,7 @@
 |image:ka_fontimages/fthora-restricted.png[]
 |fthoradiatonicdiUR
 |
-|
+|fddiUR
 |
 |
 |Goes above martyria.
@@ -2701,7 +2701,7 @@
 |image:ka_fontimages/fthora-eszett.png[]
 |fthorahardchromaticdiUR
 |
-|
+|fnenanoUR
 |
 |
 |Goes above martyria.
@@ -2712,7 +2712,7 @@
 |image:ka_fontimages/fthora-a-ring.png[]
 |fthorahardchromaticpaUR
 |
-|
+|fhcpaUR
 |
 |
 |Goes above martyria.
@@ -2723,7 +2723,7 @@
 |image:ka_fontimages/fthora-oe.png[]
 |fthoradiatonicpaUR
 |
-|
+|fdpaUR
 |
 |
 |Goes above martyria.
@@ -2734,7 +2734,7 @@
 |image:ka_fontimages/fthora-florin.png[]
 |fthorasoftchromatickeUR
 |
-|
+|fscnenanoUR
 |
 |
 |Goes above martyria.
@@ -2743,9 +2743,9 @@
 |
 |ˆ
 |image:ka_fontimages/fthora-circumflex.png[]
-|fthoradiatonicniUR
+|fthoradiatonicneUR
 |
-|
+|fdneUR
 |
 |
 |Goes above martyria.
@@ -2756,7 +2756,7 @@
 |image:ka_fontimages/fthora-alternate-degree-sign.png[]
 |fthoraajemUR
 |
-|
+|fajemUR
 |
 |
 |Goes above martyria.
@@ -2778,7 +2778,7 @@
 |image:ka_fontimages/fthora-dagger.png[]
 |fthoradiatonickeUR
 |
-|
+|fdkeUR
 |
 |
 |Goes above martyria.
@@ -2789,7 +2789,7 @@
 |image:ka_fontimages/fthora-derivative.png[]
 |fthorasoftchromaticdiUR
 |
-|
+|fscdiUR
 |
 |
 |Goes above martyria.
@@ -2800,7 +2800,7 @@
 |image:ka_fontimages/fthora-capital-delta.png[]
 |chroispathiUR
 |
-|
+|fspathiUR
 |
 |
 |Goes above martyria.
@@ -2811,7 +2811,7 @@
 |image:ka_fontimages/fthora-capital-sigma.png[]
 |fthoradiatonicvouUR
 |
-|
+|fdvouUR
 |
 |
 |Goes above martyria.
