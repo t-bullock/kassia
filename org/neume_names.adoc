@@ -790,15 +790,15 @@
 |olig-ken2DR
 |
 |
-|
+|This is the standard olig-ken2D.
 
 
 |
 |Ω
 |image:ka_fontimages/main-capital-omega.png[]
-|olig-ken2D-psefD2
+|olig-ken2D
 |
-|olig-ken2D-psefD2
+|olig-ken2D
 |substitue olig-ken2D for this if psef will follow
 |
 |Could be combined in TTF as ligature of olig-ken2D-psef, but kept separate for more freedom in coloring.
@@ -812,7 +812,7 @@
 |olig-kentDR
 |
 |
-|
+|This is the standard olig-kentD.
 
 
 |
@@ -1137,9 +1137,9 @@
 |
 |?
 |image:ka_fontimages/main-question-mark.png[]
-|vare-hapl-gorg
+|vare-hapl-gorgU
 |
-|vare-hapl-gorg
+|vare-hapl-gorgU
 |
 |
 |
@@ -1172,7 +1172,7 @@
 |image:ka_fontimages/martyria-exclamation-point.png[]
 |mpaU
 |
-|
+|mpaU
 |
 |
 |
@@ -1183,7 +1183,7 @@
 |image:ka_fontimages/martyria-number-sign.png[]
 |mgaU
 |
-|
+|mgaU
 |
 |
 |
@@ -1194,7 +1194,7 @@
 |image:ka_fontimages/martyria-dollarsign.png[]
 |mdiU
 |
-|
+|mdiU
 |
 |
 |
@@ -1205,7 +1205,7 @@
 |image:ka_fontimages/martyria-percent-sign.png[]
 |mkeU
 |
-|
+|mkeU
 |
 |
 |
@@ -1216,7 +1216,7 @@
 |image:ka_fontimages/martyria-ampersand.png[]
 |mneU
 |
-|
+|mneU
 |
 |
 |
@@ -1227,7 +1227,7 @@
 |image:ka_fontimages/martyria-comma.png[]
 |chronf3
 |
-|
+|chi-tetrU
 |
 |
 |
@@ -1236,9 +1236,9 @@
 |
 |/
 |image:ka_fontimages/martyria-slash.png[]
-|plagal
+|plag
 |
-|
+|plag
 |
 |
 |
@@ -1249,7 +1249,7 @@
 |image:ka_fontimages/martyria-1.png[]
 |mpa
 |
-|
+|mpa
 |
 |
 |
@@ -1260,7 +1260,7 @@
 |image:ka_fontimages/martyria-2.png[]
 |mvou
 |
-|
+|mvou
 |
 |
 |
@@ -1271,7 +1271,7 @@
 |image:ka_fontimages/martyria-3.png[]
 |mga
 |
-|
+|mga
 |
 |
 |
@@ -1282,7 +1282,7 @@
 |image:ka_fontimages/martyria-4.png[]
 |mdi
 |
-|
+|mdi
 |
 |
 |
@@ -1293,7 +1293,7 @@
 |image:ka_fontimages/martyria-5.png[]
 |mke
 |
-|
+|mke
 |
 |
 |
@@ -1304,7 +1304,7 @@
 |image:ka_fontimages/martyria-6.png[]
 |mzo
 |
-|
+|mzo
 |
 |
 |
@@ -1315,7 +1315,7 @@
 |image:ka_fontimages/martyria-7.png[]
 |mne
 |
-|
+|mne
 |
 |
 |
@@ -1326,7 +1326,7 @@
 |image:ka_fontimages/martyria-left-caret.png[]
 |chronf3U
 |
-|
+|chi-tetrU
 |
 |
 |
@@ -1337,7 +1337,7 @@
 |image:ka_fontimages/martyria-at-sign.png[]
 |mvouU
 |
-|
+|mvouU
 |
 |
 |
@@ -1348,7 +1348,7 @@
 |image:ka_fontimages/martyria-capital-A.png[]
 |mbetaU
 |
-|
+|mbetaU
 |
 |
 |
@@ -1359,10 +1359,10 @@
 |image:ka_fontimages/martyria-capital-B.png[]
 |chronmU
 |
+|chiU-gargU2
 |
 |
-|
-|
+|Goes above a martyria.
 
 
 |
@@ -1370,10 +1370,10 @@
 |image:ka_fontimages/martyria-capital-C.png[]
 |chrons2U
 |
+|chiU-hemeU2
 |
 |
-|
-|
+|Goes above a martyria.
 
 
 |
@@ -1381,7 +1381,7 @@
 |image:ka_fontimages/martyria-capital-D.png[]
 |mscbetaU
 |
-|
+|mbetaU-apoiU2
 |
 |
 |
@@ -1392,7 +1392,7 @@
 |image:ka_fontimages/martyria-capital-E.png[]
 |mnanaU
 |
-|
+|mnanaU
 |
 |
 |
@@ -1403,7 +1403,7 @@
 |image:ka_fontimages/martyria-capital-F.png[]
 |mscnenanoU
 |
-|
+|mscnenanoU
 |
 |
 |
@@ -1412,9 +1412,9 @@
 |
 |G
 |image:ka_fontimages/martyria-capital-G.png[]
-|zygosC
+|zygosU
 |
-|
+|mzygosU
 |
 |
 |
@@ -1423,9 +1423,9 @@
 |
 |H
 |image:ka_fontimages/martyria-capital-H.png[]
-|klitonC
+|klitonU
 |
-|
+|mklitonU
 |
 |
 |
@@ -1436,18 +1436,18 @@
 |image:ka_fontimages/martyria-capital-I.png[]
 |plfirst
 |
+|malfa-apoiU
 |
 |
-|
-|
+|Ligature for alpha with apostropoi above.
 
 
 |
 |J
 |image:ka_fontimages/martyria-capital-J.png[]
-|spathiC
+|mspathiU
 |
-|
+|mspathiU
 |
 |
 |
@@ -1458,10 +1458,10 @@
 |image:ka_fontimages/martyria-capital-M.png[]
 |chronf2U
 |
+|chiU-digoU2
 |
 |
-|
-|
+|Goes above a martyria.
 
 
 |
@@ -1469,10 +1469,10 @@
 |image:ka_fontimages/martyria-capital-N.png[]
 |chronfU
 |
+|chiU-gorgU2
 |
 |
-|
-|
+|Goes above a martyria.
 
 
 |
@@ -1480,10 +1480,10 @@
 |image:ka_fontimages/martyria-capital-O.png[]
 |plsecondsc
 |
+|mbeta-apoiU
 |
 |
-|
-|
+|Ligature for beta with apostrophoi above.
 
 
 |
@@ -1491,7 +1491,7 @@
 |image:ka_fontimages/martyria-capital-P.png[]
 |gravemode
 |
-|
+|grav
 |
 |
 |
@@ -1500,9 +1500,9 @@
 |
 |Q
 |image:ka_fontimages/martyria-capital-Q.png[]
-|malphaU
+|malfaU
 |
-|
+|malfaU
 |
 |
 |
@@ -1513,10 +1513,10 @@
 |image:ka_fontimages/martyria-capital-R.png[]
 |mdeltaapoU
 |
+|mdeltU-apoiU2
 |
 |
-|
-|
+|Ligature or delta with apostrophoi above.
 
 
 |
@@ -1524,7 +1524,7 @@
 |image:ka_fontimages/martyria-capital-S.png[]
 |mnenanoU
 |
-|
+|mnenanoU
 |
 |
 |
@@ -1533,20 +1533,20 @@
 |
 |T
 |image:ka_fontimages/martyria-capital-T.png[]
-|malphaapoU
+|malfaapoU
+|
+|malfaU-apoiU2
 |
 |
-|
-|
-|
+|Ligature for alpha with apostrophoi above.
 
 
 |
 |U
 |image:ka_fontimages/martyria-capital-U.png[]
-|mdeltaU
+|mdeltU
 |
-|
+|mdeltU
 |
 |
 |
@@ -1557,10 +1557,10 @@
 |image:ka_fontimages/martyria-capital-V.png[]
 |chronsU
 |
+|chiU-argoU2
 |
 |
-|
-|
+|Goes above a martyria.
 
 
 |
@@ -1568,7 +1568,7 @@
 |image:ka_fontimages/martyria-capital-W.png[]
 |mlamdaU
 |
-|
+|mlamdaU
 |
 |
 |
@@ -1579,10 +1579,10 @@
 |image:ka_fontimages/martyria-capital-X.png[]
 |chrons3U
 |
+|chiU-diarU2
 |
 |
-|
-|
+|Goes above a martyria.
 
 
 |
@@ -1590,7 +1590,7 @@
 |image:ka_fontimages/martyria-capital-Y.png[]
 |mhypoU
 |
-|
+|mhypoU
 |
 |
 |
@@ -1601,10 +1601,10 @@
 |image:ka_fontimages/martyria-capital-Z.png[]
 |chrons4U
 |
+|chiU-tetgU2
 |
 |
-|
-|
+|Goes above a martyria.
 
 
 |
@@ -1612,10 +1612,10 @@
 |image:ka_fontimages/martyria-left-bracket.png[]
 |fourthmode
 |
+|mdelt-apoiU-hypsU2
 |
 |
-|
-|
+|Ligature or delta with apostrofoi above.
 
 
 |
@@ -1623,7 +1623,7 @@
 |image:ka_fontimages/martyria-up-caret.png[]
 |mzoU
 |
-|
+|mzoU
 |
 |
 |
@@ -1632,9 +1632,9 @@
 |
 |`
 |image:ka_fontimages/martyria-grave.png[]
-|mtonos
+|mprim
 |
-|
+|mprim
 |
 |
 |
@@ -1645,7 +1645,7 @@
 |image:ka_fontimages/martyria-a.png[]
 |mbeta
 |
-|
+|mbeta
 |
 |
 |
@@ -1656,7 +1656,7 @@
 |image:ka_fontimages/martyria-b.png[]
 |chronm
 |
-|
+|chi-gargU
 |
 |
 |
@@ -1667,7 +1667,7 @@
 |image:ka_fontimages/martyria-c.png[]
 |chrons2
 |
-|
+|chi-hemeU
 |
 |
 |
@@ -1678,7 +1678,7 @@
 |image:ka_fontimages/martyria-d.png[]
 |mscbeta
 |
-|
+|mbeta-apoiU
 |
 |
 |
@@ -1689,7 +1689,7 @@
 |image:ka_fontimages/martyria-e.png[]
 |mnana
 |
-|
+|mnana
 |
 |
 |
@@ -1700,7 +1700,7 @@
 |image:ka_fontimages/martyria-f.png[]
 |mscnenano
 |
-|
+|mscnenano
 |
 |
 |
@@ -1709,9 +1709,9 @@
 |
 |g
 |image:ka_fontimages/martyria-g.png[]
-|zygos
+|mzygos
 |
-|
+|mzygos
 |
 |
 |
@@ -1720,9 +1720,9 @@
 |
 |h
 |image:ka_fontimages/martyria-h.png[]
-|kliton
+|mkliton
 |
-|
+|mkliton
 |
 |
 |
@@ -1733,7 +1733,7 @@
 |image:ka_fontimages/martyria-i.png[]
 |firstmode
 |
-|
+|malpha
 |
 |
 |
@@ -1742,9 +1742,9 @@
 |
 |j
 |image:ka_fontimages/martyria-j.png[]
-|spathi
+|mspathi
 |
-|
+|mspathi
 |
 |
 |
@@ -1755,7 +1755,7 @@
 |image:ka_fontimages/martyria-m.png[]
 |chronf2
 |
-|
+|chi-digoU
 |
 |
 |
@@ -1766,7 +1766,7 @@
 |image:ka_fontimages/martyria-n.png[]
 |chronf
 |
-|
+|chi-gorgU
 |
 |
 |
@@ -1777,10 +1777,10 @@
 |image:ka_fontimages/martyria-o.png[]
 |secondmode
 |
+|mscbeta-mfon
 |
 |
-|
-|
+|Is actually ligature of mscbeta and U+1D0AF.
 
 
 |
@@ -1788,18 +1788,18 @@
 |image:ka_fontimages/martyria-p.png[]
 |thirdmodenana
 |
+|mnana-isa2U
 |
 |
-|
-|
+|Ligature for mnana with isakia above.
 
 
 |
 |q
 |image:ka_fontimages/martyria-q.png[]
-|malpha
+|malfa
 |
-|
+|malfa
 |
 |
 |
@@ -1810,10 +1810,10 @@
 |image:ka_fontimages/martyria-r.png[]
 |mdeltaapo
 |
+|mdelt-apoiU
 |
 |
-|
-|
+|Ligature for delta with apostrophoi above.
 
 
 |
@@ -1821,7 +1821,7 @@
 |image:ka_fontimages/martyria-s.png[]
 |mnenano
 |
-|
+|mnena
 |
 |
 |
@@ -1830,20 +1830,20 @@
 |
 |t
 |image:ka_fontimages/martyria-t.png[]
-|malphaapo
+|malfaapo
+|
+|malfa-apoiU
 |
 |
-|
-|
-|
+|Ligature for alpha with apostrophoi above.
 
 
 |
 |u
 |image:ka_fontimages/martyria-u.png[]
-|mdelta
+|mdelt
 |
-|
+|mdelt
 |
 |
 |
@@ -1854,7 +1854,7 @@
 |image:ka_fontimages/martyria-v.png[]
 |chrons
 |
-|
+|chi-argoU
 |
 |
 |
@@ -1865,7 +1865,7 @@
 |image:ka_fontimages/martyria-w.png[]
 |mlamda
 |
-|
+|mlamda
 |
 |
 |
@@ -1876,7 +1876,7 @@
 |image:ka_fontimages/martyria-x.png[]
 |chrons3
 |
-|
+|chi-diarU
 |
 |
 |
@@ -1887,7 +1887,7 @@
 |image:ka_fontimages/martyria-y.png[]
 |mhypo
 |
-|
+|mhypo
 |
 |
 |
@@ -1898,7 +1898,7 @@
 |image:ka_fontimages/martyria-z.png[]
 |chrons4
 |
-|
+|chi-tetgU
 |
 |
 |
@@ -1909,18 +1909,18 @@
 |image:ka_fontimages/martyria-left-curly-bracket.png[]
 |plfourth
 |
+|deta-apoiU
 |
 |
-|
-|
+|Ligature for delta with apostrophoi above.
 
 
 |
 |~
 |image:ka_fontimages/martyria-tilde.png[]
-|mtonosU
+|mprimU
 |
-|
+|mprimU
 |
 |
 |
@@ -1931,7 +1931,7 @@
 |image:ka_fontimages/martyria-pi.png[]
 |thirdmode
 |
-|
+|nana-apoiU
 |
 |
 |
@@ -1940,9 +1940,9 @@
 |
 |“
 |image:ka_fontimages/martyria-left-double-quote.png[]
-|legetos
+|lege
 |
-|
+|lege
 |
 |
 |
@@ -1962,251 +1962,9 @@
 |Fthora
 |!
 |image:ka_fontimages/fthora-exclamation-point.png[]
-|indicatepaR
+|indicatepaUR
 |
-|
-|
-|
-|
-
-
-|
-|"
-|image:ka_fontimages/fthora-double-quote.png[]
-|sharp2R
-|
-|
-|
-|
-|
-
-
-|
-|#
-|image:ka_fontimages/fthora-number-sign.png[]
-|indicategaR
-|
-|
-|
-|
-|
-
-
-|
-|$
-|image:ka_fontimages/fthora-dollarsign.png[]
-|indicatediR
-|
-|
-|
-|
-|
-
-
-|
-|%
-|image:ka_fontimages/fthora-percent-sign.png[]
-|indicatekeR
-|
-|
-|
-|
-|
-
-
-|
-|&
-|image:ka_fontimages/fthora-ampersand.png[]
-|indicateniR
-|
-|
-|
-|
-|
-
-
-|
-|'
-|image:ka_fontimages/fthora-single-quote.png[]
-|sharp2
-|
-|
-|
-|
-|
-
-
-|
-|+
-|image:ka_fontimages/fthora-plus.png[]
-|sharpR
-|
-|
-|
-|
-|
-
-
-|
-|,
-|image:ka_fontimages/fthora-comma.png[]
-|permflat
-|
-|
-|
-|
-|
-
-
-|
-|-
-|image:ka_fontimages/fthora-hyphen.png[]
-|flat
-|
-|
-|
-|
-|
-
-
-|
-|.
-|image:ka_fontimages/fthora-period.png[]
-|permsharp
-|
-|
-|
-|
-|
-
-
-|
-|1
-|image:ka_fontimages/fthora-1.png[]
-|indicatepaL
-|
-|
-|
-|
-|
-
-
-|
-|2
-|image:ka_fontimages/fthora-2.png[]
-|indicatevouL
-|
-|
-|
-|
-|
-
-
-|
-|3
-|image:ka_fontimages/fthora-3.png[]
-|indicategaL
-|
-|
-|
-|
-|
-
-
-|
-|4
-|image:ka_fontimages/fthora-4.png[]
-|indicatediL
-|
-|
-|
-|
-|
-
-
-|
-|5
-|image:ka_fontimages/fthora-5.png[]
-|indicatekeL
-|
-|
-|
-|
-|
-
-
-|
-|6
-|image:ka_fontimages/fthora-6.png[]
-|indicatezoL
-|
-|
-|
-|
-|
-
-
-|
-|7
-|image:ka_fontimages/fthora-7.png[]
-|indicateneL
-|
-|
-|
-|
-|
-
-
-|
-|:
-|image:ka_fontimages/fthora-colon.png[]
-|flat2R
-|
-|
-|
-|
-|
-
-
-|
-|;
-|image:ka_fontimages/fthora-semicolon.png[]
-|flat2
-|
-|
-|
-|
-|
-
-
-|
-|<
-|image:ka_fontimages/fthora-left-caret.png[]
-|permflatD
-|
-|
-|
-|
-|
-
-
-|
-|=
-|image:ka_fontimages/fthora-equal-sign.png[]
-|sharp
-|
-|
-|
-|
-|
-
-
-|
-|>
-|image:ka_fontimages/fthora-right-caret.png[]
-|permsharpD
-|
-|
+|indpaUR
 |
 |
 |
@@ -2215,10 +1973,263 @@
 |
 |@
 |image:ka_fontimages/fthora-at-sign.png[]
-|indicatevouR
+|indicatevouUR
+|
+|indvouUR
 |
 |
 |
+
+
+|
+|"
+|image:ka_fontimages/fthora-double-quote.png[]
+|sharp2DR
+|
+|sharp2DR
+|if after apos
+|
+|Sharp2 for apostrofos.
+
+
+|
+|#
+|image:ka_fontimages/fthora-number-sign.png[]
+|indicategaUR
+|
+|indgaUR
+|
+|
+|
+
+
+|
+|$
+|image:ka_fontimages/fthora-dollarsign.png[]
+|indicatediUR
+|
+|inddiUR
+|
+|
+|
+
+
+|
+|%
+|image:ka_fontimages/fthora-percent-sign.png[]
+|indicatekeUR
+|
+|indkeUR
+|
+|
+|
+
+
+|
+|^
+|image:ka_fontimages/fthora-up-caret.png[]
+|indicatezoUR
+|
+|indzoUR
+|
+|
+|
+
+
+|
+|&
+|image:ka_fontimages/fthora-ampersand.png[]
+|indicateneR
+|
+|indneUR
+|
+|
+|
+
+
+|
+|'
+|image:ka_fontimages/fthora-single-quote.png[]
+|sharp2D
+|
+|sharp2D
+|
+|
+|Standard sharp2 for olig, ison, etc.
+
+
+|
+|+
+|image:ka_fontimages/fthora-plus.png[]
+|sharpDR
+|
+|sharpDR
+|if after apos
+|
+|Sharp for apostrofos.
+
+
+|
+|,
+|image:ka_fontimages/fthora-comma.png[]
+|permflatU
+|
+|permflatU
+|
+|
+|
+
+
+|
+|-
+|image:ka_fontimages/fthora-hyphen.png[]
+|flatU
+|
+|flatU
+|
+|
+|Standard flat for olig, ison, etc.
+
+
+|
+|.
+|image:ka_fontimages/fthora-period.png[]
+|permsharpU
+|
+|permsharpU
+|
+|
+|
+
+
+|
+|1
+|image:ka_fontimages/fthora-1.png[]
+|indicatepaUL
+|
+|indpaUL
+|
+|
+|
+
+
+|
+|2
+|image:ka_fontimages/fthora-2.png[]
+|indicatevouUL
+|
+|indvouUL
+|
+|
+|
+
+
+|
+|3
+|image:ka_fontimages/fthora-3.png[]
+|indicategaUL
+|
+|indgaUL
+|
+|
+|
+
+
+|
+|4
+|image:ka_fontimages/fthora-4.png[]
+|indicatediUL
+|
+|inddiUL
+|
+|
+|
+
+
+|
+|5
+|image:ka_fontimages/fthora-5.png[]
+|indicatekeUL
+|
+|indkeUL
+|
+|
+|
+
+
+|
+|6
+|image:ka_fontimages/fthora-6.png[]
+|indicatezoUL
+|
+|indzoUL
+|
+|
+|
+
+
+|
+|7
+|image:ka_fontimages/fthora-7.png[]
+|indicateneUL
+|
+|indneUL
+|
+|
+|
+
+
+|
+|:
+|image:ka_fontimages/fthora-colon.png[]
+|flat2U2R2
+|
+|flat2U2R2
+|if after olig-[ison/apos/elaf]-kenUR
+|
+|Flat2 for kentimata in olig-ken2R.
+
+
+|
+|;
+|image:ka_fontimages/fthora-semicolon.png[]
+|flat2U
+|
+|flat2U
+|
+|
+|Standard flat2 for olig, ison, etc.
+
+
+|
+|<
+|image:ka_fontimages/fthora-left-caret.png[]
+|permflatD
+|
+|permflatD
+|if after apos
+|
+|
+
+
+|
+|=
+|image:ka_fontimages/fthora-equal-sign.png[]
+|sharpD
+|
+|sharpD
+|
+|
+|Standard sharp for oligon, ison, etc.
+
+
+|
+|>
+|image:ka_fontimages/fthora-right-caret.png[]
+|permsharpD
+|
+|permsharpD
+|if after apos
 |
 |
 
@@ -2228,8 +2239,8 @@
 |image:ka_fontimages/fthora-capital-A.png[]
 |fthorahardchromaticpaDR
 |
-|
-|
+|fhcpaDR
+|if after apos
 |
 |
 
@@ -2239,8 +2250,8 @@
 |image:ka_fontimages/fthora-capital-D.png[]
 |fthorasoftchromaticdiDR
 |
-|
-|
+|fscdiDR
+|if after apos
 |
 |
 
@@ -2250,8 +2261,8 @@
 |image:ka_fontimages/fthora-capital-E.png[]
 |fthoradiatonicgaDR
 |
-|
-|
+|fdgaDR
+|if after apos
 |
 |
 
@@ -2261,8 +2272,8 @@
 |image:ka_fontimages/fthora-capital-F.png[]
 |fthorasoftchromatickeDR
 |
-|
-|
+|fscnenanoDR
+|if after apos
 |
 |
 
@@ -2272,8 +2283,8 @@
 |image:ka_fontimages/fthora-capital-G.png[]
 |chroizygosDR
 |
-|
-|
+|fzygosDR
+|if after apos
 |
 |
 
@@ -2283,8 +2294,8 @@
 |image:ka_fontimages/fthora-capital-H.png[]
 |chroiklitonDR
 |
-|
-|
+|fklitonDR
+|if after apos
 |
 |
 
@@ -2292,10 +2303,10 @@
 |
 |I
 |image:ka_fontimages/fthora-capital-I.png[]
-|fthoradiatonicniDR
+|fthoradiatonicneDR
 |
-|
-|
+|fdneDR
+|if after apos
 |
 |
 
@@ -2305,8 +2316,8 @@
 |image:ka_fontimages/fthora-capital-J.png[]
 |chroispathiDR
 |
-|
-|
+|fspathiDR
+|if after apos
 |
 |
 
@@ -2316,8 +2327,8 @@
 |image:ka_fontimages/fthora-capital-K.png[]
 |fthoraajemDR
 |
-|
-|
+|fajemDR
+|if after apos
 |
 |
 
@@ -2327,8 +2338,8 @@
 |image:ka_fontimages/fthora-capital-Q.png[]
 |fthoradiatonicpaDR
 |
-|
-|
+|fdpaDR
+|if after apos
 |
 |
 
@@ -2338,8 +2349,8 @@
 |image:ka_fontimages/fthora-capital-R.png[]
 |fthoradiatonicdiDR
 |
-|
-|
+|fddiDR
+|if after apos
 |
 |
 
@@ -2349,8 +2360,8 @@
 |image:ka_fontimages/fthora-capital-S.png[]
 |fthorahardchromaticdiDR
 |
-|
-|
+|fnenanoDR
+|if after apos
 |
 |
 
@@ -2360,8 +2371,8 @@
 |image:ka_fontimages/fthora-capital-T.png[]
 |fthoradiatonickeDR
 |
-|
-|
+|fdkeDR
+|if after apos
 |
 |
 
@@ -2369,10 +2380,10 @@
 |
 |U
 |image:ka_fontimages/fthora-capital-U.png[]
-|fthoradiatonichighniDR
+|fthoradiatonichighneDR
 |
-|
-|
+|fdhineDR
+|if after apos
 |
 |
 
@@ -2382,8 +2393,8 @@
 |image:ka_fontimages/fthora-capital-W.png[]
 |fthoradiatonicvouDR
 |
-|
-|
+|fdvouDR
+|if after apos
 |
 |
 
@@ -2393,8 +2404,8 @@
 |image:ka_fontimages/fthora-capital-Y.png[]
 |fthoradiatonichighzoDR
 |
-|
-|
+|fdhizoDR
+|if after apos
 |
 |
 
@@ -2402,34 +2413,23 @@
 |
 |[
 |image:ka_fontimages/fthora-left-bracket.png[]
-|flat1
+|flat1U
+|
+|flat1U
 |
 |
-|
-|
-|
+|Standard flat1 for olig, ison, etc.
 
 
 |
 |]
 |image:ka_fontimages/fthora-right-bracket.png[]
-|sharp1
+|sharp1D
+|
+|sharp1D
 |
 |
-|
-|
-|
-
-
-|
-|^
-|image:ka_fontimages/fthora-up-caret.png[]
-|indicatezoR
-|
-|
-|
-|
-|
+|Standard sharp1 for olig, ison, etc.
 
 
 |
@@ -2440,15 +2440,18 @@
 |
 |
 |
+|sharpD
+|if after apos
 |
+|Sharp for apostrofos.
 
 
 |
 |a
 |image:ka_fontimages/fthora-a.png[]
-|fthorahardchromaticpaU
+|fhcpaU
 |
-|
+|fhcpaU
 |
 |
 |
@@ -2457,9 +2460,9 @@
 |
 |d
 |image:ka_fontimages/fthora-d.png[]
-|fthorasoftchromaticdiU
+|fscdiU
 |
-|
+|fscdiU
 |
 |
 |
@@ -2470,7 +2473,7 @@
 |image:ka_fontimages/fthora-e.png[]
 |fthoradiatonicgaU
 |
-|
+|fdgaU
 |
 |
 |
@@ -2481,7 +2484,7 @@
 |image:ka_fontimages/fthora-f.png[]
 |fthorasoftchromatickeU
 |
-|
+|fscnenanoU
 |
 |
 |
@@ -2492,7 +2495,7 @@
 |image:ka_fontimages/fthora-g.png[]
 |chroizygosU
 |
-|
+|fzygosU
 |
 |
 |
@@ -2503,7 +2506,7 @@
 |image:ka_fontimages/fthora-h.png[]
 |chroiklitonU
 |
-|
+|fklitοnU
 |
 |
 |
@@ -2512,12 +2515,12 @@
 |
 |i
 |image:ka_fontimages/fthora-i.png[]
-|fthoradiatonicniU
+|fthoradiatonicneU
+|
+|fdhineU
 |
 |
-|
-|
-|
+|Diatonic high Ne
 
 
 |
@@ -2525,7 +2528,7 @@
 |image:ka_fontimages/fthora-j.png[]
 |chroispathiU
 |
-|
+|fspathiU
 |
 |
 |
@@ -2536,7 +2539,7 @@
 |image:ka_fontimages/fthora-k.png[]
 |fthoraajemU
 |
-|
+|fajemU
 |
 |
 |
@@ -2547,7 +2550,7 @@
 |image:ka_fontimages/fthora-q.png[]
 |fthoradiatonicpaU
 |
-|
+|fdpaU
 |
 |
 |
@@ -2558,7 +2561,7 @@
 |image:ka_fontimages/fthora-r.png[]
 |fthoradiatonicdiU
 |
-|
+|fddiU
 |
 |
 |
@@ -2569,7 +2572,7 @@
 |image:ka_fontimages/fthora-s.png[]
 |fthorahardchromaticdiU
 |
-|
+|fnenanoU
 |
 |
 |
@@ -2580,7 +2583,7 @@
 |image:ka_fontimages/fthora-t.png[]
 |fthoradiatonickeU
 |
-|
+|fdkeU
 |
 |
 |
@@ -2589,9 +2592,9 @@
 |
 |u
 |image:ka_fontimages/fthora-u.png[]
-|fthoradiatonichighniU
+|fthoradiatonichighneU
 |
-|
+|fdhineU
 |
 |
 |
@@ -2602,7 +2605,7 @@
 |image:ka_fontimages/fthora-w.png[]
 |fthoradiatonicvouU
 |
-|
+|fdvouU
 |
 |
 |
@@ -2613,7 +2616,7 @@
 |image:ka_fontimages/fthora-y.png[]
 |fthoradiatonichighzoU
 |
-|
+|fdhizoU
 |
 |
 |
@@ -2622,23 +2625,23 @@
 |
 |{
 |image:ka_fontimages/fthora-left-curly-bracket.png[]
-|flat1R
+|flat1U2R2
 |
+|flat1U2R2
+|if after olig-[ison/apos/elaf]-kenUR
 |
-|
-|
-|
+|Flat1 for kentimata in olig-ken2R.
 
 
 |
 |}
 |image:ka_fontimages/fthora-right-curly-bracket.png[]
-|sharp1R
+|sharp1DR
 |
+|sharp1DR
+|if after apos
 |
-|
-|
-|
+|Sharp1 for apostrofos.
 
 
 |
@@ -2646,21 +2649,21 @@
 |image:ka_fontimages/fthora-yen.png[]
 |fthoradiatonichighzoUR
 |
+|fdhizoUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
 |¨
 |image:ka_fontimages/fthora-diaeresis.png[]
-|fthoradiatonichighniUR
+|fthoradiatonichighneUR
+|
+|fdhineUR
 |
 |
-|
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2668,10 +2671,10 @@
 |image:ka_fontimages/fthora-copyright.png[]
 |chroizygosUR
 |
+|fzygU
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2679,21 +2682,21 @@
 |image:ka_fontimages/fthora-restricted.png[]
 |fthoradiatonicdiUR
 |
+|fddiUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
 |´
 |image:ka_fontimages/fthora-acute.png[]
-|(over martyria)
+|fnanaU
+|
+|fnanaU
 |
 |
-|
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2701,10 +2704,10 @@
 |image:ka_fontimages/fthora-eszett.png[]
 |fthorahardchromaticdiUR
 |
+|fnenanoUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2712,10 +2715,10 @@
 |image:ka_fontimages/fthora-a-ring.png[]
 |fthorahardchromaticpaUR
 |
+|fhcpaUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2723,10 +2726,10 @@
 |image:ka_fontimages/fthora-oe.png[]
 |fthoradiatonicpaUR
 |
+|fdpaUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2734,21 +2737,21 @@
 |image:ka_fontimages/fthora-florin.png[]
 |fthorasoftchromatickeUR
 |
+|fscnenanoUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
 |ˆ
 |image:ka_fontimages/fthora-circumflex.png[]
-|fthoradiatonicniUR
+|fthoradiatonicneUR
+|
+|fdneUR
 |
 |
-|
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2756,21 +2759,21 @@
 |image:ka_fontimages/fthora-alternate-degree-sign.png[]
 |fthoraajemUR
 |
+|fajemUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
 |–
 |image:ka_fontimages/fthora-dash.png[]
-|flatR2
+|flatU2R2
 |
+|flatU2R2
+|if after olig-[ison/apos/elaf]-kenUR
 |
-|
-|
-|
+|Flat for kentimata in olig-ken2R.
 
 
 |
@@ -2778,10 +2781,10 @@
 |image:ka_fontimages/fthora-dagger.png[]
 |fthoradiatonickeUR
 |
+|fdkeUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2789,10 +2792,10 @@
 |image:ka_fontimages/fthora-derivative.png[]
 |fthorasoftchromaticdiUR
 |
+|fscdiUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2800,10 +2803,10 @@
 |image:ka_fontimages/fthora-capital-delta.png[]
 |chroispathiUR
 |
+|fspathiUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2811,10 +2814,10 @@
 |image:ka_fontimages/fthora-capital-sigma.png[]
 |fthoradiatonicvouUR
 |
+|fdvouUR
 |
 |
-|
-|
+|Goes above martyria.
 
 
 |
@@ -2822,10 +2825,10 @@
 |image:ka_fontimages/fthora-unequal-sign.png[]
 |sharpD2
 |
+|sharpD2
+|if after apos2
 |
-|
-|
-|
+|Sharp for apos2 ligature.
 
 
 |
@@ -2842,9 +2845,9 @@
 |Combo
 |-
 |image:ka_fontimages/combo-hyphen.png[]
-|peta-hypo
+|peta-hypoU
 |
-|
+|peta-hypoU
 |
 |
 |
@@ -2864,9 +2867,9 @@
 |
 |1
 |image:ka_fontimages/combo-1.png[]
-|olig-hypsUL-ken1U-hypsU2
+|olig-hypsUL-kentU-hypsU2
 |
-|olig-hypsUL-ken1U-hypsU2
+|olig-hypsUL-kentU-hypsU2
 |
 |
 |
@@ -2897,9 +2900,9 @@
 |
 |4
 |image:ka_fontimages/combo-4.png[]
-|olig-hypsUL-ken1U-hypsUR-hypsU2
+|olig-hypsUL-kentU-hypsUR-hypsU2
 |
-|olig-hypsUL-ken1U-hypsUR-hypsU2
+|olig-hypsUL-kentU-hypsUR-hypsU2
 |
 |
 |
@@ -2998,7 +3001,7 @@
 |image:ka_fontimages/combo-s.png[]
 |klasU2L
 |
-|(if olig-aposU) klasU
+|if after olig-aposU
 |
 |
 |
@@ -3042,10 +3045,10 @@
 |image:ka_fontimages/combo-left-curly-bracket.png[]
 |tripD0.9R
 |
-|tripD-heteD
+|tripD-heteD2
 |
 |
-|
+|Ligature of tripD-heteD2. This may never be used because hete is usually colored red.
 
 
 |
@@ -3053,10 +3056,10 @@
 |image:ka_fontimages/combo-right-curly-bracket.png[]
 |spsefD2
 |
-|psef
+|psefD2
+|if hapl/dipl/tetr-hete
 |
-|
-|(if hapl/dipl/trip/tetr/ and hete), duplicated in Main
+|hete might have slightly different position if coming after hapl, diple, etc., so need special psef for this case.
 
 
 |
@@ -3073,45 +3076,45 @@
 |Chronos
 |,
 |image:ka_fontimages/chronos-comma.png[]
-|argon
+|argoU
+|
+|argoU
 |
 |
-|
-|
-|
+|Standard argon. Should only be above olig or an olig combo.
 
 
 |
 |.
 |image:ka_fontimages/chronos-period.png[]
-|hemi
+|hemiU
+|
+|hemiU
 |
 |
-|
-|
-|hemiolion
+|Standard hemiolion. Should only be above olig or olig combo.
 
 
 |
 |/
 |image:ka_fontimages/chronos-slash.png[]
-|diargon
+|diargU
+|
+|diargU
 |
 |
-|
-|
-|
+|Standard diagron. Should only be above olig or olig combo.
 
 
 |
 |A
 |image:ka_fontimages/chronos-capital-A.png[]
-|dotdigorg
+|dotdigoU
+|
+|dotdigoU
 |
 |
-|
-|
-|
+|Standard dot digorgon above oligon, ison, etc.
 
 
 |
@@ -3119,10 +3122,10 @@
 |image:ka_fontimages/chronos-capital-B.png[]
 |dotgorgU2L
 |
+|dotgorgU2L
 |
 |
-|
-|
+|Above olig-[hypo/apos/elaf]-ken2UR
 
 
 |
@@ -3130,21 +3133,65 @@
 |image:ka_fontimages/chronos-capital-C.png[]
 |dotgorgD
 |
+|dotgorgD
 |
 |
+|Below olig, ison, etc.
+
+
+|
+|D
+|image:ka_fontimages/chronos-capital-D.png[]
+|dotdigoD
+|
+|dotdigoD
 |
 |
+|Dotdigorgon below olig, ison, etc.
+
+
+|
+|E
+|image:ka_fontimages/chronos-capital-E.png[]
+|dottrigD
+|
+|dottrigD
+|
+|
+|Dotdigorgon below olig, ison, etc.
 
 
 |
 |F
 |image:ka_fontimages/chronos-capital-F.png[]
-|dotdigorgR
+|dotdigoUR
+|
+|dotdigoUR
+|if above apos or hypo
 |
 |
+
+
+|
+|H
+|image:
+|dotdigoDR
+|
+|dotdigoDR
+|if after apos or hypo
+|
+|Below apostrophos or hyporroe. Not sure if this combo is ever used in music.
+
+
+|
+|J
+|image:
+|dotdigoDR
+|
+|dotdigoDR
 |
 |
-|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
@@ -3152,10 +3199,10 @@
 |image:ka_fontimages/chronos-capital-M.png[]
 |dotgorgU2R
 |
+|dotgorgU2R
 |
 |
-|
-|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
@@ -3163,8 +3210,8 @@
 |image:ka_fontimages/chronos-capital-N.png[]
 |dotgorgDR
 |
-|
-|
+|dotgorgDR
+|if after apos or hypo
 |
 |
 
@@ -3172,21 +3219,21 @@
 |
 |Q
 |image:ka_fontimages/chronos-capital-Q.png[]
-|dottrigorg
+|dottrigU
+|
+|dottrigU
 |
 |
-|
-|
-|
+|Above olig, ison, etc.
 
 
 |
 |R
 |image:ka_fontimages/chronos-capital-R.png[]
-|dottrigorgR
+|dottrigUR
 |
-|
-|
+|dottrigUR
+|if after apos
 |
 |
 
@@ -3194,21 +3241,43 @@
 |
 |S
 |image:ka_fontimages/chronos-capital-S.png[]
-|dotdigorgU2
+|dotdigoU2
+|
+|dotdigoU2
+|if after olig-ken2U
+|
+|Should be only dotdigo choice if olig-ken2U.
+
+
+|
+|T
+|image:ka_fontimages/chronos-capital-T.png[]
+|dottrigU2L
+|
+|dottrigU2L
 |
 |
+|Above olig-[hypo/apos/elaf]-ken2UR
+
+
+|
+|U
+|image:ka_fontimages/chronos-capital-V.png[]
+|dottrigU2R
+|
+|dottrigU2R
 |
 |
-|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
 |V
 |image:ka_fontimages/chronos-capital-V.png[]
-|dotgorgR
+|dotgorgUR
 |
-|
-|
+|dotgorgUR
+|if after apos or hypo
 |
 |
 
@@ -3216,12 +3285,12 @@
 |
 |W
 |image:ka_fontimages/chronos-capital-W.png[]
-|dottrigorgU2
+|dottrigU2
 |
+|dottrigU2
+|if after olig-ken2U
 |
-|
-|
-|
+|Should be only dottrig choice if olig-ken2U.
 
 
 |
@@ -3229,43 +3298,54 @@
 |image:ka_fontimages/chronos-capital-X.png[]
 |dotgorgU2
 |
+|dotgorgU2
+|if after olig-ken2U
 |
+|Should be only dotgorg choice if olig-ken2U.
+
+
 |
+|Y
+|image:ka_fontimages/chronos-capital-Y.png[]
+|dottrigDR
 |
+|dottrigDR
+|if after apos or hypo
 |
+|Below apostrophos or hyporroe.
 
 
 |
 |Z
 |image:ka_fontimages/chronos-capital-Z.png[]
-|gorgpare
+|gorgdotU
+|
+|gorgdotU
 |
 |
-|
-|
-|gorgon parestigmenon
+|Above oligon, ison, etc.
 
 
 |
 |\
 |image:ka_fontimages/chronos-backslash.png[]
-|coro
+|coroU
+|
+|coroU
 |
 |
-|
-|
-|
+|Note sure if this should be repositioned to be more useful.
 
 
 |
 |a
 |image:ka_fontimages/chronos-a.png[]
-|digorg
+|digorgU
+|
+|digoU
 |
 |
-|
-|
-|
+|Above olig, ison, etc.
 
 
 |
@@ -3273,10 +3353,10 @@
 |image:ka_fontimages/chronos-b.png[]
 |gorgU2L
 |
+|gorgU2L
 |
 |
-|
-|
+|Above olig-[hypo/apos/elaf]-ken2UR
 
 
 |
@@ -3284,21 +3364,76 @@
 |image:ka_fontimages/chronos-c.png[]
 |gorgD
 |
+|gorgD
 |
 |
+|Gorgon below olig, ison, etc.
+
+
+|
+|d
+|image:ka_fontimages/chronos-d.png[]
+|digoD
+|
+|digoD
 |
 |
+|Digorgon below olig, ison, etc.
+
+
+|
+|e
+|image:ka_fontimages/chronos-e.png[]
+|trigD
+|
+|trigD
+|
+|
+|Trigorgon below olig, ison, etc.
 
 
 |
 |f
 |image:ka_fontimages/chronos-f.png[]
-|digorgR
+|digorgUR
+|
+|digoUR
+|if above apos or hypo
 |
 |
+
+
+|
+|g
+|image:ka_fontimages/chronos-g.png[]
+|digorgU2L
+|
+|digoU2L
 |
 |
+|Above olig-[hypo/apos/elaf]-ken2UR
+
+
 |
+|h
+|image:ka_fontimages/chronos-h.png[]
+|digorgDR
+|
+|digoDR
+|if after apos or hypo
+|
+|Below apostrophos or hyporroe. Not sure if this combo is ever used in music.
+
+
+|
+|j
+|image:ka_fontimages/chronos-j.png[]
+|digoU2R
+|
+|digoU2R
+|
+|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
@@ -3306,10 +3441,10 @@
 |image:ka_fontimages/chronos-m.png[]
 |gorgU2R
 |
+|gorgU2R
 |
 |
-|
-|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
@@ -3317,32 +3452,32 @@
 |image:ka_fontimages/chronos-n.png[]
 |gorgDR
 |
+|gorgDR
+|if after apos or hypo
 |
-|
-|
-|
+|Below apostrophos or hyporroe.
 
 
 |
 |q
 |image:ka_fontimages/chronos-q.png[]
-|trigorg
+|trigU
+|
+|trigU
 |
 |
-|
-|
-|
+|Above oligon, ison, etc.
 
 
 |
 |r
 |image:ka_fontimages/chronos-r.png[]
-|trigorgR
+|trigUR
 |
+|trigUR
+|if after apos
 |
-|
-|
-|
+|Trigorgon above apostrophos.
 
 
 |
@@ -3350,32 +3485,54 @@
 |image:ka_fontimages/chronos-s.png[]
 |digorgU2
 |
+|digoU2
+|if after olig-ken2U
+|
+|Should be only digorgon choice if olig-ken2U.
+
+
+|
+|t
+|image:ka_fontimages/chronos-t.png[]
+|trigU2L
+|
+|trigU2L
 |
 |
+|Above olig-[hypo/apos/elaf]-ken2UR
+
+
+|
+|u
+|image:ka_fontimages/chronos-u.png[]
+|trigU2R
+|
+|trigU2R
 |
 |
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
 |v
 |image:ka_fontimages/chronos-v.png[]
-|gorgR
+|gorgUR
 |
+|gorgUR
+|if after apos
 |
-|
-|
-|
+|Above apostrophos.
 
 
 |
 |w
 |image:ka_fontimages/chronos-w.png[]
-|trigorgU2
+|trigU2
 |
+|trig
+|if after olig-ken2U
 |
-|
-|
-|
+|Should be only trigorgon choice if olig-ken2U.
 
 
 |
@@ -3383,10 +3540,21 @@
 |image:ka_fontimages/chronos-x.png[]
 |gorgU2
 |
+|gorgU2
+|if after olig-ken2U
 |
+|Should be only gorgon choice if olig-ken2U.
+
+
 |
+|y
+|image:ka_fontimages/chronos-y.png[]
+|trigDR
 |
+|trigDR
+|if after apos or hypo
 |
+|Below apostrophos or hyporroe.
 
 
 |
@@ -3394,10 +3562,10 @@
 |image:ka_fontimages/chronos-z.png[]
 |gorgU
 |
+|gorgU
 |
 |
-|
-|
+|Above oligon, ison, etc.
 
 
 |
@@ -3408,15 +3576,15 @@
 |
 |
 |
-|hyfen
+|Standard hyphen.
 
 
 |
 |®
 |image:ka_fontimages/chronos-restricted.png[]
-|trigorgdotR
+|trigdotR
 |
-|
+|trigdotR
 |
 |
 |
@@ -3425,9 +3593,9 @@
 |
 |ß
 |image:ka_fontimages/chronos-eszett.png[]
-|digorgdotU2
+|digodotU2
 |
-|
+|digodotU2
 |
 |
 |
@@ -3436,12 +3604,12 @@
 |
 |å
 |image:ka_fontimages/chronos-a-ring.png[]
-|digorgdot
+|digodotD
+|
+|digodotD
 |
 |
-|
-|
-|
+|Digorgon below oligon, ison, etc.
 
 
 |
@@ -3449,18 +3617,18 @@
 |image:ka_fontimages/chronos-c-cedilla.png[]
 |gorgdotD
 |
+|gorgdotD
 |
 |
-|
-|
+|Gorgon below oligon, ison, etc.
 
 
 |
 |œ
 |image:ka_fontimages/chronos-oe.png[]
-|trigorgdot
+|trigdot
 |
-|
+|trigdot
 |
 |
 |
@@ -3469,9 +3637,9 @@
 |
 |ƒ
 |image:ka_fontimages/chronos-florin.png[]
-|digorgdotR
+|digodotR
 |
-|
+|digodotR
 |
 |
 |
@@ -3482,21 +3650,21 @@
 |image:ka_fontimages/chronos-small-tilde.png[]
 |gorgdotDR
 |
+|gorgdotDR
+|if after apos or hypo
 |
-|
-|
-|
+|Below apostrophos or hyporroe.
 
 
 |
 |Ω
 |image:ka_fontimages/chronos-capital-omega.png[]
-|gorgdot
+|gorgdotU
+|
+|gorgdotU
 |
 |
-|
-|
-|
+|Above oligon, ison, etc.
 
 
 |
@@ -3504,18 +3672,18 @@
 |image:ka_fontimages/chronos-mu.png[]
 |gorgdotU2R
 |
+|gorgdotU2R
 |
 |
-|
-|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
 |∑
 |image:ka_fontimages/chronos-capital-sigma.png[]
-|trigorgdotU2
+|trigdotU2
 |
-|
+|trigdotU2
 |
 |
 |
@@ -3524,12 +3692,12 @@
 |
 |√
 |image:ka_fontimages/chronos-sqrt.png[]
-|gorgdotR
+|gorgdotUR
 |
+|gorgdotUR
+|if after apos
 |
-|
-|
-|
+|Above apostrophos.
 
 
 |
@@ -3537,10 +3705,10 @@
 |image:ka_fontimages/chronos-integral.png[]
 |gorgdotU2L
 |
+|gorgdotU2L
 |
 |
-|
-|
+|Above olig-[hypo/apos/elaf]-ken2UR
 
 
 |
@@ -3548,10 +3716,10 @@
 |image:ka_fontimages/chronos-almost-equal.png[]
 |gorgdotU2
 |
+|gorgdotU2
+|if after olig-ken2U
 |
-|
-|
-|
+|Should be only gorgon choice if olig-ken2U.
 
 
 |
@@ -4035,7 +4203,7 @@
 |kentU0.1
 |
 |
-|
+|I don't think this can ever be used. I should delete this from the TTF.
 
 
 |
