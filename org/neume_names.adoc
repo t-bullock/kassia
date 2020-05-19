@@ -1172,7 +1172,7 @@
 |image:ka_fontimages/martyria-exclamation-point.png[]
 |mpaU
 |
-|
+|mpaU
 |
 |
 |
@@ -1183,7 +1183,7 @@
 |image:ka_fontimages/martyria-number-sign.png[]
 |mgaU
 |
-|
+|mgaU
 |
 |
 |
@@ -1194,7 +1194,7 @@
 |image:ka_fontimages/martyria-dollarsign.png[]
 |mdiU
 |
-|
+|mdiU
 |
 |
 |
@@ -1205,7 +1205,7 @@
 |image:ka_fontimages/martyria-percent-sign.png[]
 |mkeU
 |
-|
+|mkeU
 |
 |
 |
@@ -1216,7 +1216,7 @@
 |image:ka_fontimages/martyria-ampersand.png[]
 |mneU
 |
-|
+|mneU
 |
 |
 |
@@ -1227,7 +1227,7 @@
 |image:ka_fontimages/martyria-comma.png[]
 |chronf3
 |
-|
+|chi-tetrU
 |
 |
 |
@@ -1249,7 +1249,7 @@
 |image:ka_fontimages/martyria-1.png[]
 |mpa
 |
-|
+|mpa
 |
 |
 |
@@ -1260,7 +1260,7 @@
 |image:ka_fontimages/martyria-2.png[]
 |mvou
 |
-|
+|mvou
 |
 |
 |
@@ -1271,7 +1271,7 @@
 |image:ka_fontimages/martyria-3.png[]
 |mga
 |
-|
+|mga
 |
 |
 |
@@ -1282,7 +1282,7 @@
 |image:ka_fontimages/martyria-4.png[]
 |mdi
 |
-|
+|mdi
 |
 |
 |
@@ -1293,7 +1293,7 @@
 |image:ka_fontimages/martyria-5.png[]
 |mke
 |
-|
+|mke
 |
 |
 |
@@ -1304,7 +1304,7 @@
 |image:ka_fontimages/martyria-6.png[]
 |mzo
 |
-|
+|mzo
 |
 |
 |
@@ -1315,7 +1315,7 @@
 |image:ka_fontimages/martyria-7.png[]
 |mne
 |
-|
+|mne
 |
 |
 |
@@ -1326,7 +1326,7 @@
 |image:ka_fontimages/martyria-left-caret.png[]
 |chronf3U
 |
-|
+|chi-tetrU
 |
 |
 |
@@ -1337,7 +1337,7 @@
 |image:ka_fontimages/martyria-at-sign.png[]
 |mvouU
 |
-|
+|mvouU
 |
 |
 |
