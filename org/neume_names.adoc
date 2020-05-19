@@ -2437,7 +2437,7 @@
 |image:ka_fontimages/fthora-underscore.png[]
 |flatR
 |
-|
+|flatR
 |if after apos
 |
 |Sharp for apostrofos.
