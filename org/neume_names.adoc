@@ -2433,8 +2433,8 @@
 
 
 |
-|+
-|image:ka_fontimages/fthora-plus.png[]
+|_
+|image:ka_fontimages/fthora-underscore.png[]
 |flatR
 |
 |
