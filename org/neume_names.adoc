@@ -3106,7 +3106,7 @@
 |
 |A
 |image:ka_fontimages/chronos-capital-A.png[]
-|dotdigorg
+|dotdigoU
 |
 |dotdigoU
 |
@@ -3119,10 +3119,10 @@
 |image:ka_fontimages/chronos-capital-B.png[]
 |dotgorgU2L
 |
+|dotgorgU2L
 |
 |
-|
-|
+|Above olig-[hypo/apos/elaf]-ken2UR
 
 
 |
@@ -3130,21 +3130,65 @@
 |image:ka_fontimages/chronos-capital-C.png[]
 |dotgorgD
 |
+|dotgorgD
 |
 |
+|Below olig, ison, etc.
+
+
+|
+|D
+|image:ka_fontimages/chronos-capital-D.png[]
+|dotdigoD
+|
+|dotdigoD
 |
 |
+|Dotdigorgon below olig, ison, etc.
+
+
+|
+|E
+|image:ka_fontimages/chronos-capital-E.png[]
+|dottrigD
+|
+|dottrigD
+|
+|
+|Dotdigorgon below olig, ison, etc.
 
 
 |
 |F
 |image:ka_fontimages/chronos-capital-F.png[]
-|dotdigorgR
+|dotdigoUR
+|
+|dotdigoUR
+|if above apos or hypo
 |
 |
+
+
+|
+|H
+|image:
+|dotdigoDR
+|
+|dotdigoDR
+|if after apos or hypo
+|
+|Below apostrophos or hyporroe. Not sure if this combo is ever used in music.
+
+
+|
+|J
+|image:
+|dotdigoDR
+|
+|dotdigoDR
 |
 |
-|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
@@ -3152,10 +3196,10 @@
 |image:ka_fontimages/chronos-capital-M.png[]
 |dotgorgU2R
 |
+|dotgorgU2R
 |
 |
-|
-|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
@@ -3163,8 +3207,8 @@
 |image:ka_fontimages/chronos-capital-N.png[]
 |dotgorgDR
 |
-|
-|
+|dotgorgDR
+|if after apos or hypo
 |
 |
 
@@ -3172,21 +3216,21 @@
 |
 |Q
 |image:ka_fontimages/chronos-capital-Q.png[]
-|dottrigorg
+|dottrigU
+|
+|dottrigU
 |
 |
-|
-|
-|
+|Above olig, ison, etc.
 
 
 |
 |R
 |image:ka_fontimages/chronos-capital-R.png[]
-|dottrigorgR
+|dottrigUR
 |
-|
-|
+|dottrigUR
+|if after apos
 |
 |
 
@@ -3194,21 +3238,43 @@
 |
 |S
 |image:ka_fontimages/chronos-capital-S.png[]
-|dotdigorgU2
+|dotdigoU2
+|
+|dotdigoU2
+|if after olig-ken2U
+|
+|Should be only dotdigo choice if olig-ken2U.
+
+
+|
+|T
+|image:ka_fontimages/chronos-capital-T.png[]
+|dottrigU2L
+|
+|dottrigU2L
 |
 |
+|Above olig-[hypo/apos/elaf]-ken2UR
+
+
+|
+|U
+|image:ka_fontimages/chronos-capital-V.png[]
+|dottrigU2R
+|
+|dottrigU2R
 |
 |
-|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
 |V
 |image:ka_fontimages/chronos-capital-V.png[]
-|dotgorgR
+|dotgorgUR
 |
-|
-|
+|dotgorgUR
+|if after apos or hypo
 |
 |
 
@@ -3216,12 +3282,12 @@
 |
 |W
 |image:ka_fontimages/chronos-capital-W.png[]
-|dottrigorgU2
+|dottrigU2
 |
+|dottrigU2
+|if after olig-ken2U
 |
-|
-|
-|
+|Should be only dottrig choice if olig-ken2U.
 
 
 |
@@ -3229,32 +3295,43 @@
 |image:ka_fontimages/chronos-capital-X.png[]
 |dotgorgU2
 |
+|dotgorgU2
+|if after olig-ken2U
 |
+|Should be only dotgorg choice if olig-ken2U.
+
+
 |
+|Y
+|image:ka_fontimages/chronos-capital-Y.png[]
+|dottrigDR
 |
+|dottrigDR
+|if after apos or hypo
 |
+|Below apostrophos or hyporroe.
 
 
 |
 |Z
 |image:ka_fontimages/chronos-capital-Z.png[]
-|gorgpare
+|gorgdotU
+|
+|gorgdotU
 |
 |
-|
-|
-|gorgon parestigmenon
+|Above oligon, ison, etc.
 
 
 |
 |\
 |image:ka_fontimages/chronos-backslash.png[]
-|coro
+|coroU
+|
+|coroU
 |
 |
-|
-|
-|
+|Note sure if this should be repositioned to be more useful.
 
 
 |
@@ -3320,7 +3397,7 @@
 |digoUR
 |if above apos or hypo
 |
-|Not sure if this combo is technically possible...
+|
 
 
 |
@@ -3342,7 +3419,7 @@
 |digoDR
 |if after apos or hypo
 |
-|Below apostrophos or hyporroe.
+|Below apostrophos or hyporroe. Not sure if this combo is ever used in music.
 
 
 |
@@ -3436,7 +3513,7 @@
 |
 |v
 |image:ka_fontimages/chronos-v.png[]
-|gorgR
+|gorgUR
 |
 |gorgUR
 |if after apos
@@ -3502,9 +3579,9 @@
 |
 |®
 |image:ka_fontimages/chronos-restricted.png[]
-|trigorgdotR
+|trigdotR
 |
-|
+|trigdotR
 |
 |
 |
@@ -3513,9 +3590,9 @@
 |
 |ß
 |image:ka_fontimages/chronos-eszett.png[]
-|digorgdotU2
+|digodotU2
 |
-|
+|digodotU2
 |
 |
 |
@@ -3524,12 +3601,12 @@
 |
 |å
 |image:ka_fontimages/chronos-a-ring.png[]
-|digorgdot
+|digodotD
+|
+|digodotD
 |
 |
-|
-|
-|
+|Digorgon below oligon, ison, etc.
 
 
 |
@@ -3537,18 +3614,18 @@
 |image:ka_fontimages/chronos-c-cedilla.png[]
 |gorgdotD
 |
+|gorgdotD
 |
 |
-|
-|
+|Gorgon below oligon, ison, etc.
 
 
 |
 |œ
 |image:ka_fontimages/chronos-oe.png[]
-|trigorgdot
+|trigdot
 |
-|
+|trigdot
 |
 |
 |
@@ -3557,9 +3634,9 @@
 |
 |ƒ
 |image:ka_fontimages/chronos-florin.png[]
-|digorgdotR
+|digodotR
 |
-|
+|digodotR
 |
 |
 |
@@ -3570,21 +3647,21 @@
 |image:ka_fontimages/chronos-small-tilde.png[]
 |gorgdotDR
 |
+|gorgdotDR
+|if after apos or hypo
 |
-|
-|
-|
+|Below apostrophos or hyporroe.
 
 
 |
 |Ω
 |image:ka_fontimages/chronos-capital-omega.png[]
-|gorgdot
+|gorgdotU
+|
+|gorgdotU
 |
 |
-|
-|
-|
+|Above oligon, ison, etc.
 
 
 |
@@ -3592,18 +3669,18 @@
 |image:ka_fontimages/chronos-mu.png[]
 |gorgdotU2R
 |
+|gorgdotU2R
 |
 |
-|
-|
+|Above olig-[hypo/apos/elaf]-ken2U
 
 
 |
 |∑
 |image:ka_fontimages/chronos-capital-sigma.png[]
-|trigorgdotU2
+|trigdotU2
 |
-|
+|trigdotU2
 |
 |
 |
@@ -3612,12 +3689,12 @@
 |
 |√
 |image:ka_fontimages/chronos-sqrt.png[]
-|gorgdotR
+|gorgdotUR
 |
+|gorgdotUR
+|if after apos
 |
-|
-|
-|
+|Above apostrophos.
 
 
 |
@@ -3625,10 +3702,10 @@
 |image:ka_fontimages/chronos-integral.png[]
 |gorgdotU2L
 |
+|gorgdotU2L
 |
 |
-|
-|
+|Above olig-[hypo/apos/elaf]-ken2UR
 
 
 |
@@ -3636,10 +3713,10 @@
 |image:ka_fontimages/chronos-almost-equal.png[]
 |gorgdotU2
 |
+|gorgdotU2
+|if after olig-ken2U
 |
-|
-|
-|
+|Should be only gorgon choice if olig-ken2U.
 
 
 |
@@ -4123,7 +4200,7 @@
 |kentU0.1
 |
 |
-|
+|I don't think this can ever be used. I should delete this from the TTF.
 
 
 |
