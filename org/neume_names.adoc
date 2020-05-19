@@ -277,7 +277,7 @@
 
 
 |
-|\vert
+|\|
 |image:ka_fontimages/main-pipe.png[]
 |barlU
 |
@@ -1047,7 +1047,7 @@
 
 
 |
-|\`
+|`
 |image:ka_fontimages/main-grave.png[]
 |ken2
 |
@@ -1630,7 +1630,7 @@
 
 
 |
-|\`
+|`
 |image:ka_fontimages/martyria-grave.png[]
 |mtonos
 |
@@ -3401,7 +3401,7 @@
 
 
 |
-|\vert
+|\|
 |image:ka_fontimages/chronos-pipe.png[]
 |hyfeU
 |
@@ -4017,7 +4017,7 @@
 
 
 |
-|\vert
+|\|
 |image:ka_fontimages/archaia-pipe.png[]
 |pias
 |
