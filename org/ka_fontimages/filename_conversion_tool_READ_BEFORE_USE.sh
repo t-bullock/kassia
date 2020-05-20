@@ -1,4 +1,3 @@
-#! /bin/sh
 unset MV_GREENLIGHT
 source ../adoctablescripts.sh
 safe-mv ()
@@ -109,15 +108,18 @@ char-to-charname ()
  # ie. "main"
 rename-filenames-num-to-charname ()
 {
-    SUBFONT="$1"
+    local SUBFONT="$1"
     case "$SUBFONT" in
-        "main"    ) RANGE_START=0   ; LENGTH=104  ;;
-        "martyria") RANGE_START=106 ; LENGTH=71   ;;
-        "fthora"  ) RANGE_START=179 ; LENGTH=79   ;;
-        "combo"   ) RANGE_START=260 ; LENGTH=20   ;;
-        "chronos" ) RANGE_START=282 ; LENGTH=44   ;;
-        "archaia" ) RANGE_START=328 ; LENGTH=45   ;;
+        "main"    ) local RANGE_START=0   ; local LENGTH=104  ;;
+        "martyria") local RANGE_START=106 ; local LENGTH=71   ;;
+        "fthora"  ) local RANGE_START=179 ; local LENGTH=79   ;;
+        "combo"   ) local RANGE_START=260 ; local LENGTH=20   ;;
+        "chronos" ) local RANGE_START=282 ; local LENGTH=44   ;;
+        "archaia" ) local RANGE_START=328 ; local LENGTH=45   ;;
     esac
+    local NUMBERBOYS=""
+    local CHARBOYS=""
+    local CHARNAMEBOYS=""
     while read -r f
     do
 
@@ -137,7 +139,9 @@ rename-filenames-num-to-charname ()
 # ie. "main"
 rename-filenames-char-to-charname ()
 {
-    SUBFONT="$1"
+    local SUBFONT="$1"
+    local CHARBOYS=""
+    local CHARNAMEBOYS=""
     while read -r f
     do
 
@@ -153,18 +157,20 @@ rename-filenames-char-to-charname ()
 # ie. "main"
 big-svg-to-small-pngs () 
 {
-    SUBFONT="$1"
+    local SUBFONT="$1"
     case "$SUBFONT" in
-        "main"    ) HEIGHT_PERCENT="0.96"               ;;
-        "martyria") HEIGHT_PERCENT="1.05"         ;;
-        "fthora"  ) HEIGHT_PERCENT="1.05"         ;;
-        "combo"   ) HEIGHT_PERCENT="1.05"         ;;
-        "chronos" ) HEIGHT_PERCENT="1.05"         ;;
-        "archaia" ) HEIGHT_PERCENT="1.05"         ;;
+        "main"    ) local HEIGHT_PERCENT="0.96"         ;;
+        "martyria") local HEIGHT_PERCENT="1.05"         ;;
+        "fthora"  ) local HEIGHT_PERCENT="1.05"         ;;
+        "combo"   ) local HEIGHT_PERCENT="1.05"         ;;
+        "chronos" ) local HEIGHT_PERCENT="1.05"         ;;
+        "archaia" ) local HEIGHT_PERCENT="1.05"         ;;
     esac
     convert -crop "100%x${HEIGHT_PERCENT}%" \
             "${HOME}/Documents/prog/python3/kassia/org/ka_fontimages/${SUBFONT}.svg" \
             "${SUBFONT}.png"
+    local PREFIX=""
+    local NUMBERBOYS=""
     while read -r f
     do
         PREFIX="$(echo "$f" | awk -F '-' '{ print $1 }')"
