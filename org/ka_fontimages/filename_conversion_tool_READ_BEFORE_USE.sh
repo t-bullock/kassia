@@ -1,5 +1,5 @@
 unset MV_GREENLIGHT
-source ../adoctablescripts.sh
+CURRENT_DIR="$(pwd)"
 safe-mv ()
 {
     if [ -z "${MV_GREENLIGHT}" ]
@@ -110,12 +110,12 @@ rename-filenames-num-to-charname ()
 {
     local SUBFONT="$1"
     case "$SUBFONT" in
-        "main"    ) local RANGE_START=0   ; local LENGTH=104  ;;
-        "martyria") local RANGE_START=106 ; local LENGTH=71   ;;
+        "main"    ) local RANGE_START=2   ; local LENGTH=104  ;;
+        "martyria") local RANGE_START=107 ; local LENGTH=71   ;;
         "fthora"  ) local RANGE_START=179 ; local LENGTH=79   ;;
-        "combo"   ) local RANGE_START=260 ; local LENGTH=20   ;;
-        "chronos" ) local RANGE_START=282 ; local LENGTH=44   ;;
-        "archaia" ) local RANGE_START=328 ; local LENGTH=45   ;;
+        "combo"   ) local RANGE_START=259 ; local LENGTH=20   ;;
+        "chronos" ) local RANGE_START=280 ; local LENGTH=59   ;;
+        "archaia" ) local RANGE_START=340 ; local LENGTH=45   ;;
     esac
     local NUMBERBOYS=""
     local CHARBOYS=""
@@ -129,7 +129,8 @@ rename-filenames-num-to-charname ()
         CHARNAMEBOYS="$(char-to-charname "${CHARBOYS}")"
         safe-mv "${SUBFONT}-${NUMBERBOYS}.png" "${SUBFONT}-${CHARNAMEBOYS}.png"
 
-    done < <(print-column 1 <../neume_names.adoc             \
+    done < <(python "${CURRENT_DIR}/../adoctablescripts.py"   \
+                    print-column 1 <../neume_names.adoc      \
                  | tail -n +"$RANGE_START" | head -"$LENGTH" \
                  | nl)
 
