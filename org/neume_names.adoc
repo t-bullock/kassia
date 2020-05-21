@@ -1146,7 +1146,7 @@
 
 
 |
-|\\
+|\
 |image:ka_fontimages/main-backslash.png[]
 |barl
 |
