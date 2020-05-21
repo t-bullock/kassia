@@ -13,10 +13,12 @@ print-column ()
     local STDIN=""
     read -r -d '' STDIN 
     local COLUMN="$1"
-    local START_LINE="$(echo "${COLUMN}+4" | bc)"
+    #local START_LINE="$(echo "${COLUMN}+4" | bc)"
     echo "$STDIN"                               \
-        | print-every-nth-line "$START_LINE" 11 \
-        | sed 's/^|//'
+        | python adoctablescripts.py            \
+                print-column "$COLUMN"
+    #    | print-every-nth-line "$START_LINE" 11 \
+    #    | sed 's/^|//'
 }
 
 check-for-duplicates ()
