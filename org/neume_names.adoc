@@ -3315,9 +3315,9 @@
 |
 |Z
 |image:ka_fontimages/chronos-capital-Z.png[]
-|gorgdotU
+|dotgorgU
 |
-|gorgdotU
+|dotgorgU
 |
 |
 |Above oligon, ison, etc.
