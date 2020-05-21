@@ -3,11 +3,13 @@ import sys
 
 def find_pos_of_nth_substr(in_string, num, substr):
   pos=-1
-  iter=0
-  while iter<num and iter != -1:
+  i=0
+  while i<num:
     pos=in_string.find(substr,pos+1)
     if in_string[pos-1] != '\\':
-      iter+=1
+      i+=1
+    elif pos == -1:
+      break
   return(pos)
 
 
@@ -19,15 +21,14 @@ def adoc_table_to_orgtbl(in_string, delimiter):
   in_string    = in_string[table_begin:table_end]
   out_string   = ''
 
-  while True:
+  index = 0
+  while index != -1:
     index = find_pos_of_nth_substr(
       in_string,
       field_count+1,
       delimiter)
     out_string += in_string[0:index] + '\n'
     in_string   = in_string[index:]
-    if index == -1:
-      break
 
   return(out_string)
 
