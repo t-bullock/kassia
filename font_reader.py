@@ -6,7 +6,6 @@ from reportlab.lib.fonts import addMapping
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont, TTFError
 import os
-import inspect
 from sys import platform
 import logging
 
@@ -16,16 +15,10 @@ from ruamel.yaml import safe_load, YAMLError
 def register_fonts(check_sys_fonts=False):
     """Registers fonts by checking the local /font directory, and system installed fonts.
     """
-    internal_font_path: str = ""
     dirs = []
 
-    # Always check local kassia font folder first, so those fonts have precedence
-    if platform.startswith(("darwin", "linux")):
-        internal_font_path = inspect.stack()[0][1].rsplit('/', 1)[0] + "/fonts"
-    elif platform.startswith("win") or platform.startswith("cygwin"):
-        internal_font_path = inspect.stack()[0][1].rsplit('\\', 1)[0] + "\\fonts"
-    else:
-        logging.error("{} operating system is not supported. Internal fonts will not be loaded.", format(platform))
+    # Always check local kassia font folder first, so included fonts have precedence
+    internal_font_path = os.path.join(str(Path.cwd()), 'fonts')
 
     neume_font_configs = get_neume_dict(internal_font_path)
     dirs.append(internal_font_path)
