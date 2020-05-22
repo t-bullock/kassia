@@ -11,7 +11,6 @@ from reportlab.platypus import PageBreak, Paragraph, Spacer, Table, TableStyle, 
 from xml.etree.ElementTree import Element, ParseError, parse
 
 import font_reader
-import neume_dict
 from complex_doc_template import ComplexDocTemplate
 from cursor import Cursor
 from drop_cap import Dropcap
@@ -20,8 +19,8 @@ from glyph_line import GlyphLine
 from glyphs import Glyph
 from lyric import Lyric
 from neume import Neume
-from abstract_neume import AbstractNeume
-from neume_chunk import NeumeChunk
+from neume_chunk import NeumeChunk, build_chunks
+from neume_dict import NeumeDict
 
 
 class Kassia:
@@ -192,7 +191,7 @@ class Kassia:
                 self.draw_paragraph(child_elem, paragraph_attrib_dict)
 
             if child_elem.tag == 'troparion':
-                abstract_neumes_list = []
+                neumes_list = []
                 lyrics_list = []
                 dropcap = None
                 dropcap_offset = 0
@@ -206,12 +205,13 @@ class Kassia:
                         attribs_from_bnml = self.fill_attribute_dict(neumes_elem.attrib)
                         neumes_style = self.merge_paragraph_styles(self.styleSheet['Neumes'], attribs_from_bnml)
 
-                        for abstract_neume_char in neumes_elem.text.strip().split():
-                            abstract_neume = AbstractNeume(char=abstract_neume_char,
+                        for neume_char in neumes_elem.text.strip().split():
+                            neume = Neume(name=neume_char, # TODO: Replace with proper name
+                                          char=neume_char,
                                           font_family=neumes_style.fontName,
                                           font_size=neumes_style.fontSize,
                                           color=neumes_style.textColor)
-                            abstract_neumes_list.append(abstract_neume)
+                            neumes_list.append(neume)
 
                     if troparion_child_elem.tag == 'lyrics':
                         lyrics_elem = troparion_child_elem
@@ -242,18 +242,17 @@ class Kassia:
                     lyrics_list[0].text = lyrics_list[0].text[1:]
                     lyrics_list[0].recalc_width()
 
-                if abstract_neumes_list:
-                    abstract_neume_chunks = neume_dict.chunk_neumes(abstract_neumes_list)
-                    neume_chunks = abstract_neume_chunks # TEMP
-                    for abstract_chunk in abstract_neume_chunks:
-                        for abstract_neume in abstract_chunk.list:
-                            """
-                            TO DO: Implement font configuration
-                            For every neume in abstract_neume_chunks, translate it into
-                            the font's character which is mapped to that neume and reconstruct
-                            the neume_chunk and then reconstruct the chunks_list
-                            """ 
-                            abstract_char = abstract_neume.char # TEMP
+                if neumes_list:
+                    neume_chunks = build_chunks(neumes_list)
+                    #for chunk in neume_chunks:
+                    #    for neume in chunk.list:
+                    """
+                    TODO: Implement font configuration
+                    For every neume in neume_chunks, translate it into
+                    the font's character which is mapped to that neume and reconstruct
+                    the neume_chunk and then reconstruct the chunks_list
+                    """
+                    #        abstract_char = neume.char # TEMP
 
                     glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
                     lines_list: List[GlyphLine] = self.line_break(glyph_line,
@@ -515,6 +514,7 @@ class Kassia:
         """
         i, l_ptr = 0, 0
         glyph_line: List[Glyph] = []
+        neume_dict: NeumeDict = NeumeDict()
         while i < len(neume_chunk_list):
             # Grab next chunk
             neume_chunk = neume_chunk_list[i]

@@ -1,8 +1,10 @@
 import collections
+from typing import List
 
 from reportlab.pdfbase import pdfmetrics
 
-import neume_dict
+from neume import Neume
+from neume_dict import NeumeDict
 
 
 class NeumeChunk(collections.MutableSequence):
@@ -11,8 +13,9 @@ class NeumeChunk(collections.MutableSequence):
     def __init__(self, *args):
         self.width = 0
         self.height = 0
-        self.list = list()
+        self.list = []
         self.extend(list(args))
+        self.neume_dict = NeumeDict()
 
     def __len__(self):
         return len(self.list)
@@ -50,12 +53,12 @@ class NeumeChunk(collections.MutableSequence):
             # so we can't just check i-1.
             # Just add oligon and assume it is part of the chunk.
             # TODO: Find a better way to do this
-            if neume.char in neume_dict.nonPostBreakingNeumes:
+            if self.neume_dict.is_nonPostBreakingNeume(neume.name):
                 neume_width += pdfmetrics.stringWidth('1', neume.font_family, neume.font_size)
 
             # If vareia (or similar), add width of next neume.
             # This prevents vareia from being at the end of a line.
-            if neume.char in neume_dict.nonPreBreakingNeumes and (i + 1) < len(self.list):
+            if self.neume_dict.is_nonPreBreakingNeume(neume.name) and (i + 1) < len(self.list):
                 next_neume = self.list[i + 1]
                 neume_width += pdfmetrics.stringWidth(next_neume.char, next_neume.font_family, next_neume.font_size)
 
@@ -70,3 +73,37 @@ class NeumeChunk(collections.MutableSequence):
 
     def add_width(self, neume):
         self.width += neume.width
+
+
+def build_chunks(neume_list: List[Neume]) -> List[NeumeChunk]:
+    """Break a list of neumes into logical chunks based on whether a linebreak can occur between them
+    :param neume_list: Iterable of type Neume
+    """
+    neume_dict: NeumeDict = NeumeDict()
+    chunks_list: List[NeumeChunk] = []
+    i = 0
+    while i < len(neume_list):
+        # Grab next neume
+        chunk = NeumeChunk(neume_list[i])
+
+        # Special case for Vareia, since it's non-breaking but comes before the next neume, unlike a fthora.
+        # So attach the next neume and increment the counter.
+        if neume_dict.is_nonPreBreakingNeume(neume_list[i].name) and (i+1) < len(neume_list):
+            chunk.append(neume_list[i+1])
+            i += 1
+
+        # Add more neumes to chunk like fthora, ison, etc.
+        j = 1
+        if (i+1) < len(neume_list):
+            while not neume_dict.is_standalone(neume_list[i + j]):
+                chunk.append(neume_list[i+j])
+                j += 1
+                if i+j >= len(neume_list):
+                    break
+        i += j
+        chunks_list.append(chunk)
+        # Check if we're at the end of the array
+        if i >= len(neume_list):
+            break
+
+    return chunks_list
