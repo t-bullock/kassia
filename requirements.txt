@@ -2,3 +2,4 @@ Pillow==7.1.2
 reportlab==3.5.42
 ruamel.yaml==0.16.10
 ruamel.yaml.clib==0.2.0
+schema==0.7.2

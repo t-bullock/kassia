@@ -10,6 +10,19 @@ from sys import platform
 import logging
 
 from ruamel.yaml import safe_load, YAMLError
+from schema import Schema, And, Optional, SchemaError
+
+font_class_schema = Schema({
+            'family_name': And(str),
+            'takes_lyric': And(list),
+            'standalone': And(list),
+            'keep_with_next': Optional(list),
+            'non_post_breaking_neumes': Optional(list),
+            'neumes_with_lyric_offset': Optional(dict),
+            'takes_lyric_combo': Optional(list),
+            'standalone_combo': Optional(list),
+            'standalone_martyria': Optional(list)
+        })
 
 
 def register_fonts(check_sys_fonts=False):
@@ -50,6 +63,10 @@ def get_neume_dict(font_folder_path):
                 font_config = safe_load(fp)
             except YAMLError as exc:
                 raise exc
+            try:
+                font_class_schema.validate(font_config)
+            except SchemaError as schema_error:
+                raise schema_error
         if not font_config['family_name'] == path.parent.name:
             logging.warning("Family name {} is not consistent between folder name and first line of yaml file.".format(path.parent.name))
         font_config_dict = {font_config['family_name']: font_config}

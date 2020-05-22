@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4c6f7b7ae6b47aab6f7aaf9528db0737655403a62df96c61708d07dfee945bc5"
+            "sha256": "6182441d635daf7b46ee4a771734ccffd830a77c699ee5c394b39f1ffb3a9b7d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,13 @@
         ]
     },
     "default": {
+        "contextlib2": {
+            "hashes": [
+                "sha256:01f490098c18b19d2bd5bb5dc445b2054d2fa97f09a4280ba2c5f3c394c8162e",
+                "sha256:3355078a159fbb44ee60ea80abd0d87b80b78c248643b49aa6d94673b413609b"
+            ],
+            "version": "==0.6.0.post1"
+        },
         "pillow": {
             "hashes": [
                 "sha256:04766c4930c174b46fd72d450674612ab44cca977ebbcc2dde722c6933290107",
@@ -120,6 +127,14 @@
             ],
             "markers": "platform_python_implementation == 'CPython' and python_version < '3.9'",
             "version": "==0.2.0"
+        },
+        "schema": {
+            "hashes": [
+                "sha256:3a03c2e2b22e6a331ae73750ab1da46916da6ca861b16e6f073ac1d1eba43b71",
+                "sha256:b536f2375b49fdf56f36279addae98bd86a8afbd58b3c32ce363c464bed5fc1c"
+            ],
+            "index": "pypi",
+            "version": "==0.7.2"
         }
     },
     "develop": {
