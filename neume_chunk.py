@@ -13,6 +13,7 @@ class NeumeChunk(collections.MutableSequence):
     def __init__(self, *args):
         self.width = 0
         self.height = 0
+        self.base_neume = None
         self.list = []
         self.extend(list(args))
         self.neume_dict = NeumeDict()
@@ -58,7 +59,7 @@ class NeumeChunk(collections.MutableSequence):
 
             # If vareia (or similar), add width of next neume.
             # This prevents vareia from being at the end of a line.
-            if self.neume_dict.is_nonPreBreakingNeume(neume.name) and (i + 1) < len(self.list):
+            if self.neume_dict.is_keepWithNext(neume.name) and (i + 1) < len(self.list):
                 next_neume = self.list[i + 1]
                 neume_width += pdfmetrics.stringWidth(next_neume.char, next_neume.font_family, next_neume.font_size)
 
@@ -84,13 +85,17 @@ def build_chunks(neume_list: List[Neume]) -> List[NeumeChunk]:
     i = 0
     while i < len(neume_list):
         # Grab next neume
-        chunk = NeumeChunk(neume_list[i])
+        neume = neume_list[i]
+        chunk = NeumeChunk(neume)
 
         # Special case for Vareia, since it's non-breaking but comes before the next neume, unlike a fthora.
         # So attach the next neume and increment the counter.
-        if neume_dict.is_nonPreBreakingNeume(neume_list[i].name) and (i+1) < len(neume_list):
+        if neume_dict.is_keepWithNext(neume.name) and (i + 1) < len(neume_list):
             chunk.append(neume_list[i+1])
+            chunk.base_neume = neume_list[i+1]
             i += 1
+        else:
+            chunk.base_neume = neume
 
         # Add more neumes to chunk like fthora, ison, etc.
         j = 1

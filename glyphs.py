@@ -52,10 +52,8 @@ class Glyph(Flowable):
         else:
             return False
 
-    def get_standalone_neume(self):
-        #for neume in self.neume_chunk:
-        #    if stand_alone(neume):
-        #        return neume
-        # Base neume should always be the first one in the chunk
-        return self.neume_chunk[0]
+    def get_base_neume(self):
+        """Returns the base neume of a chunk.
+        """
+        return self.neume_chunk.base_neume
 

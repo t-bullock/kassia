@@ -124,7 +124,7 @@ standAloneNeumes:
 # These neumes should kept together with the neume that comes after it
 # (if insufficient space, a line break should occur before this neume).
 # Ex: vareia
-nonPreBreakingNeumes:
+keepWithNext:
   - '/'
 
 # These neumes should kept together with the neume that comes before it

@@ -30,8 +30,8 @@ class NeumeDict:
         else:
             return False
     
-    def is_nonPreBreakingNeume(self, name: str = None):
-        return name in self.dict['nonPreBreakingNeumes']
+    def is_keepWithNext(self, name: str = None):
+        return name in self.dict['keepWithNext']
     
     def is_nonPostBreakingNeume(self, name: str = None):
         return name in self.dict['nonPreBreakingNeumes']

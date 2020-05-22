@@ -56,7 +56,7 @@ class GlyphLine(Flowable, collections.MutableSequence):
 
     def recurse_last_underscore_pos(self, index: int) -> Tuple[float, int]:
         curr_glyph = self.list[index]
-        curr_neume = curr_glyph.get_standalone_neume()
+        curr_neume = curr_glyph.get_base_neume()
 
         # Check if at end of line
         if index + 1 >= len(self.list):
@@ -64,7 +64,7 @@ class GlyphLine(Flowable, collections.MutableSequence):
             return x2, index
 
         next_glyph = self.list[index+1]
-        next_neume = next_glyph.get_standalone_neume()
+        next_neume = next_glyph.get_base_neume()
 
         # Check next neume is syneches elaphron
         # Should extend beneath apostrophos part of neume
