@@ -1,4 +1,7 @@
-neumesWithLyrics:
+family_name:
+  KA New Stathis
+
+takes_lyric:
   - 'B'
   - 'C'
   - 'E'
@@ -55,7 +58,7 @@ neumesWithLyrics:
   - '_'
   - '`'
 
-standAloneNeumes:
+standalone:
   - 'B'
   - 'C'
   - 'E'
@@ -124,17 +127,17 @@ standAloneNeumes:
 # These neumes should kept together with the neume that comes after it
 # (if insufficient space, a line break should occur before this neume).
 # Ex: vareia
-keepWithNext:
+keep_with_next:
   - '/'
 
 # These neumes should kept together with the neume that comes before it
 # (if insufficient space, a line break should occur after this neume,
 # or two neumes earlier).
 # Ex: baseline kentima
-nonPostBreakingNeumes:
+non_post_breaking_neumes:
   - '~'
 
-standAloneNeumesMartyria:
+standalone_martyria:
   - '1'
   - '2'
   - '3'
@@ -179,7 +182,7 @@ standAloneNeumesMartyria:
   - '.'
   - '/'
 
-neumesWithLyricsCombo:
+takes_lyric_combo:
   - 'u'
   - 'i'
   - '1'
@@ -198,7 +201,7 @@ neumesWithLyricsCombo:
   - '-'
   - '_'
 
-standAloneNeumesCombo:
+standalone_combo:
   - 'u'
   - 'i'
   - '1'
@@ -217,5 +220,6 @@ standAloneNeumesCombo:
   - '-'
   - '_'
 
-neumesWithLyricOffset:
+neumes_with_lyric_offset:
   '_': 11
+  

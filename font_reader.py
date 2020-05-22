@@ -1,4 +1,6 @@
 #!/usr/bin/python
+from pathlib import Path
+
 from reportlab.lib import fontfinder
 from reportlab.lib.fonts import addMapping
 from reportlab.pdfbase import pdfmetrics
@@ -8,22 +10,57 @@ import inspect
 from sys import platform
 import logging
 
+from ruamel.yaml import safe_load, YAMLError
 
-def register_fonts():
-    # Platform specific paths to search for additional fonts
+
+def register_fonts(check_sys_fonts=False):
+    """Registers fonts by checking the local /font directory, and system installed fonts.
+    """
+    internal_font_path: str = ""
     dirs = []
-    if platform.startswith("darwin"):
-        # Always check local kassia font folder first, so those fonts have precedence
-        dirs = [inspect.stack()[0][1].rsplit('/', 1)[0] + "/fonts"]
-        dirs.extend(['/Library/Fonts', os.path.expanduser("~/Library/Fonts")])
+
+    # Always check local kassia font folder first, so those fonts have precedence
+    if platform.startswith(("darwin", "linux")):
+        internal_font_path = inspect.stack()[0][1].rsplit('/', 1)[0] + "/fonts"
     elif platform.startswith("win") or platform.startswith("cygwin"):
-        dirs = [inspect.stack()[0][1].rsplit('\\', 1)[0] + "\\fonts"]
-        dirs.append(os.path.join(os.environ['WINDIR'], 'Fonts'))
+        internal_font_path = inspect.stack()[0][1].rsplit('\\', 1)[0] + "\\fonts"
+    else:
+        logging.error("{} operating system is not supported. Internal fonts will not be loaded.", format(platform))
+
+    neume_font_configs = get_neume_dict(internal_font_path)
+    dirs.append(internal_font_path)
+
+    if check_sys_fonts:
+        dirs.extend(_get_system_font_paths())
+
+    for path in dirs:
+        register_font_path(path)
+
+    return neume_font_configs
+
+
+def _get_system_font_paths():
+    if platform.startswith("darwin"):
+        return ['/Library/Fonts', os.path.expanduser("~/Library/Fonts")]
+    elif platform.startswith("win") or platform.startswith("cygwin"):
+        return [os.path.join(os.environ['WINDIR'], 'Fonts')]
     elif platform.startswith("linux"):
-        dirs = [inspect.stack()[0][1].rsplit('/', 1)[0] + "/fonts"]
-        logging.warning("Support for system fonts is untested on Linux.")
-    for folder in dirs:
-        register_font_path(folder)
+        logging.warning("Logic for checking system fonts in Linux is not implemented.")
+        return None
+
+
+def get_neume_dict(font_folder_path):
+    font_config_dict = {}
+    for path in Path(font_folder_path).rglob('*.yaml'):
+        with open(str(path), 'r') as fp:
+            try:
+                font_config = safe_load(fp)
+            except YAMLError as exc:
+                raise exc
+        if not font_config['family_name'] == path.parent.name:
+            logging.warning("Family name {} is not consistent between folder name and first line of yaml file.".format(path.parent.name))
+        font_config_dict = {font_config['family_name']: font_config}
+    return font_config_dict
 
 
 def register_font_path(font_path):
