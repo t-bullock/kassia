@@ -1,5 +1,15 @@
+astroid==2.4.1
+contextlib2==0.6.0.post1
+isort==4.3.21
+lazy-object-proxy==1.4.3
+mccabe==0.6.1
 Pillow==7.1.2
+pylint==2.5.2
 reportlab==3.5.42
 ruamel.yaml==0.16.10
 ruamel.yaml.clib==0.2.0
 schema==0.7.2
+six==1.15.0
+toml==0.10.1
+typed-ast==1.4.1
+wrapt==1.12.1
