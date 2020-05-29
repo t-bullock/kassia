@@ -1,12 +1,16 @@
 import re
 import sys
 
+def is_escaped(in_string, char_pos):
+  return( in_string[char_pos-1] == '\\'
+          and not is_escaped(in_string, char_pos-1))
+
 def find_pos_of_nth_substr(in_string, num, substr):
   pos=-1
   i=0
   while i<num:
     pos=in_string.find(substr,pos+1)
-    if in_string[pos-1] != '\\':
+    if not is_escaped(in_string, pos):
       i+=1
     elif pos == -1:
       break
