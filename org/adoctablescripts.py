@@ -17,8 +17,7 @@ def find_pos_of_nth_substr(in_string, num, substr):
   return(pos)
 
 
-def adoc_table_to_orgtbl(in_string, delimiter):
-  field_count  = 9
+def adoc_table_to_orgtbl(in_string, delimiter, field_count):
   in_string    = re.sub('\n',' ', in_string)
   table_begin  = in_string.find('|===',0)+4
   table_end    = in_string.find('|===',table_begin+1)
@@ -37,9 +36,11 @@ def adoc_table_to_orgtbl(in_string, delimiter):
   return(out_string)
 
 
-def get_column(in_string, column, delimiter):
+def get_column(in_string, column, delimiter, field_count):
   in_string  = adoc_table_to_orgtbl(in_string,
-                                    delimiter).splitlines()
+                                    delimiter,
+                                    field_count
+                                    ).splitlines()
   out_string = ''
 
   for f in range(len(in_string)):
@@ -64,9 +65,14 @@ if len(sys.argv) < 2:
 
 elif sys.argv[1] == "print-column" :
   if len(sys.argv) > 2:
-    print(get_column(stdin, int(sys.argv[2]), '|'))
+    print(get_column(stdin, int(sys.argv[2]), '|', 9))
   else:
     print("Error: no column specified")
+
+
+elif sys.argv[1] == "print-dirty-orgtbl" :
+  print(adoc_table_to_orgtbl(stdin, '|', 9))
+
 
 else:
   print("Error: First arg must be a command, ie 'print-column'")
