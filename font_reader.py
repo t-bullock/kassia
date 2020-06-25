@@ -98,10 +98,8 @@ def register_font_path(font_path):
 
     try:
         ff.search()
-    except KeyError as ke:
-        logging.warning("Problem parsing font: {}".format(ke))
-    except Exception as e:
-        logging.warning(e)
+    except (KeyError, Exception) as fferror:
+        logging.warning("Problem parsing font: {}".format(fferror))
 
     for family_name in ff.getFamilyNames():
         fonts_in_family = ff.getFontsInFamily(family_name)
@@ -112,7 +110,7 @@ def register_font_path(font_path):
                     pdfmetrics.registerFont(ttfont)
                     pdfmetrics.registerFontFamily(family_name)
                 except TTFError as e:
-                    logging.warning("Could not register {}, {}".format(family_name, e))
+                    logging.warning("Could not register font {}, {}".format(family_name, e))
                     continue
             elif len(fonts_in_family) > 1:
                 '''If font family has multiple weights/styles'''
@@ -123,7 +121,7 @@ def register_font_path(font_path):
                     pdfmetrics.registerFont(ttfont)
                     addMapping(font.familyName, font.isBold, font.isItalic, font_name)
                 except TTFError as e:
-                    logging.warning("Could not register {}, {}".format(family_name, e))
+                    logging.warning("Could not register font {}, {}".format(family_name, e))
                     continue
 
 
