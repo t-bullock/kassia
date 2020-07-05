@@ -289,9 +289,9 @@ class Kassia:
             return [neume_chunk_name]
 
         base_neume, possible_cond_neumes = neume_chunk_name.split('_', 1)
-        for cond_neume in neume_config['classes']['conditional_neumes']:
-            if base_neume in cond_neume['base_neume'] and possible_cond_neumes in cond_neume['component_glyphs']:
-                neume_chunk_name = neume_chunk_name.replace(cond_neume['replace_glyph'], cond_neume['draw_glyph'])
+        for conditional in neume_config['classes']['conditional_neumes']:
+            if base_neume in conditional['base_neume'] and possible_cond_neumes in conditional['component_glyphs']:
+                neume_chunk_name = neume_chunk_name.replace(conditional['replace_glyph'], conditional['draw_glyph'])
                 break
 
         return self._replace_ligatures(neume_chunk_name, neume_config)
@@ -316,13 +316,11 @@ class Kassia:
         try:
             neume = Neume(name=neume_name,
                           char=neume_config['glyphnames'][neume_name]['codepoint'],
-                          #font_family=neume_style.fontName,
                           font_family=neume_config['glyphnames'][neume_name]['family'],
                           font_size=neume_style.fontSize,
                           color=neume_style.textColor,
                           standalone=neume_name in neume_config['classes']['standalone'],
                           takes_lyric=neume_name in neume_config['classes']['takes_lyric'],
-                          #takes_lyric=self.takes_lyric(neume_name),
                           keep_with_next=neume_name in neume_config['classes']['keep_with_next'])
         except KeyError as e:
             logging.error("Couldn't add neume: {}. Check font config yaml.".format(e))
@@ -783,10 +781,6 @@ class Kassia:
                     logging.warning("{} warning: {}".format(margin_attr, e))
                     attribute_dict.pop(margin_attr)
         return new_attr_dict
-
-    @staticmethod
-    def takes_lyric(neume_name: str):
-        return neume_name.startswith(("ison", "olig", "peta", "ken2", "apos", "elaf", "syne", "hypo", "cham", "liga", "spec"))
 
 
 def main(argv):
