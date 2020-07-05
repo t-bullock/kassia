@@ -284,25 +284,31 @@ class Kassia:
             logging.error("Could not save XML file.")
 
     def find_neume_names(self, neume_chunk_name, neume_config) -> List[str]:
+        """Check for conditional neumes and replace them in necessary."""
         if neume_chunk_name.count('_') == 0:
             return [neume_chunk_name]
 
+        base_neume, possible_cond_neumes = neume_chunk_name.split('_', 1)
+        for cond_neume in neume_config['classes']['conditional_neumes']:
+            if base_neume in cond_neume['base_neume'] and possible_cond_neumes in cond_neume['component_glyphs']:
+                neume_chunk_name = neume_chunk_name.replace(cond_neume['replace_glyph'], cond_neume['draw_glyph'])
+                break
+
+        return self._replace_ligatures(neume_chunk_name, neume_config)
+
+    @staticmethod
+    def _replace_ligatures(neume_chunk_name, neume_config) -> List[str]:
+        """Tries to replace ligatures in a neume_chunk. Works by chopping off the last neume in the chunk and checking
+        the remainder to see if it matches any ligatures in the neume config list."""
         possible_lig = neume_chunk_name
-        #if possible_lig in neume_config['classes']['ligatures']:
-        if possible_lig in neume_config['glyphnames']:
-            return [possible_lig]
-        else:
-            return self._find_neume_names_recursive(possible_lig, neume_config)
-
-    def _find_neume_names_recursive(self, neume_chunk, neume_config) -> List[str]:
-        if neume_chunk.count('_') == 0:
-            return neume_chunk
-
-        possible_lig, neume = neume_chunk.rsplit('_', 1)
-        if possible_lig in neume_config['glyphnames']:
-            return [possible_lig, neume]
-        else:
-            return [self._find_neume_names_recursive(possible_lig, neume_config), neume]
+        neume_list = []
+        while possible_lig.count('_') >= 0:
+            if possible_lig in neume_config['glyphnames']:
+                neume_list.insert(0, possible_lig)
+                break
+            possible_lig, remainder = possible_lig.rsplit('_', 1)
+            neume_list.insert(0, remainder)
+        return neume_list
 
     @staticmethod
     def create_neume(neume_name: str, neume_style: ParagraphStyle, neume_config: Dict):
