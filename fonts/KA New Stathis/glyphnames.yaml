@@ -13,6 +13,7 @@ spec-olig-kentD:
   component_glyphs:
     - olig
     - ken2
+  description: "olig_kentDR when psefeston will be placed underneath"
 olig_kentU:
   family: "KA New Stathis Main"
   codepoint: '3'
@@ -173,18 +174,23 @@ peta_aposU_chamU2_chamU3:
 ison_apos:
   family: "KA New Stathis Main"
   codepoint: P
+  description: "ligature of ison and apostrophos"
 spec-peta-heteD:
   family: "KA New Stathis Main"
   codepoint: "{"
-spec_elaf_barlU:
+  description: "heteron for a petaste"
+spec-syne-barlU:
   family: "KA New Stathis Main"
   codepoint: "}"
-spec_olig_barlU:
+  description: "barline above a syneches elaphron"
+spec-olig-barlU:
   family: "KA New Stathis Main"
   codepoint: "|"
-spec_apos_barlU:
-  family: "KA New Stathis Main"
-  codepoint: "«"
+  description: "barline above olig_ken2D"
+#spec-apos-barlU:
+#  family: "KA New Stathis Main"
+#  codepoint: "«"
+#  description: "barline above an apostrophos"
 klasU:
   family: "KA New Stathis Main"
   codepoint: a
@@ -192,9 +198,11 @@ klasU:
 spec-apos-klasU:
   family: "KA New Stathis Main"
   codepoint: s
+  description: "klasma above an apostrophos"
 spec-ison-klasU:
   family: "KA New Stathis Main"
   codepoint: d
+  description: "klasma for an ison"
 diplD:
   family: "KA New Stathis Main"
   codepoint: f
@@ -213,6 +221,7 @@ antiD_haplD:
 spec-apos-antiD-haplD:
   family: "KA New Stathis Main"
   codepoint: l
+  description: "antikenoma with haple below an apostrophos"
 homaDR:
   family: "KA New Stathis Main"
   codepoint: ";"
@@ -226,6 +235,7 @@ klasD:
 spec-peta-klasD:
   family: "KA New Stathis Main"
   codepoint: S
+  description: "klasma below a petaste"
 haplD:
   family: "KA New Stathis Main"
   codepoint: D
@@ -247,6 +257,7 @@ spec-antiD2-haplD2:
 apos_apos:
   family: "KA New Stathis Main"
   codepoint: L
+  description: "ligature of two apostrophoi"
 homaD2R:
   family: "KA New Stathis Main"
   codepoint: ":"
@@ -256,6 +267,7 @@ homaD2:
 spec-elaf-klasU:
   family: "KA New Stathis Main"
   codepoint: "å"
+  description: "klasma above an elaphron"
 spec-hypo-haplD:
   family: "KA New Stathis Main"
   codepoint: "∂"
@@ -322,6 +334,7 @@ resh:
 spec-olig-ken2D:
   family: "KA New Stathis Main"
   codepoint: Ω
+  description: "olig_ken2DR when psefeston will be placed underneath"
 # KA New Stathis Combo:
 olig_ken2U_hypsUR_hypsU2:
   family: "KA New Stathis Combo"

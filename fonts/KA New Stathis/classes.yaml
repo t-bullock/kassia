@@ -417,3 +417,21 @@ conditional_neumes:
       klasU2
     draw_glyph:
       spec-olig-aposU-klasU2
+  - spec-syne-barlU:
+    base_neume:
+      - syne
+    component_glyphs:
+      - barlU
+    replace_glyph:
+      barlU
+    draw_glyph:
+      spec-syne-barlU
+  - spec-olig-barlU:
+    base_neume:
+      - olig
+    component_glyphs:
+      - ken2D
+    replace_glyph:
+      barlU
+    draw_glyph:
+      spec-olig-barlU
