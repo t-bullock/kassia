@@ -1,0 +1,615 @@
+# KA New Stathis Main
+ken2:
+  family: "KA New Stathis Main"
+  codepoint: "`"
+  description: "kentimata"
+olig:
+  family: "KA New Stathis Main"
+  codepoint: '1'
+  description: "oligon"
+olig_kentD:
+  family: "KA New Stathis Main"
+  codepoint: '2'
+  component_glyphs:
+    - olig
+    - ken2
+olig_kentU:
+  family: "KA New Stathis Main"
+  codepoint: '3'
+  component_glyphs:
+    - olig
+    - kent
+olig_hypsUR:
+  family: "KA New Stathis Main"
+  codepoint: '4'
+  component_glyphs:
+    - olig
+    - hyps
+olig_hypsUL:
+  codepoint: '5'
+  family: "KA New Stathis Main"
+olig_kentU_hypsUR:
+  family: "KA New Stathis Main"
+  codepoint: '6'
+olig_kentU_hypsU2:
+  family: "KA New Stathis Main"
+  codepoint: '7'
+olig_hypsUL_hypsUR:
+  family: "KA New Stathis Main"
+  codepoint: '8'
+olig_kentU_hypsUR_hypsU2:
+  family: "KA New Stathis Main"
+  codepoint: '9'
+ison:
+  family: "KA New Stathis Main"
+  codepoint: '0'
+  description: "ison"
+hypo:
+  family: "KA New Stathis Main"
+  codepoint: "-"
+  description: "hyporroe"
+brea:
+  family: "KA New Stathis Main"
+  codepoint: "="
+  description: "breath mark"
+kent:
+  family: "KA New Stathis Main"
+  codepoint: "~"
+  description: "kentima"
+apos:
+  family: "KA New Stathis Main"
+  codepoint: "!"
+  description: "apostrophos"
+elaf:
+  family: "KA New Stathis Main"
+  codepoint: "@"
+  description: "elaphron"
+apel:
+  family: "KA New Stathis Main"
+  codepoint: "#"
+  description: "apostrophos inside elaphron"
+cham:
+  family: "KA New Stathis Main"
+  codepoint: "$"
+  description: "chamele"
+apos_chamU:
+  family: "KA New Stathis Main"
+  codepoint: "%"
+elaf_chamU:
+  family: "KA New Stathis Main"
+  codepoint: "^"
+apel_chamU:
+  family: "KA New Stathis Main"
+  codepoint: "&"
+cham_chamU:
+  family: "KA New Stathis Main"
+  codepoint: "*"
+apos_chamU_chamU2:
+  family: "KA New Stathis Main"
+  codepoint: "("
+syne:
+  family: "KA New Stathis Main"
+  codepoint: "_"
+  description: "syneches elaphron"
+stav:
+  family: "KA New Stathis Main"
+  codepoint: "+"
+  description: "stavros"
+olig_kentDR:
+  family: "KA New Stathis Main"
+  codepoint: "™"
+coroU:
+  family: "KA New Stathis Main"
+  codepoint: "≠"
+  description: "corona"
+peta:
+  family: "KA New Stathis Main"
+  codepoint: q
+  description: "petaste"
+peta_oligU:
+  family: "KA New Stathis Main"
+  codepoint: w
+peta_kentU:
+  family: "KA New Stathis Main"
+  codepoint: e
+peta_hypsUR:
+  family: "KA New Stathis Main"
+  codepoint: r
+peta_hypsUL:
+  family: "KA New Stathis Main"
+  codepoint: t
+peta_kentU_hypsUR:
+  family: "KA New Stathis Main"
+  codepoint: y
+peta_kentU_hypsU2:
+  family: "KA New Stathis Main"
+  codepoint: u
+peta_hypsUL_hypsUR:
+  family: "KA New Stathis Main"
+  codepoint: i
+peta_kentU_hypsUR_hypsU2:
+  family: "KA New Stathis Main"
+  codepoint: o
+peta_isonU:
+  family: "KA New Stathis Main"
+  codepoint: p
+heteD:
+  family: "KA New Stathis Main"
+  codepoint: "["
+endoD:
+  family: "KA New Stathis Main"
+  codepoint: "]"
+  description: "endophono"
+barl:
+  family: "KA New Stathis Main"
+  codepoint: "\\"
+peta_aposU:
+  family: "KA New Stathis Main"
+  codepoint: Q
+peta_elafU:
+  family: "KA New Stathis Main"
+  codepoint: W
+peta_apelU:
+  family: "KA New Stathis Main"
+  codepoint: E
+peta_chamU:
+  family: "KA New Stathis Main"
+  codepoint: R
+peta_aposU_chamU2:
+  family: "KA New Stathis Main"
+  codepoint: T
+peta_elafU_chamU2:
+  family: "KA New Stathis Main"
+  codepoint: Y
+peta_apelU_chamU2:
+  family: "KA New Stathis Main"
+  codepoint: U
+peta_chamU_chamU2:
+  family: "KA New Stathis Main"
+  codepoint: I
+peta_aposU_chamU2_chamU3:
+  family: "KA New Stathis Main"
+  codepoint: O
+ison_apos:
+  family: "KA New Stathis Main"
+  codepoint: P
+spec_peta_heteD:
+  family: "KA New Stathis Main"
+  codepoint: "{"
+spec_elaf_barlU:
+  family: "KA New Stathis Main"
+  codepoint: "}"
+spec_olig_barlU:
+  family: "KA New Stathis Main"
+  codepoint: "|"
+spec_apos_barlU:
+  family: "KA New Stathis Main"
+  codepoint: "«"
+klasU:
+  family: "KA New Stathis Main"
+  codepoint: a
+  description: "klasma above"
+spec-apos-klasU:
+  family: "KA New Stathis Main"
+  codepoint: s
+spec-ison-klasU:
+  family: "KA New Stathis Main"
+  codepoint: d
+diplD:
+  family: "KA New Stathis Main"
+  codepoint: f
+tripD:
+  family: "KA New Stathis Main"
+  codepoint: g
+tetrD:
+  family: "KA New Stathis Main"
+  codepoint: h
+antiD:
+  family: "KA New Stathis Main"
+  codepoint: j
+antiD_haplD:
+  family: "KA New Stathis Main"
+  codepoint: k
+spec-apos-antiD-haplD:
+  family: "KA New Stathis Main"
+  codepoint: l
+homaDR:
+  family: "KA New Stathis Main"
+  codepoint: ";"
+homaD:
+  family: "KA New Stathis Main"
+  codepoint: "'"
+klasD:
+  family: "KA New Stathis Main"
+  codepoint: A
+  description: "klasma below"
+spec-peta-klasD:
+  family: "KA New Stathis Main"
+  codepoint: S
+haplD:
+  family: "KA New Stathis Main"
+  codepoint: D
+spec-apos-diplD:
+  family: "KA New Stathis Main"
+  codepoint: F
+spec-apos-tripD:
+  family: "KA New Stathis Main"
+  codepoint: G
+spec-apos-tetrD:
+  family: "KA New Stathis Main"
+  codepoint: H
+antiD2:
+  family: "KA New Stathis Main"
+  codepoint: J
+antiD2_haplD2:
+  family: "KA New Stathis Main"
+  codepoint: K
+apos_apos:
+  family: "KA New Stathis Main"
+  codepoint: L
+homaD2R:
+  family: "KA New Stathis Main"
+  codepoint: ":"
+homaD2:
+  family: "KA New Stathis Main"
+  codepoint: "\""
+spec-elaf-klasU:
+  family: "KA New Stathis Main"
+  codepoint: "å"
+spec-hypo-haplD:
+  family: "KA New Stathis Main"
+  codepoint: "∂"
+olig_ken2DR:
+  family: "KA New Stathis Main"
+  codepoint: z
+olig_isonUL_ken2UR:
+  family: "KA New Stathis Main"
+  codepoint: x
+olig_elafUL_ken2UR:
+  family: "KA New Stathis Main"
+  codepoint: c
+olig_hypoUL_ken2UR:
+  family: "KA New Stathis Main"
+  codepoint: v
+olig_chamUL_ken2UR:
+  family: "KA New Stathis Main"
+  codepoint: b
+psefD:
+  family: "KA New Stathis Main"
+  codepoint: n
+liga_klasD_psefD:
+  family: "KA New Stathis Main"
+  codepoint: m
+res1:
+  family: "KA New Stathis Main"
+  codepoint: ","
+res3:
+  family: "KA New Stathis Main"
+  codepoint: "."
+vare:
+  family: "KA New Stathis Main"
+  codepoint: "/"
+olig_ken2U:
+  family: "KA New Stathis Main"
+  codepoint: Z
+  component_glyphs:
+    - olig
+    - ken2U
+olig_aposUL_ken2UR:
+  family: "KA New Stathis Main"
+  codepoint: X
+olig_apelUL_ken2UR:
+  family: "KA New Stathis Main"
+  codepoint: C
+olig_syneUL_ken2UR:
+  family: "KA New Stathis Main"
+  codepoint: V
+spec_olig_????_psef:
+  family: "KA New Stathis Main"
+  codepoint: B
+psefD2:
+  family: "KA New Stathis Main"
+  codepoint: N
+spec-klasD2-psefD2:
+  family: "KA New Stathis Main"
+  codepoint: M
+res2:
+  family: "KA New Stathis Main"
+  codepoint: "<"
+res4:
+  family: "KA New Stathis Main"
+  codepoint: ">"
+resh:
+  family: "KA New Stathis Main"
+  codepoint: "?"
+spec_olig_ken2D:
+  family: "KA New Stathis Main"
+  codepoint: Ω
+# KA New Stathis Combo:
+olig_ken2U_hypsUR_hypsU2:
+  family: "KA New Stathis Combo"
+  codepoint: '0'
+olig_hypsUL_kentU_hypsU2:
+  family: "KA New Stathis Combo"
+  codepoint: '1'
+olig_hypsUL_hypsU_hypsUR:
+  family: "KA New Stathis Combo"
+  codepoint: '2'
+olig_hypsUL_ken2U_hypsUR_hypsU2:
+  family: "KA New Stathis Combo"
+  codepoint: '3'
+olig_hypsUL_ken1U_hypsUR_hypsU2:
+  family: "KA New Stathis Combo"
+  codepoint: '4'
+peta_hypoU:
+  family: "KA New Stathis Combo"
+  codepoint: '-'
+peta_syneU:
+  family: "KA New Stathis Combo"
+  codepoint: '_'
+olig_ken2U_hypsUR:
+  family: "KA New Stathis Combo"
+  codepoint: u
+olig_hypsUL_ken2U:
+  family: "KA New Stathis Combo"
+  codepoint: i
+diplD_heteD:
+  family: "KA New Stathis Combo"
+  codepoint: "["
+tetrD_heteD:
+  family: "KA New Stathis Combo"
+  codepoint: "]"
+tripD_heteD:
+  family: "KA New Stathis Combo"
+  codepoint: "{"
+spec_diplD/tripD/tetrD_heteD:
+  family: "KA New Stathis Combo"
+  codepoint: "}"
+spec_olig_aposU_klasU:
+  family: "KA New Stathis Combo"
+  codepoint: s
+olig_isonU:
+  family: "KA New Stathis Combo"
+  codepoint: x
+olig_petaU:
+  family: "KA New Stathis Combo"
+  codepoint: c
+olig_hypoU:
+  family: "KA New Stathis Combo"
+  codepoint: v
+olig_aposU:
+  family: "KA New Stathis Combo"
+  codepoint: X
+olig_apelU:
+  family: "KA New Stathis Combo"
+  codepoint: C
+olig_chamU:
+  family: "KA New Stathis Combo"
+  codepoint: V
+# KA New Stathis Martyria:
+mprim:
+  family: "KA New Stathis Martyria"
+  codepoint: "`"
+mpa:
+  family: "KA New Stathis Martyria"
+  codepoint: '1'
+mbou:
+  family: "KA New Stathis Martyria"
+  codepoint: '2'
+mga:
+  family: "KA New Stathis Martyria"
+  codepoint: '3'
+mdi:
+  family: "KA New Stathis Martyria"
+  codepoint: '4'
+mke:
+  family: "KA New Stathis Martyria"
+  codepoint: '5'
+mzo:
+  family: "KA New Stathis Martyria"
+  codepoint: '6'
+mne:
+  family: "KA New Stathis Martyria"
+  codepoint: '7'
+mprimU:
+  family: "KA New Stathis Martyria"
+  codepoint: "~"
+mpaU:
+  family: "KA New Stathis Martyria"
+  codepoint: "!"
+mbouU:
+  family: "KA New Stathis Martyria"
+  codepoint: "@"
+mgaU:
+  family: "KA New Stathis Martyria"
+  codepoint: "#"
+mdiU:
+  family: "KA New Stathis Martyria"
+  codepoint: "$"
+mkeU:
+  family: "KA New Stathis Martyria"
+  codepoint: "%"
+mzoU:
+  family: "KA New Stathis Martyria"
+  codepoint: "^"
+mneU:
+  family: "KA New Stathis Martyria"
+  codepoint: "&"
+malfa:
+  family: "KA New Stathis Martyria"
+  codepoint: q
+mlamd:
+  family: "KA New Stathis Martyria"
+  codepoint: w
+mnana:
+  family: "KA New Stathis Martyria"
+  codepoint: e
+liga_mdelt_maposU:
+  family: "KA New Stathis Martyria"
+  codepoint: r
+liga_malfa_maposU:
+  family: "KA New Stathis Martyria"
+  codepoint: t
+mhypo:
+  family: "KA New Stathis Martyria"
+  codepoint: y
+mdelt:
+  family: "KA New Stathis Martyria"
+  codepoint: u
+liga_malfa_maposU_hypsU2:
+  family: "KA New Stathis Martyria"
+  codepoint: i
+  description: "first mode martyria at the top of a score"
+liga_mdeft_maposU_mmonoU2:
+  family: "KA New Stathis Martyria"
+  codepoint: o
+  description: "second mode martyria at the top of a score"
+liga_mnana_misakU2:
+  family: "KA New Stathis Martyria"
+  codepoint: p
+  description: "nana martyria at the top of a score"
+liga_mdelt_maposU_hypsU2:
+  family: "KA New Stathis Martyria"
+  codepoint: "["
+  description: "fourth mode martyria at the top of a score"
+malfaU:
+  family: "KA New Stathis Martyria"
+  codepoint: Q
+mlamdU:
+  family: "KA New Stathis Martyria"
+  codepoint: W
+mnanaU:
+  family: "KA New Stathis Martyria"
+  codepoint: E
+liga_mdeltU_maposU:
+  family: "KA New Stathis Martyria"
+  codepoint: R
+liga_malfaU_maposU:
+  family: "KA New Stathis Martyria"
+  codepoint: T
+mhypoU:
+  family: "KA New Stathis Martyria"
+  codepoint: Y
+mdeltU:
+  family: "KA New Stathis Martyria"
+  codepoint: U
+liga_mtalfa_maposU:
+  family: "KA New Stathis Martyria"
+  codepoint: I
+  description: "plagal first mode martyria at the top of a score"
+liga_mtdeft_maposU:
+  family: "KA New Stathis Martyria"
+  codepoint: O
+  description: "plagal second mode martyria at the top of a score"
+liga_mthypo_mdifoU:
+  family: "KA New Stathis Martyria"
+  codepoint: P
+  description: "grave mode martyria at the top of a score"
+liga_mtdelt_maposU:
+  family: "KA New Stathis Martyria"
+  codepoint: "{"
+  description: "plagal fourth mode martyria at the top of a score"
+mthird:
+  family: "KA New Stathis Martyria"
+  codepoint: π
+  description: "third mode at the top of a score"
+mlege:
+  family: "KA New Stathis Martyria"
+  codepoint: "“"
+  description: "legetos at the top of a score"
+mbarlU:
+  family: "KA New Stathis Martyria"
+  codepoint: "|"
+mhcbeta:
+  family: "KA New Stathis Martyria"
+  codepoint: a
+mscslash:
+  family: "KA New Stathis Martyria"
+  codepoint: s
+mhcbeta_maposU:
+  family: "KA New Stathis Martyria"
+  codepoint: d
+mhcslash:
+  family: "KA New Stathis Martyria"
+  codepoint: f
+mzygos:
+  family: "KA New Stathis Martyria"
+  codepoint: g
+mkliton:
+  family: "KA New Stathis Martyria"
+  codepoint: h
+mspathi:
+  family: "KA New Stathis Martyria"
+  codepoint: j
+chi_tetgU:
+  family: "KA New Stathis Martyria"
+  codepoint: z
+chi_diarU:
+  family: "KA New Stathis Martyria"
+  codepoint: x
+chi_hemeU:
+  family: "KA New Stathis Martyria"
+  codepoint: c
+chi_argoU:
+  family: "KA New Stathis Martyria"
+  codepoint: v
+chi_gargU:
+  family: "KA New Stathis Martyria"
+  codepoint: b
+chi_gorgU:
+  family: "KA New Stathis Martyria"
+  codepoint: n
+chi_tetrU:
+  family: "KA New Stathis Martyria"
+  codepoint: ','
+mplag:
+  family: "KA New Stathis Martyria"
+  codepoint: '/'
+# KA New Stathis Chronos:
+argoU:
+  family: "KA New Stathis Chronos"
+  codepoint: ','
+hemiU:
+  family: "KA New Stathis Chronos"
+  codepoint: '.'
+diargU:
+  family: "KA New Stathis Chronos"
+  codepoint: '/'
+# Missing glyphs
+gorgU:
+  family: "KA New Stathis Chronos"
+  codepoint: 'z'
+gorgU2:
+  family: "KA New Stathis Chronos"
+  codepoint: 'x'
+gorgD:
+  family: "KA New Stathis Chronos"
+  codepoint: 'c'
+gorgUR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'v'
+gorgU2L:
+  family: "KA New Stathis Chronos"
+  codepoint: 'b'
+gorgDR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'n'
+gorgU2R:
+  family: "KA New Stathis Chronos"
+  codepoint: 'm'
+# Missing glyphs
+digorgUR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'f'
+# Missing glyphs
+gorgdotU2R:
+  family: "KA New Stathis Chronos"
+  codepoint: μ
+# KA New Stathis Fthora:
+flatU:
+  family: "KA New Stathis Fthora"
+  codepoint: '-'
+flatU2R2:
+  family: "KA New Stathis Fthora"
+  codepoint: '_'
+# Missing glyphs

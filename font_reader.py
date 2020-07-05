@@ -13,15 +13,27 @@ from ruamel.yaml import safe_load, YAMLError
 from schema import Schema, And, Optional, SchemaError
 
 font_class_schema = Schema({
-            'family_name': And(str),
-            'takes_lyric': And(list),
-            'standalone': And(list),
-            'keep_with_next': Optional(list),
-            'non_post_breaking_neumes': Optional(list),
-            'neumes_with_lyric_offset': Optional(dict),
-            'takes_lyric_combo': Optional(list),
-            'standalone_combo': Optional(list),
-            'standalone_martyria': Optional(list)
+            'family_name': str,
+            'takes_lyric': list,
+            'standalone': list,
+            Optional('keep_with_next'): list,
+            Optional('non_post_breaking_neumes'): list,
+            Optional('neumes_with_lyric_offset'): dict,
+            Optional('ligatures'): dict,
+            Optional('optional_ligatures'): dict,
+            Optional('conditional_neumes'): list,
+            #'takes_lyric_combo': Optional(list),
+            #'standalone_combo': Optional(list),
+            #'standalone_martyria': Optional(list)
+        })
+
+font_glyphnames_schema = Schema({
+            str: {
+                And('family'): str,
+                And('codepoint'): str,
+                Optional('component_glyphs'): list,
+                Optional('description'): str,
+            },
         })
 
 
@@ -56,20 +68,27 @@ def _get_system_font_paths():
 
 
 def get_neume_dict(font_folder_path):
-    font_config_dict = {}
+    font_config = {}
     for path in Path(font_folder_path).rglob('*.yaml'):
+        file = path.name
         with open(str(path), 'r') as fp:
             try:
-                font_config = safe_load(fp)
+                font_config[path.name.strip('.yaml')] = safe_load(fp)
             except YAMLError as exc:
                 raise exc
-            try:
-                font_class_schema.validate(font_config)
-            except SchemaError as schema_error:
-                raise schema_error
-        if not font_config['family_name'] == path.parent.name:
-            logging.warning("Family name {} is not consistent between folder name and first line of yaml file.".format(path.parent.name))
-        font_config_dict = {font_config['family_name']: font_config}
+            if file == "glyphnames.yaml":
+                try:
+                    font_glyphnames_schema.validate(font_config['glyphnames'])
+                except SchemaError as schema_error:
+                    raise schema_error
+            elif file == "classes.yaml":
+                try:
+                    font_class_schema.validate(font_config['classes'])
+                except SchemaError as schema_error:
+                    raise schema_error
+                if not font_config['classes']['family_name'] == path.parent.name:
+                    logging.warning("Family name {} in font configuration file doesn't match containing folder.".format(path.parent.name))
+    font_config_dict = {path.parent.name: font_config}
     return font_config_dict
 
 
