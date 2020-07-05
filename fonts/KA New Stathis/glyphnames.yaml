@@ -7,7 +7,7 @@ olig:
   family: "KA New Stathis Main"
   codepoint: '1'
   description: "oligon"
-olig_kentD:
+spec-olig-kentD:
   family: "KA New Stathis Main"
   codepoint: '2'
   component_glyphs:
@@ -173,7 +173,7 @@ peta_aposU_chamU2_chamU3:
 ison_apos:
   family: "KA New Stathis Main"
   codepoint: P
-spec_peta_heteD:
+spec-peta-heteD:
   family: "KA New Stathis Main"
   codepoint: "{"
 spec_elaf_barlU:
@@ -241,7 +241,7 @@ spec-apos-tetrD:
 antiD2:
   family: "KA New Stathis Main"
   codepoint: J
-antiD2_haplD2:
+spec-antiD2-haplD2:
   family: "KA New Stathis Main"
   codepoint: K
 apos_apos:
@@ -304,13 +304,10 @@ olig_apelUL_ken2UR:
 olig_syneUL_ken2UR:
   family: "KA New Stathis Main"
   codepoint: V
-spec_olig_????_psef:
-  family: "KA New Stathis Main"
-  codepoint: B
 psefD2:
   family: "KA New Stathis Main"
   codepoint: N
-spec-klasD2-psefD2:
+spec-klasD-psefD2:
   family: "KA New Stathis Main"
   codepoint: M
 res2:
@@ -322,7 +319,7 @@ res4:
 resh:
   family: "KA New Stathis Main"
   codepoint: "?"
-spec_olig_ken2D:
+spec-olig-ken2D:
   family: "KA New Stathis Main"
   codepoint: Ω
 # KA New Stathis Combo:
@@ -362,10 +359,10 @@ tetrD_heteD:
 tripD_heteD:
   family: "KA New Stathis Combo"
   codepoint: "{"
-spec_diplD/tripD/tetrD_heteD:
+spec-diplD-heteD:
   family: "KA New Stathis Combo"
   codepoint: "}"
-spec_olig_aposU_klasU:
+spec-olig-aposU-klasU2:
   family: "KA New Stathis Combo"
   codepoint: s
 olig_isonU:
@@ -613,3 +610,9 @@ flatU2R2:
   family: "KA New Stathis Fthora"
   codepoint: '_'
 # Missing glyphs
+fdgaU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'e'
+fdkeUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '†'

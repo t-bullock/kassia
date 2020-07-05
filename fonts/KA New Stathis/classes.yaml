@@ -33,10 +33,11 @@ takes_lyric:
   - olig_isonUL_ken2UR
   - peta_kentU_hypsUR
   - olig_ken2DR
-  - spec_olig_ken2D
-  - liga_olig_kentDR
+  - spec-olig-ken2D
+  - olig_kentDR
   - ison
   - olig
+  - spec-olig-kentD
   - olig_ken2D
   - olig_kentU
   - olig_hypsUR
@@ -81,7 +82,7 @@ standalone:
   - peta_chamU_chamU2
   - apos_apos
   - peta_aposU_chamU2_chamU3
-  - spec_ison_apos
+  - ison_apos
   - peta_aposU
   - peta_chamU
   - peta_aposU_chamU2
@@ -106,10 +107,11 @@ standalone:
   - olig_isonUL_ken2UR
   - peta_kentU_hypsUR
   - olig_ken2DR
-  - spec_olig_ken2D
-  - liga_olig_kentDR
+  - spec-olig-ken2D
+  - olig_kentDR
   - ison
   - olig
+  - spec-olig-kentD
   - olig_ken2D
   - olig_kentU
   - olig_hypsUR
@@ -131,7 +133,6 @@ standalone:
   - syne
   - hypo
   - ken2
-  - kent
   - stav
   - brea
   - res1
@@ -202,13 +203,6 @@ standalone:
 keep_with_next:
   - vare
 
-# These neumes should kept together with the neume that comes before it
-# (if insufficient space, a line break should occur after this neume,
-# or two neumes earlier).
-# Ex: baseline kentima
-non_post_breaking_neumes:
-  - kent
-
 neumes_with_lyric_offset:
   syne: 11
 
@@ -216,18 +210,8 @@ neumes_with_lyric_offset:
 # martyriae:
 # rests:
 
-# Combinations of glyphs into a single glyph for better appearance.
-ligatures:
-  olig_ken2U:
-    #family: "KA New Stathis Main"
-    #codepoint: Z
-    component_glyphs:
-      olig_ken2U
-  antiD2_haplD2:
-    component_glyphs:
-      antiD2_haplD2
-
 # Optional ligatures that can be turned on or off.
+# There is currently no logic to turn this off.
 optional_ligatures:
   apos_apos:
     component_glyphs:
@@ -308,6 +292,15 @@ conditional_neumes:
       klasU
     draw_glyph:
       spec-ison-klasU
+  - spec-olig-kent-klasU:
+    base_neume:
+      - olig
+    component_glyphs:
+      - kent_klasU
+    replace_glyph:
+      kent_klasU
+    draw_glyph:
+      klasU_kent
   - spec-peta-klasD:
     base_neume:
       - peta
@@ -315,10 +308,24 @@ conditional_neumes:
       - klasD
       - isonU_klasD
       - oligU_klasD
-      - hyps_klasD
+      - kentU_klasD
+      - hypsUL_klasD
+      - hypsUR_klasD
+      - kentU_hypsUR_klasD
+      - kentU_hypsU2_klasD
+      - hypsUL_hypsUR_klasD
+      - kentU_hypsUR_hypsU2_klasD
       - aposU_klasD
       - elafU_klasD
-      # Plus many more
+      - apelU_klasD
+      - chamU_klasD
+      - aposU_chamU2_klasD
+      - elafU_chamU2_klasD
+      - apelU_chamU2_klasD
+      - chamU_chamU2_klasD
+      - aposU_chamU2_chamU3_klasD
+      - hypoU_klasD
+      - syneU_klasD
     replace_glyph:
       klasD
     draw_glyph:
@@ -334,7 +341,7 @@ conditional_neumes:
       klasU
     draw_glyph:
       spec-elaf-klasU
-  - spec-klasD2-psefD2:
+  - spec-klasD-psefD2:
     base_neume:
       - peta
     component_glyphs:
@@ -342,4 +349,71 @@ conditional_neumes:
     replace_glyph:
       klasD_psefD2
     draw_glyph:
-      spec-klasD2-psefD2
+      spec-klasD-psefD2
+  - spec-antiD-haplD:
+    base_neume:
+      - ison
+      - olig
+    component_glyphs:
+      - antiD_haplD
+    replace_glyph:
+      antiD_haplD
+    draw_glyph:
+      spec-antiD-haplD
+  - spec-antiD2-haplD2:
+    base_neume:
+      - olig
+    component_glyphs:
+      - kentDR_antiD2_haplD2
+      - ken2DR_antiD2_haplD2
+    replace_glyph:
+      antiD2_haplD2
+    draw_glyph:
+      spec-antiD2-haplD2
+  - spec-olig-ken2D:
+    base_neume:
+      - olig
+    component_glyphs:
+      - ken2DR_psefD2
+    replace_glyph:
+      olig_ken2DR
+    draw_glyph:
+      spec-olig-ken2D
+  - spec-olig-kentD:
+    base_neume:
+      - olig
+    component_glyphs:
+      - kentDR_psefD2
+    replace_glyph:
+      olig_kentDR
+    draw_glyph:
+      spec-olig-kentD
+  - spec-peta-heteD:
+    base_neume:
+      - peta
+    component_glyphs:
+      - heteD
+    replace_glyph:
+      heteD
+    draw_glyph:
+      spec-peta-heteD
+  - spec-diplD-heteD:
+    base_neume:
+      - olig
+      - ison
+      - peta
+    component_glyphs:
+      - heteD
+    replace_glyph:
+      heteD
+    draw_glyph:
+      spec-diplD-heteD
+  - spec-olig-aposU-klasU2:
+    base_neume:
+      - olig
+    component_glyphs:
+      - aposU_klasU2
+    replace_glyph:
+      klasU2
+    draw_glyph:
+      spec-olig-aposU-klasU2

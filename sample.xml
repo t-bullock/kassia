@@ -31,11 +31,6 @@
             <!-- 'word_spacing' is the space between glyphs, line height is the greater of either 'leading' or the calculated height of glyphs. -->
             <!-- 'align' can be 'left', 'right', 'center', or 'justify'. This affects both troparia that wrap lines and troparia that are only one line long, so be careful. -->
             <neumes font_family="KA New Stathis Main" font_size="30" color="#000000" align="left" word_spacing="4" leading="60" />
-            <!--neumes-chronos font_family="KA New Stathis Chronos" font_size="30" color="#cf232b" /-->
-            <!--neumes-fthora font_family="KA New Stathis Fthora" font_size="30" color="#cf232b" /-->
-            <!--neumes-martyria font_family="KA New Stathis Martyria" font_size="30" color="#cf232b" /-->
-            <!--neumes-archaia font_family="KA New Stathis Archaia" font_size="30" color="#000000" /-->
-            <!--neumes-combo font_family="KA New Stathis Combo" font_size="30" color="#000000" /-->
 
             <!-- font_family can be any font name in your kassia/fonts folder, or any font you have installed on your OS -->
             <lyrics font_family="Alegreya-Medium" font_size="14" color="#000000" space_before="26" />
@@ -91,183 +86,176 @@
 
     <troparion>
         <neumes>
-            / 1 ; 0 ! 1 Z n ! ! ! l !
+            vare olig homaDR ison apos olig olig_ken2U_psefD apos apos apos_antiD_haplD apos
         </neumes>
-        <!-- Any time you want to specify some nuemes that have an attribute different than the defaults at the top of this file, you'll need to specify them like this. Here we use a different font for time symbols (gorgon) and we're making it red. -->
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            / P
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            1 w ! s ,
+            vare ison_apos
         </neumes>
-        <!-- Here we use a different font for Martyria and we're making it red. -->
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
-        </neumes>
-        <neumes>
-            3 A X X
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            m
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            ! _ 1 j
+            olig peta_oligU apos_klasU res1
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            z
-        </neumes>
-        <!-- Notice here that a different type of klasma is placed on the ison for better alignment -->
-        <neumes>
-            ! 0 d
-        </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <neumes>
-            1 a ' ! s p S / L 1 z Z
+            olig_kentU_klasD olig_aposUL_ken2UR olig_aposUL_ken2UR
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            x
-        </neumes>
-        <neumes>
-            / ! s -
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            gorgU2R
         </neumes>
         <neumes>
-            1 j
+            apos syne olig_antiD
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            z
-        </neumes>
-        <neumes>
-            ! 0 d
-        </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
-        </neumes>
-        <!-- Notice that for this jump of three, the klasma goes between the oligon and kentima for proper alignment. -->
-        <neumes>
-            1 a ~ 0 1 Z n
-        </neumes>
-        <!-- A flat. -->
-        <neumes font_family="KA New Stathis Fthora" color="#cf232b">
-            _
+        <neumes color="#cf232b">
+            gorgU
         </neumes>
         <neumes>
-            ! ! Q S _ ` w ! F
+            apos ison_klasU
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            e #
-        </neumes>
-        <neumes>
-            x n ! ! ! s ! l !
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <neumes>
-            / 1 -
+            olig_klasU homaD apos_klasU peta_isonU_klasD vare apos_apos olig olig_ken2DR olig_ken2U
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            f
-        </neumes>
-        <neumes>
-            1 a
-        </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            y ^
+        <neumes color="#cf232b">
+            gorgU2
         </neumes>
         <neumes>
-            4 q S ! ! 1 1 n -
+            vare apos_klasU hypo
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            ! / L
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            1 1 a Z
+            olig_antiD
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            x
-        </neumes>
-        <neumes>
-            ! Z Q ! !
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            gorgU
         </neumes>
         <neumes>
-            x
+            apos ison_klasU
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            μ
-        </neumes>
-        <neumes>
-            / 0 !
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <neumes>
-            0 d
+            olig_kent_klasU ison olig olig_ken2U_psefD
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
-        </neumes>
-        <neumes>
-            1 ~ 1 Z n
-        </neumes>
-        <neumes font_family="KA New Stathis Fthora" color="#cf232b">
-            _
+        <neumes color="#cf232b">
+            flatU2R2
         </neumes>
         <neumes>
-            ! ! Q S _ ` w ! F
+            apos apos peta_aposU_klasD syne ken2 peta_oligU apos_diplD
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            e #
-        </neumes>
-        <!-- Notice the special klasma after the syneches elaphron for better alignment. -->
-        <neumes>
-            0 ` 0 d Q S _ å 1 ` q M !
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            mnana_mgaU
         </neumes>
         <neumes>
-            / 0 d -
+            olig_isonUL_ken2UR_psefD apos apos apos_klasU apos_antiD_haplD apos
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            1 j
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            z
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            ! 0 f
+            vare olig hypo
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
+        <neumes color="#cf232b">
+            digorgUR
+        </neumes>
+        <neumes>
+            olig_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            olig_hypsUR peta_klasD apos apos olig olig_psefD hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            apos vare apos_apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig olig_klasU olig_ken2U
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos olig_ken2U peta_aposU apos apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_isonUL_ken2UR
+        </neumes>
+        <neumes color="#cf232b">
+            gorgdotU2R
+        </neumes>
+        <neumes>
+            vare ison apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig_kent olig olig_ken2U_psefD
+        </neumes>
+        <neumes color="#cf232b">
+            flatU2R2
+        </neumes>
+        <neumes>
+            apos apos peta_aposU_klasD syne ken2 peta_oligU apos_diplD
+        </neumes>
+        <neumes color="#cf232b">
+            mnana_mgaU
+        </neumes>
+        <neumes>
+            ison ken2 ison_klasU peta_aposU_klasD syne_klasU olig ken2 peta_klasD_psefD2 apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            vare ison_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_diplD
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <dropcap>
             L
         </dropcap>
-        <!-- You can break the text into lines if it makes it easier to read. Kassia doesn't care. Here I start a new line whenever there's a martyria. -->
         <lyrics>
             Lord _ I have cried _ _ un- - to _ Thee _
             heark- en un- - to _ _ me
@@ -292,77 +280,76 @@
 
     <troparion>
         <neumes>
-            w ! 1 1 n -
+            peta_oligU apos olig olig_psefD hypo
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            ! 0 d / L
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            1 1 0 1 z 1 j ! s X Q ! !
+            apos ison_klasU vare apos_apos
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            x
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            μ
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            / 0 !
+            olig olig ison olig olig_ken2DR olig_antiD apos_klasU olig_aposUL_ken2UR peta_aposU apos apos
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <!-- An example of barlines. -->
-        <neumes>
-            \ 0 d
-        </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            1 \  1 1 Z n ! ! Q S _ ` 1 a
+            olig_isonUL_ken2UR
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            e #
-        </neumes>
-        <neumes>
-            0 0 0 1 1 n a ! s ! s
-        </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            e #
+        <neumes color="#cf232b">
+            gorgdotU2R
         </neumes>
         <neumes>
-            0 ` 0 d Q S _ å 1 ` q M !
+            vare ison apos
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            / 0 d -
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            1 j
+            barl ison_klasU
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            z
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <neumes>
-            ! 0 f
+            olig barl olig olig olig_ken2U_psefD apos apos peta_aposU_klasD syne ken2 olig_klasU
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
+        <neumes color="#cf232b">
+            mnana_mgaU
+        </neumes>
+        <neumes>
+            ison ison ison olig olig_klasU_psefD apos_klasU apos_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            mnana_mgaU
+        </neumes>
+        <neumes>
+            ison ken2 ison_klasU peta_aposU_klasD syne_klasU olig ken2 peta_klasD_psefD2 apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            vare ison_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_diplD
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <dropcap>
             L
@@ -398,7 +385,6 @@
         Verse 6: They shall hear my words, for they be sweetened; as a clod of earth is broken upon the earth, so have their bones been scattered nigh unto Hades.
     </paragraph>
 
-    <!-- Use pagebreak to force everything below it to a new page. -->
     <pagebreak />
 
     <header-odd>
@@ -422,43 +408,42 @@
     </paragraph>
 
     <troparion>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            n
+        <neumes color="#cf232b">
+            chi_gorgU
         </neumes>
         <neumes>
-            ! 0 0 d 1 0 0 0 d
+            apos ison ison_klasU olig ison ison ison_klasU
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            0 0 0 0 1 ` q M !
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            chi_argoU
         </neumes>
         <neumes>
-            / 0 d -
+            ison ison ison ison olig ken2 peta_klasD_psefD2 apos
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            1 j
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            z
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            ! 0 d
+            vare ison_klasU hypo
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <dropcap>
             B
         </dropcap>
-        <!-- You can break the text into lines if it makes it easier to read. Kassia doesn't care. Here I start a new line whenever there's a martyria. -->
         <lyrics>
             Bring my soul out of pris- on
             that I may con- fess _ _ _ Thy _ _ _ name
@@ -476,82 +461,82 @@
 
     <troparion>
         <neumes>
-            1 1 a n ! s ! l !
+            olig olig_klasU_psefD apos_klasU apos_antiD_haplD apos
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            / P
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            1 1 0 1 ` q M !
+            vare ison_apos
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            / 0 d -
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            1 j
+            olig olig ison olig ken2 peta_klasD_psefD2 apos
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            z
-        </neumes>
-        <neumes>
-            ! \ 0 d
-        </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            1 \ Z n ! ! ! 0 x n ! ! ! s Z
+            vare ison_klasU hypo
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            x
-        </neumes>
-        <neumes>
-            ! 0 ` 0
-        </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            1 ~ 1 a 0 n -
+            olig_antiD
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            \ 1 0 q \ Q S _ ` 0 ` 0 0 0 ! w S # å 1 z K !
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            gorgU
         </neumes>
         <neumes>
-            x
+            apos barl ison_klasU
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            m
-        </neumes>
-        <neumes>
-            ! _ 1 j
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            z
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <neumes>
-            ! 0 d
+            olig barl olig_ken2U_psefD apos apos apos ison olig_isonUL_ken2UR_psefD apos apos apos_klasU olig_ken2U
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
+        <neumes color="#cf232b">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos ison ken2 ison
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig_kent olig_klasU ison_psefD hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            barl olig ison peta barl peta_aposU_klasD syne ken2 ison ken2 ison ison ison apos peta_oligU_klasD apel_klasU olig olig_ken2DR_antiD2_haplD2 apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_isonUL_ken2UR
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU2R
+        </neumes>
+        <neumes>
+            apos syne olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <dropcap>
             A
@@ -573,32 +558,32 @@
     </paragraph>
 
     <troparion>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            n
+        <neumes color="#cf232b">
+            chi_gorgU
         </neumes>
         <neumes>
-            ! 0 d 1 0 0 0 0 0 0 0 d
+            apos ison_klasU olig ison ison ison ison ison ison ison_klasU
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            1 1 1 a ! 1 / ! s -
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            chi_argoU
         </neumes>
         <neumes>
-            1 j
+            olig olig olig_klasU apos olig vare apos_klasU hypo
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            z
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            ! 0 d
+            olig_antiD
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <dropcap>
             T
@@ -620,97 +605,94 @@
 
     <troparion>
         <neumes>
-            0 \ 1 ; 0 ! 1 Z n ! ! ! s p S / L 1 ` x
+            ison barl olig_homaDR ison apos olig olig_ken2U_psefD apos apos apos_klasU peta_isonU_klasD vare apos_apos olig ken2 olig_isonUL_ken2UR
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            μ
-        </neumes>
-        <neumes>
-            / 0 !
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            gorgdotU2R
         </neumes>
         <neumes>
-            0 d 1 ~ 1 q S ! -
+            vare ison apos
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            1 a
-        </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            e #
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            @ 1 \ 1 n ! ! \ q ! 2 N ! ! 0 x n ! ! ! s Z
+            ison_klasU olig_kent olig peta_klasD apos hypo
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            x
-        </neumes>
-        <neumes>
-            ! 1 a
-        </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
-        </neumes>
-        <neumes font_family="KA New Stathis Fthora" color="#cf232b">
-            †
+        <neumes color="#cf232b">
+            gorgUR
         </neumes>
         <neumes>
-            0 d ! s Z n ! ! X n ! ! / 0 ! D
+            olig_klasU
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            4 Q
-        </neumes>
-        <neumes>
-            6
-        </neumes>
-        <neumes font_family="KA New Stathis Fthora" color="#cf232b">
-            e
+        <neumes color="#cf232b">
+            mnana_mgaU
         </neumes>
         <neumes>
-            \ x / L / 0 ! D
+            elaf olig barl olig_psefD apos apos barl peta apos olig_kentDR_psefD2 apos apos ison olig_isonUL_ken2UR_psefD apos apos apos_klasU olig_ken2U
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            Z
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            x
+        <neumes color="#cf232b">
+            gorgU2
         </neumes>
         <neumes>
-            ! w ! s
+            apos olig_klasU
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            e #
-        </neumes>
-        <neumes>
-            @ 0 0 1 ` q M !
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
+        <neumes color="#cf232b">
+            malfa_mpaU_fdkeUR
         </neumes>
         <neumes>
-            / 0 d -
+            ison_klasU apos_klasU olig_ken2U_psefD apos apos olig_aposUL_ken2UR_psefD apos apos vare ison apos_haplD
         </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            v
-        </neumes>
-        <neumes>
-            1 j
-        </neumes>
-        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
-            z
+        <neumes color="#cf232b">
+            mdi_malfaU
         </neumes>
         <neumes>
-            ! 0 d
+            olig_kentU_hypsUR
         </neumes>
-        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
-            q !
+        <neumes color="#cf232b">
+            fdgaU
+        </neumes>
+        <neumes>
+            barl olig_isonUL_ken2UR vare apos_apos vare ison apos_haplD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_ken2U
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos peta_oligU apos_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            mnana_mgaU
+        </neumes>
+        <neumes>
+            elaf ison ison olig ken2 peta_klasD_psefD2 apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            vare ison_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
         </neumes>
         <dropcap>
             E
