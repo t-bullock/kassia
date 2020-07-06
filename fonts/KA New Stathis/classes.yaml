@@ -228,7 +228,7 @@ optional_ligatures:
 # replace_glyph: glyph to be replaced
 # draw_glyph: glyph to draw in place of the 'replace_glyph'
 conditional_neumes:
-  - spec-hypo-haplD:
+  spec-hypo-haplD:
     base_neume:
       - hypo
     component_glyphs:
@@ -237,7 +237,7 @@ conditional_neumes:
       diplD
     draw_glyph:
       spec-apos-diplD
-  - spec-apos-diplD:
+  spec-apos-diplD:
     base_neume:
       - apos
     component_glyphs:
@@ -246,7 +246,7 @@ conditional_neumes:
       diplD
     draw_glyph:
       spec-apos-diplD
-  - spec-apos-tripD:
+  spec-apos-tripD:
     base_neume:
       - apos
     component_glyphs:
@@ -255,7 +255,7 @@ conditional_neumes:
       tripD
     draw_glyph:
       spec-apos-tripD
-  - spec-apos-tetrD:
+  spec-apos-tetrD:
     base_neume:
       - apos
     component_glyphs:
@@ -264,7 +264,7 @@ conditional_neumes:
       tetrD
     draw_glyph:
       spec-apos-tetrD
-  - spec-apos-antiD-haplD:
+  spec-apos-antiD-haplD:
     base_neume:
       - apos
     component_glyphs:
@@ -273,7 +273,7 @@ conditional_neumes:
       antiD_haplD
     draw_glyph:
       spec-apos-antiD-haplD
-  - spec-apos-klasU:
+  spec-apos-klasU:
     base_neume:
       - apos
     component_glyphs:
@@ -282,7 +282,7 @@ conditional_neumes:
       klasU
     draw_glyph:
       spec-apos-klasU
-  - spec-ison-klasU:
+  spec-ison-klasU:
     base_neume:
       - ison
       - hame
@@ -292,7 +292,7 @@ conditional_neumes:
       klasU
     draw_glyph:
       spec-ison-klasU
-  - spec-olig-kent-klasU:
+  spec-olig-kent-klasU:
     base_neume:
       - olig
     component_glyphs:
@@ -301,7 +301,7 @@ conditional_neumes:
       kent_klasU
     draw_glyph:
       klasU_kent
-  - spec-peta-klasD:
+  spec-peta-klasD:
     base_neume:
       - peta
     component_glyphs:
@@ -330,7 +330,7 @@ conditional_neumes:
       klasD
     draw_glyph:
       spec-peta-klasD
-  - spec-elaf-klasU:
+  spec-elaf-klasU:
     base_neume:
       - elaf
       - syne
@@ -341,7 +341,7 @@ conditional_neumes:
       klasU
     draw_glyph:
       spec-elaf-klasU
-  - spec-klasD-psefD2:
+  spec-klasD-psefD2:
     base_neume:
       - peta
     component_glyphs:
@@ -350,7 +350,7 @@ conditional_neumes:
       klasD_psefD2
     draw_glyph:
       spec-klasD-psefD2
-  - spec-antiD-haplD:
+  spec-antiD-haplD:
     base_neume:
       - ison
       - olig
@@ -360,7 +360,7 @@ conditional_neumes:
       antiD_haplD
     draw_glyph:
       spec-antiD-haplD
-  - spec-antiD2-haplD2:
+  spec-antiD2-haplD2:
     base_neume:
       - olig
     component_glyphs:
@@ -370,7 +370,7 @@ conditional_neumes:
       antiD2_haplD2
     draw_glyph:
       spec-antiD2-haplD2
-  - spec-olig-ken2D:
+  spec-olig-ken2D:
     base_neume:
       - olig
     component_glyphs:
@@ -379,7 +379,7 @@ conditional_neumes:
       olig_ken2DR
     draw_glyph:
       spec-olig-ken2D
-  - spec-olig-kentD:
+  spec-olig-kentD:
     base_neume:
       - olig
     component_glyphs:
@@ -388,7 +388,7 @@ conditional_neumes:
       olig_kentDR
     draw_glyph:
       spec-olig-kentD
-  - spec-peta-heteD:
+  spec-peta-heteD:
     base_neume:
       - peta
     component_glyphs:
@@ -397,7 +397,7 @@ conditional_neumes:
       heteD
     draw_glyph:
       spec-peta-heteD
-  - spec-diplD-heteD:
+  spec-diplD-heteD:
     base_neume:
       - olig
       - ison
@@ -408,7 +408,7 @@ conditional_neumes:
       heteD
     draw_glyph:
       spec-diplD-heteD
-  - spec-olig-aposU-klasU2:
+  spec-olig-aposU-klasU2:
     base_neume:
       - olig
     component_glyphs:
@@ -417,7 +417,7 @@ conditional_neumes:
       klasU2
     draw_glyph:
       spec-olig-aposU-klasU2
-  - spec-syne-barlU:
+  spec-syne-barlU:
     base_neume:
       - syne
     component_glyphs:
@@ -426,7 +426,7 @@ conditional_neumes:
       barlU
     draw_glyph:
       spec-syne-barlU
-  - spec-olig-barlU:
+  spec-olig-barlU:
     base_neume:
       - olig
     component_glyphs:

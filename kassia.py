@@ -289,7 +289,7 @@ class Kassia:
             return [neume_chunk_name]
 
         base_neume, possible_cond_neumes = neume_chunk_name.split('_', 1)
-        for conditional in neume_config['classes']['conditional_neumes']:
+        for conditional in neume_config['classes']['conditional_neumes'].values():
             if base_neume in conditional['base_neume'] and possible_cond_neumes in conditional['component_glyphs']:
                 neume_chunk_name = neume_chunk_name.replace(conditional['replace_glyph'], conditional['draw_glyph'])
                 break

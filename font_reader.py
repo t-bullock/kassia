@@ -18,8 +18,8 @@ font_class_schema = Schema({
             'standalone': [str],
             Optional('keep_with_next'): [str],
             Optional('neumes_with_lyric_offset'): {str: float},
-            Optional('optional_ligatures'): dict,
-            Optional('conditional_neumes'): [dict]
+            Optional('optional_ligatures'): {str: {And('component_glyphs'): [str]}},
+            Optional('conditional_neumes'): {str: {And('base_neume'): list, And('component_glyphs'): list, And('replace_glyph'): str, And('draw_glyph'): str}},
         })
 
 font_glyphnames_schema = Schema({
