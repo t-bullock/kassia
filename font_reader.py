@@ -14,24 +14,19 @@ from schema import Schema, And, Optional, SchemaError
 
 font_class_schema = Schema({
             'family_name': str,
-            'takes_lyric': list,
-            'standalone': list,
-            Optional('keep_with_next'): list,
-            Optional('non_post_breaking_neumes'): list,
-            Optional('neumes_with_lyric_offset'): dict,
-            Optional('ligatures'): dict,
+            'takes_lyric': [str],
+            'standalone': [str],
+            Optional('keep_with_next'): [str],
+            Optional('neumes_with_lyric_offset'): {str: float},
             Optional('optional_ligatures'): dict,
-            Optional('conditional_neumes'): list,
-            #'takes_lyric_combo': Optional(list),
-            #'standalone_combo': Optional(list),
-            #'standalone_martyria': Optional(list)
+            Optional('conditional_neumes'): [dict]
         })
 
 font_glyphnames_schema = Schema({
             str: {
                 And('family'): str,
                 And('codepoint'): str,
-                Optional('component_glyphs'): list,
+                Optional('component_glyphs'): [str],
                 Optional('description'): str,
             },
         })
