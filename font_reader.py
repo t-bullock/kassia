@@ -12,12 +12,12 @@ import logging
 from ruamel.yaml import safe_load, YAMLError
 from schema import Schema, And, Optional, SchemaError
 
-font_class_schema = Schema({
+font_classes_schema = Schema({
             'family_name': str,
             'takes_lyric': [str],
             'standalone': [str],
             Optional('keep_with_next'): [str],
-            Optional('neumes_with_lyric_offset'): {str: float},
+            Optional('accidentals'): [str],
             Optional('optional_ligatures'): {str: {And('component_glyphs'): [str]}},
             Optional('conditional_neumes'): {str: {And('base_neume'): list, And('component_glyphs'): list, And('replace_glyph'): str, And('draw_glyph'): str}},
         })
@@ -37,10 +37,10 @@ def register_fonts(check_sys_fonts=False):
     """
     dirs = []
 
-    # Always check local kassia font folder first, so included fonts have precedence
+    # Always check local kassia font folder first so that included fonts will have precedence over system fonts
     internal_font_path = os.path.join(str(Path.cwd()), 'fonts')
 
-    neume_font_configs = get_neume_dict(internal_font_path)
+    neume_font_configs = _get_neume_dict(internal_font_path)
     dirs.append(internal_font_path)
 
     if check_sys_fonts:
@@ -62,29 +62,29 @@ def _get_system_font_paths():
         return None
 
 
-def get_neume_dict(font_folder_path):
-    font_config = {}
-    for path in Path(font_folder_path).rglob('*.yaml'):
-        file = path.name
-        with open(str(path), 'r') as fp:
-            try:
-                font_config[path.name.strip('.yaml')] = safe_load(fp)
-            except YAMLError as exc:
-                raise exc
-            if file == "glyphnames.yaml":
-                try:
-                    font_glyphnames_schema.validate(font_config['glyphnames'])
-                except SchemaError as schema_error:
-                    raise schema_error
-            elif file == "classes.yaml":
-                try:
-                    font_class_schema.validate(font_config['classes'])
-                except SchemaError as schema_error:
-                    raise schema_error
-                if not font_config['classes']['family_name'] == path.parent.name:
-                    logging.warning("Family name {} in font configuration file doesn't match containing folder.".format(path.parent.name))
-    font_config_dict = {path.parent.name: font_config}
+def _get_neume_dict(font_folder_path):
+    font_config_dict = {}
+    for glyphname_path in Path(font_folder_path).rglob('glyphnames.yaml'):
+        folder = glyphname_path.parent.name
+        classes_path = Path.joinpath(glyphname_path.parent, 'classes.yaml')
+        font_config = {'glyphnames': _read_font_config(str(glyphname_path), font_glyphnames_schema),
+                       'classes': _read_font_config(str(classes_path), font_classes_schema)}
+        font_config_dict[folder] = font_config
     return font_config_dict
+
+
+def _read_font_config(filepath: str, validator: Schema):
+    font_config = None
+    with open(filepath, 'r') as fp:
+        try:
+            font_config = safe_load(fp)
+            validator.validate(font_config)
+        except (IOError, YAMLError, SchemaError) as exc:
+            logging.error("Problem reading {} font configuration. {}".format(filepath, exc))
+            font_config = None
+        except Exception as exc:
+            raise exc
+    return font_config
 
 
 def register_font_path(font_path):

@@ -192,9 +192,6 @@ standalone:
 keep_with_next:
   - vare
 
-neumes_with_lyric_offset:
-  syne: 11.0
-
 # Sharps, flats, and fthores. These can all be colored red.
 accidentals:
   - flatU
