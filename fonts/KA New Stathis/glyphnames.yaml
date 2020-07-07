@@ -289,7 +289,7 @@ olig_chamUL_ken2UR:
 psefD:
   family: "KA New Stathis Main"
   codepoint: n
-liga_klasD_psefD:
+spec-klasD-psefD:
   family: "KA New Stathis Main"
   codepoint: m
 res1:
@@ -454,10 +454,10 @@ mlamd:
 mnana:
   family: "KA New Stathis Martyria"
   codepoint: e
-liga_mdelt_maposU:
+mdeltaapo:
   family: "KA New Stathis Martyria"
   codepoint: r
-liga_malfa_maposU:
+malfaapo:
   family: "KA New Stathis Martyria"
   codepoint: t
 mhypo:
@@ -466,22 +466,6 @@ mhypo:
 mdelt:
   family: "KA New Stathis Martyria"
   codepoint: u
-liga_malfa_maposU_hypsU2:
-  family: "KA New Stathis Martyria"
-  codepoint: i
-  description: "first mode martyria at the top of a score"
-liga_mdeft_maposU_mmonoU2:
-  family: "KA New Stathis Martyria"
-  codepoint: o
-  description: "second mode martyria at the top of a score"
-liga_mnana_misakU2:
-  family: "KA New Stathis Martyria"
-  codepoint: p
-  description: "nana martyria at the top of a score"
-liga_mdelt_maposU_hypsU2:
-  family: "KA New Stathis Martyria"
-  codepoint: "["
-  description: "fourth mode martyria at the top of a score"
 malfaU:
   family: "KA New Stathis Martyria"
   codepoint: Q
@@ -491,10 +475,10 @@ mlamdU:
 mnanaU:
   family: "KA New Stathis Martyria"
   codepoint: E
-liga_mdeltU_maposU:
+mdeltaapoU:
   family: "KA New Stathis Martyria"
   codepoint: R
-liga_malfaU_maposU:
+malfaapoU:
   family: "KA New Stathis Martyria"
   codepoint: T
 mhypoU:
@@ -503,30 +487,6 @@ mhypoU:
 mdeltU:
   family: "KA New Stathis Martyria"
   codepoint: U
-liga_mtalfa_maposU:
-  family: "KA New Stathis Martyria"
-  codepoint: I
-  description: "plagal first mode martyria at the top of a score"
-liga_mtdeft_maposU:
-  family: "KA New Stathis Martyria"
-  codepoint: O
-  description: "plagal second mode martyria at the top of a score"
-liga_mthypo_mdifoU:
-  family: "KA New Stathis Martyria"
-  codepoint: P
-  description: "grave mode martyria at the top of a score"
-liga_mtdelt_maposU:
-  family: "KA New Stathis Martyria"
-  codepoint: "{"
-  description: "plagal fourth mode martyria at the top of a score"
-mthird:
-  family: "KA New Stathis Martyria"
-  codepoint: π
-  description: "third mode at the top of a score"
-mlege:
-  family: "KA New Stathis Martyria"
-  codepoint: "“"
-  description: "legetos at the top of a score"
 mbarlU:
   family: "KA New Stathis Martyria"
   codepoint: "|"
@@ -575,6 +535,46 @@ chi_tetrU:
 mplag:
   family: "KA New Stathis Martyria"
   codepoint: '/'
+firstmode:
+  family: "KA New Stathis Martyria"
+  codepoint: 'i'
+  description: "first mode martyria at the top of a score"
+secondmode:
+  family: "KA New Stathis Martyria"
+  codepoint: 'o'
+  description: "second mode martyria at the top of a score"
+nana:
+  family: "KA New Stathis Martyria"
+  codepoint: 'p'
+  description: "mode nana at the top of a score"
+thirdmode:
+  family: "KA New Stathis Martyria"
+  codepoint: 'π'
+  description: "third mode martyria at the top of a score"
+fourthmode:
+  family: "KA New Stathis Martyria"
+  codepoint: '['
+  description: "fourth mode martyria at the top of a score"
+lege:
+  family: "KA New Stathis Martyria"
+  codepoint: '“'
+  description: "legetos text at the top of a score"
+plfirstmode:
+  family: "KA New Stathis Martyria"
+  codepoint: 'I'
+  description: "plagal first mode martyria at the top of a score"
+plsecondmode:
+  family: "KA New Stathis Martyria"
+  codepoint: 'O'
+  description: "plagal second mode martyria at the top of a score"
+gravemode:
+  family: "KA New Stathis Martyria"
+  codepoint: 'P'
+  description: "grave mode martyria at the top of a score"
+plfourthmode:
+  family: "KA New Stathis Martyria"
+  codepoint: '{'
+  description: "plagal fourth martyria at the top of a score"
 # KA New Stathis Chronos:
 argoU:
   family: "KA New Stathis Chronos"
@@ -622,10 +622,234 @@ flatU:
 flatU2R2:
   family: "KA New Stathis Fthora"
   codepoint: '_'
-# Missing glyphs
+flat1U:
+  family: "KA New Stathis Fthora"
+  codepoint: '['
+flat1U2R2:
+  family: "KA New Stathis Fthora"
+  codepoint: '{'
+flat2U:
+  family: "KA New Stathis Fthora"
+  codepoint: ';'
+flat2U2R2:
+  family: "KA New Stathis Fthora"
+  codepoint: ':'
+permflatU:
+  family: "KA New Stathis Fthora"
+  codepoint: ','
+permflatD:
+  family: "KA New Stathis Fthora"
+  codepoint: '<'
+sharpD:
+  family: "KA New Stathis Fthora"
+  codepoint: '='
+sharpDR:
+  family: "KA New Stathis Fthora"
+  codepoint: '+'
+sharp1D:
+  family: "KA New Stathis Fthora"
+  codepoint: ']'
+sharp1DR:
+  family: "KA New Stathis Fthora"
+  codepoint: '}'
+sharp2D:
+  family: "KA New Stathis Fthora"
+  codepoint: "'"
+sharp2DR:
+  family: "KA New Stathis Fthora"
+  codepoint: '"'
+sharpD2:
+  family: "KA New Stathis Fthora"
+  codepoint: '≠'
+permsharpU:
+  family: "KA New Stathis Fthora"
+  codepoint: '.'
+permsharpD:
+  family: "KA New Stathis Fthora"
+  codepoint: '>'
+indpaUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '!'
+indbouUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '@'
+indgaUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '#'
+inddiUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '$'
+indkeUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '%'
+indzoUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '^'
+indneUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '&'
+indpaUL:
+  family: "KA New Stathis Fthora"
+  codepoint: '1'
+indbouUL:
+  family: "KA New Stathis Fthora"
+  codepoint: '2'
+indgaUL:
+  family: "KA New Stathis Fthora"
+  codepoint: '3'
+inddiUL:
+  family: "KA New Stathis Fthora"
+  codepoint: '4'
+indkeUL:
+  family: "KA New Stathis Fthora"
+  codepoint: '5'
+indzoUL:
+  family: "KA New Stathis Fthora"
+  codepoint: '6'
+indneUL:
+  family: "KA New Stathis Fthora"
+  codepoint: '7'
+fdpaU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'q'
+fdpaUR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'œ'
+fdpaDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'Q'
+fdbouU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'w'
+fdbouUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '∑'
+fdbouDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'W'
 fdgaU:
   family: "KA New Stathis Fthora"
   codepoint: 'e'
+fdgaUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '´'
+fdgaDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'E'
+fddiU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'r'
+fddiUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '®'
+fddiDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'R'
+fdkeU:
+  family: "KA New Stathis Fthora"
+  codepoint: 't'
 fdkeUR:
   family: "KA New Stathis Fthora"
   codepoint: '†'
+fdkeDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'T'
+fdzoU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'y'
+fdzoUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '¥'
+fdzoDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'Y'
+fdneU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'i'
+fdneUR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'ˆ'
+fdneDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'I'
+fdhineU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'u'
+fdhineUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '¨'
+fdhineDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'U'
+fhcpaU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'a'
+fhcpaUR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'å'
+fhcpaDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'A'
+fnenanoU:
+  family: "KA New Stathis Fthora"
+  codepoint: 's'
+fnenanoUR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'ß'
+fnenanoDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'S'
+fscdiU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'd'
+fscdiUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '∂'
+fscdiDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'D'
+fscnenanoU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'f'
+fscnenanoUR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'ƒ'
+fscnenanoDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'F'
+fzygosU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'g'
+fzygosUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '©'
+fzygosDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'G'
+fklitonU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'h'
+fklitonUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '˙'
+fklitonDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'H'
+fspathiU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'j'
+fspathiUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '∆'
+fspathiDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'J'
+fajemU:
+  family: "KA New Stathis Fthora"
+  codepoint: 'k'
+fajemUR:
+  family: "KA New Stathis Fthora"
+  codepoint: '˚'
+fajemDR:
+  family: "KA New Stathis Fthora"
+  codepoint: 'K'

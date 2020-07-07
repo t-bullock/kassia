@@ -1434,7 +1434,7 @@
 |
 |I
 |image:ka_fontimages/martyria-capital-I.png[]
-|plfirst
+|plfirstmode
 |
 |malfa-apoiU
 |
@@ -1478,7 +1478,7 @@
 |
 |O
 |image:ka_fontimages/martyria-capital-O.png[]
-|plsecondsc
+|plsecondmode
 |
 |mbeta-apoiU
 |
@@ -1907,7 +1907,7 @@
 |
 |{
 |image:ka_fontimages/martyria-left-curly-bracket.png[]
-|plfourth
+|plfourthmode
 |
 |deta-apoiU
 |
@@ -2666,9 +2666,9 @@
 |
 |©
 |image:ka_fontimages/fthora-copyright.png[]
-|fzygU
+|fzygUR
 |
-|fzygU
+|fzygUR
 |
 |
 |Goes above martyria.
@@ -2688,9 +2688,9 @@
 |
 |´
 |image:ka_fontimages/fthora-acute.png[]
-|fnanaU
+|fnanaUR
 |
-|fnanaU
+|fnanaUR
 |
 |
 |Goes above martyria.

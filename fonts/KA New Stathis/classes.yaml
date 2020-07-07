@@ -167,8 +167,8 @@ standalone:
   - malfa
   - mlamd
   - mnana
-  - liga_mdelt_maposU
-  - liga_malfa_maposU
+  - mdeltaapo
+  - malfaapo
   - mhypo
   - mdelt
   - mhcbeta
@@ -185,17 +185,6 @@ standalone:
   - chi_gargU
   - chi_gorgU
   - chi_tetrU
-  - liga_malfa_maposU_hypsU2
-  - liga_mtalfa_maposU
-  - liga_mdeft_maposU_mmonoU2
-  - liga_mtdeft_maposU
-  - liga_mnana_misakU2
-  - liga_mthypo_mdifoU
-  - liga_mdelt_maposU_hypsU2
-  - liga_mtdelt_maposU
-  - mthird
-  - mlege
-  - mplag
 
 # These neumes should kept together with the neume that comes after it
 # (if insufficient space, a line break should occur before this neume).
@@ -206,7 +195,22 @@ keep_with_next:
 neumes_with_lyric_offset:
   syne: 11.0
 
-# accidentals:
+# Sharps, flats, and fthores. These can all be colored red.
+accidentals:
+  - flatU
+  - flatU2R2
+  - flat1U
+  - flat1U2R2
+  - flat2U
+  - flat2U2R2
+  - sharpD
+  - sharpDR
+  - sharp1D
+  - sharp1DR
+  - sharp2D
+  - sharp2DR
+  - sharpD2
+
 # martyriae:
 # rests:
 
@@ -435,3 +439,12 @@ conditional_neumes:
       barlU
     draw_glyph:
       spec-olig-barlU
+  spec-klasD-psefD:
+    base_neume:
+      - olig
+    component_glyphs:
+      - klasD_psefD
+    replace_glyph:
+      klasD_psefD
+    draw_glyph:
+      spec-klasD-psefD
