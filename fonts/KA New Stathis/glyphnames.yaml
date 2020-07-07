@@ -585,36 +585,198 @@ hemiU:
 diargU:
   family: "KA New Stathis Chronos"
   codepoint: '/'
-# Missing glyphs
-gorgU:
+dotdigoU:
   family: "KA New Stathis Chronos"
-  codepoint: 'z'
-gorgU2:
+  codepoint: 'A'
+dotgorgU2L:
   family: "KA New Stathis Chronos"
-  codepoint: 'x'
-gorgD:
+  codepoint: 'B'
+dotgorgD:
   family: "KA New Stathis Chronos"
-  codepoint: 'c'
-gorgUR:
+  codepoint: 'C'
+dotdigoD:
   family: "KA New Stathis Chronos"
-  codepoint: 'v'
+  codepoint: 'D'
+dottrigD:
+  family: "KA New Stathis Chronos"
+  codepoint: 'E'
+dotdigoUR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'F'
+dotdigoU2L:
+  family: "KA New Stathis Chronos"
+  codepoint: 'G'
+dotdigoDR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'H'
+dotdigoU2R:
+  family: "KA New Stathis Chronos"
+  codepoint: 'J'
+dotgorgU2R:
+  family: "KA New Stathis Chronos"
+  codepoint: 'M'
+dotgorgDR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'N'
+dottrigU:
+  family: "KA New Stathis Chronos"
+  codepoint: 'Q'
+dottrigUR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'R'
+dotdigoU2:
+  family: "KA New Stathis Chronos"
+  codepoint: 'S'
+dottrigU2L:
+  family: "KA New Stathis Chronos"
+  codepoint: 'T'
+dottrigU2R:
+  family: "KA New Stathis Chronos"
+  codepoint: 'U'
+dotgorgUR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'V'
+dottrigU2:
+  family: "KA New Stathis Chronos"
+  codepoint: 'W'
+dotgorgU2:
+  family: "KA New Stathis Chronos"
+  codepoint: 'X'
+dottrigDR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'Y'
+dotgorgU:
+  family: "KA New Stathis Chronos"
+  codepoint: 'Z'
+#coroU: Duplicate
+#  family: "KA New Stathis Chronos"
+#  codepoint: '\'
+digorgU:
+  family: "KA New Stathis Chronos"
+  codepoint: 'a'
 gorgU2L:
   family: "KA New Stathis Chronos"
   codepoint: 'b'
-gorgDR:
+gorgD:
   family: "KA New Stathis Chronos"
-  codepoint: 'n'
-gorgU2R:
+  codepoint: 'c'
+digoD:
   family: "KA New Stathis Chronos"
-  codepoint: 'm'
-# Missing glyphs
+  codepoint: 'd'
+trigD:
+  family: "KA New Stathis Chronos"
+  codepoint: 'e'
 digorgUR:
   family: "KA New Stathis Chronos"
   codepoint: 'f'
-# Missing glyphs
+digorgU2L:
+  family: "KA New Stathis Chronos"
+  codepoint: 'g'
+digorgDR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'h'
+digoU2R:
+  family: "KA New Stathis Chronos"
+  codepoint: 'j'
+gorgU2R:
+  family: "KA New Stathis Chronos"
+  codepoint: 'm'
+gorgDR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'n'
+trigU:
+  family: "KA New Stathis Chronos"
+  codepoint: 'q'
+trigUR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'r'
+digorgU2:
+  family: "KA New Stathis Chronos"
+  codepoint: 's'
+trigU2L:
+  family: "KA New Stathis Chronos"
+  codepoint: 't'
+trigU2R:
+  family: "KA New Stathis Chronos"
+  codepoint: 'u'
+gorgUR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'v'
+trigU2:
+  family: "KA New Stathis Chronos"
+  codepoint: 'w'
+gorgU2:
+  family: "KA New Stathis Chronos"
+  codepoint: 'x'
+trigDR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'y'
+gorgU:
+  family: "KA New Stathis Chronos"
+  codepoint: 'z'
+hyfeU:
+  family: "KA New Stathis Chronos"
+  codepoint: '|'
+digodotU:
+  family: "KA New Stathis Chronos"
+  codepoint: 'å'
+gorgdotU2L:
+  family: "KA New Stathis Chronos"
+  codepoint: '∫'
+gorgdotD:
+  family: "KA New Stathis Chronos"
+  codepoint: 'ç'
+digodotD:
+  family: "KA New Stathis Chronos"
+  codepoint: '∂'
+trigdotD:
+  family: "KA New Stathis Chronos"
+  codepoint: '´'
+digodotR:
+  family: "KA New Stathis Chronos"
+  codepoint: 'ƒ'
+digodotU2L:
+  family: "KA New Stathis Chronos"
+  codepoint: '©'
+digodotDR:
+  family: "KA New Stathis Chronos"
+  codepoint: '˙'
 gorgdotU2R:
   family: "KA New Stathis Chronos"
-  codepoint: μ
+  codepoint: 'µ'
+gorgdotDR:
+  family: "KA New Stathis Chronos"
+  codepoint: '˜'
+trigdotU:
+  family: "KA New Stathis Chronos"
+  codepoint: 'œ'
+trigdotUR:
+  family: "KA New Stathis Chronos"
+  codepoint: '®'
+digodotU2:
+  family: "KA New Stathis Chronos"
+  codepoint: 'ß'
+trigdotU2L:
+  family: "KA New Stathis Chronos"
+  codepoint: '†'
+trigdotU2R:
+  family: "KA New Stathis Chronos"
+  codepoint: '¨'
+gorgdotUR:
+  family: "KA New Stathis Chronos"
+  codepoint: '√'
+trigdotU2:
+  family: "KA New Stathis Chronos"
+  codepoint: '∑'
+gorgdotU2:
+  family: "KA New Stathis Chronos"
+  codepoint: '≈'
+trigdotDR:
+  family: "KA New Stathis Chronos"
+  codepoint: '¥'
+gorgdotU:
+  family: "KA New Stathis Chronos"
+  codepoint: 'Ω'
 # KA New Stathis Fthora:
 flatU:
   family: "KA New Stathis Fthora"

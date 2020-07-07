@@ -3183,9 +3183,9 @@
 |
 |J
 |image:
-|dotdigoDR
+|dotdigoU2R
 |
-|dotdigoDR
+|dotdigoU2R
 |
 |
 |Above olig-[hypo/apos/elaf]-ken2U
@@ -3577,36 +3577,25 @@
 
 
 |
-|®
-|image:ka_fontimages/chronos-restricted.png[]
-|trigdotR
-|
-|trigdotR
-|
-|
-|
-
-
-|
-|ß
-|image:ka_fontimages/chronos-eszett.png[]
-|digodotU2
-|
-|digodotU2
-|
-|
-|
-
-
-|
 |å
 |image:ka_fontimages/chronos-a-ring.png[]
-|digodotD
+|digodotU
 |
-|digodotD
+|digodotU
 |
 |
 |Digorgon below oligon, ison, etc.
+
+
+|
+|∫
+|image:ka_fontimages/chronos-integral.png[]
+|gorgdotU2L
+|
+|gorgdotU2L
+|
+|
+|Above olig-[hypo/apos/elaf]-ken2UR
 
 
 |
@@ -3621,11 +3610,22 @@
 
 
 |
-|œ
-|image:ka_fontimages/chronos-oe.png[]
-|trigdot
+|∂
+|image:ka_fontimages/chronos-derivative.png[]
+|digodotD
 |
-|trigdot
+|digodotD
+|
+|
+|
+
+
+|
+|´
+|image:ka_fontimages/chronos-acute.png[]
+|trigdotD
+|
+|trigdotD
 |
 |
 |
@@ -3643,25 +3643,25 @@
 
 
 |
-|˜
-|image:ka_fontimages/chronos-small-tilde.png[]
-|gorgdotDR
+|©
+|image:ka_fontimages/chronos-copyright.png[]
+|digodotU2L
 |
-|gorgdotDR
-|if after apos or hypo
+|digodotU2L
 |
-|Below apostrophos or hyporroe.
+|
+|
 
 
 |
-|Ω
-|image:ka_fontimages/chronos-capital-omega.png[]
-|gorgdotU
+|˙
+|image:ka_fontimages/chronos-dot.png[]
+|digodotDR
 |
-|gorgdotU
+|digodotDR
 |
 |
-|Above oligon, ison, etc.
+|
 
 
 |
@@ -3676,11 +3676,66 @@
 
 
 |
-|∑
-|image:ka_fontimages/chronos-capital-sigma.png[]
-|trigdotU2
+|˜
+|image:ka_fontimages/chronos-small-tilde.png[]
+|gorgdotDR
 |
-|trigdotU2
+|gorgdotDR
+|if after apos or hypo
+|
+|Below apostrophos or hyporroe.
+
+
+|
+|œ
+|image:ka_fontimages/chronos-oe.png[]
+|trigdotU
+|
+|trigdotU
+|
+|
+|
+
+
+|
+|®
+|image:ka_fontimages/chronos-restricted.png[]
+|trigdotUR
+|
+|trigdotUR
+|
+|
+|
+
+
+|
+|ß
+|image:ka_fontimages/chronos-eszett.png[]
+|digodotU2
+|
+|digodotU2
+|
+|
+|
+
+
+|
+|†
+|image:ka_fontimages/chronos-dagger.png[]
+|trigdotU2L
+|
+|trigdotU2L
+|
+|
+|
+
+
+|
+|¨
+|image:ka_fontimages/chronos-diaeresis.png[]
+|trigdotU2R
+|
+|trigdotU2R
 |
 |
 |
@@ -3698,14 +3753,14 @@
 
 
 |
-|∫
-|image:ka_fontimages/chronos-integral.png[]
-|gorgdotU2L
+|∑
+|image:ka_fontimages/chronos-capital-sigma.png[]
+|trigdotU2
 |
-|gorgdotU2L
+|trigdotU2
 |
 |
-|Above olig-[hypo/apos/elaf]-ken2UR
+|
 
 
 |
@@ -3717,6 +3772,28 @@
 |if after olig-ken2U
 |
 |Should be only gorgon choice if olig-ken2U.
+
+
+|
+|¥
+|image:ka_fontimages/chronos-yen.png[]
+|trigdotDR
+|
+|trigdotDR
+|
+|
+|
+
+
+|
+|Ω
+|image:ka_fontimages/chronos-capital-omega.png[]
+|gorgdotU
+|
+|gorgdotU
+|
+|
+|Above oligon, ison, etc.
 
 
 |
