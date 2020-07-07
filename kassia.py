@@ -212,7 +212,7 @@ class Kassia:
                             # Check for ligatures and conditionals, if none, build from basic neume parts
                             neume_name_list = self.find_neume_names(neume_chunk, neume_config)
                             for neume_name in neume_name_list:
-                                neume = self.create_neume(neume_name, neumes_style, neume_config)
+                                neume = self.create_neume(neume_name, neume_config, font_family_name, neumes_style)
                                 if neume:  # neume will be None if neume not found
                                     neumes_list.append(neume)
 
@@ -311,16 +311,21 @@ class Kassia:
         return neume_list
 
     @staticmethod
-    def create_neume(neume_name: str, neume_style: ParagraphStyle, neume_config: Dict):
+    def create_neume(neume_name: str, neume_config: Dict, font_family: str, neume_style: ParagraphStyle):
         neume = None
         try:
+            lyric_offset = None
+            if 'lyric_offsets' in neume_config['classes'] and neume_name in neume_config['classes']['lyric_offsets']:
+                lyric_offset = neume_config['classes']['lyric_offsets'][neume_name] * neume_style.fontSize
             neume = Neume(name=neume_name,
                           char=neume_config['glyphnames'][neume_name]['codepoint'],
-                          font_family=neume_config['glyphnames'][neume_name]['family'],
+                          font_family=font_family,
+                          font_fullname=neume_config['glyphnames'][neume_name]['family'],
                           font_size=neume_style.fontSize,
                           color=neume_style.textColor,
                           standalone=neume_name in neume_config['classes']['standalone'],
                           takes_lyric=neume_name in neume_config['classes']['takes_lyric'],
+                          lyric_offset=lyric_offset,
                           keep_with_next=neume_name in neume_config['classes']['keep_with_next'])
         except KeyError as e:
             logging.error("Couldn't add neume: {}. Check font config yaml.".format(e))
@@ -580,7 +585,7 @@ class Kassia:
 
     @staticmethod
     def make_glyph_list(neume_chunk_list: List[NeumeChunk], lyrics_list: List[Lyric]) -> List[Glyph]:
-        """Takes a list of neumes and a list of lyrics and combines them into a single glyph list.
+        """Takes a list of neume chunks and a list of lyrics and combines them into a single glyph list.
         :param neume_chunk_list: A list of neume chunks.
         :param lyrics_list: A list of lyrics.
         :return glyph_list: A list of glyphs.
@@ -616,8 +621,7 @@ class Kassia:
             i += 1
         return glyph_line
 
-    @staticmethod
-    def line_break(glyph_list: List[Glyph], starting_pos: Cursor, line_width: int, line_spacing: int,
+    def line_break(self, glyph_list: List[Glyph], starting_pos: Cursor, line_width: int, line_spacing: int,
                    glyph_spacing: int) -> List[GlyphLine]:
         """Break continuous list of glyphs into lines- currently greedy.
         :param glyph_list: A list of glyphs.
@@ -650,14 +654,17 @@ class Kassia:
                 adj_lyric_pos = (glyph.width - lyric_width) / 2.
 
                 # special cases
-                primary_neume = glyph.neume_chunk[0]
-                if primary_neume.char == '/':
+                primary_neume: Neume = glyph.neume_chunk[0]
+                if primary_neume.name == 'vare':
                     # If variea, center lyric under neume chunk without vareia
                     adj_lyric_pos += primary_neume.width / 2.
-                elif primary_neume.char == '_':
+                elif primary_neume.name == 'syne':
                     # If syneches elaphron, center lyric under elaphron
-                    apostr_width = pdfmetrics.stringWidth('!', primary_neume.font_family, primary_neume.font_size)
-                    adj_lyric_pos += apostr_width / 2.
+                    # Calculate if wasn't specified in neume font config
+                    if primary_neume.lyric_offset is None:
+                        apos_char = self.neume_info_dict[primary_neume.font_family]['glyphnames']['apos']['codepoint']
+                        primary_neume.lyric_offset = pdfmetrics.stringWidth(apos_char, primary_neume.font_fullname, primary_neume.font_size)
+                    adj_lyric_pos += primary_neume.lyric_offset / 2.
             else:
                 # center neume
                 adj_neume_pos = (glyph.width - neume_width) / 2.
@@ -711,13 +718,12 @@ class Kassia:
 
                     # special cases
                     primary_neume = glyph.neume_chunk[0]
-                    if primary_neume.char == '/':
-                        # If variea, center lyric under neume chunk without vareia
+                    if primary_neume.name == 'vare':
+                        # If variea, center lyric under neume chunk excluding vareia
                         adj_lyric_pos += primary_neume.width / 2.
-                    elif primary_neume.char == '_':
+                    elif primary_neume.name == 'syne':
                         # If syneches elaphron, center lyric under elaphron
-                        apostr_width = pdfmetrics.stringWidth('!', primary_neume.font_family, primary_neume.font_size)
-                        adj_lyric_pos += apostr_width / 2.
+                        adj_lyric_pos += primary_neume.lyric_offset / 2.
                 else:
                     # center neume
                     adj_neume_pos = (glyph.width - neume_width) / 2.

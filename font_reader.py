@@ -17,6 +17,7 @@ font_classes_schema = Schema({
             'takes_lyric': [str],
             'standalone': [str],
             Optional('keep_with_next'): [str],
+            Optional('lyric_offsets'): {str: float},
             Optional('accidentals'): [str],
             Optional('optional_ligatures'): {str: {And('component_glyphs'): [str]}},
             Optional('conditional_neumes'): {str: {And('base_neume'): list, And('component_glyphs'): list, And('replace_glyph'): str, And('draw_glyph'): str}},

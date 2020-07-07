@@ -66,11 +66,10 @@ class GlyphLine(Flowable, collections.MutableSequence):
         next_glyph = self.list[index+1]
         next_neume = next_glyph.get_base_neume()
 
-        # Check next neume is syneches elaphron
-        # Should extend beneath apostrophos part of neume
-        if next_neume.char == '_':
-            apostrophos_width = pdfmetrics.stringWidth('!', curr_neume.font_family, curr_neume.font_size)
-            x2 = next_glyph.neume_chunk_pos[0] + apostrophos_width
+        # Check if next neume is syneches elaphron
+        # Underscore should extend beneath apostrophos part of neume
+        if next_neume.name == "syne":
+            x2 = next_glyph.neume_chunk_pos[0] + next_neume.lyric_offset
             return x2, index
 
         # Check for end of underscores

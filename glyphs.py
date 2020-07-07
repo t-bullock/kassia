@@ -35,7 +35,7 @@ class Glyph(Flowable):
         pos_x: float = 0
         for i, neume in enumerate(self.neume_chunk):
             canvas.setFillColor(neume.color)
-            canvas.setFont(neume.font_family, neume.font_size)
+            canvas.setFont(neume.font_fullname, neume.font_size)
             if i > 0:
                 pos_x += self.neume_chunk[i - 1].width
             canvas.drawString(pos_x, self.neume_chunk_pos[1], neume.char)

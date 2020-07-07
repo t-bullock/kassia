@@ -39,10 +39,10 @@ class NeumeChunk(collections.MutableSequence):
         return str(self.list)
 
     def set_width(self):
-        sum(pdfmetrics.stringWidth(neume.char, neume.font_family, neume.font_size) for neume in self.list if neume.standalone)
+        sum(pdfmetrics.stringWidth(neume.char, neume.font_fullname, neume.font_size) for neume in self.list if neume.standalone)
 
     def set_height(self, neume):
-        ascent, descent = pdfmetrics.getAscentDescent(neume.font_family, neume.font_size)
+        ascent, descent = pdfmetrics.getAscentDescent(neume.font_fullname, neume.font_size)
         self.height = ascent - descent
 
     def add_width(self, neume):

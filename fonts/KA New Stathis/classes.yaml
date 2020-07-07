@@ -192,6 +192,13 @@ standalone:
 keep_with_next:
   - vare
 
+# Used primarily for lyric centering under syneches elaphron. If not specified,
+# Kassia will attempt to calculate apostrophos width.
+# Positive values are for moving lyrics to the right.
+# Value will be multiplied by neume font size
+lyric_offsets:
+  syne: 0.792
+
 # Sharps, flats, and fthores. These can all be colored red.
 accidentals:
   - flatU
