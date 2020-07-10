@@ -209,14 +209,74 @@ accidentals:
   - flat2U2R2
   - sharpD
   - sharpDR
+  - sharpD2
   - sharp1D
   - sharp1DR
   - sharp2D
   - sharp2DR
-  - sharpD2
 
-# martyriae:
-# rests:
+# Martyriae that are meant to be stacked.
+martyriae:
+  - mprim
+  - mpa
+  - mbou
+  - mga
+  - mdi
+  - mke
+  - mzo
+  - mne
+  - mprimU
+  - mpaU
+  - mbouU
+  - mgaU
+  - mdiU
+  - mkeU
+  - mzoU
+  - mneU
+  - malfa
+  - mlamd
+  - mnana
+  - mdeltaapo
+  - malfaapo
+  - mhypo
+  - mdelt
+  - malfaU
+  - mlamdU
+  - mnanaU
+  - mdeltaapoU
+  - malfaapoU
+  - mhypoU
+  - mdeltU
+  - mhcbeta
+  - mscslash
+  - mhcbeta_maposU
+  - mhcslash
+  - mzygos
+  - mkliton
+  - mspathi
+
+tempo_markings:
+  - chi_tetgU
+  - chi_diarU
+  - chi_hemeU
+  - chi_argoU
+  - chi_gargU
+  - chi_gorgU
+  - chi_tetrU
+  - chiU_tetgU2
+  - chiU_diarU2
+  - chiU_hemeU2
+  - chiU_argoU2
+  - chiU_gargU2
+  - chiU_gorgU2
+  - chiU_tetrU2
+
+rests:
+  - res1
+  - res2
+  - res3
+  - res4
+  - resh
 
 # Optional ligatures that can be turned on or off.
 # There is currently no logic to turn this off.
@@ -392,6 +452,7 @@ conditional_neumes:
       - olig
     component_glyphs:
       - kentDR_psefD2
+      - kentDR_psefD2_klasU
     replace_glyph:
       olig_kentDR
     draw_glyph:
