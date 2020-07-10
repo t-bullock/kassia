@@ -3337,7 +3337,7 @@
 |
 |a
 |image:ka_fontimages/chronos-a.png[]
-|digorgU
+|digoU
 |
 |digoU
 |
@@ -3392,7 +3392,7 @@
 |
 |f
 |image:ka_fontimages/chronos-f.png[]
-|digorgUR
+|digoUR
 |
 |digoUR
 |if above apos or hypo
@@ -3403,7 +3403,7 @@
 |
 |g
 |image:ka_fontimages/chronos-g.png[]
-|digorgU2L
+|digoU2L
 |
 |digoU2L
 |
@@ -3414,7 +3414,7 @@
 |
 |h
 |image:ka_fontimages/chronos-h.png[]
-|digorgDR
+|digoDR
 |
 |digoDR
 |if after apos or hypo
@@ -3480,7 +3480,7 @@
 |
 |s
 |image:ka_fontimages/chronos-s.png[]
-|digorgU2
+|digoU2
 |
 |digoU2
 |if after olig-ken2U

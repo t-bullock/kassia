@@ -651,7 +651,7 @@ dotgorgU:
 #coroU: Duplicate
 #  family: "KA New Stathis Chronos"
 #  codepoint: '\'
-digorgU:
+digoU:
   family: "KA New Stathis Chronos"
   codepoint: 'a'
 gorgU2L:
@@ -666,13 +666,13 @@ digoD:
 trigD:
   family: "KA New Stathis Chronos"
   codepoint: 'e'
-digorgUR:
+digoUR:
   family: "KA New Stathis Chronos"
   codepoint: 'f'
-digorgU2L:
+digoU2L:
   family: "KA New Stathis Chronos"
   codepoint: 'g'
-digorgDR:
+digoDR:
   family: "KA New Stathis Chronos"
   codepoint: 'h'
 digoU2R:
@@ -690,7 +690,7 @@ trigU:
 trigUR:
   family: "KA New Stathis Chronos"
   codepoint: 'r'
-digorgU2:
+digoU2:
   family: "KA New Stathis Chronos"
   codepoint: 's'
 trigU2L:
