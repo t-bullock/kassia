@@ -1,0 +1,150 @@
+<bnml>
+    <identification>
+        <work-title />
+        <author />
+        <subject />
+    </identification>
+    <defaults>
+        <page-layout>
+            <paper-size>letter</paper-size>
+            <page-margins top_margin="50" bottom_margin="50" left_margin="60" right_margin="60" />
+        </page-layout>
+        <styles>
+            <neumes font_family="KA New Stathis Main" font_size="30" word_spacing="3" leading="60" />
+            <lyrics font_family="Alegreya-Regular" font_size="18" space_before="26" />
+            <dropcap font_family="Alegreya-Regular" font_size="46" />
+        </styles>
+    </defaults>
+
+    <paragraph>
+        Fthores over Martyriae
+    </paragraph>
+    <troparion>
+        <neumes>
+            malfa_mpaU_fdpaUR
+            malfa_mpaU_fdbouUR
+            malfa_mpaU_fdgaUR
+            malfa_mpaU_fddiUR
+            malfa_mpaU_fdkeUR
+            malfa_mpaU_fdzoUR
+            malfa_mpaU_fdneUR
+            malfa_mpaU_fdhineUR
+            malfa_mpaU_fhcpaUR
+            malfa_mpaU_fnenaUR
+            malfa_mpaU_fscdiUR
+            malfa_mpaU_fscnenaUR
+            malfa_mpaU_fzygosUR
+            malfa_mpaU_fklitonUR
+            malfa_mpaU_fspathiUR
+            malfa_mpaU_fajemUR
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Fthores over Ison
+    </paragraph>
+    <troparion>
+        <neumes>
+            ison_fdpaU
+            ison_fdbouU
+            ison_fdgaU
+            ison_fddiU
+            ison_fdkeU
+            ison_fdzoU
+            ison_fdneU
+            ison_fdhineU
+            ison_fhcpaU
+            ison_fnenaU
+            ison_fscdiU
+            ison_fscnenaU
+            ison_fzygosU
+            ison_fklitonU
+            ison_fspathiU
+            ison_fajemU
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Fthores over Apostrophos
+    </paragraph>
+    <troparion>
+        <neumes>
+            apos_fdpaUR
+            apos_fdbouUR
+            apos_fdgaUR
+            apos_fddiUR
+            apos_fdkeUR
+            apos_fdzoUR
+            apos_fdneUR
+            apos_fdhineUR
+            apos_fhcpaUR
+            apos_fnenaUR
+            apos_fscdiUR
+            apos_fscnenaUR
+            apos_fzygosUR
+            apos_fklitonUR
+            apos_fspathiUR
+            apos_fajemUR
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Fthores under Apostrophos
+    </paragraph>
+    <troparion>
+        <neumes>
+            apos_fdpaDR
+            apos_fdbouDR
+            apos_fdgaDR
+            apos_fddiDR
+            apos_fdkeDR
+            apos_fdzoDR
+            apos_fdneDR
+            apos_fdhineDR
+            apos_fhcpaDR
+            apos_fnenaDR
+            apos_fscdiDR
+            apos_fscnenaDR
+            apos_fzygosDR
+            apos_fklitonDR
+            apos_fspathiDR
+            apos_fajemDR
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <!-- Note Indicators -->
+    <paragraph>
+        Note Indicators
+    </paragraph>
+    <troparion>
+        <neumes>
+            olig_hypsUL_indpaUR
+            olig_hypsUL_indbouUR
+            olig_hypsUL_indgaUR
+            olig_hypsUL_inddiUR
+            olig_hypsUL_indkeUR
+            olig_hypsUL_indzoUR
+            olig_hypsUL_indneUR
+        </neumes>
+    </troparion>
+    <troparion>
+        <neumes>
+            olig_hypsUR_indpaUL
+            olig_hypsUR_indbouUL
+            olig_hypsUR_indgaUL
+            olig_hypsUR_inddiUL
+            olig_hypsUR_indkeUL
+            olig_hypsUR_indzoUL
+            olig_hypsUR_indneUL
+        </neumes>
+    </troparion>
+
+</bnml>

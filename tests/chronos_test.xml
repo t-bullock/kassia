@@ -1,0 +1,210 @@
+<bnml>
+    <identification>
+        <work-title />
+        <author />
+        <subject />
+    </identification>
+    <defaults>
+        <page-layout>
+            <paper-size>letter</paper-size>
+            <page-margins top_margin="50" bottom_margin="50" left_margin="60" right_margin="60" />
+        </page-layout>
+        <styles>
+            <neumes font_family="KA New Stathis Main" font_size="30" word_spacing="3" leading="60" />
+            <lyrics font_family="Alegreya-Regular" font_size="18" space_before="26" />
+            <dropcap font_family="Alegreya-Regular" font_size="46" />
+        </styles>
+    </defaults>
+
+    <paragraph>
+        Tempo Markings
+    </paragraph>
+    <troparion>
+        <neumes>
+            chitria chidiar chihemi chiargo chigarg chigorg chidigo chitrig
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Arga
+    </paragraph>
+    <troparion>
+        <neumes>
+            olig_ken2DR_argoU
+            olig_ken2DR_hemiU
+            olig_ken2DR_diargU
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Gorga over ison
+    </paragraph>
+    <troparion>
+        <neumes>
+            ison_gorgU
+            ison_gorgdotU
+            ison_dotgorgU
+            ison_digoU
+            ison_digodotU
+            ison_dotdigoU
+            ison_trigU
+            ison_trigdotU
+            ison_dottrigU
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Gorga over oligon with kentimata
+    </paragraph>
+    <troparion>
+        <neumes>
+            olig_ken2U_gorgU2
+            olig_ken2U_gorgdotU2
+            olig_ken2U_dotgorgU2
+            olig_ken2U_digoU2
+            olig_ken2U_digodotU2
+            olig_ken2U_dotdigoU2
+            olig_ken2U_trigU2
+            olig_ken2U_trigdotU2
+            olig_ken2U_dottrigU2
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Gorga over oligon upper right
+    </paragraph>
+    <troparion>
+        <neumes>
+            olig_aposUL_ken2UR_gorgU2R
+            olig_aposUL_ken2UR_gorgdotU2R
+            olig_aposUL_ken2UR_dotgorgU2R
+            olig_aposUL_ken2UR_digoU2R
+            olig_aposUL_ken2UR_digodotU2R
+            olig_aposUL_ken2UR_dotdigoU2R
+            olig_aposUL_ken2UR_trigU2R
+            olig_aposUL_ken2UR_trigdotU2R
+            olig_aposUL_ken2UR_dottrigU2R
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Gorga over oligon upper left
+    </paragraph>
+    <troparion>
+        <neumes>
+            olig_aposUL_ken2UR_gorgU2L
+            olig_aposUL_ken2UR_gorgdotU2L
+            olig_aposUL_ken2UR_dotgorgU2L
+            olig_aposUL_ken2UR_digoU2L
+            olig_aposUL_ken2UR_digodotU2L
+            olig_aposUL_ken2UR_dotdigoU2L
+            olig_aposUL_ken2UR_trigU2L
+            olig_aposUL_ken2UR_trigdotU2L
+            olig_aposUL_ken2UR_dottrigU2L
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Gorga over apostrophos and hyporroe
+    </paragraph>
+    <troparion>
+        <neumes>
+            apos_gorgUR
+            apos_gorgdotUR
+            apos_dotgorgUR
+            apos_digoUR
+            apos_digodotUR
+            apos_dotdigoUR
+            apos_trigUR
+            apos_trigdotUR
+            apos_dottrigUR
+        </neumes>
+    </troparion>
+    <troparion>
+        <neumes>
+            hypo_gorgUR
+            hypo_gorgdotUR
+            hypo_dotgorgUR
+            hypo_digoUR
+            hypo_digodotUR
+            hypo_dotdigoUR
+            hypo_trigUR
+            hypo_trigdotUR
+            hypo_dottrigUR
+        </neumes>
+    </troparion>
+
+    <paragraph>
+        Gorga under apostrophos and hyporroe
+    </paragraph>
+    <troparion>
+        <neumes>
+            apos_gorgDR
+            apos_gorgdotDR
+            apos_dotgorgDR
+            apos_digoDR
+            apos_digodotDR
+            apos_dotdigoDR
+            apos_trigDR
+            apos_trigdotDR
+            apos_dottrigDR
+        </neumes>
+    </troparion>
+    <troparion>
+        <neumes>
+            hypo_gorgDR
+            hypo_gorgdotDR
+            hypo_dotgorgDR
+            hypo_digoDR
+            hypo_digodotDR
+            hypo_dotdigoDR
+            hypo_trigDR
+            hypo_trigdotDR
+            hypo_dottrigDR
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Gorga under oligon
+    </paragraph>
+    <troparion>
+        <neumes>
+            olig_gorgD
+            olig_gorgdotD
+            olig_dotgorgD
+            olig_digoD
+            olig_digodotD
+            olig_dotdigoD
+            olig_trigD
+            olig_trigdotD
+            olig_dottrigD
+        </neumes>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph>
+        Corona
+    </paragraph>
+    <troparion>
+        <neumes>
+            olig_coroU
+            apos_coroUR
+        </neumes>
+    </troparion>
+
+</bnml>
