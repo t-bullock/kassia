@@ -222,6 +222,10 @@ spec-apos-antiD-haplD:
   family: "KA New Stathis Main"
   codepoint: l
   description: "antikenoma with haple below an apostrophos"
+spec-peta-antiD-haplD:
+  family: "KA New Stathis Main"
+  codepoint:  '˚'
+  description: "antikenoma with haple below a petaste"
 homaDR:
   family: "KA New Stathis Main"
   codepoint: ";"
@@ -271,6 +275,9 @@ spec-elaf-klasU:
 spec-hypo-haplD:
   family: "KA New Stathis Main"
   codepoint: "∂"
+spec-elaf-diplD:
+  family: "KA New Stathis Main"
+  codepoint: "ƒ"
 olig_ken2DR:
   family: "KA New Stathis Main"
   codepoint: z
@@ -454,7 +461,7 @@ mlamd:
 mnana:
   family: "KA New Stathis Martyria"
   codepoint: e
-mdeltaapo:
+mdeltapo:
   family: "KA New Stathis Martyria"
   codepoint: r
 malfaapo:
@@ -475,7 +482,7 @@ mlamdU:
 mnanaU:
   family: "KA New Stathis Martyria"
   codepoint: E
-mdeltaapoU:
+mdeltapoU:
   family: "KA New Stathis Martyria"
   codepoint: R
 malfaapoU:
@@ -490,16 +497,16 @@ mdeltU:
 mbarlU:
   family: "KA New Stathis Martyria"
   codepoint: "|"
-mhcbeta:
+mbeta:
   family: "KA New Stathis Martyria"
   codepoint: a
-mscslash:
+mnena:
   family: "KA New Stathis Martyria"
   codepoint: s
-mhcbeta_maposU:
+mbetaapo:
   family: "KA New Stathis Martyria"
   codepoint: d
-mhcslash:
+mscnena:
   family: "KA New Stathis Martyria"
   codepoint: f
 mzygos:
@@ -511,30 +518,78 @@ mkliton:
 mspathi:
   family: "KA New Stathis Martyria"
   codepoint: j
-chi_tetgU:
+mbetaU:
+  family: "KA New Stathis Martyria"
+  codepoint: A
+mnenaU:
+  family: "KA New Stathis Martyria"
+  codepoint: S
+mbetaapoU:
+  family: "KA New Stathis Martyria"
+  codepoint: D
+mscnenaU:
+  family: "KA New Stathis Martyria"
+  codepoint: F
+mzygosU:
+  family: "KA New Stathis Martyria"
+  codepoint: G
+mklitonU:
+  family: "KA New Stathis Martyria"
+  codepoint: H
+mspathiU:
+  family: "KA New Stathis Martyria"
+  codepoint: J
+chitria:
   family: "KA New Stathis Martyria"
   codepoint: z
-chi_diarU:
+chidiar:
   family: "KA New Stathis Martyria"
   codepoint: x
-chi_hemeU:
+chihemi:
   family: "KA New Stathis Martyria"
   codepoint: c
-chi_argoU:
+chiargo:
   family: "KA New Stathis Martyria"
   codepoint: v
-chi_gargU:
+chigarg:
   family: "KA New Stathis Martyria"
   codepoint: b
-chi_gorgU:
+chigorg:
   family: "KA New Stathis Martyria"
   codepoint: n
-chi_tetrU:
+chidigo:
+  family: "KA New Stathis Martyria"
+  codepoint: m
+chitrig:
   family: "KA New Stathis Martyria"
   codepoint: ','
 mplag:
   family: "KA New Stathis Martyria"
   codepoint: '/'
+chitriaU:
+  family: "KA New Stathis Martyria"
+  codepoint: Z
+chidiarU:
+  family: "KA New Stathis Martyria"
+  codepoint: X
+chihemiU:
+  family: "KA New Stathis Martyria"
+  codepoint: C
+chiargoU:
+  family: "KA New Stathis Martyria"
+  codepoint: V
+chigargU:
+  family: "KA New Stathis Martyria"
+  codepoint: B
+chigorgU:
+  family: "KA New Stathis Martyria"
+  codepoint: N
+chidigoU:
+  family: "KA New Stathis Martyria"
+  codepoint: M
+chitrigU:
+  family: "KA New Stathis Martyria"
+  codepoint: '<'
 firstmode:
   family: "KA New Stathis Martyria"
   codepoint: 'i'
@@ -732,7 +787,7 @@ digodotD:
 trigdotD:
   family: "KA New Stathis Chronos"
   codepoint: '´'
-digodotR:
+digodotUR:
   family: "KA New Stathis Chronos"
   codepoint: 'ƒ'
 digodotU2L:
@@ -741,6 +796,9 @@ digodotU2L:
 digodotDR:
   family: "KA New Stathis Chronos"
   codepoint: '˙'
+digodotU2R:
+  family: "KA New Stathis Chronos"
+  codepoint: '∆'
 gorgdotU2R:
   family: "KA New Stathis Chronos"
   codepoint: 'µ'
@@ -952,13 +1010,13 @@ fhcpaUR:
 fhcpaDR:
   family: "KA New Stathis Fthora"
   codepoint: 'A'
-fnenanoU:
+fnenaU:
   family: "KA New Stathis Fthora"
   codepoint: 's'
-fnenanoUR:
+fnenaUR:
   family: "KA New Stathis Fthora"
   codepoint: 'ß'
-fnenanoDR:
+fnenaDR:
   family: "KA New Stathis Fthora"
   codepoint: 'S'
 fscdiU:
@@ -970,13 +1028,13 @@ fscdiUR:
 fscdiDR:
   family: "KA New Stathis Fthora"
   codepoint: 'D'
-fscnenanoU:
+fscnenaU:
   family: "KA New Stathis Fthora"
   codepoint: 'f'
-fscnenanoUR:
+fscnenaUR:
   family: "KA New Stathis Fthora"
   codepoint: 'ƒ'
-fscnenanoDR:
+fscnenaDR:
   family: "KA New Stathis Fthora"
   codepoint: 'F'
 fzygosU:

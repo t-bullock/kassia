@@ -1225,9 +1225,9 @@
 |
 |,
 |image:ka_fontimages/martyria-comma.png[]
-|chronf3
+|chitrig
 |
-|chi-tetrU
+|chi-trigU
 |
 |
 |
@@ -1324,9 +1324,9 @@
 |
 |<
 |image:ka_fontimages/martyria-left-caret.png[]
-|chronf3U
+|chitrigU
 |
-|chiU-tetrU2
+|chiU-trigU2
 |
 |
 |
@@ -1357,7 +1357,7 @@
 |
 |B
 |image:ka_fontimages/martyria-capital-B.png[]
-|chronmU
+|chigargU
 |
 |chiU-gargU2
 |
@@ -1368,9 +1368,9 @@
 |
 |C
 |image:ka_fontimages/martyria-capital-C.png[]
-|chrons2U
+|chihemiU
 |
-|chiU-hemeU2
+|chiU-hemiU2
 |
 |
 |Goes above a martyria.
@@ -1379,7 +1379,7 @@
 |
 |D
 |image:ka_fontimages/martyria-capital-D.png[]
-|mscbetaU
+|mbetaapoU
 |
 |mbetaU-apoiU2
 |
@@ -1401,9 +1401,9 @@
 |
 |F
 |image:ka_fontimages/martyria-capital-F.png[]
-|mscnenanoU
+|mscnenaU
 |
-|mscnenanoU
+|mscnenaU
 |
 |
 |
@@ -1456,7 +1456,7 @@
 |
 |M
 |image:ka_fontimages/martyria-capital-M.png[]
-|chronf2U
+|chidigoU
 |
 |chiU-digoU2
 |
@@ -1467,7 +1467,7 @@
 |
 |N
 |image:ka_fontimages/martyria-capital-N.png[]
-|chronfU
+|chigorgU
 |
 |chiU-gorgU2
 |
@@ -1522,9 +1522,9 @@
 |
 |S
 |image:ka_fontimages/martyria-capital-S.png[]
-|mnenanoU
+|mnenaU
 |
-|mnenanoU
+|mnenaU
 |
 |
 |
@@ -1555,7 +1555,7 @@
 |
 |V
 |image:ka_fontimages/martyria-capital-V.png[]
-|chronsU
+|chiargU
 |
 |chiU-argoU2
 |
@@ -1577,7 +1577,7 @@
 |
 |X
 |image:ka_fontimages/martyria-capital-X.png[]
-|chrons3U
+|chidiarU
 |
 |chiU-diarU2
 |
@@ -1599,9 +1599,9 @@
 |
 |Z
 |image:ka_fontimages/martyria-capital-Z.png[]
-|chrons4U
+|chitriaU
 |
-|chiU-tetgU2
+|chiU-triaU2
 |
 |
 |Goes above a martyria.
@@ -1654,7 +1654,7 @@
 |
 |b
 |image:ka_fontimages/martyria-b.png[]
-|chronm
+|chigarg
 |
 |chi-gargU
 |
@@ -1665,9 +1665,9 @@
 |
 |c
 |image:ka_fontimages/martyria-c.png[]
-|chrons2
+|chihemi
 |
-|chi-hemeU
+|chi-hemiU
 |
 |
 |
@@ -1676,7 +1676,7 @@
 |
 |d
 |image:ka_fontimages/martyria-d.png[]
-|mscbeta
+|mbetaapo
 |
 |mbeta-apoiU
 |
@@ -1698,9 +1698,9 @@
 |
 |f
 |image:ka_fontimages/martyria-f.png[]
-|mscnenano
+|mscnena
 |
-|mscnenano
+|mscnena
 |
 |
 |
@@ -1753,7 +1753,7 @@
 |
 |m
 |image:ka_fontimages/martyria-m.png[]
-|chronf2
+|chidigo
 |
 |chi-digoU
 |
@@ -1764,7 +1764,7 @@
 |
 |n
 |image:ka_fontimages/martyria-n.png[]
-|chronf
+|chigorg
 |
 |chi-gorgU
 |
@@ -1777,16 +1777,16 @@
 |image:ka_fontimages/martyria-o.png[]
 |secondmode
 |
-|mscbeta-mfon
+|mbetaapo-mfon
 |
 |
-|Is actually ligature of mscbeta and U+1D0AF.
+|Is actually ligature of mbetaapo and U+1D0AF.
 
 
 |
 |p
 |image:ka_fontimages/martyria-p.png[]
-|mnana-isa2U
+|nana
 |
 |mnana-isa2U
 |
@@ -1819,7 +1819,7 @@
 |
 |s
 |image:ka_fontimages/martyria-s.png[]
-|mnenano
+|mnena
 |
 |mnena
 |
@@ -1852,7 +1852,7 @@
 |
 |v
 |image:ka_fontimages/martyria-v.png[]
-|chrons
+|chiargo
 |
 |chi-argoU
 |
@@ -1874,7 +1874,7 @@
 |
 |x
 |image:ka_fontimages/martyria-x.png[]
-|chrons3
+|chidiar
 |
 |chi-diarU
 |
@@ -1896,9 +1896,9 @@
 |
 |z
 |image:ka_fontimages/martyria-z.png[]
-|chrons4
+|chitria
 |
-|chi-tetgU
+|chi-triaU
 |
 |
 |
@@ -2270,9 +2270,9 @@
 |
 |F
 |image:ka_fontimages/fthora-capital-F.png[]
-|fscnenanoDR
-|spec_apos-fscnenanoD
-|fscnenanoDR
+|fscnenaDR
+|spec_apos-fscnenaD
+|fscnenaDR
 |if after apos
 |
 |
@@ -2358,9 +2358,9 @@
 |
 |S
 |image:ka_fontimages/fthora-capital-S.png[]
-|fnenanoDR
-|spec_apos-fnenanoD
-|fnenanoDR
+|fnenaDR
+|spec_apos-fnenaD
+|fnenaDR
 |if after apos
 |
 |
@@ -2479,9 +2479,9 @@
 |
 |f
 |image:ka_fontimages/fthora-f.png[]
-|fscnenanoU
+|fscnenaU
 |
-|fscnenanoU
+|fscnenaU
 |
 |
 |
@@ -2567,9 +2567,9 @@
 |
 |s
 |image:ka_fontimages/fthora-s.png[]
-|fnenanoU
+|fnenaU
 |
-|fnenanoU
+|fnenaU
 |
 |
 |
@@ -2699,9 +2699,9 @@
 |
 |ß
 |image:ka_fontimages/fthora-eszett.png[]
-|fnenanoUR
+|fnenaUR
 |
-|fnenanoUR
+|fnenaUR
 |
 |
 |Goes above martyria.
@@ -2732,9 +2732,9 @@
 |
 |ƒ
 |image:ka_fontimages/fthora-florin.png[]
-|fscnenanoUR
+|fscnenaUR
 |
-|fscnenanoUR
+|fscnenaUR
 |
 |
 |Goes above martyria.
@@ -3659,6 +3659,17 @@
 |digodotDR
 |
 |digodotDR
+|
+|
+|
+
+
+|
+|∆
+|image:ka_fontimages/chronos-dot.png[]
+|digodotU2R
+|
+|digodotU2R
 |
 |
 |

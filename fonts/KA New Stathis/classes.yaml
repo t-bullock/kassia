@@ -167,14 +167,14 @@ standalone:
   - malfa
   - mlamd
   - mnana
-  - mdeltaapo
+  - mdeltapo
   - malfaapo
   - mhypo
   - mdelt
-  - mhcbeta
-  - mscslash
-  - mhcbeta_maposU
-  - mhcslash
+  - mbeta
+  - mscnena
+  - mbetaapo
+  - mnena
   - mzygos
   - mkliton
   - mspathi
@@ -236,40 +236,41 @@ martyriae:
   - malfa
   - mlamd
   - mnana
-  - mdeltaapo
+  - mdeltapo
   - malfaapo
   - mhypo
   - mdelt
   - malfaU
   - mlamdU
   - mnanaU
-  - mdeltaapoU
+  - mdeltapoU
   - malfaapoU
   - mhypoU
   - mdeltU
-  - mhcbeta
-  - mscslash
-  - mhcbeta_maposU
-  - mhcslash
+  - mbeta
+  - mscnena
+  - mbetaapo
+  - mnena
   - mzygos
   - mkliton
   - mspathi
 
 tempo_markings:
-  - chi_tetgU
-  - chi_diarU
-  - chi_hemeU
-  - chi_argoU
-  - chi_gargU
-  - chi_gorgU
-  - chi_tetrU
-  - chiU_tetgU2
-  - chiU_diarU2
-  - chiU_hemeU2
-  - chiU_argoU2
-  - chiU_gargU2
-  - chiU_gorgU2
-  - chiU_tetrU2
+  - chitria
+  - chidiar
+  - chihemi
+  - chiargo
+  - chigarg
+  - chigorg
+  - chidigo
+  - chitrig
+  - chitriaU
+  - chidiarU
+  - chihemiU
+  - chiargoU
+  - chigargU
+  - chigorgU
+  - chitrigU
 
 rests:
   - res1
@@ -314,6 +315,15 @@ conditional_neumes:
       diplD
     draw_glyph:
       spec-apos-diplD
+  spec-elaf-diplD:
+    base_neume:
+      - elaf
+    component_glyphs:
+      - diplD
+    replace_glyph:
+      diplD
+    draw_glyph:
+      spec-elaf-diplD
   spec-apos-tripD:
     base_neume:
       - apos
@@ -341,6 +351,15 @@ conditional_neumes:
       antiD_haplD
     draw_glyph:
       spec-apos-antiD-haplD
+  spec-peta-antiD-haplD:
+    base_neume:
+      - peta
+    component_glyphs:
+      - antiD_haplD
+    replace_glyph:
+      antiD_haplD
+    draw_glyph:
+      spec-peta-antiD-haplD
   spec-apos-klasU:
     base_neume:
       - apos
