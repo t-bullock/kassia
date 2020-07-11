@@ -398,17 +398,6 @@
 
 
 |
-|≠
-|image:ka_fontimages/main-unequal-sign.png[]
-|coroUL
-|
-|coroUL
-|
-|
-|
-
-
-|
 |'
 |image:ka_fontimages/main-single-quote.png[]
 |homaD
@@ -3331,7 +3320,18 @@
 |coroU
 |
 |
-|Note sure if this should be repositioned to be more useful.
+|
+
+
+|
+|?
+|image:ka_fontimages/chronos-backslash.png[]
+|coroUR
+|
+|coroUR
+|
+|if after apostrophos
+|Centered above apostrophos.
 
 
 |

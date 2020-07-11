@@ -99,10 +99,6 @@ stav:
 olig_kentDR:
   family: "KA New Stathis Main"
   codepoint: "™"
-coroU:
-  family: "KA New Stathis Main"
-  codepoint: "≠"
-  description: "corona"
 peta:
   family: "KA New Stathis Main"
   codepoint: q
@@ -703,9 +699,12 @@ dottrigDR:
 dotgorgU:
   family: "KA New Stathis Chronos"
   codepoint: 'Z'
-#coroU: Duplicate
-#  family: "KA New Stathis Chronos"
-#  codepoint: '\'
+coroU:
+  family: "KA New Stathis Chronos"
+  codepoint: '\'
+coroUR:
+  family: "KA New Stathis Chronos"
+  codepoint: '?'
 digoU:
   family: "KA New Stathis Chronos"
   codepoint: 'a'
