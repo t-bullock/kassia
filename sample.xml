@@ -256,6 +256,7 @@
         <dropcap>
             L
         </dropcap>
+        <!-- Lyrics can be broken into lines for readability or left as one long line. This score has a new line in the lyrics at each martyria. -->
         <lyrics>
             Lord _ I have cried _ _ un- - to _ Thee _
             heark- en un- - to _ _ me
@@ -268,7 +269,7 @@
         </lyrics>
     </troparion>
 
-    <pagebreak />
+    <linebreak />
 
     <paragraph style="h1">
         Let My Prayer
@@ -354,7 +355,6 @@
         <dropcap>
             L
         </dropcap>
-        <!-- You can break the text into lines if it makes it easier to read. Kassia doesn't care. Here I start a new line whenever there's a martyria. -->
         <lyrics>
             Let my pray'r _ _ _ be set _ forth as in- - - cense be- fore _ _ _ _ _ Thee
             the lift- ing up _ _ of my _ hands
@@ -542,7 +542,7 @@
             A
         </dropcap>
         <lyrics>
-            Ac- cept our eve- - ning _ pray'ers O ho- - - - ly _ _ _ Lord
+            Ac- cept our eve- - ning _ pray'rs O ho- - - - ly _ _ _ Lord
             and grant us _ the re- mis- - - sion of _ sins _ _
             for Thou a- - lone art He Who hath _ shown _ forth the Res- ur- rec- tion un- - - to _ the _ _ world
         </lyrics>
@@ -562,13 +562,13 @@
             chi_gorgU
         </neumes>
         <neumes>
-            apos ison_klasU olig ison ison ison ison ison ison ison_klasU
+            apos ison_klasU olig ison ison olig_isonU ison ison ison ison_klasU
         </neumes>
         <neumes color="#cf232b">
             chi_argoU
         </neumes>
         <neumes>
-            olig olig olig_klasU apos olig vare apos_klasU hypo
+            ison ison olig_kentU ison_klasU olig_aposUL_ken2UR vare apos_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -635,13 +635,25 @@
             gorgU2
         </neumes>
         <neumes>
-            apos olig_klasU
+            apos barl olig_klasU
         </neumes>
         <neumes color="#cf232b">
             malfa_mpaU_fdkeUR
         </neumes>
         <neumes>
-            ison_klasU apos_klasU olig_ken2U_psefD apos apos olig_aposUL_ken2UR_psefD apos apos vare ison apos_haplD
+            ison barl olig_kentDR_psefD2_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            apos olig_ken2U_psefD
+        </neumes>
+        <neumes color="#cf232b">
+            fdkeU
+        </neumes>
+        <neumes>
+            apos apos olig_aposUL_ken2UR_psefD apos apos vare ison apos_haplD
         </neumes>
         <neumes color="#cf232b">
             mdi_malfaU
@@ -701,9 +713,404 @@
             En- cir- - cle _ Si- - - on O ye peo- - - - - ples
             and en- com- pass _ her
             and give glo- ry there- in to Him that is a- rise- en _ from the _ dead
-            for He is _ _ our _ _ God _
+            for He _ _ is _ _ our _ _ God _
             Who hath de- liv- - ered _ us _
             from our in- iq- - - - ui- - - - ties
+        </lyrics>
+    </troparion>
+    
+    <pagebreak />
+    
+    <paragraph style="h1">
+        Verse #3
+    </paragraph>
+    <paragraph style="h4">
+        Ἐκ βαθέων
+    </paragraph>
+
+    <troparion>
+        <neumes color="#cf232b">
+            chi_gorgU
+        </neumes>
+        <neumes>
+            apos ison ison olig_klasU ison ison olig_isonU ison ison olig_isonU ison ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            chi_argoU
+        </neumes>
+        <neumes>
+            ison olig ison ken2 olig_isonUL_ken2UR
+        </neumes>
+        <neumes color="#cf232b">
+            gorgdotU2R
+        </neumes>
+        <neumes>
+            vare ison apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            vare ison_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <dropcap>
+            O
+        </dropcap>
+        <lyrics>
+            Out of the depths have I cried un- to Thee O Lord
+            O Lord hear _ _ _ _ my _ _ _ voice
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph style="h1">
+        Stichera #3
+    </paragraph>
+    <paragraph style="h4">
+        Δεῦτε λαοί
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            barl peta apos olig barl olig_ken2U_psefD apos apos apos_klasU ison ison peta_aposU_klasD syne_klasU olig_klasU olig_ken2U
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos olig_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            peta_kentU syne ison ken2 ison ison ison apos peta_oligU_klasD apel_klasU olig ken2 peta_klasD_psefD2 apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            vare ison_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos barl ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison barl olig_kentDR_psefD2_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            apos olig_ken2U_psefD
+        </neumes>
+        <neumes color="#cf232b">
+            fdkeU
+        </neumes>
+        <neumes>
+            apos apos olig_aposUL_ken2UR_psefD apos apos vare ison apos_haplD
+        </neumes>
+        <neumes color="#cf232b">
+            mdi_malfaU
+        </neumes>
+        <neumes>
+            olig_hypsUR
+        </neumes>
+        <neumes color="#cf232b">
+            fdpaU
+        </neumes>
+        <neumes>
+            barl ison ison olig_isonUL_ken2UR_psefD apos apos apos_klasU olig_ken2U
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos olig_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison ison olig olig_ken2DR olig_antiD apos_klasU apel ison olig ken2 peta_klasD_psefD2 apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            vare ison_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <dropcap>
+            C
+        </dropcap>
+        <lyrics>
+            Come O ye peo- - - ples let us praise and wor- ship _ Christ
+            glo- ri- fy- - ing His Res- ur- rec- tion from _ _ _ the _ _ _ dead
+            for He _ _ is _ _ our _ _ God _
+            Who hath de- liv- - - ered the _ world
+            from thē er- - - ror of thē en- - - - e- - - - my
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+    
+    <paragraph style="h1">
+        Verse #4
+    </paragraph>
+    <paragraph style="h4">
+        Γενηθήτω τὰ ῷτα σου
+    </paragraph>
+
+    <troparion>
+        <neumes color="#cf232b">
+            chi_gorgU
+        </neumes>
+        <neumes>
+            apos ison olig_klasU ison ison olig_isonU ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            chi_argoU
+        </neumes>
+        <neumes>
+            ison olig barl olig_psefD apos apos barl olig_kentU_klasD olig_aposUL_ken2UR vare apos_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <dropcap>
+            L
+        </dropcap>
+        <lyrics>
+            Let Thine ears be at- ten- tive to the voice of my sup- pli- ca- - - - tion
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+
+    <paragraph style="h1">
+        Stichera #4
+    </paragraph>
+    <paragraph style="h4">
+        Εὐφράνθητε οὐρανοί
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            ison olig_kentDR_psefD2 apos apos_klasU vare apos_apos olig ken2 olig_isonUL_ken2UR
+        </neumes>
+        <neumes color="#cf232b">
+            gorgdotU2R
+        </neumes>
+        <neumes>
+            vare ison apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            peta_kentU syne olig_ken2U apos_klasU ison apos peta_oligU_klasD apel_klasU olig ken2 peta_klasD_psefD2 apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            vare ison_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos barl ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            peta_hypsUR apos apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            ison_klasU vare apos_apos vare apos apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig olig_klasU olig_ken2U
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos olig_ken2U vare apos_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison olig peta apos olig olig_ken2DR
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig ison peta_isonU apos olig_klasU olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos apos apos_klasU olig_ken2U
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos olig_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            mnana_mgaU
+        </neumes>
+        <neumes>
+            elaf olig barl olig_psefD apos apos barl peta_isonU_klasD
+            vare apos_apos olig ken2 olig_isonUL_ken2UR
+        </neumes>
+        <neumes color="#cf232b">
+            gorgdotU2R
+        </neumes>
+        <neumes>
+            vare ison_apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig_kent ison ison peta_klasD apos apos olig_klasU ison apos peta_oligU_klasD olig_aposUL_ken2UR peta_aposU apos apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_isonUL_ken2UR
+        </neumes>
+        <neumes color="#cf232b">
+            gorgdotU2R
+        </neumes>
+        <neumes>
+            vare ison apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <dropcap>
+            R
+        </dropcap>
+        <lyrics>
+            Re- joice _ O ye heav- - - - - ens
+            sound the trum- pets ye foun- da- tions of _ _ _ thē _ _ _ earth
+            cry _ _ out with glad- - - ness O _ ye moun- - - - tains
+            For be- hold Em- man- - u- - el hath nailed our sins _ _ _ to the _ Cross
+            and the Giv- er of life hath slain _ _ _ death
+            and as the Friend of _ man He hath raised up Ad- - - - - - am
         </lyrics>
     </troparion>
 
