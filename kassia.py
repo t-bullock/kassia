@@ -284,7 +284,7 @@ class Kassia:
             logging.error("Could not save XML file.")
 
     def find_neume_names(self, neume_chunk_name, neume_config) -> List[str]:
-        """Check for conditional neumes and replace them in necessary."""
+        """Check for conditional neumes and replace them if necessary."""
         if neume_chunk_name.count('_') == 0:
             return [neume_chunk_name]
 
@@ -302,12 +302,15 @@ class Kassia:
         the remainder to see if it matches any ligatures in the neume config list."""
         possible_lig = neume_chunk_name
         neume_list = []
-        while possible_lig.count('_') >= 0:
+        while possible_lig.count('_') >= 1:
             if possible_lig in neume_config['glyphnames']:
                 neume_list.insert(0, possible_lig)
-                break
+                return neume_list
             possible_lig, remainder = possible_lig.rsplit('_', 1)
             neume_list.insert(0, remainder)
+
+        neume_list.insert(0, possible_lig)
+
         return neume_list
 
     @staticmethod

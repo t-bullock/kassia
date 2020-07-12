@@ -409,13 +409,13 @@
 
     <troparion>
         <neumes color="#cf232b">
-            chi_gorgU
+            chigorg
         </neumes>
         <neumes>
             apos ison ison_klasU olig ison ison ison_klasU
         </neumes>
         <neumes color="#cf232b">
-            chi_argoU
+            chiargo
         </neumes>
         <neumes>
             ison ison ison ison olig ken2 peta_klasD_psefD2 apos
@@ -559,13 +559,13 @@
 
     <troparion>
         <neumes color="#cf232b">
-            chi_gorgU
+            chigorg
         </neumes>
         <neumes>
             apos ison_klasU olig ison ison olig_isonU ison ison ison ison_klasU
         </neumes>
         <neumes color="#cf232b">
-            chi_argoU
+            chiargo
         </neumes>
         <neumes>
             ison ison olig_kentU ison_klasU olig_aposUL_ken2UR vare apos_klasU hypo
@@ -730,13 +730,13 @@
 
     <troparion>
         <neumes color="#cf232b">
-            chi_gorgU
+            chigorg
         </neumes>
         <neumes>
             apos ison ison olig_klasU ison ison olig_isonU ison ison olig_isonU ison ison_klasU
         </neumes>
         <neumes color="#cf232b">
-            chi_argoU
+            chiargo
         </neumes>
         <neumes>
             ison olig ison ken2 olig_isonUL_ken2UR
@@ -906,13 +906,13 @@
 
     <troparion>
         <neumes color="#cf232b">
-            chi_gorgU
+            chigorg
         </neumes>
         <neumes>
             apos ison olig_klasU ison ison olig_isonU ison_klasU
         </neumes>
         <neumes color="#cf232b">
-            chi_argoU
+            chiargo
         </neumes>
         <neumes>
             ison olig barl olig_psefD apos apos barl olig_kentU_klasD olig_aposUL_ken2UR vare apos_klasU hypo
