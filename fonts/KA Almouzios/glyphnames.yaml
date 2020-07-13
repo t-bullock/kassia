@@ -1,0 +1,1074 @@
+# KA Almouzios Main
+ken2:
+  family: "KA Almouzios Main"
+  codepoint: "`"
+  description: "kentimata"
+olig:
+  family: "KA Almouzios Main"
+  codepoint: '1'
+  description: "oligon"
+spec-olig-kentD:
+  family: "KA Almouzios Main"
+  codepoint: '2'
+  component_glyphs:
+    - olig
+    - ken2
+  description: "olig_kentDR when psefeston will be placed underneath"
+olig_kentU:
+  family: "KA Almouzios Main"
+  codepoint: '3'
+  component_glyphs:
+    - olig
+    - kent
+olig_hypsUR:
+  family: "KA Almouzios Main"
+  codepoint: '4'
+  component_glyphs:
+    - olig
+    - hyps
+olig_hypsUL:
+  codepoint: '5'
+  family: "KA Almouzios Main"
+olig_kentU_hypsUR:
+  family: "KA Almouzios Main"
+  codepoint: '6'
+olig_kentU_hypsU2:
+  family: "KA Almouzios Main"
+  codepoint: '7'
+olig_hypsUL_hypsUR:
+  family: "KA Almouzios Main"
+  codepoint: '8'
+olig_kentU_hypsUR_hypsU2:
+  family: "KA Almouzios Main"
+  codepoint: '9'
+ison:
+  family: "KA Almouzios Main"
+  codepoint: '0'
+  description: "ison"
+hypo:
+  family: "KA Almouzios Main"
+  codepoint: "-"
+  description: "hyporroe"
+brea:
+  family: "KA Almouzios Main"
+  codepoint: "="
+  description: "breath mark"
+kent:
+  family: "KA Almouzios Main"
+  codepoint: "~"
+  description: "kentima"
+apos:
+  family: "KA Almouzios Main"
+  codepoint: "!"
+  description: "apostrophos"
+elaf:
+  family: "KA Almouzios Main"
+  codepoint: "@"
+  description: "elaphron"
+apel:
+  family: "KA Almouzios Main"
+  codepoint: "#"
+  description: "apostrophos inside elaphron"
+cham:
+  family: "KA Almouzios Main"
+  codepoint: "$"
+  description: "chamele"
+apos_chamU:
+  family: "KA Almouzios Main"
+  codepoint: "%"
+elaf_chamU:
+  family: "KA Almouzios Main"
+  codepoint: "^"
+apel_chamU:
+  family: "KA Almouzios Main"
+  codepoint: "&"
+cham_chamU:
+  family: "KA Almouzios Main"
+  codepoint: "*"
+apos_chamU_chamU2:
+  family: "KA Almouzios Main"
+  codepoint: "("
+syne:
+  family: "KA Almouzios Main"
+  codepoint: "_"
+  description: "syneches elaphron"
+stav:
+  family: "KA Almouzios Main"
+  codepoint: "+"
+  description: "stavros"
+olig_kentDR:
+  family: "KA Almouzios Main"
+  codepoint: "™"
+peta:
+  family: "KA Almouzios Main"
+  codepoint: q
+  description: "petaste"
+peta_oligU:
+  family: "KA Almouzios Main"
+  codepoint: w
+peta_kentU:
+  family: "KA Almouzios Main"
+  codepoint: e
+peta_hypsUR:
+  family: "KA Almouzios Main"
+  codepoint: r
+peta_hypsUL:
+  family: "KA Almouzios Main"
+  codepoint: t
+peta_kentU_hypsUR:
+  family: "KA Almouzios Main"
+  codepoint: y
+peta_kentU_hypsU2:
+  family: "KA Almouzios Main"
+  codepoint: u
+peta_hypsUL_hypsUR:
+  family: "KA Almouzios Main"
+  codepoint: i
+peta_kentU_hypsUR_hypsU2:
+  family: "KA Almouzios Main"
+  codepoint: o
+peta_isonU:
+  family: "KA Almouzios Main"
+  codepoint: p
+heteD:
+  family: "KA Almouzios Main"
+  codepoint: "["
+endoD:
+  family: "KA Almouzios Main"
+  codepoint: "]"
+  description: "endophono"
+barl:
+  family: "KA Almouzios Main"
+  codepoint: "\\"
+peta_aposU:
+  family: "KA Almouzios Main"
+  codepoint: Q
+peta_elafU:
+  family: "KA Almouzios Main"
+  codepoint: W
+peta_apelU:
+  family: "KA Almouzios Main"
+  codepoint: E
+peta_chamU:
+  family: "KA Almouzios Main"
+  codepoint: R
+peta_aposU_chamU2:
+  family: "KA Almouzios Main"
+  codepoint: T
+peta_elafU_chamU2:
+  family: "KA Almouzios Main"
+  codepoint: Y
+peta_apelU_chamU2:
+  family: "KA Almouzios Main"
+  codepoint: U
+peta_chamU_chamU2:
+  family: "KA Almouzios Main"
+  codepoint: I
+peta_aposU_chamU2_chamU3:
+  family: "KA Almouzios Main"
+  codepoint: O
+ison_apos:
+  family: "KA Almouzios Main"
+  codepoint: P
+  description: "ligature of ison and apostrophos"
+spec-peta-heteD:
+  family: "KA Almouzios Main"
+  codepoint: "{"
+  description: "heteron for a petaste"
+spec-syne-barlU:
+  family: "KA Almouzios Main"
+  codepoint: "}"
+  description: "barline above a syneches elaphron"
+spec-olig-barlU:
+  family: "KA Almouzios Main"
+  codepoint: "|"
+  description: "barline above olig_ken2D"
+#spec-apos-barlU:
+#  family: "KA Almouzios Main"
+#  codepoint: "«"
+#  description: "barline above an apostrophos"
+klasU:
+  family: "KA Almouzios Main"
+  codepoint: a
+  description: "klasma above"
+spec-apos-klasU:
+  family: "KA Almouzios Main"
+  codepoint: s
+  description: "klasma above an apostrophos"
+spec-ison-klasU:
+  family: "KA Almouzios Main"
+  codepoint: d
+  description: "klasma for an ison"
+diplD:
+  family: "KA Almouzios Main"
+  codepoint: f
+tripD:
+  family: "KA Almouzios Main"
+  codepoint: g
+tetrD:
+  family: "KA Almouzios Main"
+  codepoint: h
+antiD:
+  family: "KA Almouzios Main"
+  codepoint: j
+antiD_haplD:
+  family: "KA Almouzios Main"
+  codepoint: k
+spec-apos-antiD-haplD:
+  family: "KA Almouzios Main"
+  codepoint: l
+  description: "antikenoma with haple below an apostrophos"
+spec-peta-antiD-haplD:
+  family: "KA Almouzios Main"
+  codepoint:  '˚'
+  description: "antikenoma with haple below a petaste"
+homaDR:
+  family: "KA Almouzios Main"
+  codepoint: ";"
+homaD:
+  family: "KA Almouzios Main"
+  codepoint: "'"
+klasD:
+  family: "KA Almouzios Main"
+  codepoint: A
+  description: "klasma below"
+spec-peta-klasD:
+  family: "KA Almouzios Main"
+  codepoint: S
+  description: "klasma below a petaste"
+haplD:
+  family: "KA Almouzios Main"
+  codepoint: D
+spec-apos-diplD:
+  family: "KA Almouzios Main"
+  codepoint: F
+spec-apos-tripD:
+  family: "KA Almouzios Main"
+  codepoint: G
+spec-apos-tetrD:
+  family: "KA Almouzios Main"
+  codepoint: H
+antiD2:
+  family: "KA Almouzios Main"
+  codepoint: J
+spec-antiD2-haplD2:
+  family: "KA Almouzios Main"
+  codepoint: K
+apos_apos:
+  family: "KA Almouzios Main"
+  codepoint: L
+  description: "ligature of two apostrophoi"
+homaD2R:
+  family: "KA Almouzios Main"
+  codepoint: ":"
+homaD2:
+  family: "KA Almouzios Main"
+  codepoint: "\""
+spec-elaf-klasU:
+  family: "KA Almouzios Main"
+  codepoint: "å"
+  description: "klasma above an elaphron"
+spec-hypo-haplD:
+  family: "KA Almouzios Main"
+  codepoint: "∂"
+spec-elaf-diplD:
+  family: "KA Almouzios Main"
+  codepoint: "ƒ"
+olig_ken2DR:
+  family: "KA Almouzios Main"
+  codepoint: z
+olig_isonUL_ken2UR:
+  family: "KA Almouzios Main"
+  codepoint: x
+olig_elafUL_ken2UR:
+  family: "KA Almouzios Main"
+  codepoint: c
+olig_hypoUL_ken2UR:
+  family: "KA Almouzios Main"
+  codepoint: v
+olig_chamUL_ken2UR:
+  family: "KA Almouzios Main"
+  codepoint: b
+psefD:
+  family: "KA Almouzios Main"
+  codepoint: n
+spec-klasD-psefD:
+  family: "KA Almouzios Main"
+  codepoint: m
+res1:
+  family: "KA Almouzios Main"
+  codepoint: ","
+res3:
+  family: "KA Almouzios Main"
+  codepoint: "."
+vare:
+  family: "KA Almouzios Main"
+  codepoint: "/"
+olig_ken2U:
+  family: "KA Almouzios Main"
+  codepoint: Z
+  component_glyphs:
+    - olig
+    - ken2U
+olig_aposUL_ken2UR:
+  family: "KA Almouzios Main"
+  codepoint: X
+olig_apelUL_ken2UR:
+  family: "KA Almouzios Main"
+  codepoint: C
+olig_syneUL_ken2UR:
+  family: "KA Almouzios Main"
+  codepoint: V
+psefD2:
+  family: "KA Almouzios Main"
+  codepoint: N
+spec-klasD-psefD2:
+  family: "KA Almouzios Main"
+  codepoint: M
+res2:
+  family: "KA Almouzios Main"
+  codepoint: "<"
+res4:
+  family: "KA Almouzios Main"
+  codepoint: ">"
+resh:
+  family: "KA Almouzios Main"
+  codepoint: "?"
+spec-olig-ken2D:
+  family: "KA Almouzios Main"
+  codepoint: Ω
+  description: "olig_ken2DR when psefeston will be placed underneath"
+# KA Almouzios Combo:
+olig_ken2U_hypsUR_hypsU2:
+  family: "KA Almouzios Combo"
+  codepoint: '0'
+olig_hypsUL_kentU_hypsU2:
+  family: "KA Almouzios Combo"
+  codepoint: '1'
+olig_hypsUL_hypsU_hypsUR:
+  family: "KA Almouzios Combo"
+  codepoint: '2'
+olig_hypsUL_ken2U_hypsUR_hypsU2:
+  family: "KA Almouzios Combo"
+  codepoint: '3'
+olig_hypsUL_ken1U_hypsUR_hypsU2:
+  family: "KA Almouzios Combo"
+  codepoint: '4'
+peta_hypoU:
+  family: "KA Almouzios Combo"
+  codepoint: '-'
+peta_syneU:
+  family: "KA Almouzios Combo"
+  codepoint: '_'
+olig_ken2U_hypsUR:
+  family: "KA Almouzios Combo"
+  codepoint: u
+olig_hypsUL_ken2U:
+  family: "KA Almouzios Combo"
+  codepoint: i
+diplD_heteD:
+  family: "KA Almouzios Combo"
+  codepoint: "["
+tetrD_heteD:
+  family: "KA Almouzios Combo"
+  codepoint: "]"
+tripD_heteD:
+  family: "KA Almouzios Combo"
+  codepoint: "{"
+spec-diplD-heteD:
+  family: "KA Almouzios Combo"
+  codepoint: "}"
+spec-olig-aposU-klasU2:
+  family: "KA Almouzios Combo"
+  codepoint: s
+olig_isonU:
+  family: "KA Almouzios Combo"
+  codepoint: x
+olig_petaU:
+  family: "KA Almouzios Combo"
+  codepoint: c
+olig_hypoU:
+  family: "KA Almouzios Combo"
+  codepoint: v
+olig_aposU:
+  family: "KA Almouzios Combo"
+  codepoint: X
+olig_apelU:
+  family: "KA Almouzios Combo"
+  codepoint: C
+olig_chamU:
+  family: "KA Almouzios Combo"
+  codepoint: V
+# KA Almouzios Martyria:
+mprim:
+  family: "KA Almouzios Martyria"
+  codepoint: "`"
+mpa:
+  family: "KA Almouzios Martyria"
+  codepoint: '1'
+mbou:
+  family: "KA Almouzios Martyria"
+  codepoint: '2'
+mga:
+  family: "KA Almouzios Martyria"
+  codepoint: '3'
+mdi:
+  family: "KA Almouzios Martyria"
+  codepoint: '4'
+mke:
+  family: "KA Almouzios Martyria"
+  codepoint: '5'
+mzo:
+  family: "KA Almouzios Martyria"
+  codepoint: '6'
+mne:
+  family: "KA Almouzios Martyria"
+  codepoint: '7'
+mprimU:
+  family: "KA Almouzios Martyria"
+  codepoint: "~"
+mpaU:
+  family: "KA Almouzios Martyria"
+  codepoint: "!"
+mbouU:
+  family: "KA Almouzios Martyria"
+  codepoint: "@"
+mgaU:
+  family: "KA Almouzios Martyria"
+  codepoint: "#"
+mdiU:
+  family: "KA Almouzios Martyria"
+  codepoint: "$"
+mkeU:
+  family: "KA Almouzios Martyria"
+  codepoint: "%"
+mzoU:
+  family: "KA Almouzios Martyria"
+  codepoint: "^"
+mneU:
+  family: "KA Almouzios Martyria"
+  codepoint: "&"
+malfa:
+  family: "KA Almouzios Martyria"
+  codepoint: q
+mlamd:
+  family: "KA Almouzios Martyria"
+  codepoint: w
+mnana:
+  family: "KA Almouzios Martyria"
+  codepoint: e
+mdeltapo:
+  family: "KA Almouzios Martyria"
+  codepoint: r
+malfaapo:
+  family: "KA Almouzios Martyria"
+  codepoint: t
+mhypo:
+  family: "KA Almouzios Martyria"
+  codepoint: y
+mdelt:
+  family: "KA Almouzios Martyria"
+  codepoint: u
+malfaU:
+  family: "KA Almouzios Martyria"
+  codepoint: Q
+mlamdU:
+  family: "KA Almouzios Martyria"
+  codepoint: W
+mnanaU:
+  family: "KA Almouzios Martyria"
+  codepoint: E
+mdeltapoU:
+  family: "KA Almouzios Martyria"
+  codepoint: R
+malfaapoU:
+  family: "KA Almouzios Martyria"
+  codepoint: T
+mhypoU:
+  family: "KA Almouzios Martyria"
+  codepoint: Y
+mdeltU:
+  family: "KA Almouzios Martyria"
+  codepoint: U
+mbarlU:
+  family: "KA Almouzios Martyria"
+  codepoint: "|"
+mbeta:
+  family: "KA Almouzios Martyria"
+  codepoint: a
+mnena:
+  family: "KA Almouzios Martyria"
+  codepoint: s
+mbetaapo:
+  family: "KA Almouzios Martyria"
+  codepoint: d
+mscnena:
+  family: "KA Almouzios Martyria"
+  codepoint: f
+mzygos:
+  family: "KA Almouzios Martyria"
+  codepoint: g
+mkliton:
+  family: "KA Almouzios Martyria"
+  codepoint: h
+mspathi:
+  family: "KA Almouzios Martyria"
+  codepoint: j
+mbetaU:
+  family: "KA Almouzios Martyria"
+  codepoint: A
+mnenaU:
+  family: "KA Almouzios Martyria"
+  codepoint: S
+mbetaapoU:
+  family: "KA Almouzios Martyria"
+  codepoint: D
+mscnenaU:
+  family: "KA Almouzios Martyria"
+  codepoint: F
+mzygosU:
+  family: "KA Almouzios Martyria"
+  codepoint: G
+mklitonU:
+  family: "KA Almouzios Martyria"
+  codepoint: H
+mspathiU:
+  family: "KA Almouzios Martyria"
+  codepoint: J
+chitria:
+  family: "KA Almouzios Martyria"
+  codepoint: z
+chidiar:
+  family: "KA Almouzios Martyria"
+  codepoint: x
+chihemi:
+  family: "KA Almouzios Martyria"
+  codepoint: c
+chiargo:
+  family: "KA Almouzios Martyria"
+  codepoint: v
+chigarg:
+  family: "KA Almouzios Martyria"
+  codepoint: b
+chigorg:
+  family: "KA Almouzios Martyria"
+  codepoint: n
+chidigo:
+  family: "KA Almouzios Martyria"
+  codepoint: m
+chitrig:
+  family: "KA Almouzios Martyria"
+  codepoint: ','
+mplag:
+  family: "KA Almouzios Martyria"
+  codepoint: '/'
+chitriaU:
+  family: "KA Almouzios Martyria"
+  codepoint: Z
+chidiarU:
+  family: "KA Almouzios Martyria"
+  codepoint: X
+chihemiU:
+  family: "KA Almouzios Martyria"
+  codepoint: C
+chiargoU:
+  family: "KA Almouzios Martyria"
+  codepoint: V
+chigargU:
+  family: "KA Almouzios Martyria"
+  codepoint: B
+chigorgU:
+  family: "KA Almouzios Martyria"
+  codepoint: N
+chidigoU:
+  family: "KA Almouzios Martyria"
+  codepoint: M
+chitrigU:
+  family: "KA Almouzios Martyria"
+  codepoint: '<'
+firstmode:
+  family: "KA Almouzios Martyria"
+  codepoint: 'i'
+  description: "first mode martyria at the top of a score"
+secondmode:
+  family: "KA Almouzios Martyria"
+  codepoint: 'o'
+  description: "second mode martyria at the top of a score"
+nana:
+  family: "KA Almouzios Martyria"
+  codepoint: 'p'
+  description: "mode nana at the top of a score"
+thirdmode:
+  family: "KA Almouzios Martyria"
+  codepoint: 'π'
+  description: "third mode martyria at the top of a score"
+fourthmode:
+  family: "KA Almouzios Martyria"
+  codepoint: '['
+  description: "fourth mode martyria at the top of a score"
+lege:
+  family: "KA Almouzios Martyria"
+  codepoint: '“'
+  description: "legetos text at the top of a score"
+plfirstmode:
+  family: "KA Almouzios Martyria"
+  codepoint: 'I'
+  description: "plagal first mode martyria at the top of a score"
+plsecondmode:
+  family: "KA Almouzios Martyria"
+  codepoint: 'O'
+  description: "plagal second mode martyria at the top of a score"
+gravemode:
+  family: "KA Almouzios Martyria"
+  codepoint: 'P'
+  description: "grave mode martyria at the top of a score"
+plfourthmode:
+  family: "KA Almouzios Martyria"
+  codepoint: '{'
+  description: "plagal fourth martyria at the top of a score"
+# KA Almouzios Chronos:
+argoU:
+  family: "KA Almouzios Chronos"
+  codepoint: ','
+hemiU:
+  family: "KA Almouzios Chronos"
+  codepoint: '.'
+diargU:
+  family: "KA Almouzios Chronos"
+  codepoint: '/'
+dotdigoU:
+  family: "KA Almouzios Chronos"
+  codepoint: 'A'
+dotgorgU2L:
+  family: "KA Almouzios Chronos"
+  codepoint: 'B'
+dotgorgD:
+  family: "KA Almouzios Chronos"
+  codepoint: 'C'
+dotdigoD:
+  family: "KA Almouzios Chronos"
+  codepoint: 'D'
+dottrigD:
+  family: "KA Almouzios Chronos"
+  codepoint: 'E'
+dotdigoUR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'F'
+dotdigoU2L:
+  family: "KA Almouzios Chronos"
+  codepoint: 'G'
+dotdigoDR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'H'
+dotdigoU2R:
+  family: "KA Almouzios Chronos"
+  codepoint: 'J'
+dotgorgU2R:
+  family: "KA Almouzios Chronos"
+  codepoint: 'M'
+dotgorgDR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'N'
+dottrigU:
+  family: "KA Almouzios Chronos"
+  codepoint: 'Q'
+dottrigUR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'R'
+dotdigoU2:
+  family: "KA Almouzios Chronos"
+  codepoint: 'S'
+dottrigU2L:
+  family: "KA Almouzios Chronos"
+  codepoint: 'T'
+dottrigU2R:
+  family: "KA Almouzios Chronos"
+  codepoint: 'U'
+dotgorgUR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'V'
+dottrigU2:
+  family: "KA Almouzios Chronos"
+  codepoint: 'W'
+dotgorgU2:
+  family: "KA Almouzios Chronos"
+  codepoint: 'X'
+dottrigDR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'Y'
+dotgorgU:
+  family: "KA Almouzios Chronos"
+  codepoint: 'Z'
+coroU:
+  family: "KA Almouzios Chronos"
+  codepoint: '\'
+coroUR:
+  family: "KA Almouzios Chronos"
+  codepoint: '?'
+digoU:
+  family: "KA Almouzios Chronos"
+  codepoint: 'a'
+gorgU2L:
+  family: "KA Almouzios Chronos"
+  codepoint: 'b'
+gorgD:
+  family: "KA Almouzios Chronos"
+  codepoint: 'c'
+digoD:
+  family: "KA Almouzios Chronos"
+  codepoint: 'd'
+trigD:
+  family: "KA Almouzios Chronos"
+  codepoint: 'e'
+digoUR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'f'
+digoU2L:
+  family: "KA Almouzios Chronos"
+  codepoint: 'g'
+digoDR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'h'
+digoU2R:
+  family: "KA Almouzios Chronos"
+  codepoint: 'j'
+gorgU2R:
+  family: "KA Almouzios Chronos"
+  codepoint: 'm'
+gorgDR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'n'
+trigU:
+  family: "KA Almouzios Chronos"
+  codepoint: 'q'
+trigUR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'r'
+digoU2:
+  family: "KA Almouzios Chronos"
+  codepoint: 's'
+trigU2L:
+  family: "KA Almouzios Chronos"
+  codepoint: 't'
+trigU2R:
+  family: "KA Almouzios Chronos"
+  codepoint: 'u'
+gorgUR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'v'
+trigU2:
+  family: "KA Almouzios Chronos"
+  codepoint: 'w'
+gorgU2:
+  family: "KA Almouzios Chronos"
+  codepoint: 'x'
+trigDR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'y'
+gorgU:
+  family: "KA Almouzios Chronos"
+  codepoint: 'z'
+hyfeU:
+  family: "KA Almouzios Chronos"
+  codepoint: '|'
+digodotU:
+  family: "KA Almouzios Chronos"
+  codepoint: 'å'
+gorgdotU2L:
+  family: "KA Almouzios Chronos"
+  codepoint: '∫'
+gorgdotD:
+  family: "KA Almouzios Chronos"
+  codepoint: 'ç'
+digodotD:
+  family: "KA Almouzios Chronos"
+  codepoint: '∂'
+trigdotD:
+  family: "KA Almouzios Chronos"
+  codepoint: '´'
+digodotUR:
+  family: "KA Almouzios Chronos"
+  codepoint: 'ƒ'
+digodotU2L:
+  family: "KA Almouzios Chronos"
+  codepoint: '©'
+digodotDR:
+  family: "KA Almouzios Chronos"
+  codepoint: '˙'
+digodotU2R:
+  family: "KA Almouzios Chronos"
+  codepoint: '∆'
+gorgdotU2R:
+  family: "KA Almouzios Chronos"
+  codepoint: 'µ'
+gorgdotDR:
+  family: "KA Almouzios Chronos"
+  codepoint: '˜'
+trigdotU:
+  family: "KA Almouzios Chronos"
+  codepoint: 'œ'
+trigdotUR:
+  family: "KA Almouzios Chronos"
+  codepoint: '®'
+digodotU2:
+  family: "KA Almouzios Chronos"
+  codepoint: 'ß'
+trigdotU2L:
+  family: "KA Almouzios Chronos"
+  codepoint: '†'
+trigdotU2R:
+  family: "KA Almouzios Chronos"
+  codepoint: '¨'
+gorgdotUR:
+  family: "KA Almouzios Chronos"
+  codepoint: '√'
+trigdotU2:
+  family: "KA Almouzios Chronos"
+  codepoint: '∑'
+gorgdotU2:
+  family: "KA Almouzios Chronos"
+  codepoint: '≈'
+trigdotDR:
+  family: "KA Almouzios Chronos"
+  codepoint: '¥'
+gorgdotU:
+  family: "KA Almouzios Chronos"
+  codepoint: 'Ω'
+# KA Almouzios Fthora:
+flatU:
+  family: "KA Almouzios Fthora"
+  codepoint: '-'
+flatU2R2:
+  family: "KA Almouzios Fthora"
+  codepoint: '_'
+flat1U:
+  family: "KA Almouzios Fthora"
+  codepoint: '['
+flat1U2R2:
+  family: "KA Almouzios Fthora"
+  codepoint: '{'
+flat2U:
+  family: "KA Almouzios Fthora"
+  codepoint: ';'
+flat2U2R2:
+  family: "KA Almouzios Fthora"
+  codepoint: ':'
+permflatU:
+  family: "KA Almouzios Fthora"
+  codepoint: ','
+permflatD:
+  family: "KA Almouzios Fthora"
+  codepoint: '<'
+sharpD:
+  family: "KA Almouzios Fthora"
+  codepoint: '='
+sharpDR:
+  family: "KA Almouzios Fthora"
+  codepoint: '+'
+sharp1D:
+  family: "KA Almouzios Fthora"
+  codepoint: ']'
+sharp1DR:
+  family: "KA Almouzios Fthora"
+  codepoint: '}'
+sharp2D:
+  family: "KA Almouzios Fthora"
+  codepoint: "'"
+sharp2DR:
+  family: "KA Almouzios Fthora"
+  codepoint: '"'
+sharpD2:
+  family: "KA Almouzios Fthora"
+  codepoint: '≠'
+permsharpU:
+  family: "KA Almouzios Fthora"
+  codepoint: '.'
+permsharpD:
+  family: "KA Almouzios Fthora"
+  codepoint: '>'
+indpaUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '!'
+indbouUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '@'
+indgaUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '#'
+inddiUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '$'
+indkeUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '%'
+indzoUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '^'
+indneUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '&'
+indpaUL:
+  family: "KA Almouzios Fthora"
+  codepoint: '1'
+indbouUL:
+  family: "KA Almouzios Fthora"
+  codepoint: '2'
+indgaUL:
+  family: "KA Almouzios Fthora"
+  codepoint: '3'
+inddiUL:
+  family: "KA Almouzios Fthora"
+  codepoint: '4'
+indkeUL:
+  family: "KA Almouzios Fthora"
+  codepoint: '5'
+indzoUL:
+  family: "KA Almouzios Fthora"
+  codepoint: '6'
+indneUL:
+  family: "KA Almouzios Fthora"
+  codepoint: '7'
+fdpaU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'q'
+fdpaUR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'œ'
+fdpaDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'Q'
+fdbouU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'w'
+fdbouUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '∑'
+fdbouDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'W'
+fdgaU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'e'
+fdgaUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '´'
+fdgaDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'E'
+fddiU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'r'
+fddiUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '®'
+fddiDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'R'
+fdkeU:
+  family: "KA Almouzios Fthora"
+  codepoint: 't'
+fdkeUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '†'
+fdkeDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'T'
+fdzoU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'y'
+fdzoUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '¥'
+fdzoDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'Y'
+fdneU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'i'
+fdneUR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'ˆ'
+fdneDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'I'
+fdhineU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'u'
+fdhineUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '¨'
+fdhineDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'U'
+fhcpaU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'a'
+fhcpaUR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'å'
+fhcpaDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'A'
+fnenaU:
+  family: "KA Almouzios Fthora"
+  codepoint: 's'
+fnenaUR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'ß'
+fnenaDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'S'
+fscdiU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'd'
+fscdiUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '∂'
+fscdiDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'D'
+fscnenaU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'f'
+fscnenaUR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'ƒ'
+fscnenaDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'F'
+fzygosU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'g'
+fzygosUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '©'
+fzygosDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'G'
+fklitonU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'h'
+fklitonUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '˙'
+fklitonDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'H'
+fspathiU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'j'
+fspathiUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '∆'
+fspathiDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'J'
+fajemU:
+  family: "KA Almouzios Fthora"
+  codepoint: 'k'
+fajemUR:
+  family: "KA Almouzios Fthora"
+  codepoint: '˚'
+fajemDR:
+  family: "KA Almouzios Fthora"
+  codepoint: 'K'

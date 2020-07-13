@@ -1,0 +1,534 @@
+family_name:
+  KA Almouzios
+
+# Neumes that can take a lyric below them
+takes_lyric:
+  - olig_apelUL_ken2UR
+  - peta_apelU
+  - peta_chamU_chamU2
+  - apos_apos
+  - peta_aposU_chamU2_chamU3
+  - ison_apos
+  - peta_aposU
+  - peta_chamU
+  - peta_aposU_chamU2
+  - peta_apelU_chamU2
+  - olig_syneUL_ken2UR
+  - peta_elafU
+  - olig_aposUL_ken2UR
+  - peta_elafU_chamU2
+  - olig_ken2U
+  - olig_chamUL_ken2UR
+  - olig_elafUL_ken2UR
+  - peta_kentU
+  - peta_hypsUL_hypsUR
+  - peta_kentU_hypsUR_hypsU2
+  - peta_isonU
+  - peta
+  - peta_hypsUR
+  - peta_hypsUL
+  - peta_kentU_hypsU2
+  - olig_hypoUL_ken2UR
+  - peta_oligU
+  - olig_isonUL_ken2UR
+  - peta_kentU_hypsUR
+  - olig_ken2DR
+  - spec-olig-ken2D
+  - olig_kentDR
+  - ison
+  - olig
+  - spec-olig-kentD
+  - olig_ken2D
+  - olig_kentU
+  - olig_hypsUR
+  - olig_hypsUL
+  - olig_kentU_hypsUR
+  - olig_kentU_hypsU2
+  - olig_hypsUL_hypsUR
+  - olig_kentU_hypsUR_hypsU2
+  - apos
+  - elaf
+  - apel
+  - cham
+  - apos_chamU
+  - elaf_chamU
+  - apel_chamU
+  - cham_chamU
+  - apos_chamU_chamU2
+  - peta_hypoU
+  - syne
+  - hypo
+  - ken2
+  - olig_ken2U_hypsUR
+  - olig_hypsUL_ken2U
+  - olig_ken2U_hypsUR_hypsU2
+  - olig_hypsUL_kentU_hypsU2
+  - olig_hypsUL_hypsU_hypsUR
+  - olig_hypsUL_ken2U_hypsUR_hypsU2
+  - olig_hypsUL_ken1U_hypsUR_hypsU2
+  - olig_isonU
+  - olig_aposU
+  - olig_petaU
+  - olig_apelU
+  - olig_hypoU
+  - olig_chamU
+  - peta_hypoU
+  - peta_syneU
+
+# Neumes that can be a base neume
+standalone:
+  - olig_apelUL_ken2UR
+  - peta_apelU
+  - peta_chamU_chamU2
+  - apos_apos
+  - peta_aposU_chamU2_chamU3
+  - ison_apos
+  - peta_aposU
+  - peta_chamU
+  - peta_aposU_chamU2
+  - peta_apelU_chamU2
+  - olig_syneUL_ken2UR
+  - peta_elafU
+  - olig_aposUL_ken2UR
+  - peta_elafU_chamU2
+  - olig_ken2U
+  - olig_chamUL_ken2UR
+  - olig_elafUL_ken2UR
+  - peta_kentU
+  - peta_hypsUL_hypsUR
+  - peta_kentU_hypsUR_hypsU2
+  - peta_isonU
+  - peta
+  - peta_hypsUR
+  - peta_hypsUL
+  - peta_kentU_hypsU2
+  - olig_hypoUL_ken2UR
+  - peta_oligU
+  - olig_isonUL_ken2UR
+  - peta_kentU_hypsUR
+  - olig_ken2DR
+  - spec-olig-ken2D
+  - olig_kentDR
+  - ison
+  - olig
+  - spec-olig-kentD
+  - olig_ken2D
+  - olig_kentU
+  - olig_hypsUR
+  - olig_hypsUL
+  - olig_kentU_hypsUR
+  - olig_kentU_hypsU2
+  - olig_hypsUL_hypsUR
+  - olig_kentU_hypsUR_hypsU2
+  - apos
+  - elaf
+  - apel
+  - cham
+  - apos_chamU
+  - elaf_chamU
+  - apel_chamU
+  - cham_chamU
+  - apos_chamU_chamU2
+  - peta_hypoU
+  - syne
+  - hypo
+  - ken2
+  - stav
+  - brea
+  - res1
+  - res2
+  - res3
+  - res4
+  - resh
+  - vare
+  - barl
+  - olig_ken2U_hypsUR
+  - olig_hypsUL_ken2U
+  - olig_ken2U_hypsUR_hypsU2
+  - olig_hypsUL_kentU_hypsU2
+  - olig_hypsUL_hypsU_hypsUR
+  - olig_hypsUL_ken2U_hypsUR_hypsU2
+  - olig_hypsUL_ken1U_hypsUR_hypsU2
+  - olig_isonU
+  - olig_aposU
+  - olig_petaU
+  - olig_apelU
+  - olig_hypoU
+  - olig_chamU
+  - peta_hypoU
+  - peta_syneU
+  - mpa
+  - mbou
+  - mga
+  - mdi
+  - mke
+  - mzo
+  - mne
+  - malfa
+  - mlamd
+  - mnana
+  - mdeltapo
+  - malfaapo
+  - mhypo
+  - mdelt
+  - mbeta
+  - mscnena
+  - mbetaapo
+  - mnena
+  - mzygos
+  - mkliton
+  - mspathi
+  - chi_tetgU
+  - chi_diarU
+  - chi_hemeU
+  - chi_argoU
+  - chi_gargU
+  - chi_gorgU
+  - chi_tetrU
+
+# These neumes should kept together with the neume that comes after it
+# (if insufficient space, a line break should occur before this neume).
+# Ex: vareia
+keep_with_next:
+  - vare
+
+# Used primarily for lyric centering under syneches elaphron. If not specified,
+# Kassia will attempt to calculate apostrophos width.
+# Positive values are for moving lyrics to the right.
+# Value will be multiplied by neume font size
+lyric_offsets:
+  syne: 0.792
+
+# Sharps, flats, and fthores. These can all be colored red.
+accidentals:
+  - flatU
+  - flatU2R2
+  - flat1U
+  - flat1U2R2
+  - flat2U
+  - flat2U2R2
+  - sharpD
+  - sharpDR
+  - sharpD2
+  - sharp1D
+  - sharp1DR
+  - sharp2D
+  - sharp2DR
+
+# Martyriae that are meant to be stacked.
+martyriae:
+  - mprim
+  - mpa
+  - mbou
+  - mga
+  - mdi
+  - mke
+  - mzo
+  - mne
+  - mprimU
+  - mpaU
+  - mbouU
+  - mgaU
+  - mdiU
+  - mkeU
+  - mzoU
+  - mneU
+  - malfa
+  - mlamd
+  - mnana
+  - mdeltapo
+  - malfaapo
+  - mhypo
+  - mdelt
+  - malfaU
+  - mlamdU
+  - mnanaU
+  - mdeltapoU
+  - malfaapoU
+  - mhypoU
+  - mdeltU
+  - mbeta
+  - mscnena
+  - mbetaapo
+  - mnena
+  - mzygos
+  - mkliton
+  - mspathi
+
+tempo_markings:
+  - chitria
+  - chidiar
+  - chihemi
+  - chiargo
+  - chigarg
+  - chigorg
+  - chidigo
+  - chitrig
+  - chitriaU
+  - chidiarU
+  - chihemiU
+  - chiargoU
+  - chigargU
+  - chigorgU
+  - chitrigU
+
+rests:
+  - res1
+  - res2
+  - res3
+  - res4
+  - resh
+
+# Optional ligatures that can be turned on or off.
+# There is currently no logic to turn this off.
+optional_ligatures:
+  apos_apos:
+    component_glyphs:
+      - apos
+      - apos
+  ison_apos:
+    component_glyphs:
+      - ison
+      - apos
+
+# Special glyphs that are applied only if certain conditions are met (base neume matches, component glyphs follow, etc
+# base_neume: possible base neumes for condition to be met
+# component_glyphs: glyphs that must follow base for condition to be met
+# replace_glyph: glyph to be replaced
+# draw_glyph: glyph to draw in place of the 'replace_glyph'
+conditional_neumes:
+  spec-hypo-haplD:
+    base_neume:
+      - hypo
+    component_glyphs:
+      - diplD
+    replace_glyph:
+      diplD
+    draw_glyph:
+      spec-apos-diplD
+  spec-apos-diplD:
+    base_neume:
+      - apos
+    component_glyphs:
+      - diplD
+    replace_glyph:
+      diplD
+    draw_glyph:
+      spec-apos-diplD
+  spec-elaf-diplD:
+    base_neume:
+      - elaf
+    component_glyphs:
+      - diplD
+    replace_glyph:
+      diplD
+    draw_glyph:
+      spec-elaf-diplD
+  spec-apos-tripD:
+    base_neume:
+      - apos
+    component_glyphs:
+      - tripD
+    replace_glyph:
+      tripD
+    draw_glyph:
+      spec-apos-tripD
+  spec-apos-tetrD:
+    base_neume:
+      - apos
+    component_glyphs:
+      - tetrD
+    replace_glyph:
+      tetrD
+    draw_glyph:
+      spec-apos-tetrD
+  spec-apos-antiD-haplD:
+    base_neume:
+      - apos
+    component_glyphs:
+      - antiD_haplD
+    replace_glyph:
+      antiD_haplD
+    draw_glyph:
+      spec-apos-antiD-haplD
+  spec-peta-antiD-haplD:
+    base_neume:
+      - peta
+    component_glyphs:
+      - antiD_haplD
+    replace_glyph:
+      antiD_haplD
+    draw_glyph:
+      spec-peta-antiD-haplD
+  spec-apos-klasU:
+    base_neume:
+      - apos
+    component_glyphs:
+      - klasU
+    replace_glyph:
+      klasU
+    draw_glyph:
+      spec-apos-klasU
+  spec-ison-klasU:
+    base_neume:
+      - ison
+      - hame
+    component_glyphs:
+      - klasU
+    replace_glyph:
+      klasU
+    draw_glyph:
+      spec-ison-klasU
+  spec-olig-kent-klasU:
+    base_neume:
+      - olig
+    component_glyphs:
+      - kent_klasU
+    replace_glyph:
+      kent_klasU
+    draw_glyph:
+      klasU_kent
+  spec-peta-klasD:
+    base_neume:
+      - peta
+    component_glyphs:
+      - klasD
+      - isonU_klasD
+      - oligU_klasD
+      - kentU_klasD
+      - hypsUL_klasD
+      - hypsUR_klasD
+      - kentU_hypsUR_klasD
+      - kentU_hypsU2_klasD
+      - hypsUL_hypsUR_klasD
+      - kentU_hypsUR_hypsU2_klasD
+      - aposU_klasD
+      - elafU_klasD
+      - apelU_klasD
+      - chamU_klasD
+      - aposU_chamU2_klasD
+      - elafU_chamU2_klasD
+      - apelU_chamU2_klasD
+      - chamU_chamU2_klasD
+      - aposU_chamU2_chamU3_klasD
+      - hypoU_klasD
+      - syneU_klasD
+    replace_glyph:
+      klasD
+    draw_glyph:
+      spec-peta-klasD
+  spec-elaf-klasU:
+    base_neume:
+      - elaf
+      - syne
+      - apel
+    component_glyphs:
+      - klasU
+    replace_glyph:
+      klasU
+    draw_glyph:
+      spec-elaf-klasU
+  spec-klasD-psefD2:
+    base_neume:
+      - peta
+    component_glyphs:
+      - klasD_psefD2
+    replace_glyph:
+      klasD_psefD2
+    draw_glyph:
+      spec-klasD-psefD2
+  spec-antiD-haplD:
+    base_neume:
+      - ison
+      - olig
+    component_glyphs:
+      - antiD_haplD
+    replace_glyph:
+      antiD_haplD
+    draw_glyph:
+      spec-antiD-haplD
+  spec-antiD2-haplD2:
+    base_neume:
+      - olig
+    component_glyphs:
+      - kentDR_antiD2_haplD2
+      - ken2DR_antiD2_haplD2
+    replace_glyph:
+      antiD2_haplD2
+    draw_glyph:
+      spec-antiD2-haplD2
+  spec-olig-ken2D:
+    base_neume:
+      - olig
+    component_glyphs:
+      - ken2DR_psefD2
+    replace_glyph:
+      olig_ken2DR
+    draw_glyph:
+      spec-olig-ken2D
+  spec-olig-kentD:
+    base_neume:
+      - olig
+    component_glyphs:
+      - kentDR_psefD2
+      - kentDR_psefD2_klasU
+    replace_glyph:
+      olig_kentDR
+    draw_glyph:
+      spec-olig-kentD
+  spec-peta-heteD:
+    base_neume:
+      - peta
+    component_glyphs:
+      - heteD
+    replace_glyph:
+      heteD
+    draw_glyph:
+      spec-peta-heteD
+  spec-diplD-heteD:
+    base_neume:
+      - olig
+      - ison
+      - peta
+    component_glyphs:
+      - heteD
+    replace_glyph:
+      heteD
+    draw_glyph:
+      spec-diplD-heteD
+  spec-olig-aposU-klasU2:
+    base_neume:
+      - olig
+    component_glyphs:
+      - aposU_klasU2
+    replace_glyph:
+      klasU2
+    draw_glyph:
+      spec-olig-aposU-klasU2
+  spec-syne-barlU:
+    base_neume:
+      - syne
+    component_glyphs:
+      - barlU
+    replace_glyph:
+      barlU
+    draw_glyph:
+      spec-syne-barlU
+  spec-olig-barlU:
+    base_neume:
+      - olig
+    component_glyphs:
+      - ken2D
+    replace_glyph:
+      barlU
+    draw_glyph:
+      spec-olig-barlU
+  spec-klasD-psefD:
+    base_neume:
+      - olig
+    component_glyphs:
+      - klasD_psefD
+    replace_glyph:
+      klasD_psefD
+    draw_glyph:
+      spec-klasD-psefD
