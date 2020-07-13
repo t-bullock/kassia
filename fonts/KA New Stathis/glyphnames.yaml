@@ -12,7 +12,7 @@ spec-olig-kentD:
   codepoint: '2'
   component_glyphs:
     - olig
-    - ken2
+    - kent
   description: "olig_kentDR when psefeston will be placed underneath"
 olig_kentU:
   family: "KA New Stathis Main"
