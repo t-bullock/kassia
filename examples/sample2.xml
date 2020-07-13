@@ -1,0 +1,1011 @@
+<bnml>
+    <identification>
+        <work-title>Ἀναστασιματάριον</work-title>
+        <author>Δανιήλ Πρωτοψάλτου</author>
+    </identification>
+    <defaults>
+        <page-layout>
+            <paper-size>letter</paper-size>
+            <page-margins top_margin="60" bottom_margin="50" left_margin="60" right_margin="60" />
+        </page-layout>
+        <styles>
+            <title font_family="EB Garamond-Medium" font_size="30" align="center" space_after="16" />
+            <subtitle />
+            <heading1 font_family="EB Garamond-Regular" font_size="16" align="center" />
+            <heading2 font_family="EB Garamond-Medium" font_size="14" align="center" space_after="15" />
+            <heading3 font_family="EB Garamond-Italic" font_size="16" align="right" space_before="15" />
+            <heading4 font_family="EB Garamond-Italic" font_size="16" align="center" space_before="30" />
+            <paragraph />
+            <verse font_family="EB Garamond-Regular" font_size="16" align="left" first_line_indent="20" space_after="15" leading="17" space_before="30" />
+            <neumes font_family="KA Almouzios Main" font_size="30" align="left" word_spacing="4" leading="60" />
+            <lyrics font_family="EB Garamond-Medium" font_size="16" space_before="26" />
+            <dropcapeta_isonU font_family="Gentium Plus-Regular" font_size="50" />
+            <header font_family="EB Garamond-Bold" font_size="14" align="center" />
+            <footer font_family="EB Garamond-Bold" font_size="14" align="center" />
+        </styles>
+    </defaults>
+
+    <header-odd>
+        ΑΝΑΣΤΑΣΙΜΑΤΑΡΙΟΝ ΣΥΝΤΟΜΟΝ
+    </header-odd>
+    <header-even>
+        ΕΣΠΕΡΙΝΟΣ — ΗΧΟΣ ΒΑΡΥΣ
+    </header-even>
+
+    <footer>
+        <page-number align="center" />
+    </footer>
+
+    <paragraph style="title">
+        Ἀναστασιματάριον Σύντομον
+    </paragraph>
+
+    <paragraph style="h1">
+        Ἑσπερινός
+    </paragraph>
+
+    <paragraph style="h2">
+        Ἦχος
+        <font font_family="KA Almouzios Martyria" font_size="30">P</font>
+        Ζω
+        <font font_family="KA Almouzios Main" font_size="25">4</font>
+    </paragraph>
+
+    <paragraph style="h3">
+        τοῦ Δανιήλ Πρωτοψάλτου
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            peta_kentU_hypsUR apos ison olig olig_psefD
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos apos peta apos peta_isonU apos olig_ken2U ison apos olig ison peta_isonU apos ison_psefD apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            peta_hypsUR apos ison olig olig_psefD
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos apos peta apos peta_isonU apos olig_ken2U ison_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos apos_klasU apos olig ison elaf olig_ken2U elaf_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            olig_kent ison olig olig olig ison apos apos apos ison peta_isonU apos olig_kent ison apos apos apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Κ
+        </dropcap>
+        <lyrics>
+            Κυ ρι ε Ε κε κρα ξα προς σε
+            ει σα κου σον μου
+            ει σα κου σον μου Κυ ρι ε
+            Κυ ρι ε Ε κε κρα ξα προς σε
+            ει σα κου σον μου
+            προ σχες τη φω νη της δε η σε ως μου
+            εν τω κε κρα γε ναι με προς σε
+            Ει σα κου σον μου Κυ ρι ε
+        </lyrics>
+    </troparion>
+
+    <troparion>
+        <neumes>
+            olig_hypsUL ison ison olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos apos apos ison apos olig_ken2U ison_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            ison apos olig_psefD apos apos olig ison elaf olig_ken2U elaf_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig_ken2U_hypsUR
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos apos apos ison apos olig_ken2U ison apos olig_isonUL_ken2UR_psefD apos syne olig olig peta apos peta apos syne apos olig_ken2U vare apos_apos vare ison apos_haplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Κ
+        </dropcap>
+        <lyrics>
+            Κα τευ θυν θη η τω η προ σευ χη μου
+            ως θυ μι α μα ε νω πι ον σου
+            ε ε παρ σις των χει ρων μου
+            θυ σι α ε σπε ρι νη
+            Ει σα κου σον μου Κυ ρι ε ε
+        </lyrics>
+    </troparion>
+
+    <paragraph style="h3">
+        τοῦ Γεωργίου τοῦ Κρητός
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_hypsUL_klasD peta_klasD apos apos olig olig peta apos olig_kent ison apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            olig peta_klasD
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos apos apos olig_psefD apos apos apos olig_psefD apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Θ
+        </dropcap>
+        <lyrics>
+            Θου Κυ ρι ε φυ λα κην τω στο μα τι ι μου
+            και θυ ραν πε ρι ο χης πε ρι τα χει λη μου
+        </lyrics>
+    </troparion>
+
+    <paragraph style="h3">
+        τοῦ Δανιήλ Πρωτοψάλτου
+    </paragraph>
+
+    <paragraph style="verse">
+        Στιχ. Ἐξάγαγε ἐκ φυλακῆς τὴν ψυχήν μου, τοῦ ἐξομολογήσασθαι τῷ ὀνόματί σου.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            peta_kentU_hypsUR apos ison ison ison ison vare apos_apos olig olig elaf olig ison ken2 ison_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            ison olig olig_psefD apos apos syne olig_ken2U ison apos ison_psefD apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison olig peta_oligU apos syne ison peta_klasD apos syne olig_ken2U elaf_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            olig_hypsUL olig ison ison ison vare ison_apos olig ken2 
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apos ison apos olig_kentDR_psefD2 apos apos apos vare ison_apos olig olig olig_psefD apos vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Δ
+        </dropcap>
+        <lyrics>
+            Δευ τε α γαλ λι α σω με θα τω Κυ ρι ι ω
+            τω συν τρι ψαν τι θα να του το κρα α τος
+            και φω τι σαν τι αν θρω πων το γε νος
+            με τα των Α σω μα τω ων κραυ γα ζον τες
+            Δη μι ουρ γε ε και Σω τηρ η μων δο ο ξα σοι οι
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ἐμὲ ὑπομενοῦσι δίκαιοι, ἕως οὐ ἀνταποδῷς μοι.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_hypsUL peta apos ison_psefD apos apos olig olig_klasU apos ison vare apos_apos olig olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            ison olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos apos apos apos olig olig_klasU peta_isonU apos syne olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            olig_hypsUR olig elaf olig olig_ken2U ison_klasU apos ison olig_psefD apos vare apos_apos olig olig peta_isonU apos syne_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            vare apos_apos olig olig peta_klasD vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Σ
+        </dropcap>
+        <lyrics>
+            Σταυ ρον υ πε μει νας Σω τηρ
+            και τα φην δι η μας
+            θα να α τω δε ως Θε ος
+            θα να τον ε νε κρω σας
+            δι ο προ σκυ νου μεν την τρι η με ρον σου α να στα σιν
+            Κυ ρι ε δο ξα σοι οι
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ἐκ βαθέων ἐκέκραξά σοι, Κύριε. Κύριε, εἰσάκουσον τῆς φωνῆς μου.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_hypsUL olig_psefD apos apos apos olig_ken2U ison olig olig_kentDR_psefD2 apos apos apos ison apos apos olig olig ison olig_kentDR_psefD2
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos olig olig_kentDR_psefD2 apos apos apos olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos apos apos apos apos olig olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            peta apos syne olig_psefD apos apos apos olig_psefD syne olig_ken2U elaf_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            peta_kentU_hypsUR apos ison vare apos_apos olig olig elaf olig ison ken2 ison_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apos olig olig_psefD apos apos apos apos_klasU vare apos_apos olig olig peta_klasD vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Α
+        </dropcap>
+        <lyrics>
+            Α πο στο λοι ι δον τες την Ε ε γερ σιν του Δη μι ουρ γου
+            ε θαυ μα σαν βο ω ων τες την αι αι νε σιν την Αγ γε λι κην
+            Αυ τη η δο ο ξα της Εκ κλη σι ας
+            ου τος ο πλου τος της Βα σι λει ει ας
+            ο πα θω ων δι η μας Κυ ρι ε δο ξα σοι οι
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Γενηθήτω τὰ ὦτά σου προσέχοντα εἰς τὴν φωνὴν τῆς δεήσεώς μου.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_kentU_hypsUR_klasD apos olig olig_kentDR_psefD2 apos apos apos peta apos ison apos olig_psefD apos apos olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apos olig peta apos olig_psefD apos apos apos olig olig peta_isonU apos syne_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison ison olig_ken2U_hypsUR
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos apos apos peta apos peta_isonU apos olig_ken2U ison apos peta_klasD apos syne olig_kentDR_psefD2 apos apos syne olig_ken2U elaf_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            olig_hypsUL ison vare apos_apos olig olig elaf olig ison ken2 ison
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apos olig_psefD apos apos olig_ken2U ison apos ison_psefD apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison ison olig_kentU ken2 ison apos olig ken2 
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos olig_psefD apos vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Κ
+        </dropcap>
+        <lyrics>
+            Καν συ νε λη η φθης Χρι στε
+            υ πο α νο ο μων αν δρων
+            αλ λα συ μου ει Θε ος και ουκ αι σχυ νο μαι
+            ε μα στι ι χθης τον νω τον ουκ αρ νου μαι
+            Σταυ ρω προ ση λω θης και ου κρυ πτω
+            εις την Ε γερ σιν σου καυ χω ω μαι
+            ο γαρ θα να τος σου ζω η η μου
+            Παν το δυ υ να με και αι φι λαν θρω πε
+            Κυ υ ρι ε δο ο ξα σοι οι
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ἐὰν ἀνομίας παρατηρήσῃς, Κύριε Κύριε, τίς ὑποστήσεται; Ὅτι παρὰ σοὶ ὁ ἱλασμός ἐστιν.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_hypsUL ison ison olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos apos apos olig_psefD apos apos apos olig olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apos olig olig olig_psefD
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos ison apos olig_psefD apos apos olig_ken2U ison_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            ison apos olig_ken2U_psefD apos apos ison_psefD apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig olig peta apos olig elaf olig peta apos ison apos olig elaf olig olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            ison apos peta_klasD apos syne olig_kentDR_psefD2 apos apos syne olig_ken2U elaf_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            peta_kentU_hypsUR apos ison apos olig_psefD apos apos olig ison ken2 ison_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            olig_kentU_psefD apos apos apos ison_klasU apos apos olig olig ison apos ison_psefD apos apos
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison olig_kent olig peta apos olig ken2 
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apel olig olig olig_ken2U apos ison ison apos peta apos ison apos olig_psefD apos vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Δ
+        </dropcap>
+        <lyrics>
+            Δαυ ι τι κη ην προ φη τει αν εκ πλη ρων Χρι στος
+            με γα λει ο τη τα εν Σι ων την οι κει αν
+            Μα θη ταις ε ξε κα λυ ψεν
+            αι νε τον δει κνυς ε αυ τον και δο ξα ζο με νον α ει
+            συν Πα τρι τε και Πνευ μα τι α γι ω
+            προ τε ρον μεν α σαρ κον ως Λο ο γον
+            υ υ στε ρον δε δι η μας σε σαρ κω με ε νον
+            και νε κρω θε εν τα α ως αν θρω πον
+            και α να σταν τα κατ ε ξου σι αν ως φι λα αν θρω πο ον
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ἕνεκεν τοῦ ὀνόματός σου ὑπέμεινά σε, Κύριε, ὑπέμεινεν ἡ ψυχή μου εἰς τὸν λόγον σου. Ἤλπισεν ἡ ψυχή μου ἐπὶ τὸν Κύριον.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_hypsUL olig_psefD apos apos olig olig_psefD apos apos apos olig_kentDR_psefD2 apos apos olig ison ken2 ison ison olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            elaf olig ken2 
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apel ison olig_psefD apos apos apos peta apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            olig_hypsUR olig peta apos olig ken2
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apos ison apos olig elaf olig olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apos olig olig olig_kentDR_psefD2 apos apos apos ison_psefD apos apos olig olig olig olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            elaf olig ken2
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            olig_kentU_psefD apos apos apos apos olig olig_psefD apos apos olig_psefD apos apos olig_psefD apos vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Κ
+        </dropcap>
+        <lyrics>
+            Κα τηλ θες εν τω Α α δη Χρι στε ως η βου λη η θης
+            ε σκυ λευ σα ας τον θα να τον
+            ως Θε ο ος και Δε σπο της
+            και α νε ε στη ης τρι η με ρος
+            συ να να στη σας τον Α δαμ
+            εκ των του Α α δου δε σμων και της φθο ρας κραυ γα ζον τα α και λε γον τα
+            Δο ο ξα τη Α να στα σει σου μο νε φι λα αν θρω πε ε
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ἀπὸ φυλακῆς πρωΐας μέχρι νυκτός· ἀπὸ φυλακῆς πρωΐας ἐλπισάτω Ἰσραὴλ ἐπὶ τὸν Κύριον.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_hypsUL peta apos ison olig olig_kentDR_psefD2 apos apos apos apos apos olig_ken2U peta_isonU apos syne_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig_kent ison peta apos olig ken2
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos ison apos apos olig_ken2U elaf olig ison ken2 ison apos ison apos olig elaf olig olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            ison apos apos olig_ken2U ison apos ison_psefD apos apos apos olig olig olig_psefD apos vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Ε
+        </dropcap>
+        <lyrics>
+            Εν τα φω κα τε τε ε θης ως ο υ πνων Κυ ρι ε
+            και α νε ε στη ης τρι η με ρος ως δυ να τος εν ι σχυ υ ι
+            συ να να στη σας τον Α δαμ
+            εκ της φθο ρας του θα να α του ως παν το δυ υ να μο ος
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ὅτι παρὰ τῷ Κυρίῳ τὸ ἔλεος καὶ πολλὴ παρ' αὐτῷ λύτρωσις. Καὶ αὐτὸς λυτρώσεται τὸν Ἰσραὴλ ἐκ πασῶν τῶν ἀνομιῶν αὐτοῦ.
+    </paragraph>
+    <paragraph style="verse">
+        Στιχ. Αἰνεῖτε τὸν Κύριον, πάντα τὰ ἔθνη, ἐπαινέσατε αὐτόν, πάντες οἱ λαοί.
+    </paragraph>
+    <paragraph style="verse">
+        Στιχ. Ὅτι ἐκραταιώθη τὸ ἔλεος αὐτοῦ ἐφ' ἡμᾶς, καὶ ἡ ἀλήθεια τοῦ Κυρίου μένει εἰς τὸν αἰῶνα.
+    </paragraph>
+
+    <paragraph style="h4">
+        Δόξα. Καὶ νῦν.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            peta_kentU_hypsUR apos ison olig olig_psefD
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos apos peta apos ison apos olig_ken2U ison_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            olig_kentU_psefD apos apos apos apos olig olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos apos_klasU ison apos olig_ken2U_psefD apos apos ison_psefD apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison ison olig_kentU ken2 ison apos olig  elaf olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apos apos olig elaf olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos apos olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            olig_hypsUL olig olig_psefD
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos apos_klasU ison apos ison syne olig olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            ison olig olig_psefD
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos apos olig ison apos apos olig olig peta_isonU apos syne_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig_hypsUR_psefD apos apos olig_psefD apos apos olig olig_klasU elaf olig_psefD apos apos peta apos syne olig_ken2U elaf_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            ison olig_hypsUR ison olig_ken2U ison apos olig ison ison apos olig ken2 
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos ison olig_psefD apos apos syne olig olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            olig_kentDR_psefD2
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos_klasU apos apos olig_psefD apos apos ison peta_klasD vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Μ
+        </dropcap>
+        <lyrics>
+            Μη τηρ μεν ε γνω σθης υ περ φυ σιν Θε ο το κε
+            ε ε μει νας δε παρ θε ε νος
+            υ περ λο γον και εν νοι αν
+            και το θα αυ μα του το κου σου
+            ερ μη νευ σαι γλω ωσ σα ου δυ να ται
+            πα ρα δο ξου γαρ ου ου σης της συλ λη ψε ως Α γνη
+            α κα τα λη πτος ε στιν ο τρο πος της κυ η σε ως
+            ο που γαρ βου λε ται Θε ος
+            νι κα α ται φυ σε ως τα ξις
+            Δι ο σε παν τες Μη τε ρα του Θε ου ου γι νω σκον τες
+            δε ο με θα σου εκ τε νως
+            Πρε σβευ ε του σω θη ναι τας ψυ χας η μω ων
+        </lyrics>
+    </troparion>
+
+    <paragraph style="h1">
+        Ἀπόστιχα
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_hypsUL peta apos ison ison vare apos_apos olig olig olig elaf ison ken2 ison_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            ison olig olig_psefD apos apos apos olig olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos apos apos ison apos olig_ken2U ison peta_isonU apos syne peta_klasD vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Α
+        </dropcap>
+        <lyrics>
+            Α νε στης εκ του τα φου Σω τηρ του κο ο σμου
+            και συ νη γει ρας τους αν θρω ω πους συν τη σαρ κι σου Κυ ρι ε δο ξα σοι οι
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Ὁ Κύριος ἐβασίλευσεν, εὐπρέπειαν ἐνεδύσατο. Ἐνεδύσατο Κύριος δύναμιν καὶ περιεζώσατο.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_hypsUL ison olig olig_psefD
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos ison olig_psefD apos apos olig_psefD apos apos olig_ken2U ison_klasU apos apos olig olig peta_isonU apos syne_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison olig olig peta apos olig_psefD apos apos olig_ken2U ison ison peta apos olig ken2
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apel ison olig olig olig ison apos olig_psefD apos apos olig olig ison ison olig ison vare ison_apos olig ken2
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apos apos olig elaf peta_klasD vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Τ
+        </dropcap>
+        <lyrics>
+            Τον α να σταν τα εκ νε κρων
+            και φω τι σαν τα παν τα
+            δευ τε προ σκυ νη σω μεν
+            εκ της του Α δου γαρ τυ ραν νι δος
+            η μα ας η η λευ θε ρω σε
+            δι α της αυ του τρι η με ρου Ε γερ σε ως
+            ζω ην η μιν δω ω ρη σα με νος
+            και το με γα ε λε ο ος
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Καὶ γὰρ ἐστερέωσε τὴν οἰκουμένην, ἥτις οὐ σαλευθήσεται.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_kent olig olig olig ison apos olig olig elaf peta_klasD apos apos olig olig peta_isonU apos syne_klasU 
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison ison olig_kentU ken2 ison ison elaf olig olig ison vare ison_apos olig ken2
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos ison olig_kentDR_psefD2
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            apos apos ison olig_psefD apos apos olig_psefD apos apos olig olig ison_klasU peta_isonU apos syne ison peta_klasD vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Υ
+        </dropcap>
+        <lyrics>
+            Ὑ πο τον Α δην κα τελ θων Χρι στε θα να τον ε σκυ λευ σας
+            και τρι η η με ρος α να στας η μας συ υ να νε στη σας
+            δο ξα ζον τας την σην παν το δυ να μον Ε γερ σιν
+            Κυ ρι ε φι λαν θρω πε ε
+        </lyrics>
+    </troparion>
+
+    <paragraph style="verse">
+        Στιχ. Τῷ οἴκῳ σου πρέπει ἁγίασμα, Κύριε, εἰς μακρότητα ἡμερῶν.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_hypsUL olig olig_kentDR_psefD2 apos apos apos peta apos ison olig olig
+        </neumes>
+        <neumes color="#bb000e">
+            flatU
+        </neumes>
+        <neumes>
+            elaf olig_psefD apos apos syne olig olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            ison olig olig_kentDR_psefD2 apos apos apos olig_psefD apos apos syne olig olig olig_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            apel ison olig_kentU ken2 ison ison olig_isonUL_ken2UR
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2R
+        </neumes>
+        <neumes>
+            elaf olig ken2
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            olig_kentU_psefD apos apos apos apos olig olig_psefD apos apos peta apos syne peta_klasD vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Φ
+        </dropcap>
+        <lyrics>
+            Φο βε ρο ος ω φθης Κυ ρι ε εν τα φω κει με νος ω ο υ πνων
+            α να α στας δε τρι η με ρος ως δυ να τος
+            τον Α δα αμ συ να νε στη σα ας κραυ γα ζον τα
+            Δο ο ξα τη Α να στα σει σου μο νε φι λαν θρω πε ε
+        </lyrics>
+    </troparion>
+
+    <paragraph style="h4">
+        Δόξα. Καὶ νῦν.
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            olig_kent olig olig olig ison_psefD apos apos olig_ken2U ison peta_isonU_klasD apos syne olig olig olig ison ison apos olig_ken2U_psefD apos apos ison_psefD apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig_kent olig olig_ken2U
+        </neumes>
+        <neumes color="#bb000e">
+            gorgU2
+        </neumes>
+        <neumes>
+            elaf olig ken2
+        </neumes>
+        <neumes color="#bb000e">
+            gorgDR
+        </neumes>
+        <neumes>
+            olig_psefD apos apos apos_klasU
+        </neumes>
+        <neumes color="#bb000e">
+            mdeltapo_mdiU
+        </neumes>
+        <neumes>
+            olig_kentU_psefD apos apos apos olig_psefD apos apos apos olig_ken2U elaf olig ison ken2 ison apos peta apos syne ison peta_klasD vare apos_apos vare ison apos_diplD
+        </neumes>
+        <neumes color="#bb000e">
+            mhypo_mzoU
+        </neumes>
+        <dropcap>
+            Υ
+        </dropcap>
+        <lyrics>
+            Υ πο την σην Δε σποι να σκε πην
+            παν τες οι γη γε νεις
+            προ σπε φευ γο τες βο ω μεν σοι
+            Θε ο το κε η η ελ πις η μων
+            ρυ υ σαι η μα ας εξ α με τρων πται σμα α των
+            και σω σον τας ψυ χας η μω ων
+        </lyrics>
+    </troparion>
+</bnml>

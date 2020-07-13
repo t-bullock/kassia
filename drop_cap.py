@@ -1,7 +1,8 @@
 from reportlab.lib.geomutils import normalizeTRBL
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
-from reportlab.platypus.flowables import Flowable
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.platypus import Flowable
 
 
 class Dropcap(Flowable):
@@ -17,26 +18,28 @@ class Dropcap(Flowable):
     def wrap(self, *args):
         return self.width + self.x_padding, self.height
 
-    def draw(self):
+    def draw(self, canvas: Canvas = None):
+        """This class is overloaded from Flowable's draw function.
+        :param canvas: The canvas. This only gets passed to draw when called by Troparion directly.
+        If a troparion gets split, platypus will treat the dropcap as a Flowable and call draw without
+        any parameters.
+        """
+        if not canvas:
+            canvas = self.canv
+
         if not self.text:
             return
 
-        self._draw_background()
+        self._draw_background(canvas)
 
-        canvas = self.canv
         canvas.setFillColor(self.style.textColor)
         canvas.setFont(self.style.fontName, self.style.fontSize)
-
-        # Use this to bypass possibly unnecessary string stuff
-        # tx = canvas.beginText(text=self.text)
-        # canvas.drawText(tx)
         canvas.drawString(0, 0, self.text)
 
-    def _draw_background(self):
+    def _draw_background(self, canvas):
         """
         Draws a dropcap background. Logic copied from drawPara() method in Paragraph class.
         """
-        canvas = self.canv
         style = self.style
         left_indent = style.leftIndent
 

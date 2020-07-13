@@ -7,7 +7,7 @@ from typing import Any, Dict, List
 from reportlab.lib.enums import *
 from reportlab.lib.styles import *
 from reportlab.pdfbase import pdfmetrics
-from reportlab.platypus import PageBreak, Paragraph, Spacer, Table, TableStyle, NextPageTemplate
+from reportlab.platypus import PageBreak, Paragraph, Spacer
 from xml.etree.ElementTree import Element, ParseError, parse
 
 import font_reader
@@ -20,12 +20,13 @@ from glyphs import Glyph
 from lyric import Lyric
 from neume import Neume
 from neume_chunk import NeumeChunk
+from troparion import Troparion
 
 
 class Kassia:
     """Base class for package"""
 
-    def __init__(self, input_filename, output_file="sample.pdf"):
+    def __init__(self, input_filename, output_file="examples/sample.pdf"):
         self.bnml = None
         self.doc = None  # SimpleDocTemplate()
         self.story = []
@@ -35,6 +36,7 @@ class Kassia:
         self.header_odd_paragraph = None
         self.header_odd_pagenum_style = None
         self.footer_paragraph = None
+        self.footer_pagenum_style = None
         self.init_styles()
         self.input_filename = input_filename
         self.neume_info_dict = {}
@@ -173,10 +175,14 @@ class Kassia:
                 default_footer_style = self.styleSheet['Footer']
                 footer_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
                 if 'style' in footer_attrib_dict:
-                    default_footer_style = getattr(self.styleSheet, footer_attrib_dict['style'], 'Header')
+                    default_footer_style = getattr(self.styleSheet, footer_attrib_dict['style'], 'Footer')
                 footer_style = self.merge_paragraph_styles(default_footer_style, footer_attrib_dict)
                 footer_text = child_elem.text.strip()
                 self.footer_paragraph: Paragraph = Paragraph(footer_text, footer_style)
+                for embedded_attrib in child_elem:
+                    if embedded_attrib.tag is not None and embedded_attrib.tag == 'page-number':
+                        pagenum_attrib_dict = self.fill_attribute_dict(embedded_attrib.attrib)
+                        self.footer_pagenum_style = self.merge_paragraph_styles(default_footer_style, pagenum_attrib_dict)
 
             if child_elem.tag == 'pagebreak':
                 self.story.append(PageBreak())
@@ -194,7 +200,6 @@ class Kassia:
                 neumes_list = []
                 lyrics_list = []
                 dropcap = None
-                dropcap_offset = 0
 
                 for troparion_child_elem in child_elem:
                     if troparion_child_elem.tag == 'pagebreak':
@@ -238,46 +243,13 @@ class Kassia:
                             dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
                         dropcap_text = dropcap_elem.text.strip()
                         dropcap = Dropcap(dropcap_text, 10, dropcap_style)
-                        dropcap_offset = dropcap.width + dropcap.x_padding
-
-                # Pop off first letter of lyrics, since it will be drawn as a dropcap
-                if dropcap and lyrics_list:
-                    lyrics_list[0].text = lyrics_list[0].text[1:]
-                    lyrics_list[0].recalc_width()
 
                 if neumes_list:
-                    neume_chunks = self.make_neume_chunks(neumes_list)
-                    glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
-                    lines_list: List[GlyphLine] = self.line_break(glyph_line,
-                                                                  Cursor(dropcap_offset, 0),
-                                                                  self.doc.width,
-                                                                  self.styleSheet['Neumes'].leading,
-                                                                  self.styleSheet['Neumes'].wordSpace)
-                    if len(lines_list) > 1 or self.styleSheet['Neumes'].alignment is TA_JUSTIFY:
-                        lines_list: List[GlyphLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
-
-                    for i, glyph_line in enumerate(lines_list):
-                        if i == 0 and dropcap:
-                            data = [[dropcap, glyph_line]]
-                            row_height = max(dropcap.height, glyph_line.height)
-                            t = Table(data, colWidths=[dropcap_offset, None], rowHeights=[row_height])
-                            t.setStyle(
-                                TableStyle([
-                                    ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-                                    ('LEFTPADDING', (0, 0), (-1, -1), 0),
-                                    ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-                                    ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
-                                    ('TOPPADDING', (0, 0), (-1, -1), 0),
-                                    ])
-                            )
-                            t.spaceAfter = glyph_line.leading - glyph_line.height
-                            self.story.append(t)
-                        else:
-                            self.story.append(glyph_line)
+                    self.draw_troparion(neumes_list, lyrics_list, dropcap)
 
         try:
             self.doc.build(self.story,
-                           onFirstPage=self.draw_footer,
+                           onFirstPage=self.draw_header_footer,
                            onEvenPages=self.draw_header_footer,
                            onOddPages=self.draw_header_footer)
         except IOError:
@@ -381,6 +353,34 @@ class Kassia:
         p = Paragraph(paragraph_text, paragraph_style)
         self.story.append(p)
 
+    def draw_troparion(self, neumes_list: List[Neume], lyrics_list: List[Lyric], dropcap: Dropcap):
+        """Draws a troparion with the passed text attributes.
+        :param neumes_list: A list of neumes.
+        :param lyrics_list: A list of Lyrics.
+        :param dropcap: A dropcap object.
+        """
+        dropcap_offset = 0
+
+        # Pop off first letter of lyrics, since it will be drawn as a dropcap
+        if dropcap and len(lyrics_list) > 0:
+            lyrics_list[0].text = lyrics_list[0].text[1:]
+            lyrics_list[0].recalc_width()
+            dropcap_offset = dropcap.width + dropcap.x_padding
+
+        if neumes_list:
+            neume_chunks = self.make_neume_chunks(neumes_list)
+            glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
+            lines_list: List[GlyphLine] = self.line_break(glyph_line,
+                                                          Cursor(dropcap_offset, 0),
+                                                          self.doc.width,
+                                                          self.styleSheet['Neumes'].leading,
+                                                          self.styleSheet['Neumes'].wordSpace)
+            if len(lines_list) > 1 or self.styleSheet['Neumes'].alignment is TA_JUSTIFY:
+                lines_list: List[GlyphLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
+
+            tropar = Troparion(lines_list, dropcap, self.doc.width)
+            self.story.append(tropar)
+
     @staticmethod
     def merge_paragraph_styles(default_style: ParagraphStyle, bnml_style: Dict[str, Any]) -> ParagraphStyle:
         """Merges ReportLab ParagraphStyle attributes with Kassia bnml attributes and returns the new style
@@ -469,19 +469,19 @@ class Kassia:
         elif doc.pageTemplate.id == 'Odd':
             self.draw_header(canvas, doc, self.header_odd_paragraph, self.header_odd_pagenum_style)
 
-        self.draw_footer(canvas, doc)
+        self.draw_footer(canvas, doc, self.footer_pagenum_style)
 
-    def draw_header(self, canvas, doc, header_paragraph: Paragraph, header_pagenum_style: ParagraphStyle):
+    def draw_header(self, canvas, doc, paragraph: Paragraph, pagenum_style: ParagraphStyle):
         """Draws the header onto the canvas.
         :param canvas: Canvas, passed from document.build.
         :param doc: SimpleDocTemplate, passed from document.build.
-        :param header_paragraph: Paragraph of header text/style to draw.
-        :param header_pagenum_style: The style of page number to draw.
+        :param paragraph: Paragraph of header text/style to draw.
+        :param pagenum_style: The style of page number to draw.
         """
-        if not header_paragraph:
+        if not paragraph:
             return
 
-        style = header_paragraph.style
+        style = paragraph.style
 
         if style.borderWidth:
             canvas.setStrokeColor(style.borderColor)
@@ -499,26 +499,27 @@ class Kassia:
 
         if style.alignment == TA_LEFT:
             x_pos = self.doc.left
-            canvas.drawString(x_pos, y_pos, header_paragraph.text)
+            canvas.drawString(x_pos, y_pos, paragraph.text)
         elif style.alignment == TA_RIGHT:
             x_pos = self.doc.right
-            canvas.drawRightString(x_pos, y_pos, header_paragraph.text)
+            canvas.drawRightString(x_pos, y_pos, paragraph.text)
         elif style.alignment == TA_CENTER:
             x_pos = self.doc.center
-            canvas.drawCentredString(x_pos, y_pos, header_paragraph.text)
+            canvas.drawCentredString(x_pos, y_pos, paragraph.text)
 
-        if header_pagenum_style is not None:
-            if header_pagenum_style.alignment == TA_LEFT:
+        if pagenum_style is not None:
+            if pagenum_style.alignment == TA_LEFT:
                 canvas.drawString(self.doc.left, y_pos, str(canvas.getPageNumber()))
-            elif header_pagenum_style.alignment == TA_RIGHT:
+            elif pagenum_style.alignment == TA_RIGHT:
                 canvas.drawRightString(self.doc.right, y_pos, str(canvas.getPageNumber()))
-            elif header_pagenum_style.alignment == TA_CENTER:
-                canvas.drawCenteredString(self.doc.center, y_pos, str(canvas.getPageNumber()))
+            elif pagenum_style.alignment == TA_CENTER:
+                canvas.drawCentredString(self.doc.center, y_pos, str(canvas.getPageNumber()))
 
-    def draw_footer(self, canvas, doc):
+    def draw_footer(self, canvas, doc, pagenum_style: ParagraphStyle):
         """Draws the footer onto the canvas.
         :param canvas: Canvas, passed from document.build.
         :param doc: SimpleDocTemplate, passed from document.build.
+        :param pagenum_style: The style of page number to draw.
         """
         if not self.footer_paragraph:
             return
@@ -548,6 +549,14 @@ class Kassia:
         elif style.alignment == TA_CENTER:
             x_pos = self.doc.center
             canvas.drawCentredString(x_pos, y_pos, self.footer_paragraph.text)
+
+        if pagenum_style is not None:
+            if pagenum_style.alignment == TA_LEFT:
+                canvas.drawString(self.doc.left, y_pos, str(canvas.getPageNumber()))
+            elif pagenum_style.alignment == TA_RIGHT:
+                canvas.drawRightString(self.doc.right, y_pos, str(canvas.getPageNumber()))
+            elif pagenum_style.alignment == TA_CENTER:
+                canvas.drawCentredString(self.doc.center, y_pos, str(canvas.getPageNumber()))
 
     @staticmethod
     def make_neume_chunks(neume_list: List[Neume]) -> List[NeumeChunk]:

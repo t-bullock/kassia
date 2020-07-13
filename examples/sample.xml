@@ -26,7 +26,7 @@
             <heading4 font_family="Alegreya-Medium" font_size="14" color="#0000e6" align="right" />
             <!-- See ReportLab documentation for more paragraph style options. -->
             <paragraph />
-            <verse font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="20" space_after="15" leading="17" /> />
+            <verse font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="20" space_after="15" leading="17" />
             <!-- Default neume font family, size, color, etc. For now you're stuck with KA New Stathis Main, but you can change the size and color. -->
             <!-- 'word_spacing' is the space between glyphs, line height is the greater of either 'leading' or the calculated height of glyphs. -->
             <!-- 'align' can be 'left', 'right', 'center', or 'justify'. This affects both troparia that wrap lines and troparia that are only one line long, so be careful. -->
