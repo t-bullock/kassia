@@ -242,7 +242,7 @@ class Kassia:
                             attribs_from_bnml = self.fill_attribute_dict(dropcap_elem.attrib)
                             dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
                         dropcap_text = dropcap_elem.text.strip()
-                        dropcap = Dropcap(dropcap_text, 10, dropcap_style)
+                        dropcap = Dropcap(dropcap_text, dropcap_style.rightIndent, dropcap_style)
 
                 if neumes_list:
                     self.draw_troparion(neumes_list, lyrics_list, dropcap)

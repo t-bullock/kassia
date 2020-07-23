@@ -34,7 +34,7 @@
 
             <!-- font_family can be any font name in your kassia/fonts folder, or any font you have installed on your OS -->
             <lyrics font_family="Alegreya-Medium" font_size="14" color="#000000" space_before="26" />
-            <dropcap font_family="Alegreya-Bold" font_size="45" color="#cf232b" />
+            <dropcap font_family="Alegreya-Bold" font_size="45" color="#cf232b" right_indent="10" />
             <header font_family="Alegreya-Italic" font_size="8" color="#0000e6" align="center" border_width="1.0" border_color="#0000e6" border_padding="10" />
             <footer font_family="Alegreya-Italic" font_size="8" color="#0000e6" align="center" border_width="1.0" border_color="#0000e6" border_padding="10" />
         </styles>

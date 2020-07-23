@@ -6,7 +6,7 @@ from reportlab.platypus import Flowable
 
 
 class Dropcap(Flowable):
-    def __init__(self, text: str = None, x_padding: int = 0, style: ParagraphStyle = ParagraphStyle('Dropcap')):
+    def __init__(self, text: str = None, x_padding: int = 10, style: ParagraphStyle = ParagraphStyle('Dropcap')):
         super().__init__()
         self.text = text
         self.x_padding = x_padding
