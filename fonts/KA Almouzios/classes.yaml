@@ -532,3 +532,12 @@ conditional_neumes:
       klasD_psefD
     draw_glyph:
       spec-klasD-psefD
+  coroUR:
+    base_neume:
+      - apos
+    component_glyphs:
+      - coroU
+    replace_glyph:
+      coroU
+    draw_glyph:
+      coroUR
