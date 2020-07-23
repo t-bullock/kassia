@@ -4,8 +4,8 @@ import logging
 from copy import deepcopy
 from typing import Any, Dict, List
 
-from reportlab.lib.enums import *
-from reportlab.lib.styles import *
+from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.pdfbase import pdfmetrics
 from reportlab.platypus import PageBreak, Paragraph, Spacer
 from xml.etree.ElementTree import Element, ParseError, parse
@@ -14,7 +14,7 @@ import font_reader
 from complex_doc_template import ComplexDocTemplate
 from cursor import Cursor
 from drop_cap import Dropcap
-from enums import *
+from enums import Line
 from glyph_line import GlyphLine
 from glyphs import Glyph
 from lyric import Lyric
@@ -210,7 +210,7 @@ class Kassia:
                         attribs_from_bnml = self.fill_attribute_dict(neumes_elem.attrib)
                         neumes_style = self.merge_paragraph_styles(self.styleSheet['Neumes'], attribs_from_bnml)
                         # Get font family name without 'Main', 'Martyria', etc.
-                        font_family_name, font_family_type = neumes_style.fontName.rsplit(' ', 1)
+                        font_family_name, _ = neumes_style.fontName.rsplit(' ', 1)
                         neume_config = self.neume_info_dict[font_family_name]
 
                         for neume_chunk in neumes_elem.text.strip().split():
