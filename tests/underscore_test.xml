@@ -1,0 +1,148 @@
+<bnml>
+    <identification>
+        <work-title />
+        <author />
+        <subject />
+    </identification>
+    <defaults>
+        <page-layout>
+            <paper-size>letter</paper-size>
+            <page-margins top_margin="70" bottom_margin="50" left_margin="60" right_margin="60" />
+        </page-layout>
+        <styles>
+            <neumes font_family="KA New Stathis Main" font_size="30" word_spacing="0" leading="60" />
+            <lyrics font_family="Alegreya-Regular" font_size="14" space_before="26" />
+            <dropcap font_family="Alegreya-Regular" font_size="46" />
+        </styles>
+    </defaults>
+
+    <!-- Underscore text -->
+    <paragraph>
+        Underscore starts on next line
+    </paragraph>
+    <troparion>
+        <neumes>
+            ison ison ison ison ison ison ison ison ison ison apos syne olig_antiD apos
+        </neumes>
+        <dropcap>
+            A
+        </dropcap>
+        <lyrics>
+            An un- der- score on a new line e e e _ _ _
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+
+    <!-- Underscore text -->
+    <paragraph>
+        Underscore across Line Break
+    </paragraph>
+    <troparion>
+        <neumes>
+            ison ison ison ison ison ison ison ison ison ison apos syne olig_antiD apos
+        </neumes>
+        <dropcap>
+            A
+        </dropcap>
+        <lyrics>
+            An un- der- score across line break k k k _ _ _
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+
+    <!-- Begin with Underscore -->
+    <paragraph>
+        Begin with Underscore
+    </paragraph>
+    <troparion>
+        <neumes>
+            ison ison
+        </neumes>
+        <lyrics>
+            _ _
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+
+    <!-- Extra Underscores -->
+    <paragraph>
+        Extra Underscores Should Not be Drawn
+    </paragraph>
+    <troparion>
+        <neumes>
+            ison ison
+        </neumes>
+        <lyrics>
+            la _ _ _ _ _ _ _ _ _
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+
+    <!-- Underscore across Martyria -->
+    <paragraph>
+        Underscore across Martyria
+    </paragraph>
+    <troparion>
+        <neumes>
+            ison ison
+        </neumes>
+        <neumes color="#00FF0F">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            ison ison
+        </neumes>
+        <lyrics>
+            la _ _ _
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+
+    <!-- Underscore Color -->
+    <paragraph>
+        Underscore Color
+    </paragraph>
+    <troparion>
+        <neumes color="#00FFF0">
+            ison ison
+        </neumes>
+        <neumes color="#EF0000">
+            malfa_mpaU
+        </neumes>
+        <neumes color="#F0F030">
+            ison ison ison
+        </neumes>
+        <neumes color="#000000">
+            ison ison
+        </neumes>
+        <lyrics>
+            default color _ _
+        </lyrics>
+        <lyrics>
+            _
+        </lyrics>
+        <lyrics color="#0FF000">
+            green _ _ _
+        </lyrics>
+    </troparion>
+
+    <linebreak />
+
+    <!-- Underscore to Syneches Elaphron -->
+    <paragraph>
+        Underscore to Syneches Elaphron
+    </paragraph>
+    <troparion>
+        <neumes>
+            ison ison syne
+        </neumes>
+        <lyrics>
+            la la_ la
+        </lyrics>
+    </troparion>
+</bnml>
