@@ -140,7 +140,7 @@ standalone:
   - res3
   - res4
   - resh
-  - vare
+  - bare
   - barl
   - olig_ken2U_hypsUR
   - olig_hypsUL_ken2U
@@ -188,9 +188,9 @@ standalone:
 
 # These neumes should kept together with the neume that comes after it
 # (if insufficient space, a line break should occur before this neume).
-# Ex: vareia
+# Ex: bareia
 keep_with_next:
-  - vare
+  - bare
 
 # Used primarily for lyric centering under syneches elaphron. If not specified,
 # Kassia will attempt to calculate apostrophos width.
@@ -532,12 +532,12 @@ conditional_neumes:
       klasD_psefD
     draw_glyph:
       spec-klasD-psefD
-  coroUR:
+  koroUR:
     base_neume:
       - apos
     component_glyphs:
-      - coroU
+      - koroU
     replace_glyph:
-      coroU
+      koroU
     draw_glyph:
-      coroUR
+      koroUR

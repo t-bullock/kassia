@@ -86,13 +86,13 @@
 
     <troparion>
         <neumes>
-            vare olig homaDR ison apos olig olig_ken2U_psefD apos apos apos_antiD_haplD apos
+            bare olig homaDR ison apos olig olig_ken2U_psefD apos apos apos_antiD_haplD apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
         </neumes>
         <neumes>
-            vare ison_apos
+            bare ison_apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -122,13 +122,13 @@
             malfa_mpaU
         </neumes>
         <neumes>
-            olig_klasU homaD apos_klasU peta_isonU_klasD vare apos_apos olig olig_ken2DR olig_ken2U
+            olig_klasU homaD apos_klasU peta_isonU_klasD bare apos_apos olig olig_ken2DR olig_ken2U
         </neumes>
         <neumes color="#cf232b">
             gorgU2
         </neumes>
         <neumes>
-            vare apos_klasU hypo
+            bare apos_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -164,7 +164,7 @@
             gorgUR
         </neumes>
         <neumes>
-            vare olig hypo
+            bare olig hypo
         </neumes>
         <neumes color="#cf232b">
             digoUR
@@ -182,7 +182,7 @@
             gorgUR
         </neumes>
         <neumes>
-            apos vare apos_apos
+            apos bare apos_apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -206,7 +206,7 @@
             gorgdotU2R
         </neumes>
         <neumes>
-            vare ison apos
+            bare ison apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -236,7 +236,7 @@
             gorgUR
         </neumes>
         <neumes>
-            vare ison_klasU hypo
+            bare ison_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -287,7 +287,7 @@
             gorgUR
         </neumes>
         <neumes>
-            apos ison_klasU vare apos_apos
+            apos ison_klasU bare apos_apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -305,7 +305,7 @@
             gorgdotU2R
         </neumes>
         <neumes>
-            vare ison apos
+            bare ison apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -335,7 +335,7 @@
             gorgUR
         </neumes>
         <neumes>
-            vare ison_klasU hypo
+            bare ison_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -424,7 +424,7 @@
             gorgUR
         </neumes>
         <neumes>
-            vare ison_klasU hypo
+            bare ison_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -467,7 +467,7 @@
             gorgUR
         </neumes>
         <neumes>
-            vare ison_apos
+            bare ison_apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -479,7 +479,7 @@
             gorgUR
         </neumes>
         <neumes>
-            vare ison_klasU hypo
+            bare ison_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -568,7 +568,7 @@
             chiargo
         </neumes>
         <neumes>
-            ison ison olig_kentU ison_klasU olig_aposUL_ken2UR vare apos_klasU hypo
+            ison ison olig_kentU ison_klasU olig_aposUL_ken2UR bare apos_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -605,13 +605,13 @@
 
     <troparion>
         <neumes>
-            ison barl olig_homaDR ison apos olig olig_ken2U_psefD apos apos apos_klasU peta_isonU_klasD vare apos_apos olig ken2 olig_isonUL_ken2UR
+            ison barl olig_homaDR ison apos olig olig_ken2U_psefD apos apos apos_klasU peta_isonU_klasD bare apos_apos olig ken2 olig_isonUL_ken2UR
         </neumes>
         <neumes color="#cf232b">
             gorgdotU2R
         </neumes>
         <neumes>
-            vare ison apos
+            bare ison apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -653,7 +653,7 @@
             fdkeU
         </neumes>
         <neumes>
-            apos apos olig_aposUL_ken2UR_psefD apos apos vare ison apos_haplD
+            apos apos olig_aposUL_ken2UR_psefD apos apos bare ison apos_haplD
         </neumes>
         <neumes color="#cf232b">
             mdi_malfaU
@@ -665,7 +665,7 @@
             fdgaU
         </neumes>
         <neumes>
-            barl olig_isonUL_ken2UR vare apos_apos vare ison apos_haplD
+            barl olig_isonUL_ken2UR bare apos_apos bare ison apos_haplD
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -689,7 +689,7 @@
             gorgUR
         </neumes>
         <neumes>
-            vare ison_klasU hypo
+            bare ison_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -745,13 +745,13 @@
             gorgdotU2R
         </neumes>
         <neumes>
-            vare ison apos
+            bare ison apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
         </neumes>
         <neumes>
-            vare ison_klasU hypo
+            bare ison_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -806,7 +806,7 @@
             gorgUR
         </neumes>
         <neumes>
-            vare ison_klasU hypo
+            bare ison_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -836,7 +836,7 @@
             fdkeU
         </neumes>
         <neumes>
-            apos apos olig_aposUL_ken2UR_psefD apos apos vare ison apos_haplD
+            apos apos olig_aposUL_ken2UR_psefD apos apos bare ison apos_haplD
         </neumes>
         <neumes color="#cf232b">
             mdi_malfaU
@@ -866,7 +866,7 @@
             gorgUR
         </neumes>
         <neumes>
-            vare ison_klasU hypo
+            bare ison_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -915,7 +915,7 @@
             chiargo
         </neumes>
         <neumes>
-            ison olig barl olig_psefD apos apos barl olig_kentU_klasD olig_aposUL_ken2UR vare apos_klasU hypo
+            ison olig barl olig_psefD apos apos barl olig_kentU_klasD olig_aposUL_ken2UR bare apos_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -951,13 +951,13 @@
 
     <troparion>
         <neumes>
-            ison olig_kentDR_psefD2 apos apos_klasU vare apos_apos olig ken2 olig_isonUL_ken2UR
+            ison olig_kentDR_psefD2 apos apos_klasU bare apos_apos olig ken2 olig_isonUL_ken2UR
         </neumes>
         <neumes color="#cf232b">
             gorgdotU2R
         </neumes>
         <neumes>
-            vare ison apos
+            bare ison apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -975,7 +975,7 @@
             gorgUR
         </neumes>
         <neumes>
-            vare ison_klasU hypo
+            bare ison_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -999,7 +999,7 @@
             gorgUR
         </neumes>
         <neumes>
-            ison_klasU vare apos_apos vare apos apos
+            ison_klasU bare apos_apos bare apos apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -1011,7 +1011,7 @@
             gorgU2
         </neumes>
         <neumes>
-            apos olig_ken2U vare apos_klasU hypo
+            apos olig_ken2U bare apos_klasU hypo
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -1060,13 +1060,13 @@
         </neumes>
         <neumes>
             elaf olig barl olig_psefD apos apos barl peta_isonU_klasD
-            vare apos_apos olig ken2 olig_isonUL_ken2UR
+            bare apos_apos olig ken2 olig_isonUL_ken2UR
         </neumes>
         <neumes color="#cf232b">
             gorgdotU2R
         </neumes>
         <neumes>
-            vare ison_apos
+            bare ison_apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR
@@ -1090,7 +1090,7 @@
             gorgdotU2R
         </neumes>
         <neumes>
-            vare ison apos
+            bare ison apos
         </neumes>
         <neumes color="#cf232b">
             gorgUR

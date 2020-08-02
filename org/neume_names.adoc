@@ -348,7 +348,7 @@
 |akaplD1.5
 |spec_peta-antiD
 |antiD
-|if after vare-peta
+|if after bare-peta
 |
 |
 
@@ -1073,7 +1073,7 @@
 |image:ka_fontimages/main-left-caret.png[]
 |res2
 |
-|vare-diplR
+|bare-diplR
 |
 |
 |
@@ -1084,7 +1084,7 @@
 |image:ka_fontimages/main-comma.png[]
 |res1
 |
-|vare-haplR
+|bare-haplR
 |
 |
 |Would this ever need to build this from parts, or can we assume fonts will always have this pre-built?
@@ -1095,7 +1095,7 @@
 |image:ka_fontimages/main-right-caret.png[]
 |res4
 |
-|vare-tetrR
+|bare-tetrR
 |
 |
 |
@@ -1106,7 +1106,7 @@
 |image:ka_fontimages/main-period.png[]
 |res3
 |
-|vare-tripR
+|bare-tripR
 |
 |
 |
@@ -1115,9 +1115,9 @@
 |
 |/
 |image:ka_fontimages/main-slash.png[]
-|vare
+|bare
 |
-|vare
+|bare
 |
 |
 |
@@ -1128,7 +1128,7 @@
 |image:ka_fontimages/main-question-mark.png[]
 |resh
 |
-|vare-hapl-gorgU
+|bare-hapl-gorgU
 |
 |
 |
@@ -1247,9 +1247,9 @@
 |
 |2
 |image:ka_fontimages/martyria-2.png[]
-|mvou
+|mbou
 |
-|mvou
+|mbou
 |
 |
 |
@@ -1324,9 +1324,9 @@
 |
 |@
 |image:ka_fontimages/martyria-at-sign.png[]
-|mvouU
+|mbouU
 |
-|mvouU
+|mbouU
 |
 |
 |
@@ -1962,9 +1962,9 @@
 |
 |@
 |image:ka_fontimages/fthora-at-sign.png[]
-|indvouUR
+|indbouUR
 |
-|indvouUR
+|indbouUR
 |
 |
 |
@@ -2105,9 +2105,9 @@
 |
 |2
 |image:ka_fontimages/fthora-2.png[]
-|indvouUL
+|indbouUL
 |
-|indvouUL
+|indbouUL
 |
 |
 |
@@ -2176,7 +2176,7 @@
 |flat2U2R2
 |if after olig-[ison/apos/elaf]-kenUR
 |
-|Flat2 for kentimata in olig-ken2R.
+|Flat2 for kentemata in olig-ken2R.
 
 
 |
@@ -2380,9 +2380,9 @@
 |
 |W
 |image:ka_fontimages/fthora-capital-W.png[]
-|fdvouDR
-|spec_apos-fdvouD
-|fdvouDR
+|fdbouDR
+|spec_apos-fdbouD
+|fdbouDR
 |if after apos
 |
 |
@@ -2429,7 +2429,7 @@
 |flatU2R2
 |if after olig-[ison/apos/elaf]-kenUR
 |
-|Flat for kentimata in olig-ken2R.
+|Flat for kentemata in olig-ken2R.
 
 
 |
@@ -2589,9 +2589,9 @@
 |
 |w
 |image:ka_fontimages/fthora-w.png[]
-|fdvouU
+|fdbouU
 |
-|fdvouU
+|fdbouU
 |
 |
 |
@@ -2616,7 +2616,7 @@
 |flat1U2R2
 |if after olig-[ison/apos/elaf]-kenUR
 |
-|Flat1 for kentimata in olig-ken2R.
+|Flat1 for kentemata in olig-ken2R.
 
 
 |
@@ -2798,9 +2798,9 @@
 |
 |∑
 |image:ka_fontimages/fthora-capital-sigma.png[]
-|fdvouUR
+|fdbouUR
 |
-|fdvouUR
+|fdbouUR
 |
 |
 |Goes above martyria.
@@ -3315,9 +3315,9 @@
 |
 |\
 |image:ka_fontimages/chronos-backslash.png[]
-|coroU
+|koroU
 |
-|coroU
+|koroU
 |
 |
 |
@@ -3326,9 +3326,9 @@
 |
 |?
 |image:ka_fontimages/chronos-backslash.png[]
-|coroUR
+|koroUR
 |
-|coroUR
+|koroUR
 |
 |if after apostrophos
 |Centered above apostrophos.
@@ -4297,7 +4297,7 @@
 |oxei-ken2D-psefD2
 |
 |oxei-ken2D-psefD2
-|only used with psefeston
+|only used with psefiston
 |
 |
 
@@ -4308,7 +4308,7 @@
 |oxei-kentDR-psefD2
 |
 |oxei-kentDR-psefD2
-|only used with psefeston
+|only used with psefiston
 |
 |
 

@@ -1,4 +1,4 @@
-<bnml>
+<bnml version="0.4">
     <identification>
         <work-title>Ἀναστασιματάριον</work-title>
         <author>Δανιήλ Πρωτοψάλτου</author>
@@ -133,7 +133,7 @@
             gorgU2
         </neumes>
         <neumes>
-            apos apos apos ison apos olig_ken2U ison apos olig_isonUL_ken2UR_psefD apos syne olig olig peta apos peta apos syne apos olig_ken2U vare apos_apos vare ison apos_haplD
+            apos apos apos ison apos olig_ken2U ison apos olig_isonUL_ken2UR_psefD apos syne olig olig peta apos peta apos syne apos olig_ken2U bare apos_apos bare ison apos_haplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -192,7 +192,7 @@
 
     <troparion>
         <neumes>
-            peta_kentU_hypsUR apos ison ison ison ison vare apos_apos olig olig elaf olig ison ken2 ison_klasU
+            peta_kentU_hypsUR apos ison ison ison ison bare apos_apos olig olig elaf olig ison ken2 ison_klasU
         </neumes>
         <neumes color="#bb000e">
             mdeltapo_mdiU
@@ -210,7 +210,7 @@
             mhypo_mzoU
         </neumes>
         <neumes>
-            olig_hypsUL olig ison ison ison vare ison_apos olig ken2 
+            olig_hypsUL olig ison ison ison bare ison_apos olig ken2 
         </neumes>
         <neumes color="#bb000e">
             gorgDR
@@ -222,7 +222,7 @@
             mdeltapo_mdiU
         </neumes>
         <neumes>
-            apos ison apos olig_kentDR_psefD2 apos apos apos vare ison_apos olig olig olig_psefD apos vare apos_apos vare ison apos_diplD
+            apos ison apos olig_kentDR_psefD2 apos apos apos bare ison_apos olig olig olig_psefD apos bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -245,7 +245,7 @@
 
     <troparion>
         <neumes>
-            olig_hypsUL peta apos ison_psefD apos apos olig olig_klasU apos ison vare apos_apos olig olig olig_klasU
+            olig_hypsUL peta apos ison_psefD apos apos olig olig_klasU apos ison bare apos_apos olig olig olig_klasU
         </neumes>
         <neumes color="#bb000e">
             mdeltapo_mdiU
@@ -263,13 +263,13 @@
             mhypo_mzoU
         </neumes>
         <neumes>
-            olig_hypsUR olig elaf olig olig_ken2U ison_klasU apos ison olig_psefD apos vare apos_apos olig olig peta_isonU apos syne_klasU 
+            olig_hypsUR olig elaf olig olig_ken2U ison_klasU apos ison olig_psefD apos bare apos_apos olig olig peta_isonU apos syne_klasU 
         </neumes>
         <neumes color="#bb000e">
             malfa_mpaU
         </neumes>
         <neumes>
-            vare apos_apos olig olig peta_klasD vare apos_apos vare ison apos_diplD
+            bare apos_apos olig olig peta_klasD bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -317,13 +317,13 @@
             mhypo_mzoU
         </neumes>
         <neumes>
-            peta_kentU_hypsUR apos ison vare apos_apos olig olig elaf olig ison ken2 ison_klasU
+            peta_kentU_hypsUR apos ison bare apos_apos olig olig elaf olig ison ken2 ison_klasU
         </neumes>
         <neumes color="#bb000e">
             mdeltapo_mdiU
         </neumes>
         <neumes>
-            apos olig olig_psefD apos apos apos apos_klasU vare apos_apos olig olig peta_klasD vare apos_apos vare ison apos_diplD
+            apos olig olig_psefD apos apos apos apos_klasU bare apos_apos olig olig peta_klasD bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -370,7 +370,7 @@
             mhypo_mzoU
         </neumes>
         <neumes>
-            olig_hypsUL ison vare apos_apos olig olig elaf olig ison ken2 ison
+            olig_hypsUL ison bare apos_apos olig olig elaf olig ison ken2 ison
         </neumes>
         <neumes color="#bb000e">
             mdeltapo_mdiU
@@ -394,7 +394,7 @@
             mdeltapo_mdiU
         </neumes>
         <neumes>
-            olig_psefD apos apos apos olig_psefD apos vare apos_apos vare ison apos_diplD
+            olig_psefD apos apos apos olig_psefD apos bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -487,7 +487,7 @@
             mdeltapo_mdiU
         </neumes>
         <neumes>
-            apel olig olig olig_ken2U apos ison ison apos peta apos ison apos olig_psefD apos vare apos_apos vare ison apos_diplD
+            apel olig olig olig_ken2U apos ison ison apos peta apos ison apos olig_psefD apos bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -574,7 +574,7 @@
             mdeltapo_mdiU
         </neumes>
         <neumes>
-            olig_kentU_psefD apos apos apos apos olig olig_psefD apos apos olig_psefD apos apos olig_psefD apos vare apos_apos vare ison apos_diplD
+            olig_kentU_psefD apos apos apos apos olig olig_psefD apos apos olig_psefD apos apos olig_psefD apos bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -617,7 +617,7 @@
             mdeltapo_mdiU
         </neumes>
         <neumes>
-            ison apos apos olig_ken2U ison apos ison_psefD apos apos apos olig olig olig_psefD apos vare apos_apos vare ison apos_diplD
+            ison apos apos olig_ken2U ison apos ison_psefD apos apos apos olig olig olig_psefD apos bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -745,7 +745,7 @@
             flatU
         </neumes>
         <neumes>
-            apos apos_klasU apos apos olig_psefD apos apos ison peta_klasD vare apos_apos vare ison apos_diplD
+            apos apos_klasU apos apos olig_psefD apos apos ison peta_klasD bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -775,7 +775,7 @@
 
     <troparion>
         <neumes>
-            olig_hypsUL peta apos ison ison vare apos_apos olig olig olig elaf ison ken2 ison_klasU
+            olig_hypsUL peta apos ison ison bare apos_apos olig olig olig elaf ison ken2 ison_klasU
         </neumes>
         <neumes color="#bb000e">
             mdeltapo_mdiU
@@ -787,7 +787,7 @@
             gorgU2
         </neumes>
         <neumes>
-            apos apos apos ison apos olig_ken2U ison peta_isonU apos syne peta_klasD vare apos_apos vare ison apos_diplD
+            apos apos apos ison apos olig_ken2U ison peta_isonU apos syne peta_klasD bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -831,7 +831,7 @@
             mdeltapo_mdiU
         </neumes>
         <neumes>
-            apel ison olig olig olig ison apos olig_psefD apos apos olig olig ison ison olig ison vare ison_apos olig ken2
+            apel ison olig olig olig ison apos olig_psefD apos apos olig olig ison ison olig ison bare ison_apos olig ken2
         </neumes>
         <neumes color="#bb000e">
             gorgDR
@@ -843,7 +843,7 @@
             mdeltapo_mdiU
         </neumes>
         <neumes>
-            apos apos olig elaf peta_klasD vare apos_apos vare ison apos_diplD
+            apos apos olig elaf peta_klasD bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -875,7 +875,7 @@
             malfa_mpaU
         </neumes>
         <neumes>
-            ison ison olig_kentU ken2 ison ison elaf olig olig ison vare ison_apos olig ken2
+            ison ison olig_kentU ken2 ison ison elaf olig olig ison bare ison_apos olig ken2
         </neumes>
         <neumes color="#bb000e">
             gorgDR
@@ -887,7 +887,7 @@
             flatU
         </neumes>
         <neumes>
-            apos apos ison olig_psefD apos apos olig_psefD apos apos olig olig ison_klasU peta_isonU apos syne ison peta_klasD vare apos_apos vare ison apos_diplD
+            apos apos ison olig_psefD apos apos olig_psefD apos apos olig olig ison_klasU peta_isonU apos syne ison peta_klasD bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -945,7 +945,7 @@
             mdeltapo_mdiU
         </neumes>
         <neumes>
-            olig_kentU_psefD apos apos apos apos olig olig_psefD apos apos peta apos syne peta_klasD vare apos_apos vare ison apos_diplD
+            olig_kentU_psefD apos apos apos apos olig olig_psefD apos apos peta apos syne peta_klasD bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU
@@ -991,7 +991,7 @@
             mdeltapo_mdiU
         </neumes>
         <neumes>
-            olig_kentU_psefD apos apos apos olig_psefD apos apos apos olig_ken2U elaf olig ison ken2 ison apos peta apos syne ison peta_klasD vare apos_apos vare ison apos_diplD
+            olig_kentU_psefD apos apos apos olig_psefD apos apos apos olig_ken2U elaf olig ison ken2 ison apos peta apos syne ison peta_klasD bare apos_apos bare ison apos_diplD
         </neumes>
         <neumes color="#bb000e">
             mhypo_mzoU

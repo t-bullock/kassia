@@ -30,7 +30,7 @@ Scores are saved as xml files. Take a look at the contents of [sample.xml](examp
 Kassia utilizes 5 fonts for neume styles: Main, Combo, Chronos, Martyria, Fthora.
 
 - Main has the most commly used neumes
-- Combo has large jumps and large jumps with a kentimata
+- Combo has large jumps and large jumps with a kentemata
 - Chronos has time modifying neumes like gorga and argon
 - Martyria has martyries
 - Fthora has fthores, chroes, sharps, and flats
