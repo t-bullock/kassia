@@ -668,7 +668,7 @@ class Kassia:
                 # special cases
                 primary_neume: Neume = glyph.neume_chunk[0]
                 if primary_neume.name == 'bare':
-                    # If variea, center lyric under neume chunk without bareia
+                    # If bareia, center lyric under neume chunk without bareia
                     adj_lyric_pos += primary_neume.width / 2.
                 elif primary_neume.name == 'syne':
                     # If syneches elaphron, center lyric under elaphron
@@ -731,7 +731,7 @@ class Kassia:
                     # special cases
                     primary_neume = glyph.neume_chunk[0]
                     if primary_neume.name == 'bare':
-                        # If variea, center lyric under neume chunk excluding bareia
+                        # If bareia, center lyric under neume chunk excluding bareia
                         adj_lyric_pos += primary_neume.width / 2.
                     elif primary_neume.name == 'syne':
                         # If syneches elaphron, center lyric under elaphron
