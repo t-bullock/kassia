@@ -2,7 +2,7 @@
 import sys
 import logging
 from copy import deepcopy
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
@@ -217,9 +217,12 @@ class Kassia:
                             # Check for ligatures and conditionals, if none, build from basic neume parts
                             neume_name_list = self.find_neume_names(neume_chunk, neume_config)
                             for neume_name in neume_name_list:
-                                neume = self.create_neume(neume_name, neume_config, font_family_name, neumes_style)
-                                if neume:  # neume will be None if neume not found
-                                    neumes_list.append(neume)
+                                try:
+                                    neume = self.create_neume(neume_name, neume_config, font_family_name, neumes_style)
+                                    if neume:  # neume will be None if neume not found
+                                        neumes_list.append(neume)
+                                except KeyError as ke:
+                                    logging.error("Couldn't add neume: {}. Check bnml for bad symbol and verify glyphnames.yaml is correct.".format(ke))
 
                     if troparion_child_elem.tag == 'lyrics':
                         lyrics_elem = troparion_child_elem
@@ -285,15 +288,30 @@ class Kassia:
 
         return neume_list
 
-    @staticmethod
-    def create_neume(neume_name: str, neume_config: Dict, font_family: str, neume_style: ParagraphStyle):
-        neume = None
+    def create_neume(self, neume_name: str, neume_config: Dict, font_family: str, neume_style: ParagraphStyle) -> Neume:
+        """Creates a neume object using neume name and font configuration.
+        :param neume_name: Name of neume.
+        :param neume_config: Font configuration information from yaml.
+        :param font_family: Neume font family.
+        :param neume_style: Neume style information.
+        :return: A neume.
+        """
         try:
+            lyric_offset = neume_config['classes']['lyric_offsets'][neume_name] * neume_style.fontSize
+        except KeyError:
             lyric_offset = None
-            if 'lyric_offsets' in neume_config['classes'] and neume_name in neume_config['classes']['lyric_offsets']:
-                lyric_offset = neume_config['classes']['lyric_offsets'][neume_name] * neume_style.fontSize
+
+        try:
+            neume_char = neume_config['glyphnames'][neume_name]['codepoint']
+        except KeyError as ke:
+            logging.info("Couldn't add neume: {}. Attempting to match by codepoint.".format(ke))
+            neume_name, neume_char = self.find_neume_name_by_codepoint(neume_name, neume_config['glyphnames'])
+            if neume_name is None:
+                return None
+
+        try:
             neume = Neume(name=neume_name,
-                          char=neume_config['glyphnames'][neume_name]['codepoint'],
+                          char=neume_char,
                           font_family=font_family,
                           font_fullname=neume_config['glyphnames'][neume_name]['family'],
                           font_size=neume_style.fontSize,
@@ -302,9 +320,26 @@ class Kassia:
                           takes_lyric=neume_name in neume_config['classes']['takes_lyric'],
                           lyric_offset=lyric_offset,
                           keep_with_next=neume_name in neume_config['classes']['keep_with_next'])
-        except KeyError as e:
-            logging.error("Couldn't add neume: {}. Check font config yaml.".format(e))
+        except KeyError as ke:
+            logging.warning("Couldn't create neume: {}. Check bnml and font config yaml.".format(ke))
+            return None
         return neume
+
+    @staticmethod
+    def find_neume_name_by_codepoint(neume_codepoint: str, glyphnames: Dict[str, Dict]) -> Tuple[str, str]:
+        """Find a neume name by its codepoint. Useful for old versions of bnml before neume_name was implemented.
+        :param neume_codepoint: The codepoint of neume.
+        :param glyphnames: A dictionary of glyph names from font config.
+        :return: Neume name and neume codepoint
+        """
+        neume_name = None
+        for key, value in glyphnames.items():
+            if value['codepoint'] == neume_codepoint:
+                neume_name = key
+                break
+        if neume_name is None:
+            logging.error("Couldn't find neume {} in font config yaml.".format(neume_codepoint))
+        return neume_name, neume_codepoint
 
     @staticmethod
     def get_embedded_paragraph_text(para_tag_attribs: Element, default_style: ParagraphStyle) -> str:
