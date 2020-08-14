@@ -258,7 +258,7 @@ class Kassia:
         except IOError:
             logging.error("Could not save XML file.")
 
-    def find_neume_names(self, neume_chunk_name, neume_config) -> List[str]:
+    def find_neume_names(self, neume_chunk_name: str, neume_config: Dict) -> List[str]:
         """Check for conditional neumes and replace them if necessary."""
         if neume_chunk_name.count('_') == 0:
             return [neume_chunk_name]
@@ -272,7 +272,7 @@ class Kassia:
         return self._replace_ligatures(neume_chunk_name, neume_config)
 
     @staticmethod
-    def _replace_ligatures(neume_chunk_name, neume_config) -> List[str]:
+    def _replace_ligatures(neume_chunk_name: str, neume_config: Dict) -> List[str]:
         """Tries to replace ligatures in a neume_chunk. Works by chopping off the last neume in the chunk and checking
         the remainder to see if it matches any ligatures in the neume config list."""
         possible_lig = neume_chunk_name
@@ -682,7 +682,7 @@ class Kassia:
         glyph_line_list: List[GlyphLine] = []
         glyph_line: GlyphLine = GlyphLine(line_spacing, glyph_spacing)
         
-        # Need to shift nuemes and lyrics up by this amount, since glyph will be drawn aligned to bottom, and
+        # Need to shift neumes and lyrics up by this amount, since glyph will be drawn aligned to bottom, and
         # lyrics are being added below neumes
         y_offset = max(getattr(glyph.lyric, 'top_margin', 0) for glyph in glyph_list)
 
