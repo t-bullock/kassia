@@ -218,7 +218,7 @@ class Kassia:
                             neume_name_list = self.find_neume_names(neume_chunk, neume_config)
                             for neume_name in neume_name_list:
                                 try:
-                                    neume = self.create_neume(neume_name, neume_config, font_family_name, neumes_style)
+                                    neume = self.create_neume(neume_name, neume_config, neumes_style.fontName, neumes_style)
                                     if neume:  # neume will be None if neume not found
                                         neumes_list.append(neume)
                                 except KeyError as ke:
@@ -288,11 +288,11 @@ class Kassia:
 
         return neume_list
 
-    def create_neume(self, neume_name: str, neume_config: Dict, font_family: str, neume_style: ParagraphStyle) -> Neume:
+    def create_neume(self, neume_name: str, neume_config: Dict, font_name: str, neume_style: ParagraphStyle) -> Neume:
         """Creates a neume object using neume name and font configuration.
         :param neume_name: Name of neume.
         :param neume_config: Font configuration information from yaml.
-        :param font_family: Neume font family.
+        :param font_name: Name of neume font.
         :param neume_style: Neume style information.
         :return: A neume.
         """
@@ -305,14 +305,14 @@ class Kassia:
             neume_char = neume_config['glyphnames'][neume_name]['codepoint']
         except KeyError as ke:
             logging.info("Couldn't add neume: {}. Attempting to match by codepoint.".format(ke))
-            neume_name, neume_char = self.find_neume_name_by_codepoint(neume_name, neume_config['glyphnames'])
+            neume_name, neume_char = self.find_neume_name_by_codepoint(neume_name, font_name, neume_config['glyphnames'])
             if neume_name is None:
                 return None
 
         try:
             neume = Neume(name=neume_name,
                           char=neume_char,
-                          font_family=font_family,
+                          font_family=font_name.rsplit(' ', 1)[0],  # Font name without Main, Combo, Fthora, etc.
                           font_fullname=neume_config['glyphnames'][neume_name]['family'],
                           font_size=neume_style.fontSize,
                           color=neume_style.textColor,
@@ -326,15 +326,16 @@ class Kassia:
         return neume
 
     @staticmethod
-    def find_neume_name_by_codepoint(neume_codepoint: str, glyphnames: Dict[str, Dict]) -> Tuple[str, str]:
+    def find_neume_name_by_codepoint(neume_codepoint: str, font_name: str, glyph_names: Dict[str, Dict]) -> Tuple[str, str]:
         """Find a neume name by its codepoint. Useful for old versions of bnml before neume_name was implemented.
         :param neume_codepoint: The codepoint of neume.
-        :param glyphnames: A dictionary of glyph names from font config.
+        :param font_name: Name of font where codepoint is found.
+        :param glyph_names: A dictionary of glyph names from font config.
         :return: Neume name and neume codepoint
         """
         neume_name = None
-        for key, value in glyphnames.items():
-            if value['codepoint'] == neume_codepoint:
+        for key, value in glyph_names.items():
+            if value['codepoint'] == neume_codepoint and value['family'] == font_name:
                 neume_name = key
                 break
         if neume_name is None:

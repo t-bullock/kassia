@@ -1,0 +1,206 @@
+<bnml>
+    <identification>
+        <work-title />
+        <author />
+        <subject />
+    </identification>
+    <defaults>
+        <page-layout>
+            <paper-size>letter</paper-size>
+            <page-margins top_margin="50" bottom_margin="50" left_margin="60" right_margin="60" />
+        </page-layout>
+        <styles>
+            <neumes font_family="KA New Stathis Main" font_size="30" word_spacing="3" leading="60" />
+            <lyrics font_family="Alegreya-Regular" font_size="18" space_before="26" />
+            <dropcap font_family="Alegreya-Regular" font_size="46" />
+        </styles>
+    </defaults>
+
+    <paragraph>
+        Mixed score of old and new neume types
+    </paragraph>
+
+    <troparion>
+        <neumes>
+            bare olig homaDR ison apos olig olig_ken2U_psefD apos apos apos_antiD_haplD apos
+        </neumes>
+        <neumes font_family="KA New Stathis Chronos" color="#cf232b">
+            v
+        </neumes>
+        <neumes>
+            bare ison_apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            0 w ! s res1
+        </neumes>
+        <neumes font_family="KA New Stathis Martyria" color="#cf232b">
+            q !
+        </neumes>
+        <neumes>
+            olig_kentU_klasD olig_aposUL_ken2UR olig_aposUL_ken2UR
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU2R
+        </neumes>
+        <neumes>
+            apos syne olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig_klasU homaD apos_klasU peta_isonU_klasD bare apos_apos olig olig_ken2DR olig_ken2U
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU2
+        </neumes>
+        <neumes>
+            bare apos_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig_kent_klasU ison olig olig_ken2U_psefD
+        </neumes>
+        <neumes color="#cf232b">
+            flatU2R2
+        </neumes>
+        <neumes>
+            apos apos peta_aposU_klasD syne ken2 peta_oligU apos_diplD
+        </neumes>
+        <neumes color="#cf232b">
+            mnana_mgaU
+        </neumes>
+        <neumes>
+            olig_isonUL_ken2UR_psefD apos apos apos_klasU apos_antiD_haplD apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            bare olig hypo
+        </neumes>
+        <neumes color="#cf232b">
+            digoUR
+        </neumes>
+        <neumes>
+            olig_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            mhypo_mzoU
+        </neumes>
+        <neumes>
+            olig_hypsUR peta_klasD apos apos olig olig_psefD hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            apos bare apos_apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig olig_klasU olig_ken2U
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU2
+        </neumes>
+        <neumes>
+            apos olig_ken2U peta_aposU apos apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_isonUL_ken2UR
+        </neumes>
+        <neumes color="#cf232b">
+            gorgdotU2R
+        </neumes>
+        <neumes>
+            bare ison apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            ison_klasU
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <neumes>
+            olig_kent olig olig_ken2U_psefD
+        </neumes>
+        <neumes color="#cf232b">
+            flatU2R2
+        </neumes>
+        <neumes>
+            apos apos peta_aposU_klasD syne ken2 peta_oligU apos_diplD
+        </neumes>
+        <neumes color="#cf232b">
+            mnana_mgaU
+        </neumes>
+        <neumes>
+            ison ken2 ison_klasU peta_aposU_klasD syne_klasU olig ken2 peta_klasD_psefD2 apos
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            bare ison_klasU hypo
+        </neumes>
+        <neumes color="#cf232b">
+            gorgUR
+        </neumes>
+        <neumes>
+            olig_antiD
+        </neumes>
+        <neumes color="#cf232b">
+            gorgU
+        </neumes>
+        <neumes>
+            apos ison_diplD
+        </neumes>
+        <neumes color="#cf232b">
+            malfa_mpaU
+        </neumes>
+        <dropcap>
+            L
+        </dropcap>
+        <lyrics>
+            Lord _ I have cried _ _ un- - to _ Thee _
+            heark- en un- - to _ _ me
+            heark- en un- to me _ _ O _ _ _ Lord
+            Lord I have cried _ _ un- to _ Thee _
+            heark- en _ un- to _ me _ _
+            at- tend to the voice _ _ _ of _ my sup- - pli- ca- - - - - - tion
+            when I cry _ _ un- to _ Thee _
+            Heark- - en un- to me _ _ _ O _ _ _ Lord
+        </lyrics>
+    </troparion>
+</bnml>
