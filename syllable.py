@@ -6,7 +6,7 @@ from lyric import Lyric
 from neume_chunk import NeumeChunk
 
 
-class Glyph(Flowable):
+class Syllable(Flowable):
     def __init__(self,
                  neume_chunk: NeumeChunk = None,
                  neume_chunk_pos: Tuple[float, float] = None,

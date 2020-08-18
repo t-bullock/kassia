@@ -15,8 +15,8 @@ from complex_doc_template import ComplexDocTemplate
 from cursor import Cursor
 from drop_cap import Dropcap
 from enums import Line
-from glyph_line import GlyphLine
-from glyphs import Glyph
+from syllable_line import SyllableLine
+from syllable import Syllable
 from lyric import Lyric
 from neume import Neume
 from neume_chunk import NeumeChunk
@@ -405,14 +405,14 @@ class Kassia:
 
         if neumes_list:
             neume_chunks = self.make_neume_chunks(neumes_list)
-            glyph_line: List[Glyph] = self.make_glyph_list(neume_chunks, lyrics_list)
-            lines_list: List[GlyphLine] = self.line_break(glyph_line,
-                                                          Cursor(dropcap_offset, 0),
-                                                          self.doc.width,
-                                                          self.styleSheet['Neumes'].leading,
-                                                          self.styleSheet['Neumes'].wordSpace)
+            syl_line: List[Syllable] = self.make_syllable_list(neume_chunks, lyrics_list)
+            lines_list: List[SyllableLine] = self.line_break(syl_line,
+                                                             Cursor(dropcap_offset, 0),
+                                                             self.doc.width,
+                                                             self.styleSheet['Neumes'].leading,
+                                                             self.styleSheet['Neumes'].wordSpace)
             if len(lines_list) > 1 or self.styleSheet['Neumes'].alignment is TA_JUSTIFY:
-                lines_list: List[GlyphLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
+                lines_list: List[SyllableLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
 
             tropar = Troparion(lines_list, dropcap, self.doc.width)
             self.story.append(tropar)
@@ -632,14 +632,14 @@ class Kassia:
         return chunks_list
 
     @staticmethod
-    def make_glyph_list(neume_chunk_list: List[NeumeChunk], lyrics_list: List[Lyric]) -> List[Glyph]:
-        """Takes a list of neume chunks and a list of lyrics and combines them into a single glyph list.
+    def make_syllable_list(neume_chunk_list: List[NeumeChunk], lyrics_list: List[Lyric]) -> List[Syllable]:
+        """Takes a list of neume chunks and a list of lyrics and combines them into a single syllable list.
         :param neume_chunk_list: A list of neume chunks.
         :param lyrics_list: A list of lyrics.
-        :return glyph_list: A list of glyphs.
+        :return syl_list: A list of syllables.
         """
         i, l_ptr = 0, 0
-        glyph_line: List[Glyph] = []
+        syl_line: List[Syllable] = []
         while i < len(neume_chunk_list):
             # Grab next chunk
             neume_chunk = neume_chunk_list[i]
@@ -653,56 +653,56 @@ class Kassia:
             if lyrical_chunk:
                 if l_ptr < len(lyrics_list):
                     lyric = lyrics_list[l_ptr]
-                    glyph = Glyph(neume_chunk=neume_chunk,
-                                  lyric=lyric)
+                    syl = Syllable(neume_chunk=neume_chunk,
+                                     lyric=lyric)
                 else:
-                    glyph = Glyph(neume_chunk)
+                    syl = Syllable(neume_chunk)
                 l_ptr += 1
 
                 # Todo: See if lyric ends with '_' and if lyrics are wider than the neume, then combine with next chunk
             else:
                 # no lyric needed
-                glyph = Glyph(neume_chunk)
+                syl = Syllable(neume_chunk)
 
-            glyph.set_size()
-            glyph_line.append(glyph)
+            syl.set_size()
+            syl_line.append(syl)
             i += 1
-        return glyph_line
+        return syl_line
 
-    def line_break(self, glyph_list: List[Glyph], starting_pos: Cursor, line_width: int, line_spacing: int,
-                   glyph_spacing: int) -> List[GlyphLine]:
-        """Break continuous list of glyphs into lines- currently greedy.
-        :param glyph_list: A list of glyphs.
-        :param starting_pos: Where to begin drawing glyphs.
+    def line_break(self, syl_list: List[Syllable], starting_pos: Cursor, line_width: int, line_spacing: int,
+                   syl_spacing: int) -> List[SyllableLine]:
+        """Break continuous list of syllables into lines- currently greedy.
+        :param syl_list: A list of syllables.
+        :param starting_pos: Where to begin drawing syllables.
         :param line_width: Width of a line (usually page width minus margins).
-        :param line_spacing: Vertical space between each line. Needed to create GlyphLine.
-        :param glyph_spacing: Minimum space between each glyph, from bnml.
-        :return glyph_line_list: A list of lines of Glyphs.
+        :param line_spacing: Vertical space between each line. Needed to create SyllableLine.
+        :param syl_spacing: Minimum space between each syllable, from bnml.
+        :return syl_line_list: A list of lines of Glyphs.
         """
         cr = starting_pos
-        glyph_line_list: List[GlyphLine] = []
-        glyph_line: GlyphLine = GlyphLine(line_spacing, glyph_spacing)
+        syl_line_list: List[SyllableLine] = []
+        syl_line: SyllableLine = SyllableLine(line_spacing, syl_spacing)
         
-        # Need to shift neumes and lyrics up by this amount, since glyph will be drawn aligned to bottom, and
+        # Need to shift neumes and lyrics up by this amount, since syllable will be drawn aligned to bottom, and
         # lyrics are being added below neumes
-        y_offset = max(getattr(glyph.lyric, 'top_margin', 0) for glyph in glyph_list)
+        y_offset = max(getattr(syl.lyric, 'top_margin', 0) for syl in syl_list)
 
-        for glyph in glyph_list:
+        for syl in syl_list:
             new_line = False
-            if (cr.x + glyph.width + glyph_spacing) >= line_width:
+            if (cr.x + syl.width + syl_spacing) >= line_width:
                 cr.x = 0
                 new_line = True
 
             adj_lyric_pos, adj_neume_pos = 0, 0
 
-            neume_width = getattr(glyph.neume_chunk, 'width', 0)
-            lyric_width = getattr(glyph.lyric, 'width', 0)
+            neume_width = getattr(syl.neume_chunk, 'width', 0)
+            lyric_width = getattr(syl.lyric, 'width', 0)
             if neume_width >= lyric_width:
                 # center lyrics
-                adj_lyric_pos = (glyph.width - lyric_width) / 2.
+                adj_lyric_pos = (syl.width - lyric_width) / 2.
 
                 # special cases
-                primary_neume: Neume = glyph.neume_chunk[0]
+                primary_neume: Neume = syl.neume_chunk[0]
                 if primary_neume.name == 'bare':
                     # If bareia, center lyric under neume chunk without bareia
                     adj_lyric_pos += primary_neume.width / 2.
@@ -715,35 +715,35 @@ class Kassia:
                     adj_lyric_pos += primary_neume.lyric_offset / 2.
             else:
                 # center neume
-                adj_neume_pos = (glyph.width - neume_width) / 2.
+                adj_neume_pos = (syl.width - neume_width) / 2.
 
-            glyph.neume_chunk_pos[0] = cr.x + adj_neume_pos
-            glyph.neume_chunk_pos[1] = y_offset/2.
-            glyph.lyric_pos[0] = cr.x + adj_lyric_pos
-            glyph.lyric_pos[1] = cr.y
-            cr.x += glyph.width + glyph_spacing
+            syl.neume_chunk_pos[0] = cr.x + adj_neume_pos
+            syl.neume_chunk_pos[1] = y_offset/2.
+            syl.lyric_pos[0] = cr.x + adj_lyric_pos
+            syl.lyric_pos[1] = cr.y
+            cr.x += syl.width + syl_spacing
 
             if new_line:
-                glyph_line_list.append(glyph_line)
-                glyph_line = GlyphLine(line_spacing, glyph_spacing)
+                syl_line_list.append(syl_line)
+                syl_line = SyllableLine(line_spacing, syl_spacing)
 
-            glyph_line.append(glyph)
+            syl_line.append(syl)
 
-        glyph_line_list.append(glyph_line)  # One more time to grab the last line
+        syl_line_list.append(syl_line)  # One more time to grab the last line
 
-        return glyph_line_list
+        return syl_line_list
 
     @staticmethod
-    def line_justify(line_list: List[GlyphLine], max_line_width: int, first_line_x_offset: int) -> List[GlyphLine]:
+    def line_justify(line_list: List[SyllableLine], max_line_width: int, first_line_x_offset: int) -> List[SyllableLine]:
         """Justify a line of neumes by adjusting space between each neume group.
-        :param line_list: A list of glyphs
+        :param line_list: A list of syllables
         :param max_line_width: Max width a line of neumes can take up.
         :param first_line_x_offset: Offset of first line, usually from a dropcap.
         :return line_list: The modified line_list with neume spacing adjusted.
         """
         for line_index, line in enumerate(line_list):
             # Calc width of each chunk (and count how many chunks)
-            total_chunk_width = sum(glyph.width for glyph in line)
+            total_chunk_width = sum(syl.width for syl in line)
             
             # Skip if last line
             if line_index + 1 == len(line_list):
@@ -752,20 +752,20 @@ class Kassia:
             # Subtract total from line_width (gets space remaining)
             space_remaining = (max_line_width - first_line_x_offset) - total_chunk_width
             # Divide by number of chunks in line
-            glyph_spacing = space_remaining / len(line)
+            syl_spacing = space_remaining / len(line)
 
             cr = Cursor(0, 0)
 
-            for glyph in line:
+            for syl in line:
                 adj_lyric_pos, adj_neume_pos = 0, 0
-                neume_width = getattr(glyph.neume_chunk, 'width', 0)
-                lyric_width = getattr(glyph.lyric, 'width', 0)
+                neume_width = getattr(syl.neume_chunk, 'width', 0)
+                lyric_width = getattr(syl.lyric, 'width', 0)
                 if neume_width >= lyric_width:
                     # center lyrics
-                    adj_lyric_pos = (glyph.width - lyric_width) / 2.
+                    adj_lyric_pos = (syl.width - lyric_width) / 2.
 
                     # special cases
-                    primary_neume = glyph.neume_chunk[0]
+                    primary_neume = syl.neume_chunk[0]
                     if primary_neume.name == 'bare':
                         # If bareia, center lyric under neume chunk excluding bareia
                         adj_lyric_pos += primary_neume.width / 2.
@@ -774,12 +774,12 @@ class Kassia:
                         adj_lyric_pos += primary_neume.lyric_offset / 2.
                 else:
                     # center neume
-                    adj_neume_pos = (glyph.width - neume_width) / 2.
+                    adj_neume_pos = (syl.width - neume_width) / 2.
 
-                glyph.neume_chunk_pos[0] = cr.x + adj_neume_pos
-                glyph.lyric_pos[0] = cr.x + adj_lyric_pos
+                syl.neume_chunk_pos[0] = cr.x + adj_neume_pos
+                syl.lyric_pos[0] = cr.x + adj_lyric_pos
 
-                cr.x += glyph.width + glyph_spacing
+                cr.x += syl.width + syl_spacing
 
             # After first line (dropcap), set first line offset to zero
             first_line_x_offset = 0
