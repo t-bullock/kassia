@@ -55,7 +55,7 @@
         τοῦ Δανιήλ Πρωτοψάλτου
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             peta_kentU_hypsUR apos ison olig olig_psefD
         </neumes>
@@ -105,9 +105,9 @@
             εν τω κε κρα γε ναι με προς σε
             Ει σα κου σον μου Κυ ρι ε
         </lyrics>
-    </troparion>
+    </score>
 
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL ison ison olig_ken2U
         </neumes>
@@ -148,13 +148,13 @@
             θυ σι α ε σπε ρι νη
             Ει σα κου σον μου Κυ ρι ε ε
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="h3">
         τοῦ Γεωργίου τοῦ Κρητός
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL_klasD peta_klasD apos apos olig olig peta apos olig_kent ison apos apos apos_klasU
         </neumes>
@@ -180,7 +180,7 @@
             Θου Κυ ρι ε φυ λα κην τω στο μα τι ι μου
             και θυ ραν πε ρι ο χης πε ρι τα χει λη μου
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="h3">
         τοῦ Δανιήλ Πρωτοψάλτου
@@ -190,7 +190,7 @@
         Στιχ. Ἐξάγαγε ἐκ φυλακῆς τὴν ψυχήν μου, τοῦ ἐξομολογήσασθαι τῷ ὀνόματί σου.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             peta_kentU_hypsUR apos ison ison ison ison bare apos_apos olig olig elaf olig ison ken2 ison_klasU
         </neumes>
@@ -237,13 +237,13 @@
             με τα των Α σω μα τω ων κραυ γα ζον τες
             Δη μι ουρ γε ε και Σω τηρ η μων δο ο ξα σοι οι
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="verse">
         Στιχ. Ἐμὲ ὑπομενοῦσι δίκαιοι, ἕως οὐ ἀνταποδῷς μοι.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL peta apos ison_psefD apos apos olig olig_klasU apos ison bare apos_apos olig olig olig_klasU
         </neumes>
@@ -285,13 +285,13 @@
             δι ο προ σκυ νου μεν την τρι η με ρον σου α να στα σιν
             Κυ ρι ε δο ξα σοι οι
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="verse">
         Στιχ. Ἐκ βαθέων ἐκέκραξά σοι, Κύριε. Κύριε, εἰσάκουσον τῆς φωνῆς μου.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL olig_psefD apos apos apos olig_ken2U ison olig olig_kentDR_psefD2 apos apos apos ison apos apos olig olig ison olig_kentDR_psefD2
         </neumes>
@@ -338,13 +338,13 @@
             ου τος ο πλου τος της Βα σι λει ει ας
             ο πα θω ων δι η μας Κυ ρι ε δο ξα σοι οι
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="verse">
         Στιχ. Γενηθήτω τὰ ὦτά σου προσέχοντα εἰς τὴν φωνὴν τῆς δεήσεώς μου.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_kentU_hypsUR_klasD apos olig olig_kentDR_psefD2 apos apos apos peta apos ison apos olig_psefD apos apos olig olig_klasU
         </neumes>
@@ -413,13 +413,13 @@
             Παν το δυ υ να με και αι φι λαν θρω πε
             Κυ υ ρι ε δο ο ξα σοι οι
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="verse">
         Στιχ. Ἐὰν ἀνομίας παρατηρήσῃς, Κύριε Κύριε, τίς ὑποστήσεται; Ὅτι παρὰ σοὶ ὁ ἱλασμός ἐστιν.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL ison ison olig_ken2U
         </neumes>
@@ -506,13 +506,13 @@
             και νε κρω θε εν τα α ως αν θρω πον
             και α να σταν τα κατ ε ξου σι αν ως φι λα αν θρω πο ον
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="verse">
         Στιχ. Ἕνεκεν τοῦ ὀνόματός σου ὑπέμεινά σε, Κύριε, ὑπέμεινεν ἡ ψυχή μου εἰς τὸν λόγον σου. Ἤλπισεν ἡ ψυχή μου ἐπὶ τὸν Κύριον.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL olig_psefD apos apos olig olig_psefD apos apos apos olig_kentDR_psefD2 apos apos olig ison ken2 ison ison olig_ken2U
         </neumes>
@@ -591,13 +591,13 @@
             εκ των του Α α δου δε σμων και της φθο ρας κραυ γα ζον τα α και λε γον τα
             Δο ο ξα τη Α να στα σει σου μο νε φι λα αν θρω πε ε
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="verse">
         Στιχ. Ἀπὸ φυλακῆς πρωΐας μέχρι νυκτός· ἀπὸ φυλακῆς πρωΐας ἐλπισάτω Ἰσραὴλ ἐπὶ τὸν Κύριον.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL peta apos ison olig olig_kentDR_psefD2 apos apos apos apos apos olig_ken2U peta_isonU apos syne_klasU 
         </neumes>
@@ -631,7 +631,7 @@
             συ να να στη σας τον Α δαμ
             εκ της φθο ρας του θα να α του ως παν το δυ υ να μο ος
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="verse">
         Στιχ. Ὅτι παρὰ τῷ Κυρίῳ τὸ ἔλεος καὶ πολλὴ παρ' αὐτῷ λύτρωσις. Καὶ αὐτὸς λυτρώσεται τὸν Ἰσραὴλ ἐκ πασῶν τῶν ἀνομιῶν αὐτοῦ.
@@ -647,7 +647,7 @@
         Δόξα. Καὶ νῦν.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             peta_kentU_hypsUR apos ison olig olig_psefD
         </neumes>
@@ -767,13 +767,13 @@
             δε ο με θα σου εκ τε νως
             Πρε σβευ ε του σω θη ναι τας ψυ χας η μω ων
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="h1">
         Ἀπόστιχα
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL peta apos ison ison bare apos_apos olig olig olig elaf ison ken2 ison_klasU
         </neumes>
@@ -799,13 +799,13 @@
             Α νε στης εκ του τα φου Σω τηρ του κο ο σμου
             και συ νη γει ρας τους αν θρω ω πους συν τη σαρ κι σου Κυ ρι ε δο ξα σοι οι
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="verse">
         Στιχ. Ὁ Κύριος ἐβασίλευσεν, εὐπρέπειαν ἐνεδύσατο. Ἐνεδύσατο Κύριος δύναμιν καὶ περιεζώσατο.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL ison olig olig_psefD
         </neumes>
@@ -861,13 +861,13 @@
             ζω ην η μιν δω ω ρη σα με νος
             και το με γα ε λε ο ος
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="verse">
         Στιχ. Καὶ γὰρ ἐστερέωσε τὴν οἰκουμένην, ἥτις οὐ σαλευθήσεται.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_kent olig olig olig ison apos olig olig elaf peta_klasD apos apos olig olig peta_isonU apos syne_klasU 
         </neumes>
@@ -901,13 +901,13 @@
             δο ξα ζον τας την σην παν το δυ να μον Ε γερ σιν
             Κυ ρι ε φι λαν θρω πε ε
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="verse">
         Στιχ. Τῷ οἴκῳ σου πρέπει ἁγίασμα, Κύριε, εἰς μακρότητα ἡμερῶν.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL olig olig_kentDR_psefD2 apos apos apos peta apos ison olig olig
         </neumes>
@@ -959,13 +959,13 @@
             τον Α δα αμ συ να νε στη σα ας κραυ γα ζον τα
             Δο ο ξα τη Α να στα σει σου μο νε φι λαν θρω πε ε
         </lyrics>
-    </troparion>
+    </score>
 
     <paragraph style="h4">
         Δόξα. Καὶ νῦν.
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig_kent olig olig olig ison_psefD apos apos olig_ken2U ison peta_isonU_klasD apos syne olig olig olig ison ison apos olig_ken2U_psefD apos apos ison_psefD apos apos_klasU
         </neumes>
@@ -1007,5 +1007,5 @@
             ρυ υ σαι η μα ας εξ α με τρων πται σμα α των
             και σω σον τας ψυ χας η μω ων
         </lyrics>
-    </troparion>
+    </score>
 </bnml>

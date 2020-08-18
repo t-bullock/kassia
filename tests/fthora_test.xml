@@ -19,7 +19,7 @@
     <paragraph>
         Fthores over Martyriae
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             malfa_mpaU_fdpaUR
             malfa_mpaU_fdbouUR
@@ -38,14 +38,14 @@
             malfa_mpaU_fspathiUR
             malfa_mpaU_fajemUR
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Fthores over Ison
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             ison_fdpaU
             ison_fdbouU
@@ -64,14 +64,14 @@
             ison_fspathiU
             ison_fajemU
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Fthores over Apostrophos
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             apos_fdpaUR
             apos_fdbouUR
@@ -90,14 +90,14 @@
             apos_fspathiUR
             apos_fajemUR
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Fthores under Apostrophos
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             apos_fdpaDR
             apos_fdbouDR
@@ -116,7 +116,7 @@
             apos_fspathiDR
             apos_fajemDR
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -124,7 +124,7 @@
     <paragraph>
         Note Indicators
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             olig_hypsUL_indpaUR
             olig_hypsUL_indbouUR
@@ -134,8 +134,8 @@
             olig_hypsUL_indzoUR
             olig_hypsUL_indneUR
         </neumes>
-    </troparion>
-    <troparion>
+    </score>
+    <score>
         <neumes>
             olig_hypsUR_indpaUL
             olig_hypsUR_indbouUL
@@ -145,6 +145,6 @@
             olig_hypsUR_indzoUL
             olig_hypsUR_indneUL
         </neumes>
-    </troparion>
+    </score>
 
 </bnml>

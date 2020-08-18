@@ -20,7 +20,7 @@
     <paragraph>
         Underscore starts on next line
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             ison ison ison ison ison ison ison ison ison ison apos syne olig_antiD apos
         </neumes>
@@ -30,7 +30,7 @@
         <lyrics>
             An un- der- score on a new line e e e _ _ _
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -38,7 +38,7 @@
     <paragraph>
         Underscore across Line Break
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             ison ison ison ison ison ison ison ison ison ison apos syne olig_antiD apos
         </neumes>
@@ -48,7 +48,7 @@
         <lyrics>
             An un- der- score across line break k k k _ _ _
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -56,14 +56,14 @@
     <paragraph>
         Begin with Underscore
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             ison ison
         </neumes>
         <lyrics>
             _ _
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -71,14 +71,14 @@
     <paragraph>
         Extra Underscores Should Not be Drawn
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             ison ison
         </neumes>
         <lyrics>
             la _ _ _ _ _ _ _ _ _
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -86,7 +86,7 @@
     <paragraph>
         Underscore across Martyria
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             ison ison
         </neumes>
@@ -99,7 +99,7 @@
         <lyrics>
             la _ _ _
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -107,7 +107,7 @@
     <paragraph>
         Underscore Color
     </paragraph>
-    <troparion>
+    <score>
         <neumes color="#00FFF0">
             ison ison
         </neumes>
@@ -129,7 +129,7 @@
         <lyrics color="#0FF000">
             green _ _ _
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -137,12 +137,12 @@
     <paragraph>
         Underscore to Syneches Elaphron
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             ison ison syne
         </neumes>
         <lyrics>
             la la_ la
         </lyrics>
-    </troparion>
+    </score>
 </bnml>

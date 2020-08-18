@@ -20,70 +20,70 @@
     <paragraph>
         Martyriae List
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             malfa_mpaU mlamd_mbouU mnana_mgaU mdeltapo_mdiU malfaapo_mkeU mhypo_mzoU mdelt_mneU_mprimU
         </neumes>
         <neumes>
             mpa_malfaU mbou_mlamdU mga_mnanaU mdi_mdeltapoU mke_malfaapoU mzo_mhypoU mne_mprim_mdeltU
         </neumes>
-    </troparion>
-    <troparion>
+    </score>
+    <score>
         <neumes>
             mbeta_mpaU mbeta_mbouU mbeta_mgaU mbeta_mdiU mbeta_mkeU mbeta_mzoU mbeta_mneU_mprimU
         </neumes>
         <neumes>
             mpa_mbetaU mbou_mbetaU mga_mbetaU mdi_mbetaU mke_mbetaU mzo_mbetaU mne_mprim_mbetaU
         </neumes>
-    </troparion>
-    <troparion>
+    </score>
+    <score>
         <neumes>
             mbetaapo_mpaU mbetaapo_mbouU mbetaapo_mgaU mbetaapo_mdiU mbetaapo_mkeU mbetaapo_mzoU mbetaapo_mneU_mprimU
         </neumes>
         <neumes>
             mpa_mbetaapoU mbou_mbetaapoU mga_mbetaapoU mdi_mbetaapoU mke_mbetaapoU mzo_mbetaapoU mne_mprim_mbetaapoU
         </neumes>
-    </troparion>
-    <troparion>
+    </score>
+    <score>
         <neumes>
             mnena_mpaU mnena_mbouU mnena_mgaU mnena_mdiU mnena_mkeU mnena_mzoU mnena_mneU_mprimU
         </neumes>
         <neumes>
             mpa_mnenaU mbou_mnenaU mga_mnenaU mdi_mnenaU mke_mnenaU mzo_mnenaU mne_mprim_mnenaU
         </neumes>
-    </troparion>
-    <troparion>
+    </score>
+    <score>
         <neumes>
             mscnena_mpaU mscnena_mbouU mscnena_mgaU mscnena_mdiU mscnena_mkeU mscnena_mzoU mscnena_mneU_mprimU
         </neumes>
         <neumes>
             mpa_mscnenaU mbou_mscnenaU mga_mscnenaU mdi_mscnenaU mke_mscnenaU mzo_mscnenaU mne_mprim_mscnenaU
         </neumes>
-    </troparion>
-    <troparion>
+    </score>
+    <score>
         <neumes>
             mzygos_mpaU mzygos_mbouU mzygos_mgaU mzygos_mdiU mzygos_mkeU mzygos_mzoU mzygos_mneU_mprimU
         </neumes>
         <neumes>
             mpa_mzygosU mbou_mzygosU mga_mzygosU mdi_mzygosU mke_mzygosU mzo_mzygosU mne_mprim_mzygosU
         </neumes>
-    </troparion>
-    <troparion>
+    </score>
+    <score>
         <neumes>
             mkliton_mpaU mkliton_mbouU mkliton_mgaU mkliton_mdiU mkliton_mkeU mkliton_mzoU mkliton_mneU_mprimU
         </neumes>
         <neumes>
             mpa_mklitonU mbou_mklitonU mga_mklitonU mdi_mklitonU mke_mklitonU mzo_mklitonU mne_mprim_mklitonU
         </neumes>
-    </troparion>
-    <troparion>
+    </score>
+    <score>
         <neumes>
             mspathi_mpaU mspathi_mbouU mspathi_mgaU mspathi_mdiU mspathi_mkeU mspathi_mzoU mspathi_mneU_mprimU
         </neumes>
         <neumes>
             mpa_mspathiU mbou_mspathiU mga_mspathiU mdi_mspathiU mke_mspathiU mzo_mspathiU mne_mprim_mspathiU
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -91,7 +91,7 @@
     <paragraph>
         Tempo Markings above Martyriae
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             malfa_mpaU_chitriaU
             malfa_mpaU_chidiarU
@@ -101,7 +101,7 @@
             malfa_mpaU_chigorgU
             malfa_mpaU_chitrigU
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 

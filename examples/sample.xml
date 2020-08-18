@@ -84,7 +84,7 @@
         Κύριε ἐκέκραξα
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             bare olig homaDR ison apos olig olig_ken2U_psefD apos apos apos_antiD_haplD apos
         </neumes>
@@ -267,7 +267,7 @@
             when I cry _ _ un- to _ Thee _
             Heark- - en un- to me _ _ _ O _ _ _ Lord
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -279,7 +279,7 @@
         Κατευθυνθήτω
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             peta_oligU apos olig olig_psefD hypo
         </neumes>
@@ -361,7 +361,7 @@
             as an eve- ning sac- ri- fice
             heark- - en un- to me _ _ _ O _ _ _ Lord
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -407,7 +407,7 @@
         Ἐξάγαγε ἐκ φυλακῆς
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes color="#cf232b">
             chigorg
         </neumes>
@@ -448,7 +448,7 @@
             Bring my soul out of pris- on
             that I may con- fess _ _ _ Thy _ _ _ name
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -459,7 +459,7 @@
         Τὰς ἑσπερινάς
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             olig olig_klasU_psefD apos_klasU apos_antiD_haplD apos
         </neumes>
@@ -546,7 +546,7 @@
             and grant us _ the re- mis- - - sion of _ sins _ _
             for Thou a- - lone art He Who hath _ shown _ forth the Res- ur- rec- tion un- - - to _ the _ _ world
         </lyrics>
-    </troparion>
+    </score>
 
     <pagebreak />
 
@@ -557,7 +557,7 @@
         Ἐμὲ ὑπομενοῦσι
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes color="#cf232b">
             chigorg
         </neumes>
@@ -592,7 +592,7 @@
             The right- eous shall wait pa- tient- ly for me
             un- til Thou shalt re- ward _ _ _ me
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -603,7 +603,7 @@
         Κυκλώσατε λαοί
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             ison barl olig_homaDR ison apos olig olig_ken2U_psefD apos apos apos_klasU peta_isonU_klasD bare apos_apos olig ken2 olig_isonUL_ken2UR
         </neumes>
@@ -717,7 +717,7 @@
             Who hath de- liv- - ered _ us _
             from our in- iq- - - - ui- - - - ties
         </lyrics>
-    </troparion>
+    </score>
     
     <pagebreak />
     
@@ -728,7 +728,7 @@
         Ἐκ βαθέων
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes color="#cf232b">
             chigorg
         </neumes>
@@ -775,7 +775,7 @@
             Out of the depths have I cried un- to Thee O Lord
             O Lord hear _ _ _ _ my _ _ _ voice
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -786,7 +786,7 @@
         Δεῦτε λαοί
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             barl peta apos olig barl olig_ken2U_psefD apos apos apos_klasU ison ison peta_aposU_klasD syne_klasU olig_klasU olig_ken2U
         </neumes>
@@ -893,7 +893,7 @@
             Who hath de- liv- - - ered the _ world
             from thē er- - - ror of thē en- - - - e- - - - my
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
     
@@ -904,7 +904,7 @@
         Γενηθήτω τὰ ῷτα σου
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes color="#cf232b">
             chigorg
         </neumes>
@@ -938,7 +938,7 @@
         <lyrics>
             Let Thine ears be at- ten- tive to the voice of my sup- pli- ca- - - - tion
         </lyrics>
-    </troparion>
+    </score>
 
     <linebreak />
 
@@ -949,7 +949,7 @@
         Εὐφράνθητε οὐρανοί
     </paragraph>
 
-    <troparion>
+    <score>
         <neumes>
             ison olig_kentDR_psefD2 apos apos_klasU bare apos_apos olig ken2 olig_isonUL_ken2UR
         </neumes>
@@ -1112,6 +1112,6 @@
             and the Giv- er of life hath slain _ _ _ death
             and as the Friend of _ man He hath raised up Ad- - - - - - am
         </lyrics>
-    </troparion>
+    </score>
 
 </bnml>

@@ -19,31 +19,31 @@
     <paragraph>
         Tempo Markings
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             chitria chidiar chihemi chiargo chigarg chigorg chidigo chitrig
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Arga
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             olig_ken2DR_argoU
             olig_ken2DR_hemiU
             olig_ken2DR_diargU
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Gorga over ison
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             ison_gorgU
             ison_gorgdotU
@@ -55,14 +55,14 @@
             ison_trigdotU
             ison_dottrigU
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Gorga over oligon with kentemata
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             olig_ken2U_gorgU2
             olig_ken2U_gorgdotU2
@@ -74,14 +74,14 @@
             olig_ken2U_trigdotU2
             olig_ken2U_dottrigU2
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Gorga over oligon upper right
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             olig_aposUL_ken2UR_gorgU2R
             olig_aposUL_ken2UR_gorgdotU2R
@@ -93,14 +93,14 @@
             olig_aposUL_ken2UR_trigdotU2R
             olig_aposUL_ken2UR_dottrigU2R
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Gorga over oligon upper left
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             olig_aposUL_ken2UR_gorgU2L
             olig_aposUL_ken2UR_gorgdotU2L
@@ -112,14 +112,14 @@
             olig_aposUL_ken2UR_trigdotU2L
             olig_aposUL_ken2UR_dottrigU2L
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Gorga over apostrophos and hyporroe
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             apos_gorgUR
             apos_gorgdotUR
@@ -131,8 +131,8 @@
             apos_trigdotUR
             apos_dottrigUR
         </neumes>
-    </troparion>
-    <troparion>
+    </score>
+    <score>
         <neumes>
             hypo_gorgUR
             hypo_gorgdotUR
@@ -144,12 +144,12 @@
             hypo_trigdotUR
             hypo_dottrigUR
         </neumes>
-    </troparion>
+    </score>
 
     <paragraph>
         Gorga under apostrophos and hyporroe
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             apos_gorgDR
             apos_gorgdotDR
@@ -161,8 +161,8 @@
             apos_trigdotDR
             apos_dottrigDR
         </neumes>
-    </troparion>
-    <troparion>
+    </score>
+    <score>
         <neumes>
             hypo_gorgDR
             hypo_gorgdotDR
@@ -174,14 +174,14 @@
             hypo_trigdotDR
             hypo_dottrigDR
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Gorga under oligon
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             olig_gorgD
             olig_gorgdotD
@@ -193,18 +193,18 @@
             olig_trigdotD
             olig_dottrigD
         </neumes>
-    </troparion>
+    </score>
 
     <linebreak />
 
     <paragraph>
         Korona
     </paragraph>
-    <troparion>
+    <score>
         <neumes>
             olig_koroU
             apos_koroUR
         </neumes>
-    </troparion>
+    </score>
 
 </bnml>
