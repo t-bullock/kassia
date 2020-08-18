@@ -20,7 +20,7 @@ from syllable import Syllable
 from lyric import Lyric
 from neume import Neume
 from neume_chunk import NeumeChunk
-from troparion import Troparion
+from score import Score
 
 
 class Kassia:
@@ -196,17 +196,17 @@ class Kassia:
                 paragraph_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
                 self.draw_paragraph(child_elem, paragraph_attrib_dict)
 
-            if child_elem.tag == 'troparion':
+            if child_elem.tag == 'score':
                 neumes_list = []
                 lyrics_list = []
                 dropcap = None
 
-                for troparion_child_elem in child_elem:
-                    if troparion_child_elem.tag == 'pagebreak':
+                for score_child_elem in child_elem:
+                    if score_child_elem.tag == 'pagebreak':
                         self.story.append((PageBreak()))
 
-                    if troparion_child_elem.tag == 'neumes':
-                        neumes_elem = troparion_child_elem
+                    if score_child_elem.tag == 'neumes':
+                        neumes_elem = score_child_elem
                         attribs_from_bnml = self.fill_attribute_dict(neumes_elem.attrib)
                         neumes_style = self.merge_paragraph_styles(self.styleSheet['Neumes'], attribs_from_bnml)
                         # Get font family name without 'Main', 'Martyria', etc.
@@ -224,8 +224,8 @@ class Kassia:
                                 except KeyError as ke:
                                     logging.error("Couldn't add neume: {}. Check bnml for bad symbol and verify glyphnames.yaml is correct.".format(ke))
 
-                    if troparion_child_elem.tag == 'lyrics':
-                        lyrics_elem = troparion_child_elem
+                    if score_child_elem.tag == 'lyrics':
+                        lyrics_elem = score_child_elem
                         lyrics_style = self.styleSheet['Lyrics']
                         attribs_from_bnml = self.fill_attribute_dict(lyrics_elem.attrib)
                         lyrics_style = self.merge_paragraph_styles(lyrics_style, attribs_from_bnml)
@@ -238,8 +238,8 @@ class Kassia:
                                           top_margin=lyrics_style.spaceBefore)
                             lyrics_list.append(lyric)
 
-                    if troparion_child_elem.tag == 'dropcap':
-                        dropcap_elem = troparion_child_elem
+                    if score_child_elem.tag == 'dropcap':
+                        dropcap_elem = score_child_elem
                         dropcap_style = self.styleSheet['Dropcap']
                         if dropcap_elem.attrib:
                             attribs_from_bnml = self.fill_attribute_dict(dropcap_elem.attrib)
@@ -248,7 +248,7 @@ class Kassia:
                         dropcap = Dropcap(dropcap_text, dropcap_style.rightIndent, dropcap_style)
 
                 if neumes_list:
-                    self.draw_troparion(neumes_list, lyrics_list, dropcap)
+                    self.draw_score(neumes_list, lyrics_list, dropcap)
 
         try:
             self.doc.build(self.story,
@@ -389,8 +389,8 @@ class Kassia:
         p = Paragraph(paragraph_text, paragraph_style)
         self.story.append(p)
 
-    def draw_troparion(self, neumes_list: List[Neume], lyrics_list: List[Lyric], dropcap: Dropcap):
-        """Draws a troparion with the passed text attributes.
+    def draw_score(self, neumes_list: List[Neume], lyrics_list: List[Lyric], dropcap: Dropcap):
+        """Draws a score with the passed text attributes.
         :param neumes_list: A list of neumes.
         :param lyrics_list: A list of Lyrics.
         :param dropcap: A dropcap object.
@@ -414,8 +414,8 @@ class Kassia:
             if len(lines_list) > 1 or self.styleSheet['Neumes'].alignment is TA_JUSTIFY:
                 lines_list: List[SyllableLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
 
-            tropar = Troparion(lines_list, dropcap, self.doc.width)
-            self.story.append(tropar)
+            score = Score(lines_list, dropcap, self.doc.width)
+            self.story.append(score)
 
     @staticmethod
     def merge_paragraph_styles(default_style: ParagraphStyle, bnml_style: Dict[str, Any]) -> ParagraphStyle:

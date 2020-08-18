@@ -7,7 +7,7 @@ from drop_cap import Dropcap
 from syllable_line import SyllableLine
 
 
-class Troparion(Flowable):
+class Score(Flowable):
     def __init__(self, syl_lines: List[SyllableLine] = None,
                  dropcap: Dropcap = None,
                  available_width: float = 0):
@@ -63,7 +63,7 @@ class Troparion(Flowable):
             return [self]
 
         if self.dropcap:
-            first_line = Troparion([self.syl_lines.pop(0)], self.dropcap, avail_width)
+            first_line = Score([self.syl_lines.pop(0)], self.dropcap, avail_width)
             return [first_line, *self.syl_lines]
         else:
             return self.syl_lines

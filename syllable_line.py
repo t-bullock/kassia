@@ -24,7 +24,7 @@ class SyllableLine(Flowable, collections.MutableSequence):
 
     def draw(self, canvas: Canvas = None):
         """This class is overloaded from Flowable's draw function.
-        :param canvas: The canvas. This only gets passed to draw when called by Troparion directly.
+        :param canvas: The canvas. This only gets passed to draw when called by Score directly.
         If a troparion gets split, platypus will treat the syllableLine as a Flowable and call draw without
         any parameters.
         """
