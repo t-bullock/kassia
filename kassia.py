@@ -64,7 +64,7 @@ class Kassia:
         """Add specific Kassia styles to stylesheet.
         """
         self.styleSheet.add(ParagraphStyle(name='Neumes',
-                                           fontName="KA New Stathis Main",
+                                           fontName="KA New Stathis",
                                            fontSize=30,
                                            leading=70,
                                            wordSpace=4),
@@ -140,116 +140,191 @@ class Kassia:
                     except KeyError as e:
                         logging.warning("Couldn't add style to stylesheet: {}".format(e))
 
+    def parse_music(self, bnml_file: Element):
+        """Create a score and add it to story.
+        """
+        music = bnml_file.find('music')
+        if music:
+            for music_elem in music:
+                if music_elem.tag in ['header-even', 'header']:
+                    self._parse_header_even(music_elem)
+                elif music_elem.tag == 'header-odd':
+                    self._parse_header_odd(music_elem)
+                elif music_elem.tag == 'footer':
+                    self._parse_footer(music_elem)
+                elif music_elem.tag == 'pagebreak':
+                    self._parse_pagebreak(music_elem)
+                elif music_elem.tag == 'linebreak':
+                    self._parse_linebreak(music_elem)
+                elif music_elem.tag in ['para', 'paragraph']:
+                    self._parse_paragraph(music_elem)
+                elif music_elem.tag == 'score':
+                    self._parse_score(music_elem)
+
+    def _parse_header_even(self, header_elem: Element):
+        default_header_style = self.styleSheet['Header']
+        header_attrib_dict = self.fill_attribute_dict(header_elem.attrib)
+        if 'style' in header_attrib_dict:
+            default_header_style = getattr(self.styleSheet, header_attrib_dict['style'], 'Header')
+        header_style = self.merge_paragraph_styles(default_header_style, header_attrib_dict)
+        header_text = header_elem.text.strip()
+        self.header_even_paragraph: Paragraph = Paragraph(header_text, header_style)
+
+        for embedded_attrib in header_elem:
+            if embedded_attrib.tag is not None and embedded_attrib.tag == 'page-number':
+                pagenum_attrib_dict = self.fill_attribute_dict(embedded_attrib.attrib)
+                self.header_even_pagenum_style = self.merge_paragraph_styles(default_header_style, pagenum_attrib_dict)
+
+    def _parse_header_odd(self, header_elem: Element):
+        default_header_style = self.styleSheet['Header']
+        header_attrib_dict = self.fill_attribute_dict(header_elem.attrib)
+        if 'style' in header_attrib_dict:
+            default_header_style = getattr(self.styleSheet, header_attrib_dict['style'], 'Header')
+        header_style = self.merge_paragraph_styles(default_header_style, header_attrib_dict)
+        header_text = header_elem.text.strip()
+        self.header_odd_paragraph: Paragraph = Paragraph(header_text, header_style)
+
+        for embedded_attrib in header_elem:
+            if embedded_attrib.tag is not None and embedded_attrib.tag == 'page-number':
+                pagenum_attrib_dict = self.fill_attribute_dict(embedded_attrib.attrib)
+                self.header_odd_pagenum_style = self.merge_paragraph_styles(default_header_style, pagenum_attrib_dict)
+
+    def _parse_footer(self, music_elem: Element):
+        default_footer_style = self.styleSheet['Footer']
+        footer_attrib_dict = self.fill_attribute_dict(music_elem.attrib)
+        if 'style' in footer_attrib_dict:
+            default_footer_style = getattr(self.styleSheet, footer_attrib_dict['style'], 'Footer')
+        footer_style = self.merge_paragraph_styles(default_footer_style, footer_attrib_dict)
+        footer_text = music_elem.text.strip()
+        self.footer_paragraph: Paragraph = Paragraph(footer_text, footer_style)
+        for embedded_attrib in music_elem:
+            if embedded_attrib.tag is not None and embedded_attrib.tag == 'page-number':
+                pagenum_attrib_dict = self.fill_attribute_dict(embedded_attrib.attrib)
+                self.footer_pagenum_style = self.merge_paragraph_styles(default_footer_style, pagenum_attrib_dict)
+
+    def _parse_pagebreak(self, music_elem: Element):
+        self.story.append(PageBreak())
+
+    def _parse_linebreak(self, linebreak_elem: Element):
+        space = linebreak_elem.attrib.get('space', '30')
+        space_amt = int(space)
+        self.story.append(Spacer(0, space_amt))
+
+    def _parse_paragraph(self, para_elem: Element):
+        para_attrs = self.fill_attribute_dict(para_elem.attrib)
+        # if 'style' in para_attrs and para_attrs['style'] in self.styleSheet:
+        try:
+            default_paragraph_style = self.styleSheet[para_attrs['style']]
+        except KeyError:
+            default_paragraph_style = self.styleSheet['Paragraph']
+
+        paragraph_style = self.merge_paragraph_styles(default_paragraph_style, para_attrs)
+        paragraph_text = self.get_embedded_paragraph_text(para_elem, paragraph_style)
+        para = Paragraph(paragraph_text, paragraph_style)
+        self.story.append(para)
+
+    def _parse_score(self, score_elem: Element):
+        syl_list: List[Syllable] = []
+        dropcap = None
+        dropcap_offset = 0
+
+        for syl_elem in score_elem.findall('syllable'):
+            syllable = self._parse_syllable(syl_elem)
+            syl_list.append(syllable)
+
+        dropcap_elem = score_elem.find('dropcap')
+        if dropcap_elem is not None:
+            dropcap = self._parse_dropcap(dropcap_elem)
+
+        # Pop off first letter of lyrics, since it will be drawn as a dropcap
+        if dropcap and syl_list[0].lyric:
+            first_lyric = syl_list[0].lyric
+            first_lyric.text = first_lyric.text[1:]
+            first_lyric.recalc_width()
+            dropcap_offset = dropcap.width + dropcap.x_padding
+
+        lines_list: List[SyllableLine] = self.line_break(syl_list,
+                                                         Cursor(dropcap_offset, 0),
+                                                         self.doc.width,
+                                                         self.styleSheet['Neumes'].leading,
+                                                         self.styleSheet['Neumes'].wordSpace)
+
+        # TODO: Dropcap space is wrong if this isn't called
+        if self.styleSheet['Neumes'].alignment == TA_JUSTIFY and len(lines_list) > 1:
+            lines_list: List[SyllableLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
+
+        score = Score(lines_list, dropcap, self.doc.width)
+        self.story.append(score)
+
+    def _parse_dropcap(self, dc_elem: Element) -> Dropcap:
+        dropcap_style = self.styleSheet['Dropcap']
+        if dc_elem.attrib:
+            attribs_from_bnml = self.fill_attribute_dict(dc_elem.attrib)
+            dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
+        dropcap_text = dc_elem.text.strip()
+        dropcap = Dropcap(dropcap_text, dropcap_style.rightIndent, dropcap_style)
+        return dropcap
+
+    def _parse_syllable(self, syl_elem: Element) -> Syllable:
+        lyric = None
+        neume_group = None
+
+        lyric_elem = syl_elem.find('lyric')
+        if lyric_elem is not None:
+            lyric = self._parse_lyric(lyric_elem)
+
+        neume_group_elem = syl_elem.find('neume-group')
+        if neume_group_elem:
+            neume_group = self._parse_neume_group(neume_group_elem)
+
+        syl = Syllable(neume_chunk=neume_group, lyric=lyric)
+        return syl
+
+    def _parse_lyric(self, lyric_elem: Element) -> Lyric:
+        lyrics_style = self.styleSheet['Lyrics']
+        attribs_from_bnml = self.fill_attribute_dict(lyric_elem.attrib)
+        lyrics_style = self.merge_paragraph_styles(lyrics_style, attribs_from_bnml)
+        lyric = Lyric(text=lyric_elem.text.strip(),
+                      font_family=lyrics_style.fontName,
+                      font_size=lyrics_style.fontSize,
+                      color=lyrics_style.textColor,
+                      top_margin=lyrics_style.spaceBefore)
+        return lyric
+
+    def _parse_neume_group(self, neume_group_elem: Element) -> NeumeChunk:
+        attribs_from_bnml = self.fill_attribute_dict(neume_group_elem.attrib)
+        neumes_style = self.merge_paragraph_styles(self.styleSheet['Neumes'], attribs_from_bnml)
+        # Get font family name without 'Main', 'Martyria', etc.
+        #font_family_name, _ = neumes_style.fontName.rsplit(' ', 1)
+        # TODO: Fix this so family can be used
+        font_family_name = neumes_style.fontName
+        neume_config = self.neume_info_dict[font_family_name]
+
+        # TODO: Replace this underscore logic?
+        neume_name_list = []
+        for neume_elem in neume_group_elem:
+            #neume = self._parse_neume(neume_elem)
+            neume_name_str = neume_elem.text.strip()
+            neume_name_list.append(neume_name_str)
+        neume_group_names = '_'.join(neume_name_list)
+
+        # Check for ligatures and conditionals. If none, build from basic neume parts
+        neume_name_list = self.find_neume_names(neume_group_names, neume_config)
+
+        # Build neume chunk
+        neume_chunk = NeumeChunk()
+        for neume_name in neume_name_list:
+            try:
+                neume = self.create_neume(neume_name, neume_config, neumes_style)
+                if neume:  # neume will be None if neume not found
+                    neume_chunk.append(neume)
+            except KeyError as ke:
+                logging.error("Couldn't add neume: {}. Check bnml for bad symbol and verify glyphnames.yaml is correct.".format(ke))
+
+        neume_chunk.finalize()
+        return neume_chunk
+
     def create_pdf(self):
-        """Create a PDF output file."""
-        for child_elem in self.bnml:
-            if child_elem.tag in ['header-even', 'header']:
-                default_header_style = self.styleSheet['Header']
-                header_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
-                if 'style' in header_attrib_dict:
-                    default_header_style = getattr(self.styleSheet, header_attrib_dict['style'], 'Header')
-                header_style = self.merge_paragraph_styles(default_header_style, header_attrib_dict)
-                header_text = child_elem.text.strip()
-                self.header_even_paragraph: Paragraph = Paragraph(header_text, header_style)
-
-                for embedded_attrib in child_elem:
-                    if embedded_attrib.tag is not None and embedded_attrib.tag == 'page-number':
-                        pagenum_attrib_dict = self.fill_attribute_dict(embedded_attrib.attrib)
-                        self.header_even_pagenum_style = self.merge_paragraph_styles(default_header_style, pagenum_attrib_dict)
-
-            if child_elem.tag == 'header-odd':
-                default_header_style = self.styleSheet['Header']
-                header_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
-                if 'style' in header_attrib_dict:
-                    default_header_style = getattr(self.styleSheet, header_attrib_dict['style'], 'Header')
-                header_style = self.merge_paragraph_styles(default_header_style, header_attrib_dict)
-                header_text = child_elem.text.strip()
-                self.header_odd_paragraph: Paragraph = Paragraph(header_text, header_style)
-
-                for embedded_attrib in child_elem:
-                    if embedded_attrib.tag is not None and embedded_attrib.tag == 'page-number':
-                        pagenum_attrib_dict = self.fill_attribute_dict(embedded_attrib.attrib)
-                        self.header_odd_pagenum_style = self.merge_paragraph_styles(default_header_style, pagenum_attrib_dict)
-
-            if child_elem.tag == 'footer':
-                default_footer_style = self.styleSheet['Footer']
-                footer_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
-                if 'style' in footer_attrib_dict:
-                    default_footer_style = getattr(self.styleSheet, footer_attrib_dict['style'], 'Footer')
-                footer_style = self.merge_paragraph_styles(default_footer_style, footer_attrib_dict)
-                footer_text = child_elem.text.strip()
-                self.footer_paragraph: Paragraph = Paragraph(footer_text, footer_style)
-                for embedded_attrib in child_elem:
-                    if embedded_attrib.tag is not None and embedded_attrib.tag == 'page-number':
-                        pagenum_attrib_dict = self.fill_attribute_dict(embedded_attrib.attrib)
-                        self.footer_pagenum_style = self.merge_paragraph_styles(default_footer_style, pagenum_attrib_dict)
-
-            if child_elem.tag == 'pagebreak':
-                self.story.append(PageBreak())
-
-            if child_elem.tag == 'linebreak':
-                space = child_elem.attrib.get('space', '30')
-                space_amt = int(space)
-                self.story.append(Spacer(0, space_amt))
-
-            if child_elem.tag == 'paragraph':
-                paragraph_attrib_dict = self.fill_attribute_dict(child_elem.attrib)
-                self.draw_paragraph(child_elem, paragraph_attrib_dict)
-
-            if child_elem.tag == 'score':
-                neumes_list = []
-                lyrics_list = []
-                dropcap = None
-
-                for score_child_elem in child_elem:
-                    if score_child_elem.tag == 'pagebreak':
-                        self.story.append((PageBreak()))
-
-                    if score_child_elem.tag == 'neumes':
-                        neumes_elem = score_child_elem
-                        attribs_from_bnml = self.fill_attribute_dict(neumes_elem.attrib)
-                        neumes_style = self.merge_paragraph_styles(self.styleSheet['Neumes'], attribs_from_bnml)
-                        # Get font family name without 'Main', 'Martyria', etc.
-                        font_family_name, _ = neumes_style.fontName.rsplit(' ', 1)
-                        neume_config = self.neume_info_dict[font_family_name]
-
-                        for neume_chunk in neumes_elem.text.strip().split():
-                            # Check for ligatures and conditionals, if none, build from basic neume parts
-                            neume_name_list = self.find_neume_names(neume_chunk, neume_config)
-                            for neume_name in neume_name_list:
-                                try:
-                                    neume = self.create_neume(neume_name, neume_config, neumes_style.fontName, neumes_style)
-                                    if neume:  # neume will be None if neume not found
-                                        neumes_list.append(neume)
-                                except KeyError as ke:
-                                    logging.error("Couldn't add neume: {}. Check bnml for bad symbol and verify glyphnames.yaml is correct.".format(ke))
-
-                    if score_child_elem.tag == 'lyrics':
-                        lyrics_elem = score_child_elem
-                        lyrics_style = self.styleSheet['Lyrics']
-                        attribs_from_bnml = self.fill_attribute_dict(lyrics_elem.attrib)
-                        lyrics_style = self.merge_paragraph_styles(lyrics_style, attribs_from_bnml)
-
-                        for lyric_text in lyrics_elem.text.strip().split():
-                            lyric = Lyric(text=lyric_text,
-                                          font_family=lyrics_style.fontName,
-                                          font_size=lyrics_style.fontSize,
-                                          color=lyrics_style.textColor,
-                                          top_margin=lyrics_style.spaceBefore)
-                            lyrics_list.append(lyric)
-
-                    if score_child_elem.tag == 'dropcap':
-                        dropcap_elem = score_child_elem
-                        dropcap_style = self.styleSheet['Dropcap']
-                        if dropcap_elem.attrib:
-                            attribs_from_bnml = self.fill_attribute_dict(dropcap_elem.attrib)
-                            dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
-                        dropcap_text = dropcap_elem.text.strip()
-                        dropcap = Dropcap(dropcap_text, dropcap_style.rightIndent, dropcap_style)
-
-                if neumes_list:
-                    self.draw_score(neumes_list, lyrics_list, dropcap)
-
         try:
             self.doc.build(self.story,
                            onFirstPage=self.draw_header_footer,
@@ -288,11 +363,10 @@ class Kassia:
 
         return neume_list
 
-    def create_neume(self, neume_name: str, neume_config: Dict, font_name: str, neume_style: ParagraphStyle) -> Neume:
+    def create_neume(self, neume_name: str, neume_config: Dict, neume_style: ParagraphStyle) -> Neume:
         """Creates a neume object using neume name and font configuration.
         :param neume_name: Name of neume.
         :param neume_config: Font configuration information from yaml.
-        :param font_name: Name of neume font.
         :param neume_style: Neume style information.
         :return: A neume.
         """
@@ -304,15 +378,13 @@ class Kassia:
         try:
             neume_char = neume_config['glyphnames'][neume_name]['codepoint']
         except KeyError as ke:
-            logging.info("Couldn't add neume: {}. Attempting to match by codepoint.".format(ke))
-            neume_name, neume_char = self.find_neume_name_by_codepoint(neume_name, font_name, neume_config['glyphnames'])
-            if neume_name is None:
-                return None
+            logging.error("Couldn't add neume: {}. Name not found in font configuration.".format(ke))
+            return None
 
         try:
             neume = Neume(name=neume_name,
                           char=neume_char,
-                          font_family=font_name.rsplit(' ', 1)[0],  # Font name without Main, Combo, Fthora, etc.
+                          font_family=neume_style.fontName,
                           font_fullname=neume_config['glyphnames'][neume_name]['family'],
                           font_size=neume_style.fontSize,
                           color=neume_style.textColor,
@@ -321,26 +393,9 @@ class Kassia:
                           lyric_offset=lyric_offset,
                           keep_with_next=neume_name in neume_config['classes']['keep_with_next'])
         except KeyError as ke:
-            logging.warning("Couldn't create neume: {}. Check bnml and font config yaml.".format(ke))
+            logging.error("Couldn't create neume: {}. Check bnml and font config yaml.".format(ke))
             return None
         return neume
-
-    @staticmethod
-    def find_neume_name_by_codepoint(neume_codepoint: str, font_name: str, glyph_names: Dict[str, Dict]) -> Tuple[str, str]:
-        """Find a neume name by its codepoint. Useful for old versions of bnml before neume_name was implemented.
-        :param neume_codepoint: The codepoint of neume.
-        :param font_name: Name of font where codepoint is found.
-        :param glyph_names: A dictionary of glyph names from font config.
-        :return: Neume name and neume codepoint
-        """
-        neume_name = None
-        for key, value in glyph_names.items():
-            if value['codepoint'] == neume_codepoint and value['family'] == font_name:
-                neume_name = key
-                break
-        if neume_name is None:
-            logging.error("Couldn't find neume {} in font config yaml.".format(neume_codepoint))
-        return neume_name, neume_codepoint
 
     @staticmethod
     def get_embedded_paragraph_text(para_tag_attribs: Element, default_style: ParagraphStyle) -> str:
@@ -368,54 +423,6 @@ class Kassia:
                              embedded_font_attrib.text.strip() + '</font>' + embedded_font_attrib.tail
 
         return para_tag_attribs.text.strip() + embedded_args
-
-    def draw_paragraph(self, bnml_elem: Element, current_attribs: Dict[str, Any], ending_cursor_pos: int = Line.NEXT):
-        """Draws a paragraph of text with the passed text attributes.
-
-        :param bnml_elem: The bnml paragraph element.
-        :param current_attribs: A dictionary of style attributes from a Kassia bnml file.
-        :param ending_cursor_pos: Indicates where the cursor should be after
-                             drawing the paragraph. Values are LN_RIGHT (to the
-                             right), LN_NEXT (to the beginning of the next line),
-                             and LN_BELOW (below the current paragraph).
-        """
-        if 'style' in current_attribs and current_attribs['style'] in self.styleSheet:
-            default_paragraph_style = self.styleSheet[current_attribs['style']]
-        else:
-            default_paragraph_style = self.styleSheet['Paragraph']
-
-        paragraph_style = self.merge_paragraph_styles(default_paragraph_style, current_attribs)
-        paragraph_text = self.get_embedded_paragraph_text(bnml_elem, paragraph_style)
-        p = Paragraph(paragraph_text, paragraph_style)
-        self.story.append(p)
-
-    def draw_score(self, neumes_list: List[Neume], lyrics_list: List[Lyric], dropcap: Dropcap):
-        """Draws a score with the passed text attributes.
-        :param neumes_list: A list of neumes.
-        :param lyrics_list: A list of Lyrics.
-        :param dropcap: A dropcap object.
-        """
-        dropcap_offset = 0
-
-        # Pop off first letter of lyrics, since it will be drawn as a dropcap
-        if dropcap and len(lyrics_list) > 0:
-            lyrics_list[0].text = lyrics_list[0].text[1:]
-            lyrics_list[0].recalc_width()
-            dropcap_offset = dropcap.width + dropcap.x_padding
-
-        if neumes_list:
-            neume_chunks = self.make_neume_chunks(neumes_list)
-            syl_line: List[Syllable] = self.make_syllable_list(neume_chunks, lyrics_list)
-            lines_list: List[SyllableLine] = self.line_break(syl_line,
-                                                             Cursor(dropcap_offset, 0),
-                                                             self.doc.width,
-                                                             self.styleSheet['Neumes'].leading,
-                                                             self.styleSheet['Neumes'].wordSpace)
-            if len(lines_list) > 1 or self.styleSheet['Neumes'].alignment is TA_JUSTIFY:
-                lines_list: List[SyllableLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
-
-            score = Score(lines_list, dropcap, self.doc.width)
-            self.story.append(score)
 
     @staticmethod
     def merge_paragraph_styles(default_style: ParagraphStyle, bnml_style: Dict[str, Any]) -> ParagraphStyle:
@@ -594,81 +601,6 @@ class Kassia:
             elif pagenum_style.alignment == TA_CENTER:
                 canvas.drawCentredString(self.doc.center, y_pos, str(canvas.getPageNumber()))
 
-    @staticmethod
-    def make_neume_chunks(neume_list: List[Neume]) -> List[NeumeChunk]:
-        """Break a list of neumes into logical chunks based on whether a linebreak can occur between them
-        :param neume_list: Iterable of type Neume
-        """
-        chunks_list: List[NeumeChunk] = []
-        i = 0
-        while i < len(neume_list):
-            # Grab next neume
-            neume = neume_list[i]
-            chunk = NeumeChunk(neume)
-
-            # Special case for bareia, since it's non-breaking but comes before the next neume, unlike a fthora.
-            # So attach the next neume and increment the counter.
-            if neume.keep_with_next and (i + 1) < len(neume_list):
-                chunk.append(neume_list[i+1])
-                chunk.base_neume = neume_list[i+1]
-                i += 1
-            else:
-                chunk.base_neume = neume
-
-            # Add more neumes to chunk like fthora, ison, etc.
-            j = 1
-            if (i+1) < len(neume_list):
-                while not neume_list[i + j].standalone:
-                    chunk.append(neume_list[i+j])
-                    j += 1
-                    if i+j >= len(neume_list):
-                        break
-            i += j
-            chunks_list.append(chunk)
-            # Check if we're at the end of the array
-            if i >= len(neume_list):
-                break
-
-        return chunks_list
-
-    @staticmethod
-    def make_syllable_list(neume_chunk_list: List[NeumeChunk], lyrics_list: List[Lyric]) -> List[Syllable]:
-        """Takes a list of neume chunks and a list of lyrics and combines them into a single syllable list.
-        :param neume_chunk_list: A list of neume chunks.
-        :param lyrics_list: A list of lyrics.
-        :return syl_list: A list of syllables.
-        """
-        i, l_ptr = 0, 0
-        syl_line: List[Syllable] = []
-        while i < len(neume_chunk_list):
-            # Grab next chunk
-            neume_chunk = neume_chunk_list[i]
-
-            # If any neumes within chunk take lyrics
-            lyrical_chunk: bool = False
-            for neume in neume_chunk:
-                if neume.takes_lyric:
-                    lyrical_chunk = True
-
-            if lyrical_chunk:
-                if l_ptr < len(lyrics_list):
-                    lyric = lyrics_list[l_ptr]
-                    syl = Syllable(neume_chunk=neume_chunk,
-                                     lyric=lyric)
-                else:
-                    syl = Syllable(neume_chunk)
-                l_ptr += 1
-
-                # Todo: See if lyric ends with '_' and if lyrics are wider than the neume, then combine with next chunk
-            else:
-                # no lyric needed
-                syl = Syllable(neume_chunk)
-
-            syl.set_size()
-            syl_line.append(syl)
-            i += 1
-        return syl_line
-
     def line_break(self, syl_list: List[Syllable], starting_pos: Cursor, line_width: int, line_spacing: int,
                    syl_spacing: int) -> List[SyllableLine]:
         """Break continuous list of syllables into lines- currently greedy.
@@ -803,11 +735,6 @@ class Kassia:
         new_attr_dict: Dict[str, Any] = deepcopy(attribute_dict)
         if 'align' in attribute_dict:
             new_attr_dict['align'] = self.str_to_align(attribute_dict['align'])
-
-        if 'font_family' in attribute_dict and not font_reader.is_registered_font(
-            attribute_dict['font_family']
-        ):
-            logging.warning("{} not found, using default instead".format(attribute_dict['font_family']))
 
         for font_attr in ['font_size', 'first_line_indent', 'left_indent', 'right_indent', 'leading', 'space_before',
                           'space_after', 'ending_cursor_pos', 'word_spacing']:

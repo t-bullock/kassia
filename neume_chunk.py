@@ -47,3 +47,19 @@ class NeumeChunk(collections.MutableSequence):
 
     def add_width(self, neume):
         self.width += neume.width
+
+    def finalize(self):
+        if not self.base_neume:
+            self.set_base_neume()
+
+    def set_base_neume(self):
+        """Set base neume in neume chunk.
+        Special case for bareia, since it's the first neume, but is not a base neume.
+        """
+        try:
+            if self.list[0].keep_with_next and len(self.list) > 1:
+                self.base_neume = self.list[1]
+            else:
+                self.base_neume = self.list[0]
+        except IndexError:
+            return
