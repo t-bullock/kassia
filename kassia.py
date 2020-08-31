@@ -5,7 +5,7 @@ from copy import deepcopy
 from typing import Any, Dict, List, Tuple
 
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet, StyleSheet1
 from reportlab.pdfbase import pdfmetrics
 from reportlab.platypus import PageBreak, Paragraph, Spacer
 from xml.etree.ElementTree import Element, ParseError, parse
@@ -37,6 +37,7 @@ class Kassia:
         self.header_odd_pagenum_style = None
         self.footer_paragraph = None
         self.footer_pagenum_style = None
+        self.scoreStyleSheet = StyleSheet1()
         self.init_styles()
         self.input_filename = input_filename
         self.neume_info_dict = {}
@@ -125,20 +126,49 @@ class Kassia:
                     margin_dict = self.fill_attribute_dict(page_margins.attrib)
                     self.doc.set_margins(margin_dict)
 
-            score_styles = defaults.find('styles')
-            for style in score_styles or []:
-                style_name = style.tag.capitalize()
-                local_attrs_from_score = self.fill_attribute_dict(style.attrib)
-                if style_name in self.styleSheet:
-                    self.update_paragraph_style(self.styleSheet[style_name], local_attrs_from_score)
-                elif len(local_attrs_from_score) != 0:
-                    new_paragraph_style = self.merge_paragraph_styles(
-                        ParagraphStyle(style_name),
-                        local_attrs_from_score)
-                    try:
-                        self.styleSheet.add(new_paragraph_style, style_name.lower())
-                    except KeyError as e:
-                        logging.warning("Couldn't add style to stylesheet: {}".format(e))
+            # Read and set default document styles
+            default_styles = defaults.find('styles')
+            for para_style in default_styles.findall('para-style'):
+                self.parse_para_style(para_style)
+
+            for score_style_tag in ['score-style', 'neume-style', 'lyric-style', 'dropcap-style']:
+                style_tags = default_styles.findall(score_style_tag)
+                for style in style_tags:
+                    self.parse_score_style(style)
+
+    def parse_para_style(self, para_style: Element):
+        """Read and set paragraph-stype stylesheets.
+        Inherits style from  and then overrides specific styles specified in style element.
+        :param para_style: A paragraph stylesheet specified in bnml.
+        """
+        style_name = para_style.attrib['name']
+        style_attrs = self.fill_attribute_dict(para_style.attrib)
+        if style_name in self.styleSheet:
+            self.update_paragraph_style(self.styleSheet[style_name], style_attrs)
+        elif len(style_attrs) >= 1:
+            new_paragraph_style = self.merge_paragraph_styles(
+                ParagraphStyle(style_name),
+                style_attrs)
+            try:
+                self.styleSheet.add(new_paragraph_style, style_name)
+            except KeyError as e:
+                logging.warning("Couldn't add style to stylesheet: {}".format(e))
+
+    def parse_score_style(self, style: Element):
+        """Read and set score-type stylesheets.
+        """
+        style_name = style.tag.split('-')[0]
+        if 'type' in style.attrib:
+            style_name = '-'.join([style_name, style.attrib['type']])
+        style_attrs = self.fill_attribute_dict(style.attrib)
+        new_style = self.merge_paragraph_styles(
+            ParagraphStyle(
+                style_name),
+            style_attrs)
+        try:
+            self.scoreStyleSheet.add(new_style, style_name)
+        except KeyError as ke:
+            logging.warning("Couldn't add style to stylesheet: {}".format(ke))
 
     def parse_music(self, bnml_file: Element):
         """Create a score and add it to story.
@@ -246,18 +276,18 @@ class Kassia:
         lines_list: List[SyllableLine] = self.line_break(syl_list,
                                                          Cursor(dropcap_offset, 0),
                                                          self.doc.width,
-                                                         self.styleSheet['Neumes'].leading,
-                                                         self.styleSheet['Neumes'].wordSpace)
+                                                         self.scoreStyleSheet['score'].leading,
+                                                         self.scoreStyleSheet['score'].wordSpace)
 
         # TODO: Dropcap space is wrong if this isn't called
-        if self.styleSheet['Neumes'].alignment == TA_JUSTIFY and len(lines_list) > 1:
+        if self.scoreStyleSheet['score'].alignment == TA_JUSTIFY and len(lines_list) > 1:
             lines_list: List[SyllableLine] = self.line_justify(lines_list, self.doc.width, dropcap_offset)
 
         score = Score(lines_list, dropcap, self.doc.width)
         self.story.append(score)
 
     def _parse_dropcap(self, dc_elem: Element) -> Dropcap:
-        dropcap_style = self.styleSheet['Dropcap']
+        dropcap_style = self.scoreStyleSheet['dropcap']
         if dc_elem.attrib:
             attribs_from_bnml = self.fill_attribute_dict(dc_elem.attrib)
             dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
@@ -274,14 +304,14 @@ class Kassia:
             lyric = self._parse_lyric(lyric_elem)
 
         neume_group_elem = syl_elem.find('neume-group')
-        if neume_group_elem:
+        if neume_group_elem is not None:
             neume_group = self._parse_neume_group(neume_group_elem)
 
         syl = Syllable(neume_chunk=neume_group, lyric=lyric)
         return syl
 
     def _parse_lyric(self, lyric_elem: Element) -> Lyric:
-        lyrics_style = self.styleSheet['Lyrics']
+        lyrics_style = self.scoreStyleSheet['lyric']
         attribs_from_bnml = self.fill_attribute_dict(lyric_elem.attrib)
         lyrics_style = self.merge_paragraph_styles(lyrics_style, attribs_from_bnml)
         lyric = Lyric(text=lyric_elem.text.strip(),
@@ -293,7 +323,7 @@ class Kassia:
 
     def _parse_neume_group(self, neume_group_elem: Element) -> NeumeChunk:
         attribs_from_bnml = self.fill_attribute_dict(neume_group_elem.attrib)
-        neumes_style = self.merge_paragraph_styles(self.styleSheet['Neumes'], attribs_from_bnml)
+        neumes_style = self.merge_paragraph_styles(self.scoreStyleSheet['score'], attribs_from_bnml)
         # Get font family name without 'Main', 'Martyria', etc.
         #font_family_name, _ = neumes_style.fontName.rsplit(' ', 1)
         # TODO: Fix this so family can be used
@@ -434,7 +464,7 @@ class Kassia:
         :return new_style: A new ParagraphStyle of default_style with attributes updated by bnml_style
         """
         new_style = deepcopy(default_style)
-        if 'font_family' in bnml_style and font_reader.is_registered_font(bnml_style['font_family']):
+        if 'font_family' in bnml_style:
             new_style.fontName = bnml_style['font_family']
         if 'font_size' in bnml_style:
             new_style.fontSize = bnml_style['font_size']
@@ -474,7 +504,7 @@ class Kassia:
         :param bnml_style: A dictionary of styles read a Kassia bnml file. The bnml_style needs to have ben already run
                            through fill_dict_attributes().
         """
-        if 'font_family' in bnml_style and font_reader.is_registered_font(bnml_style['font_family']):
+        if 'font_family' in bnml_style:
             default_style.fontName = bnml_style['font_family']
         if 'font_size' in bnml_style:
             default_style.fontSize = bnml_style['font_size']
