@@ -699,10 +699,10 @@ dottrigDR:
 dotgorgU:
   family: "KA Almouzios Chronos"
   codepoint: 'Z'
-coroU:
+koroU:
   family: "KA Almouzios Chronos"
   codepoint: '\'
-coroUR:
+koroUR:
   family: "KA Almouzios Chronos"
   codepoint: '?'
 digoU:

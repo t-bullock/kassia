@@ -699,10 +699,10 @@ dottrigDR:
 dotgorgU:
   family: "KA New Stathis Chronos"
   codepoint: 'Z'
-coroU:
+koroU:
   family: "KA New Stathis Chronos"
   codepoint: '\'
-coroUR:
+koroUR:
   family: "KA New Stathis Chronos"
   codepoint: '?'
 digoU:
