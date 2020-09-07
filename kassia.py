@@ -41,18 +41,17 @@ class Kassia:
         self.init_styles()
         self.input_filename = input_filename
         self.neume_info_dict = {}
+        
         try:
             open(input_filename, "r")
-            file_readable = True
         except IOError:
-            file_readable = False
             logging.error("XML file not readable.")
+            return
 
-        if file_readable:
-            self.neume_info_dict = font_reader.register_fonts()
-            self.parse_file()
-            self.build_document(output_file)
-            self.create_pdf()
+        self.neume_info_dict = font_reader.register_fonts()
+        self.parse_file()
+        self.build_document(output_file)
+        self.create_pdf()
 
     def parse_file(self):
         try:
@@ -60,6 +59,7 @@ class Kassia:
             self.bnml = bnml_tree.getroot()
         except ParseError as e:
             logging.error("Failed to parse XML file: {}".format(e))
+            sys.exit(1)
 
     def init_styles(self):
         """Add specific Kassia styles to stylesheet.
