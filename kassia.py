@@ -98,21 +98,15 @@ class Kassia:
                             "footer")
 
     def build_document(self, output_filename: str):
-        """Builds a pdf document file.
+        """Build a pdf document file with metadata.
         """
         self.doc = ComplexDocTemplate(filename=output_filename)
 
-        identification = self.bnml.find('identification')
-        if identification is not None:
-            title = identification.find('work-title')
-            if title is not None:
-                setattr(self.doc, 'title', title.text)
-            author = identification.find('author')
-            if author is not None:
-                setattr(self.doc, 'author', author.text)
-            subject = identification.find('subject')
-            if subject is not None:
-                setattr(self.doc, 'subject', subject.text)
+        metadata = self.bnml.find('identification')
+        if metadata is not None:
+            for meta_tag in ['title', 'author', 'subject']:
+                meta_value = metadata.find(meta_tag)
+                setattr(self.doc, meta_tag, meta_value.text)
 
         defaults = self.bnml.find('defaults')
         if defaults is not None:
@@ -137,8 +131,10 @@ class Kassia:
                     self.parse_score_style(style)
 
     def parse_para_style(self, para_style: Element):
-        """Read and set paragraph-stype stylesheets.
-        Inherits style from  and then overrides specific styles specified in style element.
+        """Read paragraph-type styles and save them in stylesheet.
+
+        Inherits style from, and then overrides specific styles specified in para_style element.
+
         :param para_style: A paragraph stylesheet specified in bnml.
         """
         style_name = para_style.attrib['name']
@@ -292,8 +288,7 @@ class Kassia:
             attribs_from_bnml = self.fill_attribute_dict(dc_elem.attrib)
             dropcap_style = self.merge_paragraph_styles(dropcap_style, attribs_from_bnml)
         dropcap_text = dc_elem.text.strip()
-        dropcap = Dropcap(dropcap_text, dropcap_style.rightIndent, dropcap_style)
-        return dropcap
+        return Dropcap(dropcap_text, dropcap_style.rightIndent, dropcap_style)
 
     def _parse_syllable(self, syl_elem: Element) -> Syllable:
         lyric = None
@@ -307,21 +302,24 @@ class Kassia:
         if neume_group_elem is not None:
             neume_group = self._parse_neume_group(neume_group_elem)
 
-        syl = Syllable(neume_chunk=neume_group, lyric=lyric)
-        return syl
+        return Syllable(neume_chunk=neume_group, lyric=lyric)
 
     def _parse_lyric(self, lyric_elem: Element) -> Lyric:
         lyrics_style = self.scoreStyleSheet['lyric']
         attribs_from_bnml = self.fill_attribute_dict(lyric_elem.attrib)
         lyrics_style = self.merge_paragraph_styles(lyrics_style, attribs_from_bnml)
-        lyric = Lyric(text=lyric_elem.text.strip(),
-                      font_family=lyrics_style.fontName,
-                      font_size=lyrics_style.fontSize,
-                      color=lyrics_style.textColor,
-                      top_margin=lyrics_style.spaceBefore)
-        return lyric
+        return Lyric(text=lyric_elem.text.strip(),
+                     font_family=lyrics_style.fontName,
+                     font_size=lyrics_style.fontSize,
+                     color=lyrics_style.textColor,
+                     top_margin=lyrics_style.spaceBefore)
 
     def _parse_neume_group(self, neume_group_elem: Element) -> NeumeChunk:
+        """Read neume-group element in bnml and create NeumeChunk object.
+
+        :param neume_group_elem: A neume-group element in bnml.
+        :return: A NeumeChunk with ligatures and conditionals replaced using information from font config.
+        """
         attribs_from_bnml = self.fill_attribute_dict(neume_group_elem.attrib)
         neumes_style = self.merge_paragraph_styles(self.scoreStyleSheet['score'], attribs_from_bnml)
         # Get font family name without 'Main', 'Martyria', etc.
