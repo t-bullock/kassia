@@ -10,7 +10,7 @@ class NeumeChunk(collections.MutableSequence):
     def __init__(self, *args):
         self.width: float = 0
         self.height: float = 0
-        self.base_neume: str = None
+        self.base_neume: str or None = None
         self.takes_lyric: bool = False  # whether some neume in the chunk could take a lyric
         self.list = []
         self.extend(list(args))
@@ -35,6 +35,8 @@ class NeumeChunk(collections.MutableSequence):
             self.set_height(v)
         self.list.insert(i, v)
 
+        self.assign_base_neume()
+
     def __str__(self):
         return str(self.list)
 
@@ -48,14 +50,13 @@ class NeumeChunk(collections.MutableSequence):
     def add_width(self, neume):
         self.width += neume.width
 
-    def finalize(self):
-        if not self.base_neume:
-            self.set_base_neume()
-
-    def set_base_neume(self):
+    def assign_base_neume(self):
         """Set base neume in neume chunk.
         Special case for bareia, since it's the first neume, but is not a base neume.
         """
+        if self.base_neume:
+            return
+
         try:
             if self.list[0].keep_with_next and len(self.list) > 1:
                 self.base_neume = self.list[1]

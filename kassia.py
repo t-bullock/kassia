@@ -2,7 +2,7 @@
 import sys
 import logging
 from copy import deepcopy
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Iterator
 
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet, StyleSheet1
@@ -14,11 +14,10 @@ import font_reader
 from complex_doc_template import ComplexDocTemplate
 from cursor import Cursor
 from drop_cap import Dropcap
-from enums import Line
 from syllable_line import SyllableLine
 from syllable import Syllable
 from lyric import Lyric
-from neume import Neume
+from neume import Neume, NeumeType, NeumeBnml
 from neume_chunk import NeumeChunk
 from score import Score
 
@@ -320,37 +319,56 @@ class Kassia:
         :param neume_group_elem: A neume-group element in bnml.
         :return: A NeumeChunk with ligatures and conditionals replaced using information from font config.
         """
-        attribs_from_bnml = self.fill_attribute_dict(neume_group_elem.attrib)
-        neumes_style = self.merge_paragraph_styles(self.scoreStyleSheet['score'], attribs_from_bnml)
-        # Get font family name without 'Main', 'Martyria', etc.
-        #font_family_name, _ = neumes_style.fontName.rsplit(' ', 1)
-        # TODO: Fix this so family can be used
+        if neume_group_elem.attrib:
+            attribs_from_bnml = self.fill_attribute_dict(neume_group_elem.attrib)
+            neumes_style = self.merge_paragraph_styles(self.scoreStyleSheet['score'], attribs_from_bnml)
+            # Get font family name without 'Main', 'Martyria', etc.
+            #font_family_name, _ = neumes_style.fontName.rsplit(' ', 1)
+        else:
+            neumes_style = self.scoreStyleSheet['score']
+
+        # Get proper neume config, based on neume font family
         font_family_name = neumes_style.fontName
         neume_config = self.neume_info_dict[font_family_name]
 
-        # TODO: Replace this underscore logic?
-        neume_name_list = []
-        for neume_elem in neume_group_elem:
-            #neume = self._parse_neume(neume_elem)
-            neume_name_str = neume_elem.text.strip()
-            neume_name_list.append(neume_name_str)
-        neume_group_names = '_'.join(neume_name_list)
+        # Read individual neumes
+        neume_group: List[NeumeBnml] = list()
+        for index, neume_elem in enumerate(neume_group_elem.findall('neume')):
+            neume = self._parse_neume(neume_elem, index == 0)
+            neume_group.append(neume)
 
-        # Check for ligatures and conditionals. If none, build from basic neume parts
-        neume_name_list = self.find_neume_names(neume_group_names, neume_config)
+        neumebnml_list = self.replace_neume_names(neume_group, neume_config)
 
         # Build neume chunk
         neume_chunk = NeumeChunk()
-        for neume_name in neume_name_list:
+        for neumebnml in neumebnml_list:
             try:
-                neume = self.create_neume(neume_name, neume_config, neumes_style)
+                neume = self.create_neume(neumebnml, neume_config, neumes_style)
                 if neume:  # neume will be None if neume not found
                     neume_chunk.append(neume)
             except KeyError as ke:
                 logging.error("Couldn't add neume: {}. Check bnml for bad symbol and verify glyphnames.yaml is correct.".format(ke))
 
-        neume_chunk.finalize()
         return neume_chunk
+
+    @staticmethod
+    def _parse_neume(neume_elem: Element, is_first_in_chunk: False) -> NeumeBnml:
+        """Read a neume from bnml and extract the neume name and type/category.
+
+        :param neume_elem: A neume element in bnml.
+        :return: A Tuple of the neume name and neume type.
+        """
+        neume_name_str = neume_elem.text.strip()
+        try:
+            neume_cat_str = neume_elem.attrib['type']
+            neume_cat = NeumeType[neume_cat_str]
+        except Exception as e:
+            if is_first_in_chunk and neume_name_str != 'bare':
+                neume_cat = NeumeType.primary
+            else:
+                logging.info("Neume type not specified for {}. Assuming 'secondary'. {}".format(neume_name_str, e))
+                neume_cat = NeumeType.secondary
+        return NeumeBnml(neume_name_str, neume_cat)
 
     def create_pdf(self):
         try:
@@ -361,23 +379,93 @@ class Kassia:
         except IOError:
             logging.error("Could not save XML file.")
 
-    def find_neume_names(self, neume_chunk_name: str, neume_config: Dict) -> List[str]:
-        """Check for conditional neumes and replace them if necessary."""
-        if neume_chunk_name.count('_') == 0:
-            return [neume_chunk_name]
+    def replace_neume_names(self, neume_group: List[NeumeBnml], neume_config: Dict) -> List[NeumeBnml]:
+        """Check for conditional neumes and replace them if necessary.
 
-        base_neume, possible_cond_neumes = neume_chunk_name.split('_', 1)
+        Checks font configuration for neumes that are conditional, and applies rules if
+        the conditions specified in the font configuration are met.
+
+        param: neume_group: List of NeumeBnml (neume name and neume category).
+        param: neume_config: Font configuration information from yaml.
+        returns: List of NeumeBnml.
+        """
+        if len(neume_group) == 1:
+            return neume_group
+
+        try:
+            base_neume = next(neume for neume in neume_group if neume.category is NeumeType.primary)
+        except StopIteration as e:
+            logging.warning("No primary neume in neume group. Skipping group. {}".format(e))
+            return neume_group
+
+        # Create string of cond neume names, separated by underscores
+        secondary_neumes = filter(lambda neume: neume.category is not NeumeType.primary, neume_group)
+        secondary_neumes_str = self.convert_neumegroup_to_str(secondary_neumes)
+
+        # Convert neume group to string separated by underscores for processing
+        neume_name_str_list = self.convert_neumegroup_to_str(neume_group)
+
         for conditional in neume_config['classes']['conditional_neumes'].values():
-            if base_neume in conditional['base_neume'] and possible_cond_neumes in conditional['component_glyphs']:
-                neume_chunk_name = neume_chunk_name.replace(conditional['replace_glyph'], conditional['draw_glyph'])
+            if base_neume.name in conditional['base_neume'] and secondary_neumes_str in conditional['component_glyphs']:
+                neume_name_str_list = neume_name_str_list.replace(conditional['replace_glyph'], conditional['draw_glyph'])
                 break
 
-        return self._replace_ligatures(neume_chunk_name, neume_config)
+        new_replaced_neume_group_str = self.replace_ligatures(neume_name_str_list, neume_config)
+        fixed_neume_group = self.convert_strlist_to_neumegroup(new_replaced_neume_group_str, neume_config)
+
+        return list(fixed_neume_group)
+
+    def _replace_conditional_neumes(self, neume_group: List[NeumeBnml], find_str, repl_str):
+        """Check for conditional neumes and replace if necessary.
+
+        param: neume_group: List of NeumeBnml (neume name and neume category).
+        param: find_str: String to be replaced in neume_group.
+        param: repl_str: String to replace find_str in neume_group.
+        returns: Underscore separated string.
+        """
+        neume_name_str_list = self.convert_neumegroup_to_str(neume_group)
+        new_neume_name_str_list = neume_name_str_list.replace(find_str, repl_str)
+        return new_neume_name_str_list
 
     @staticmethod
-    def _replace_ligatures(neume_chunk_name: str, neume_config: Dict) -> List[str]:
-        """Tries to replace ligatures in a neume_chunk. Works by chopping off the last neume in the chunk and checking
-        the remainder to see if it matches any ligatures in the neume config list."""
+    def convert_neumegroup_to_str(neume_group: Iterator[NeumeBnml]) -> str:
+        """Converts a list of NeumeBnml to a string of underscore separated neume names.
+
+        param: neume_group: List of NeumeBnml (neume name and neume category).
+        returns: Underscore separated string.
+        """
+        return '_'.join(neume.name for neume in neume_group)
+
+    @staticmethod
+    def convert_strlist_to_neumegroup(neume_str_list: List[str], neume_config: Dict) -> Iterator[NeumeBnml]:
+        """Converts a string of underscore separated neume names to a list of NeumeBnml.
+
+        param: neumes: List of neume names.
+        returns: List of neumes in NeumeBnml format.
+        """
+        neume_group = []
+        for index, neume_str in enumerate(neume_str_list):
+            neume_cat = NeumeType.secondary
+            if index == 0 and neume_str != 'bare':
+                neume_cat = NeumeType.primary
+            elif neume_str in neume_config:
+                neume_cat = NeumeType.martyria
+
+            neume_group.append(NeumeBnml(neume_str, neume_cat))
+        return neume_group
+
+    @staticmethod
+    def replace_ligatures(neume_chunk_name: str, neume_config: Dict) -> List[str]:
+        """Tries to replace neume combinations with ligatures within a neume group.
+
+        Works by chopping off the last neume in the chunk and checking
+        the remainder to see if it matches any ligatures in the neume config list.
+
+        param: neume_chunk_name: Name of neume chunk (neume names joined by underscores).
+        param: neume_config: Font configuration information from yaml.
+        returns: List of neume names, with neume ligatures used.
+        todo: Add additional check for ligatures from first neume towards back.
+        """
         possible_lig = neume_chunk_name
         neume_list = []
         while possible_lig.count('_') >= 1:
@@ -391,22 +479,25 @@ class Kassia:
 
         return neume_list
 
-    def create_neume(self, neume_name: str, neume_config: Dict, neume_style: ParagraphStyle) -> Neume:
+    @staticmethod
+    def create_neume(neume_bnml: NeumeBnml, neume_config: Dict, neume_style: ParagraphStyle) -> Neume or None:
         """Creates a neume object using neume name and font configuration.
-        :param neume_name: Name of neume.
+
+        :param neume_bnml: Neume info read from bnml.
         :param neume_config: Font configuration information from yaml.
         :param neume_style: Neume style information.
-        :return: A neume.
+        :return: A neume object, or None if error occurred.
+        :raises KeyError: When neume name cannot be found in font configuration.
         """
-        try:
+        neume_name = neume_bnml.name
+        lyric_offset = None
+        if neume_name in neume_config['classes']['lyric_offsets']:
             lyric_offset = neume_config['classes']['lyric_offsets'][neume_name] * neume_style.fontSize
-        except KeyError:
-            lyric_offset = None
 
         try:
             neume_char = neume_config['glyphnames'][neume_name]['codepoint']
         except KeyError as ke:
-            logging.error("Couldn't add neume: {}. Name not found in font configuration.".format(ke))
+            logging.error("Couldn't find neume codepoint: {}.".format(ke))
             return None
 
         try:
@@ -419,10 +510,11 @@ class Kassia:
                           standalone=neume_name in neume_config['classes']['standalone'],
                           takes_lyric=neume_name in neume_config['classes']['takes_lyric'],
                           lyric_offset=lyric_offset,
-                          keep_with_next=neume_name in neume_config['classes']['keep_with_next'])
+                          keep_with_next=neume_name in neume_config['classes']['keep_with_next'],
+                          category=neume_bnml.category)
         except KeyError as ke:
             logging.error("Couldn't create neume: {}. Check bnml and font config yaml.".format(ke))
-            return None
+            neume = None
         return neume
 
     @staticmethod
