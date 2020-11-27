@@ -7,3 +7,4 @@ class NeumeType(Enum):
     linking = auto()
     accidental = auto()
     martyria = auto()
+    chronos = auto()

@@ -124,10 +124,13 @@ class Kassia:
             for para_style in default_styles.findall('para-style'):
                 self.parse_para_style(para_style)
 
-            for score_style_tag in ['score-style', 'neume-style', 'lyric-style', 'dropcap-style']:
+            for score_style_tag in ['score-style', 'lyric-style', 'dropcap-style']:
                 style_tags = default_styles.findall(score_style_tag)
                 for style in style_tags:
                     self.parse_score_style(style)
+
+            for neume_style in default_styles.findall('neume-style'):
+                self.parse_neume_style(neume_style)
 
     def parse_para_style(self, para_style: Element):
         """Read paragraph-type styles and save them in stylesheet.
@@ -143,7 +146,8 @@ class Kassia:
         elif len(style_attrs) >= 1:
             new_paragraph_style = self.merge_paragraph_styles(
                 ParagraphStyle(style_name),
-                style_attrs)
+                style_attrs,
+                style_name)
             try:
                 self.styleSheet.add(new_paragraph_style, style_name)
             except KeyError as e:
@@ -157,9 +161,25 @@ class Kassia:
             style_name = '-'.join([style_name, style.attrib['type']])
         style_attrs = self.fill_attribute_dict(style.attrib)
         new_style = self.merge_paragraph_styles(
-            ParagraphStyle(
-                style_name),
-            style_attrs)
+            ParagraphStyle(style_name),
+            style_attrs,
+            style_name)
+        try:
+            self.scoreStyleSheet.add(new_style, style_name)
+        except KeyError as ke:
+            logging.warning("Couldn't add style to stylesheet: {}".format(ke))
+
+    def parse_neume_style(self, style: Element):
+        """Read and set neume-type stylesheets. Inherit style from score first, then replace with neume attrs.
+        """
+        style_name = style.tag.split('-')[0]
+        if 'type' in style.attrib:
+            style_name = '-'.join([style_name, style.attrib['type']])
+        style_attrs = self.fill_attribute_dict(style.attrib)
+        new_style = self.merge_paragraph_styles(
+            self.scoreStyleSheet['score'],
+            style_attrs,
+            style_name)
         try:
             self.scoreStyleSheet.add(new_style, style_name)
         except KeyError as ke:
@@ -318,32 +338,42 @@ class Kassia:
 
         :param neume_group_elem: A neume-group element in bnml.
         :return: A NeumeChunk with ligatures and conditionals replaced using information from font config.
+        :raises: KeyError: When neume cannot be created from bnml score information and font lookup.
+        todo: Support attributes specified on an individual neume in bnml.
         """
         if neume_group_elem.attrib:
             attribs_from_bnml = self.fill_attribute_dict(neume_group_elem.attrib)
             neumes_style = self.merge_paragraph_styles(self.scoreStyleSheet['score'], attribs_from_bnml)
-            # Get font family name without 'Main', 'Martyria', etc.
-            #font_family_name, _ = neumes_style.fontName.rsplit(' ', 1)
         else:
             neumes_style = self.scoreStyleSheet['score']
 
         # Get proper neume config, based on neume font family
         font_family_name = neumes_style.fontName
-        neume_config = self.neume_info_dict[font_family_name]
+        font_lookup = self.neume_info_dict[font_family_name]
 
         # Read individual neumes
         neume_group: List[NeumeBnml] = list()
+        neume_style_attrs = []
         for index, neume_elem in enumerate(neume_group_elem.findall('neume')):
-            neume = self._parse_neume(neume_elem, index == 0)
-            neume_group.append(neume)
+            neume_bnml: NeumeBnml = self._parse_neume(neume_elem, index == 0)
+            neume_style_attrs.append(neume_elem.attrib)
+            neume_group.append(neume_bnml)
 
-        neumebnml_list = self.replace_neume_names(neume_group, neume_config)
+        neumebnml_list = self.replace_neume_names(neume_group, font_lookup)
 
         # Build neume chunk
         neume_chunk = NeumeChunk()
         for neumebnml in neumebnml_list:
+            neume_type_style = self.scoreStyleSheet['neume-ordinary']
+            if neumebnml.category == NeumeType.accidental:
+                neume_type_style = self.scoreStyleSheet['neume-accidental']
+            elif neumebnml.category == NeumeType.chronos:
+                neume_type_style = self.scoreStyleSheet['neume-chronos']
+            elif neumebnml.category == NeumeType.martyria:
+                neume_type_style = self.scoreStyleSheet['neume-martyria']
+
             try:
-                neume = self.create_neume(neumebnml, neume_config, neumes_style)
+                neume = self.create_neume(neumebnml, font_lookup, neume_type_style)
                 if neume:  # neume will be None if neume not found
                     neume_chunk.append(neume)
             except KeyError as ke:
@@ -448,7 +478,11 @@ class Kassia:
             neume_cat = NeumeType.secondary
             if index == 0 and neume_str != 'bare':
                 neume_cat = NeumeType.primary
-            elif neume_str in neume_config:
+            elif neume_str in neume_class_config['accidentals']:
+                neume_cat = NeumeType.accidental
+            elif neume_str in neume_class_config['chronos']:
+                neume_cat = NeumeType.chronos
+            elif neume_str in neume_class_config['martyriae']:
                 neume_cat = NeumeType.martyria
 
             neume_group.append(NeumeBnml(neume_str, neume_cat))
@@ -545,15 +579,16 @@ class Kassia:
         return para_tag_attribs.text.strip() + embedded_args
 
     @staticmethod
-    def merge_paragraph_styles(default_style: ParagraphStyle, bnml_style: Dict[str, Any]) -> ParagraphStyle:
+    def merge_paragraph_styles(default_style: ParagraphStyle, bnml_style: Dict[str, Any], name=None) -> ParagraphStyle:
         """Merges ReportLab ParagraphStyle attributes with Kassia bnml attributes and returns the new style
 
         :param default_style: The default ParagraphStyle (a ReportLab class).
         :param bnml_style: A dictionary of styles read a Kassia bnml file. The bnml_style needs to have ben already run
                            through fill_dict_attributes().
+        :param name: Name to give returned style.
         :return new_style: A new ParagraphStyle of default_style with attributes updated by bnml_style
         """
-        new_style = deepcopy(default_style)
+        new_style = default_style.clone(name, default_style)
         if 'font_family' in bnml_style:
             new_style.fontName = bnml_style['font_family']
         if 'font_size' in bnml_style:

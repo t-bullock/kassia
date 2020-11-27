@@ -272,6 +272,74 @@ tempo_markings:
   - chigorgU
   - chitrigU
 
+chronos:
+  - argoU
+  - hemiU
+  - diargU
+  - dotdigoU
+  - dotgorgU2L
+  - dotgorgD
+  - dotdigoD
+  - dottrigD
+  - dotdigoUR
+  - dotdigoU2L
+  - dotdigoDR
+  - dotdigoU2R
+  - dotgorgU2R
+  - dotgorgDR
+  - dottrigU
+  - dottrigUR
+  - dotdigoU2
+  - dottrigU2L
+  - dottrigU2R
+  - dotgorgUR
+  - dottrigU2
+  - dotgorgU2
+  - dottrigDR
+  - dotgorgU
+  - digoU
+  - gorgU2L
+  - gorgD
+  - digoD
+  - trigD
+  - digoUR
+  - digoU2L
+  - digoDR
+  - digoU2R
+  - gorgU2R
+  - gorgDR
+  - trigU
+  - trigUR
+  - digoU2
+  - trigU2L
+  - trigU2R
+  - gorgUR
+  - trigU2
+  - gorgU2
+  - trigDR
+  - gorgU
+  - digodotU
+  - gorgdotU2L
+  - gorgdotD
+  - digodotD
+  - trigdotD
+  - digodotUR
+  - digodotU2L
+  - digodotDR
+  - digodotU2R
+  - gorgdotU2R
+  - gorgdotDR
+  - trigdotU
+  - trigdotUR
+  - digodotU2
+  - trigdotU2L
+  - trigdotU2R
+  - gorgdotUR
+  - trigdotU2
+  - gorgdotU2
+  - trigdotDR
+  - gorgdotU
+
 rests:
   - res1
   - res2
