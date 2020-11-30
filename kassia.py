@@ -429,19 +429,19 @@ class Kassia:
             return neume_group
 
         # Create string of conditional neume names, separated by underscores
-        secondary_neumes_index = neume_group.index(base_neume)
-        secondary_neumes = neume_group[secondary_neumes_index+1:]
+        starting_index = neume_group.index(base_neume)
+        secondary_neumes = neume_group[starting_index+1:]
         secondary_neumes_str = self.convert_neumegroup_to_str(secondary_neumes)
 
         # Convert neume group to string separated by underscores for processing
-        neume_name_str_list = self.convert_neumegroup_to_str(neume_group)
+        neumes_str = self.convert_neumegroup_to_str(neume_group)
 
         for conditional in font_lookup['classes']['conditional_neumes'].values():
             if base_neume.name in conditional['base_neume'] and secondary_neumes_str in conditional['component_glyphs']:
-                neume_name_str_list = neume_name_str_list.replace(conditional['replace_glyph'], conditional['draw_glyph'])
+                neumes_str = neumes_str.replace(conditional['replace_glyph'], conditional['draw_glyph'])
                 break
 
-        new_replaced_neume_group_str = self._replace_ligatures(neume_name_str_list, font_lookup)
+        new_replaced_neume_group_str = self._replace_ligatures(neumes_str, font_lookup)
         fixed_neume_group = self.convert_strlist_to_neumegroup(new_replaced_neume_group_str, font_lookup['classes'])
 
         return list(fixed_neume_group)
