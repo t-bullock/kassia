@@ -1,1117 +1,1260 @@
 <bnml>
     <identification>
-        <!-- These show up in the properties of the pdf file. -->
-        <work-title>Vespers as chanted off of the Holy Mountain</work-title>
+        <title>Vespers as chanted off of the Holy Mountain</title>
         <author type="composer">Trevor Bullock</author>
         <subject>A great subject goes here.</subject>
     </identification>
     <defaults>
         <page-layout>
-            <!-- See reportlab.lib.pagesizes for other page sizes. Right now some page sizes seem buggy. -->
             <paper-size>letter</paper-size>
             <page-margins top_margin="50" bottom_margin="50" left_margin="60" right_margin="60" />
         </page-layout>
-        <!-- Default Styles -->
         <styles>
-            <!-- Used in this score for mode name -->
-            <title font_family="Alegreya SC-Bold" font_size="30" color="#0000e6" align="center" space_after="16" />
-            <subtitle />
-            <!-- Used in this score for hymn title -->
-            <heading1 font_family="Alegreya-Medium" font_size="16" color="#0000e6" align="center" />
-            <!-- Used in this score for mode/martyria signature -->
-            <heading2 font_family="Alegreya-Medium" font_size="14" color="#cf232b" align="center" />
-            <!-- Used in this score for tempo -->
-            <heading3 font_family="Alegreya-Medium" font_size="14" color="#cf232b" align="right" />
-            <!-- Used in this score for Greek hymn name -->
-            <heading4 font_family="Alegreya-Medium" font_size="14" color="#0000e6" align="right" />
-            <!-- See ReportLab documentation for more paragraph style options. -->
-            <paragraph />
-            <verse font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="20" space_after="15" leading="17" />
-            <!-- Default neume font family, size, color, etc. For now you're stuck with KA New Stathis Main, but you can change the size and color. -->
-            <!-- 'word_spacing' is the space between glyphs, line height is the greater of either 'leading' or the calculated height of glyphs. -->
-            <!-- 'align' can be 'left', 'right', 'center', or 'justify'. This affects both troparia that wrap lines and troparia that are only one line long, so be careful. -->
-            <neumes font_family="KA New Stathis Main" font_size="30" color="#000000" align="left" word_spacing="4" leading="60" />
-
-            <!-- font_family can be any font name in your kassia/fonts folder, or any font you have installed on your OS -->
-            <lyrics font_family="Alegreya-Medium" font_size="14" color="#000000" space_before="26" />
-            <dropcap font_family="Alegreya-Bold" font_size="45" color="#cf232b" right_indent="10" />
-            <header font_family="Alegreya-Italic" font_size="8" color="#0000e6" align="center" border_width="1.0" border_color="#0000e6" border_padding="10" />
-            <footer font_family="Alegreya-Italic" font_size="8" color="#0000e6" align="center" border_width="1.0" border_color="#0000e6" border_padding="10" />
+            <para-style name="title" font_family="Alegreya SC-Bold" font_size="30" color="#0000e6" align="center" space_after="16" />
+            <para-style name="h1" font_family="Alegreya-Medium" font_size="16" color="#0000e6" align="center" />
+            <para-style name="verse" font_family="Alegreya-Medium" font_size="14" color="#000000" align="left" first_line_indent="20" space_after="15" leading="17" />
+            <para-style name="header" font_family="Alegreya-Italic" font_size="8" color="#0000e6" align="center" border_width="1.0" border_color="#0000e6" border_padding="10" />
+            <para-style name="footer" font_family="Alegreya-Italic" font_size="8" color="#0000e6" align="center" border_width="1.0" border_color="#0000e6" border_padding="10" />
+            <para-style name="centered-martyria" font_family="Alegreya-Medium" font_size="14" color="#cf232b" align="center" />
+            <para-style name="tempo-marking" font_family="Alegreya-Medium" font_size="14" color="#cf232b" align="right" />
+            <para-style name="hymn-name" font_family="Alegreya-Medium" font_size="14" color="#0000e6" align="right" />
+            <score-style font_family="KA New Stathis" font_size="30" align="justify" word_spacing="4" leading="60" />
+            <neume-style type="ordinary" color="#000000" />
+            <neume-style type="accidental" color="#cf232b" />
+            <neume-style type="chronos" color="#cf232b" />
+            <neume-style type="martyria" color="#cf232b" />
+            <lyric-style font_family="Alegreya-Medium" font_size="14" color="#000000" space_before="26" />
+            <dropcap-style font_family="Alegreya-Bold" font_size="45" color="#cf232b" />
         </styles>
     </defaults>
+    <music>
+        <header-odd>
+            First Mode – Lord, I Have Cried
+            <page-number align="right" />
+        </header-odd>
+        <header-even>
+            <page-number align="left" />
+            First Mode – Lord, I Have Cried
+        </header-even>
 
-    <header-odd>
-        First Mode – Lord, I Have Cried
-        <page-number align="right" />
-    </header-odd>
-    <header-even>
-        <page-number align="left" />
-        First Mode – Lord, I Have Cried
-    </header-even>
+        <footer>
+            https://github.com/t-bullock/kassia
+        </footer>
 
-    <footer>
-        https://github.com/t-bullock/kassia
-    </footer>
+        <para style="title">
+            First Mode
+        </para>
 
-    <!-- Paragraphs take more styling options that strings (background color, borders, etc.). They can also take a 'style' attribute like title, subtitle, h1, h2, subheading, footer, etc.  -->
-    <paragraph style="title">
-        First Mode
-    </paragraph>
+        <para style="h1">
+            Lord, I Have Cried
+        </para>
 
-    <!-- Here is an example of a title using paragraph. Default settings come from paragraph-font above. -->
-    <paragraph style="h1">
-        Lord, I Have Cried
-    </paragraph>
+        <para style="centered-martyria">
+            Mode
+            <font font_family="KA New Stathis Martyria" font_size="30">i</font>
+            Πα
+            <font font_family="KA New Stathis Fthora" font_size="30">œ</font>
+        </para>
 
-    <!-- Here's our main martyria signature. -->
-    <paragraph style="h2" ending_cursor_pos="0">
-        Mode
-        <!-- Paragraphs can take a 'font' tag inside for select styling of letters or words. This style overrides the outer paragraph style. -->
-        <font font_family="KA New Stathis Martyria" font_size="30">i</font>
-        Πα
-        <font font_family="KA New Stathis Fthora" font_size="30">œ</font>
-    </paragraph>
+        <para style="tempo-marking">
+            <font font_family="KA New Stathis Martyria" font_size="30">v</font>
+            84
+        </para>
 
-    <paragraph style="h3" ending_cursor_pos="2">
-        <font font_family="KA New Stathis Martyria" font_size="30">v</font>
-        84
-    </paragraph>
+        <linebreak space="5" />
 
-    <!-- Use linebreak to force a new line. 'space' is the vertical amount to move down. -->
-    <linebreak space="5" />
+        <para style="hymn-name">
+            Κύριε ἐκέκραξα
+        </para>
 
-    <paragraph style="h4">
-        Κύριε ἐκέκραξα
-    </paragraph>
+        <score>
+            <dropcap>L</dropcap>
+            <syllable>
+                <lyric>Lord</lyric>
+                <neume-group> <!-- type = ordinary, martyria, or chronagogic -->
+                    <neume>bare</neume> <!-- type = primary, linking, chronos, or martyria; 'secondary' is assumed if nothing specified -->
+                    <neume type="primary">olig</neume>
+                    <neume type="linking">homaDR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>I</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>have</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>cried</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>ken2U</neume>
+                    <neume>psefD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>un-</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="linking">antiD</neume>
+                    <neume>haplD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>to</lyric>
+                <neume-group>
+                    <neume>bare</neume>
+                    <neume type="primary">ison</neume>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>Thee</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>oligU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume>res1</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">malfa</neume>
+                    <neume type="martyria">mpaU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>heark-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>kentU</neume>
+                    <neume>klasD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>en</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>aposUL</neume>
+                    <neume>ken2UR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>un-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>aposUL</neume>
+                    <neume>ken2UR</neume>
+                    <neume type="chronos">gorgU2R</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>to</lyric>
+                <neume-group>
+                    <neume>syne</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>antiD</neume>
+                    <neume type="chronos">gorgU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>me</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">malfa</neume>
+                    <neume type="martyria">mpaU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>heark-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>klasU</neume>
+                    <neume type="linking">homaD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>en</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>un-</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>isonU</neume>
+                    <neume>klasD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>to</lyric>
+                <neume-group>
+                    <neume>bare</neume>
+                    <neume type="primary">apos</neume>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>me</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>ken2DR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>ken2U</neume>
+                    <neume type="chronos">gorgU2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>O</lyric>
+                <neume-group>
+                    <neume>bare</neume>
+                    <neume type="primary">apos</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>hypo</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>antiD</neume>
+                    <neume type="chronos">gorgU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>Lord</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">malfa</neume>
+                    <neume type="martyria">mpaU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>Lord</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>kent</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>I</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>have</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>cried</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>ken2U</neume>
+                    <neume>psefD</neume>
+                    <neume type="accidental">flatU2R2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>un-</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>aposU</neume>
+                    <neume>klasD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>to</lyric>
+                <neume-group>
+                    <neume>syne</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>ken2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>Thee</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>oligU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume>diplD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">mnana</neume>
+                    <neume type="martyria">mgaU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>heark-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>isonUL</neume>
+                    <neume>ken2UR</neume>
+                    <neume>psefD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>en</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>un-</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>to</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume>antiD</neume>
+                    <neume>haplD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>me</lyric>
+                <neume-group>
+                    <neume>bare</neume>
+                    <neume type="primary">olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>hypo</neume>
+                    <neume type="chronos">digoUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">mhypo</neume>
+                    <neume type="martyria">mzoU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>at-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>hypsUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>tend</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>klasD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>to</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>the</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>voice</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>psefD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>hypo</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>of</lyric>
+                <neume-group>
+                    <neume>bare</neume>
+                    <neume type="primary">apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>my</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>sup-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>ken2U</neume>
+                    <neume type="chronos">gorgU2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>pli-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>ken2U</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>ca-</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>aposU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>isonUL</neume>
+                    <neume>ken2UR</neume>
+                    <neume type="chronos">gorgdotU2R</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>bare</neume>
+                    <neume type="primary">ison</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>tion</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">malfa</neume>
+                    <neume type="martyria">mpaU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>when</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>kent</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>I</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>cry</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>ken2U</neume>
+                    <neume>psefD</neume>
+                    <neume type="accidental">flatU2R2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>un-</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>aposU</neume>
+                    <neume>klasD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>to</lyric>
+                <neume-group>
+                    <neume>syne</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>ken2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>Thee</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>oligU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume>diplD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">mnana</neume>
+                    <neume type="martyria">mgaU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>Heark-</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>ken2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>en</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>un-</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>aposU</neume>
+                    <neume>klasD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>to</lyric>
+                <neume-group>
+                    <neume>syne</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>me</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>ken2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>klasD</neume>
+                    <neume>psefD2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>O</lyric>
+                <neume-group>
+                    <neume>bare</neume>
+                    <neume type="primary">ison</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>hypo</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>antiD</neume>
+                    <neume type="chronos">gorgU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>Lord</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                    <neume>diplD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">malfa</neume>
+                    <neume type="martyria">mpaU</neume>
+                </neume-group>
+            </syllable>
+        </score>
 
-    <score>
-        <neumes>
-            bare olig homaDR ison apos olig olig_ken2U_psefD apos apos apos_antiD_haplD apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig peta_oligU apos_klasU res1
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            olig_kentU_klasD olig_aposUL_ken2UR olig_aposUL_ken2UR
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2R
-        </neumes>
-        <neumes>
-            apos syne olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            olig_klasU homaD apos_klasU peta_isonU_klasD bare apos_apos olig olig_ken2DR olig_ken2U
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2
-        </neumes>
-        <neumes>
-            bare apos_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            olig_kent_klasU ison olig olig_ken2U_psefD
-        </neumes>
-        <neumes color="#cf232b">
-            flatU2R2
-        </neumes>
-        <neumes>
-            apos apos peta_aposU_klasD syne ken2 peta_oligU apos_diplD
-        </neumes>
-        <neumes color="#cf232b">
-            mnana_mgaU
-        </neumes>
-        <neumes>
-            olig_isonUL_ken2UR_psefD apos apos apos_klasU apos_antiD_haplD apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare olig hypo
-        </neumes>
-        <neumes color="#cf232b">
-            digoUR
-        </neumes>
-        <neumes>
-            olig_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            mhypo_mzoU
-        </neumes>
-        <neumes>
-            olig_hypsUR peta_klasD apos apos olig olig_psefD hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            apos bare apos_apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig olig_klasU olig_ken2U
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2
-        </neumes>
-        <neumes>
-            apos olig_ken2U peta_aposU apos apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_isonUL_ken2UR
-        </neumes>
-        <neumes color="#cf232b">
-            gorgdotU2R
-        </neumes>
-        <neumes>
-            bare ison apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            olig_kent olig olig_ken2U_psefD
-        </neumes>
-        <neumes color="#cf232b">
-            flatU2R2
-        </neumes>
-        <neumes>
-            apos apos peta_aposU_klasD syne ken2 peta_oligU apos_diplD
-        </neumes>
-        <neumes color="#cf232b">
-            mnana_mgaU
-        </neumes>
-        <neumes>
-            ison ken2 ison_klasU peta_aposU_klasD syne_klasU olig ken2 peta_klasD_psefD2 apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_diplD
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <dropcap>
-            L
-        </dropcap>
-        <!-- Lyrics can be broken into lines for readability or left as one long line. This score has a new line in the lyrics at each martyria. -->
-        <lyrics>
-            Lord _ I have cried _ _ un- - to _ Thee _
-            heark- en un- - to _ _ me
-            heark- en un- to me _ _ O _ _ _ Lord
-            Lord I have cried _ _ un- to _ Thee _
-            heark- en _ un- to _ me _ _
-            at- tend to the voice _ _ _ of _ my sup- - pli- ca- - - - - - tion
-            when I cry _ _ un- to _ Thee _
-            Heark- - en un- to me _ _ _ O _ _ _ Lord
-        </lyrics>
-    </score>
+        <pagebreak />
 
-    <linebreak />
+        <para style="h1">
+            Let My Prayer
+        </para>
 
-    <paragraph style="h1">
-        Let My Prayer
-    </paragraph>
+        <para style="hymn-name">
+            Κατευθυνθήτω
+        </para>
 
-    <paragraph style="h4">
-        Κατευθυνθήτω
-    </paragraph>
+        <score>
+            <dropcap>
+                L
+            </dropcap>
+            <syllable>
+                <lyric>Let</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>oligU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>my</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>pray'r</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume type="linking">psefD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>hypo</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>be</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>set</lyric>
+                <neume-group>
+                    <neume>bare</neume>
+                    <neume type="primary">apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>forth</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>as</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>in-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>ken2DR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>antiD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>cense</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>be-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>aposUL</neume>
+                    <neume>ken2UR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>fore</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>aposU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>isonUL</neume>
+                    <neume>ken2UR</neume>
+                    <neume type="chronos">gorgdotU2R</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>bare</neume>
+                    <neume type="primary">ison</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume>barl</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>Thee</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">malfa</neume>
+                    <neume type="martyria">mpaU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>the</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume>barl</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>lift-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>ing</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>up</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>ken2U</neume>
+                    <neume>psefD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>of</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>aposU</neume>
+                    <neume>klasD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>my</lyric>
+                <neume-group>
+                    <neume>syne</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>ken2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>hands</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">mnana</neume>
+                    <neume type="martyria">mgaU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>as</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>an</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>eve-</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>ning</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>sac-</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>klasU</neume>
+                    <neume>psefD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>ri-</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>fice</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">mnana</neume>
+                    <neume type="martyria">mgaU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>heark-</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>-</lyric>
+                <neume-group>
+                    <neume>ken2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>en</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>un-</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>aposU</neume>
+                    <neume>klasD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>to</lyric>
+                <neume-group>
+                    <neume>syne</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>me</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>ken2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>peta</neume>
+                    <neume>klasD</neume>
+                    <neume>psefD2</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>O</lyric>
+                <neume-group>
+                    <neume>bare</neume>
+                    <neume type="primary">ison</neume>
+                    <neume>klasU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>hypo</neume>
+                    <neume type="chronos">gorgUR</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>olig</neume>
+                    <neume>antiD</neume>
+                    <neume type="chronos">gorgU</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>_</lyric>
+                <neume-group>
+                    <neume>apos</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <lyric>Lord</lyric>
+                <neume-group>
+                    <neume>ison</neume>
+                    <neume>diplD</neume>
+                </neume-group>
+            </syllable>
+            <syllable>
+                <neume-group>
+                    <neume type="martyria">malfa</neume>
+                    <neume type="martyria">mpaU</neume>
+                </neume-group>
+            </syllable>
+        </score>
 
-    <score>
-        <neumes>
-            peta_oligU apos olig olig_psefD hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            apos ison_klasU bare apos_apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig olig ison olig olig_ken2DR olig_antiD apos_klasU olig_aposUL_ken2UR peta_aposU apos apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_isonUL_ken2UR
-        </neumes>
-        <neumes color="#cf232b">
-            gorgdotU2R
-        </neumes>
-        <neumes>
-            bare ison apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            barl ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            olig barl olig olig olig_ken2U_psefD apos apos peta_aposU_klasD syne ken2 olig_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            mnana_mgaU
-        </neumes>
-        <neumes>
-            ison ison ison olig olig_klasU_psefD apos_klasU apos_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            mnana_mgaU
-        </neumes>
-        <neumes>
-            ison ken2 ison_klasU peta_aposU_klasD syne_klasU olig ken2 peta_klasD_psefD2 apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_diplD
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <dropcap>
-            L
-        </dropcap>
-        <lyrics>
-            Let my pray'r _ _ _ be set _ forth as in- - - cense be- fore _ _ _ _ _ Thee
-            the lift- ing up _ _ of my _ hands
-            as an eve- ning sac- ri- fice
-            heark- - en un- to me _ _ _ O _ _ _ Lord
-        </lyrics>
-    </score>
+        <linebreak />
 
-    <linebreak />
-
-    <!-- Paragraphs automatically wrap text. -->
-    <paragraph style="verse">
-        Verse 1: Set, O Lord, a watch before my mouth, and a door of enclosure round about my lips.
-    </paragraph>
-    <paragraph style="verse">
-        Verse 2: Incline not my heart to words of evil, to make excuses with excuses in sins.
-    </paragraph>
-    <paragraph style="verse">
-        Verse 3: With men that work iniquity; and I will not join with their chosen.
-    </paragraph>
-    <paragraph style="verse">
-        Verse 4: The righteous man will chasten me with mercy and reprove me; as for the oil of the sinner, let it not annoint my head.
-    </paragraph>
-    <paragraph style="verse">
-        Verse 5: For yet more is my prayer in the presence of their pleasures; swallowed up near by the rock have their judges been.
-    </paragraph>
-    <paragraph style="verse">
-        Verse 6: They shall hear my words, for they be sweetened; as a clod of earth is broken upon the earth, so have their bones been scattered nigh unto Hades.
-    </paragraph>
-
-    <pagebreak />
-
-    <header-odd>
-        First Mode – Slow Stichera
-        <page-number align="right" />
-    </header-odd>
-    <header-even>
-        <page-number align="left" />
-        First Mode – Slow Stichera
-    </header-even>
-
-    <paragraph style="title">
-        Slow Stichera
-    </paragraph>
-
-    <paragraph style="h1">
-        Verse #1
-    </paragraph>
-    <paragraph style="h4">
-        Ἐξάγαγε ἐκ φυλακῆς
-    </paragraph>
-
-    <score>
-        <neumes color="#cf232b">
-            chigorg
-        </neumes>
-        <neumes>
-            apos ison ison_klasU olig ison ison ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            chiargo
-        </neumes>
-        <neumes>
-            ison ison ison ison olig ken2 peta_klasD_psefD2 apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <dropcap>
-            B
-        </dropcap>
-        <lyrics>
-            Bring my soul out of pris- on
-            that I may con- fess _ _ _ Thy _ _ _ name
-        </lyrics>
-    </score>
-
-    <linebreak />
-
-    <paragraph style="h1">
-        Stichera #1
-    </paragraph>
-    <paragraph style="h4">
-        Τὰς ἑσπερινάς
-    </paragraph>
-
-    <score>
-        <neumes>
-            olig olig_klasU_psefD apos_klasU apos_antiD_haplD apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig olig ison olig ken2 peta_klasD_psefD2 apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos barl ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            olig barl olig_ken2U_psefD apos apos apos ison olig_isonUL_ken2UR_psefD apos apos apos_klasU olig_ken2U
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2
-        </neumes>
-        <neumes>
-            apos ison ken2 ison
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            olig_kent olig_klasU ison_psefD hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            barl olig ison peta barl peta_aposU_klasD syne ken2 ison ken2 ison ison ison apos peta_oligU_klasD apel_klasU olig olig_ken2DR_antiD2_haplD2 apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_isonUL_ken2UR
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2R
-        </neumes>
-        <neumes>
-            apos syne olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <dropcap>
-            A
-        </dropcap>
-        <lyrics>
-            Ac- cept our eve- - ning _ pray'rs O ho- - - - ly _ _ _ Lord
-            and grant us _ the re- mis- - - sion of _ sins _ _
-            for Thou a- - lone art He Who hath _ shown _ forth the Res- ur- rec- tion un- - - to _ the _ _ world
-        </lyrics>
-    </score>
-
-    <pagebreak />
-
-    <paragraph style="h1">
-        Verse #2
-    </paragraph>
-    <paragraph style="h4">
-        Ἐμὲ ὑπομενοῦσι
-    </paragraph>
-
-    <score>
-        <neumes color="#cf232b">
-            chigorg
-        </neumes>
-        <neumes>
-            apos ison_klasU olig ison ison olig_isonU ison ison ison ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            chiargo
-        </neumes>
-        <neumes>
-            ison ison olig_kentU ison_klasU olig_aposUL_ken2UR bare apos_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <dropcap>
-            T
-        </dropcap>
-        <lyrics>
-            The right- eous shall wait pa- tient- ly for me
-            un- til Thou shalt re- ward _ _ _ me
-        </lyrics>
-    </score>
-
-    <linebreak />
-
-    <paragraph style="h1">
-        Stichera #2
-    </paragraph>
-    <paragraph style="h4">
-        Κυκλώσατε λαοί
-    </paragraph>
-
-    <score>
-        <neumes>
-            ison barl olig_homaDR ison apos olig olig_ken2U_psefD apos apos apos_klasU peta_isonU_klasD bare apos_apos olig ken2 olig_isonUL_ken2UR
-        </neumes>
-        <neumes color="#cf232b">
-            gorgdotU2R
-        </neumes>
-        <neumes>
-            bare ison apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            ison_klasU olig_kent olig peta_klasD apos hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            mnana_mgaU
-        </neumes>
-        <neumes>
-            elaf olig barl olig_psefD apos apos barl peta apos olig_kentDR_psefD2 apos apos ison olig_isonUL_ken2UR_psefD apos apos apos_klasU olig_ken2U
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2
-        </neumes>
-        <neumes>
-            apos barl olig_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU_fdkeUR
-        </neumes>
-        <neumes>
-            ison barl olig_kentDR_psefD2_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            apos olig_ken2U_psefD
-        </neumes>
-        <neumes color="#cf232b">
-            fdkeU
-        </neumes>
-        <neumes>
-            apos apos olig_aposUL_ken2UR_psefD apos apos bare ison apos_haplD
-        </neumes>
-        <neumes color="#cf232b">
-            mdi_malfaU
-        </neumes>
-        <neumes>
-            olig_kentU_hypsUR
-        </neumes>
-        <neumes color="#cf232b">
-            fdgaU
-        </neumes>
-        <neumes>
-            barl olig_isonUL_ken2UR bare apos_apos bare ison apos_haplD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_ken2U
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2
-        </neumes>
-        <neumes>
-            apos peta_oligU apos_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            mnana_mgaU
-        </neumes>
-        <neumes>
-            elaf ison ison olig ken2 peta_klasD_psefD2 apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <dropcap>
-            E
-        </dropcap>
-        <lyrics>
-            En- cir- - cle _ Si- - - on O ye peo- - - - - ples
-            and en- com- pass _ her
-            and give glo- ry there- in to Him that is a- rise- en _ from the _ dead
-            for He _ _ is _ _ our _ _ God _
-            Who hath de- liv- - ered _ us _
-            from our in- iq- - - - ui- - - - ties
-        </lyrics>
-    </score>
-    
-    <pagebreak />
-    
-    <paragraph style="h1">
-        Verse #3
-    </paragraph>
-    <paragraph style="h4">
-        Ἐκ βαθέων
-    </paragraph>
-
-    <score>
-        <neumes color="#cf232b">
-            chigorg
-        </neumes>
-        <neumes>
-            apos ison ison olig_klasU ison ison olig_isonU ison ison olig_isonU ison ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            chiargo
-        </neumes>
-        <neumes>
-            ison olig ison ken2 olig_isonUL_ken2UR
-        </neumes>
-        <neumes color="#cf232b">
-            gorgdotU2R
-        </neumes>
-        <neumes>
-            bare ison apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <dropcap>
-            O
-        </dropcap>
-        <lyrics>
-            Out of the depths have I cried un- to Thee O Lord
-            O Lord hear _ _ _ _ my _ _ _ voice
-        </lyrics>
-    </score>
-
-    <linebreak />
-
-    <paragraph style="h1">
-        Stichera #3
-    </paragraph>
-    <paragraph style="h4">
-        Δεῦτε λαοί
-    </paragraph>
-
-    <score>
-        <neumes>
-            barl peta apos olig barl olig_ken2U_psefD apos apos apos_klasU ison ison peta_aposU_klasD syne_klasU olig_klasU olig_ken2U
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2
-        </neumes>
-        <neumes>
-            apos olig_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            peta_kentU syne ison ken2 ison ison ison apos peta_oligU_klasD apel_klasU olig ken2 peta_klasD_psefD2 apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos barl ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            ison barl olig_kentDR_psefD2_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            apos olig_ken2U_psefD
-        </neumes>
-        <neumes color="#cf232b">
-            fdkeU
-        </neumes>
-        <neumes>
-            apos apos olig_aposUL_ken2UR_psefD apos apos bare ison apos_haplD
-        </neumes>
-        <neumes color="#cf232b">
-            mdi_malfaU
-        </neumes>
-        <neumes>
-            olig_hypsUR
-        </neumes>
-        <neumes color="#cf232b">
-            fdpaU
-        </neumes>
-        <neumes>
-            barl ison ison olig_isonUL_ken2UR_psefD apos apos apos_klasU olig_ken2U
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2
-        </neumes>
-        <neumes>
-            apos olig_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            ison ison olig olig_ken2DR olig_antiD apos_klasU apel ison olig ken2 peta_klasD_psefD2 apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <dropcap>
-            C
-        </dropcap>
-        <lyrics>
-            Come O ye peo- - - ples let us praise and wor- ship _ Christ
-            glo- ri- fy- - ing His Res- ur- rec- tion from _ _ _ the _ _ _ dead
-            for He _ _ is _ _ our _ _ God _
-            Who hath de- liv- - - ered the _ world
-            from thē er- - - ror of thē en- - - - e- - - - my
-        </lyrics>
-    </score>
-
-    <linebreak />
-    
-    <paragraph style="h1">
-        Verse #4
-    </paragraph>
-    <paragraph style="h4">
-        Γενηθήτω τὰ ῷτα σου
-    </paragraph>
-
-    <score>
-        <neumes color="#cf232b">
-            chigorg
-        </neumes>
-        <neumes>
-            apos ison olig_klasU ison ison olig_isonU ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            chiargo
-        </neumes>
-        <neumes>
-            ison olig barl olig_psefD apos apos barl olig_kentU_klasD olig_aposUL_ken2UR bare apos_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <dropcap>
-            L
-        </dropcap>
-        <lyrics>
-            Let Thine ears be at- ten- tive to the voice of my sup- pli- ca- - - - tion
-        </lyrics>
-    </score>
-
-    <linebreak />
-
-    <paragraph style="h1">
-        Stichera #4
-    </paragraph>
-    <paragraph style="h4">
-        Εὐφράνθητε οὐρανοί
-    </paragraph>
-
-    <score>
-        <neumes>
-            ison olig_kentDR_psefD2 apos apos_klasU bare apos_apos olig ken2 olig_isonUL_ken2UR
-        </neumes>
-        <neumes color="#cf232b">
-            gorgdotU2R
-        </neumes>
-        <neumes>
-            bare ison apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            peta_kentU syne olig_ken2U apos_klasU ison apos peta_oligU_klasD apel_klasU olig ken2 peta_klasD_psefD2 apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            bare ison_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos barl ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            peta_hypsUR apos apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            ison_klasU bare apos_apos bare apos apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig olig_klasU olig_ken2U
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2
-        </neumes>
-        <neumes>
-            apos olig_ken2U bare apos_klasU hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            ison olig peta apos olig olig_ken2DR
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos hypo
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig ison peta_isonU apos olig_klasU olig_antiD
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU
-        </neumes>
-        <neumes>
-            apos apos apos_klasU olig_ken2U
-        </neumes>
-        <neumes color="#cf232b">
-            gorgU2
-        </neumes>
-        <neumes>
-            apos olig_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            mnana_mgaU
-        </neumes>
-        <neumes>
-            elaf olig barl olig_psefD apos apos barl peta_isonU_klasD
-            bare apos_apos olig ken2 olig_isonUL_ken2UR
-        </neumes>
-        <neumes color="#cf232b">
-            gorgdotU2R
-        </neumes>
-        <neumes>
-            bare ison_apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <neumes>
-            olig_kent ison ison peta_klasD apos apos olig_klasU ison apos peta_oligU_klasD olig_aposUL_ken2UR peta_aposU apos apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            olig_isonUL_ken2UR
-        </neumes>
-        <neumes color="#cf232b">
-            gorgdotU2R
-        </neumes>
-        <neumes>
-            bare ison apos
-        </neumes>
-        <neumes color="#cf232b">
-            gorgUR
-        </neumes>
-        <neumes>
-            ison_klasU
-        </neumes>
-        <neumes color="#cf232b">
-            malfa_mpaU
-        </neumes>
-        <dropcap>
-            R
-        </dropcap>
-        <lyrics>
-            Re- joice _ O ye heav- - - - - ens
-            sound the trum- pets ye foun- da- tions of _ _ _ thē _ _ _ earth
-            cry _ _ out with glad- - - ness O _ ye moun- - - - tains
-            For be- hold Em- man- - u- - el hath nailed our sins _ _ _ to the _ Cross
-            and the Giv- er of life hath slain _ _ _ death
-            and as the Friend of _ man He hath raised up Ad- - - - - - am
-        </lyrics>
-    </score>
-
+        <!-- Paragraphs automatically wrap text. -->
+        <para style="verse">
+            Verse 1: Set, O Lord, a watch before my mouth, and a door of enclosure round about my lips.
+        </para>
+        <para style="verse">
+            Verse 2: Incline not my heart to words of evil, to make excuses with excuses in sins.
+        </para>
+        <para style="verse">
+            Verse 3: With men that work iniquity; and I will not join with their chosen.
+        </para>
+        <para style="verse">
+            Verse 4: The righteous man will chasten me with mercy and reprove me; as for the oil of the sinner, let it not annoint my head.
+        </para>
+        <para style="verse">
+            Verse 5: For yet more is my prayer in the presence of their pleasures; swallowed up near by the rock have their judges been.
+        </para>
+        <para style="verse">
+            Verse 6: They shall hear my words, for they be sweetened; as a clod of earth is broken upon the earth, so have their bones been scattered nigh unto Hades.
+        </para>
+    </music>
 </bnml>

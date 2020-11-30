@@ -428,8 +428,9 @@ class Kassia:
             logging.warning("No primary neume in neume group. Skipping group. {}".format(e))
             return neume_group
 
-        # Create string of cond neume names, separated by underscores
-        secondary_neumes = filter(lambda neume: neume.category is not NeumeType.primary, neume_group)
+        # Create string of conditional neume names, separated by underscores
+        secondary_neumes_index = neume_group.index(base_neume)
+        secondary_neumes = neume_group[secondary_neumes_index+1:]
         secondary_neumes_str = self.convert_neumegroup_to_str(secondary_neumes)
 
         # Convert neume group to string separated by underscores for processing
