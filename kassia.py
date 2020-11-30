@@ -392,11 +392,11 @@ class Kassia:
         try:
             neume_cat_str = neume_elem.attrib['type']
             neume_cat = NeumeType[neume_cat_str]
-        except Exception as e:
+        except KeyError as ke:
             if is_first_in_chunk and neume_name_str != 'bare':
                 neume_cat = NeumeType.primary
             else:
-                logging.info("Neume type not specified for {}. Assuming 'secondary'. {}".format(neume_name_str, e))
+                logging.info("Neume type not specified for {}. Assuming 'secondary'.".format(neume_name_str))
                 neume_cat = NeumeType.secondary
         return NeumeBnml(neume_name_str, neume_cat)
 
@@ -419,7 +419,7 @@ class Kassia:
         param: font_lookup: Font information imported from yaml file.
         returns: List of NeumeBnml.
         """
-        if len(neume_group) == 1:
+        if len(neume_group) == 1 or neume_group[0].category == NeumeType.martyria:
             return neume_group
 
         try:
